@@ -23,30 +23,30 @@ import org.slf4j.LoggerFactory;
  *
  * @author manolodd
  */
-public class SwComponent {
+public class Component {
 
-    private Logger logger = LoggerFactory.getLogger(SwComponent.class);
+    private Logger logger = LoggerFactory.getLogger(Component.class);
     
-    private String componentName;
-    private String componentVersion;
-    private SupportedLicenses componentLicense;
+    private String name;
+    private String version;
+    private SupportedLicenses license;
 
-    public SwComponent(String componentName, String componentVersion, SupportedLicenses componentLicense) {
-        this.componentName = componentName;
-        this.componentVersion = componentVersion;
-        this.componentLicense = componentLicense;
+    public Component(String name, String version, SupportedLicenses license) {
+        this.name = name;
+        this.version = version;
+        this.license = license;
     }
 
-    public String getComponentName() {
-        return componentName;
+    public String getName() {
+        return name;
     }
 
-    public String getComponentVersion() {
-        return componentVersion;
+    public String getVersion() {
+        return version;
     }
 
-    public SupportedLicenses getComponentLicense() {
-        return componentLicense;
+    public SupportedLicenses getLicense() {
+        return license;
     }
 
 }

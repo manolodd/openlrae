@@ -39,6 +39,6 @@ public enum SupportedCompatibilities {
     }
 
     public float getCompatibilityValue() {
-        return this.compatibilityValue;
+        return compatibilityValue;
     }
 }

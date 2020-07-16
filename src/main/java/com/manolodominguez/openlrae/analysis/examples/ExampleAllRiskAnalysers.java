@@ -24,11 +24,11 @@ import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserComponent
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserProjectLicenseIncompatibility;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedContributions;
+import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponentWeights;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistributions;
-import com.manolodominguez.openlrae.swdefinition.SwComponent;
-import com.manolodominguez.openlrae.swdefinition.SwProject;
-import com.manolodominguez.openlrae.swdefinition.SwComponentAddition;
+import com.manolodominguez.openlrae.swdefinition.Component;
+import com.manolodominguez.openlrae.swdefinition.Project;
+import com.manolodominguez.openlrae.swdefinition.ComponentBinding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,20 +46,20 @@ public class ExampleAllRiskAnalysers {
     public static void main(String[] args) {
         logger.info("Starting example");
         // Define four components
-        SwComponent component1 = new SwComponent("one-software-component", "3.7", SupportedLicenses.MIT);
-        SwComponent component2 = new SwComponent("another-sw-component", "1.7.2", SupportedLicenses.APACHE20);
-        SwComponent component3 = new SwComponent("openLRAE own code", "1.0", SupportedLicenses.LGPL21_PLUS);
-        SwComponent component4 = new SwComponent("other-legacy-component", "0.9", SupportedLicenses.GPL20);
+        Component component1 = new Component("one-software-component", "3.7", SupportedLicenses.MIT);
+        Component component2 = new Component("another-sw-component", "1.7.2", SupportedLicenses.APACHE20);
+        Component component3 = new Component("openLRAE own code", "1.0", SupportedLicenses.LGPL21_PLUS);
+        Component component4 = new Component("other-legacy-component", "0.9", SupportedLicenses.GPL20);
         // Define how the aforementioned software components are included into the project
-        SwComponentAddition componentAddition1 = new SwComponentAddition(component1, SupportedLinks.DYNAMIC, SupportedContributions.HIGH);
-        SwComponentAddition componentAddition2 = new SwComponentAddition(component2, SupportedLinks.DYNAMIC, SupportedContributions.HIGH);
-        SwComponentAddition componentAddition3 = new SwComponentAddition(component3, SupportedLinks.DYNAMIC, SupportedContributions.HIGH);
-        SwComponentAddition componentAddition4 = new SwComponentAddition(component4, SupportedLinks.DYNAMIC, SupportedContributions.HIGH);
+        ComponentBinding componentBinding1 = new ComponentBinding(component1, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
+        ComponentBinding componentBinding2 = new ComponentBinding(component2, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
+        ComponentBinding componentBinding3 = new ComponentBinding(component3, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
+        ComponentBinding componentBinding4 = new ComponentBinding(component4, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
         // Define the set of components additions of the project 
-        SwProject project = new SwProject("OpenLRAE", "1.0", SupportedLicenses.APACHE20, SupportedRedistributions.SOFTWARE_PACKAGE, componentAddition1);
-        project.addComponentAddition(componentAddition2);
-        project.addComponentAddition(componentAddition3);
-        project.addComponentAddition(componentAddition4);
+        Project project = new Project("OpenLRAE", "1.0", SupportedLicenses.APACHE20, SupportedRedistributions.SOFTWARE_PACKAGE, componentBinding1);
+        project.addComponentBinding(componentBinding2);
+        project.addComponentBinding(componentBinding3);
+        project.addComponentBinding(componentBinding4);
         // Define desired risk analysers we want to use for this project
         RiskAnalyserProjectLicensesTooLimited riskAnalyser1 = new RiskAnalyserProjectLicensesTooLimited(project);
         RiskAnalyserComponentLicensesTooOld riskAnalyser2 = new RiskAnalyserComponentLicensesTooOld(project);
@@ -68,22 +68,22 @@ public class ExampleAllRiskAnalysers {
         RiskAnalyserProjectLicenseIncompatibility riskAnalyser5 = new RiskAnalyserProjectLicenseIncompatibility(project);
         // Define a Risk analysis engine and add these risk analysers
         LicenseRiskAnalysisEngine riskAnalisisEngine = new LicenseRiskAnalysisEngine(riskAnalyser1);
-        riskAnalisisEngine.addRiskAnalyser(riskAnalyser2);
-        riskAnalisisEngine.addRiskAnalyser(riskAnalyser3);
-        riskAnalisisEngine.addRiskAnalyser(riskAnalyser4);
-        riskAnalisisEngine.addRiskAnalyser(riskAnalyser5);
+//        riskAnalisisEngine.addRiskAnalyser(riskAnalyser2);
+//        riskAnalisisEngine.addRiskAnalyser(riskAnalyser3);
+//        riskAnalisisEngine.addRiskAnalyser(riskAnalyser4);
+//        riskAnalisisEngine.addRiskAnalyser(riskAnalyser5);
         // Run the license risks analysis and collect results
         RiskAnalysisResult[] resultSet = riskAnalisisEngine.getRiskAnalysisResultSet();
 
         // Print analysis info. This is only for visualizing the computed 
         // results
         System.out.println("### Project info");
-        System.out.println("\t=> Project name: " + project.getProjectName() + "-" + project.getProjectVersion());
-        System.out.println("\t=> Project's selected license: " + project.getProjectLicense().getShortNameValue());
-        System.out.println("\t=> Project redistribution: " + project.getProjectRedistribution().toString());
-        System.out.println("### Project pieces");
-        for (SwComponentAddition spp : project.getComponentAdditions()) {
-            System.out.println("\t=> " + spp.getComponent().getComponentName() + "-" + spp.getComponent().getComponentVersion() + " (" + spp.getComponent().getComponentLicense().getShortNameValue() + ") --> Contribution to the project: " + spp.getComponentContribution().toString());
+        System.out.println("\t=> Project name: " + project.getName() + "-" + project.getVersion());
+        System.out.println("\t=> Project's selected license: " + project.getLicense().getShortNameValue());
+        System.out.println("\t=> Project redistribution: " + project.getRedistribution().toString());
+        System.out.println("### Component bindigs:");
+        for (ComponentBinding spp : project.getComponentsBindings()) {
+            System.out.println("\t=> " + spp.getComponent().getName() + "-" + spp.getComponent().getVersion() + " (" + spp.getComponent().getLicense().getShortNameValue() + ") --> Contribution to the project: " + spp.getWeight().toString());
         }
         System.out.println("### Risk analysis");
         for (RiskAnalysisResult rar : resultSet) {

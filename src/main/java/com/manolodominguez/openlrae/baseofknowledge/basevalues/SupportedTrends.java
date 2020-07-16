@@ -37,6 +37,6 @@ public enum SupportedTrends {
     }
 
     public float getTrendValue() {
-        return this.trendValue;
+        return trendValue;
     }
 }

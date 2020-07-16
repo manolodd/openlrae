@@ -46,6 +46,6 @@ public enum SupportedRisks {
     }
 
     public String getRiskDescriptionValue() {
-        return this.riskDescription;
+        return riskDescription;
     }
 }

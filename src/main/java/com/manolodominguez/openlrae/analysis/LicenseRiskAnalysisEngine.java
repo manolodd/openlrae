@@ -26,22 +26,22 @@ import org.slf4j.LoggerFactory;
  */
 public class LicenseRiskAnalysisEngine {
     private Logger logger = LoggerFactory.getLogger(LicenseRiskAnalysisEngine.class);
-    private CopyOnWriteArrayList<AbstractRiskAnalyser> riskAnalysers;
+    private CopyOnWriteArrayList<AbstractRiskAnalyser> risksAnalysers;
     private CopyOnWriteArrayList<RiskAnalysisResult> riskAnalysisResultSet;
 
     public LicenseRiskAnalysisEngine(AbstractRiskAnalyser firstRiskAnalysers) {
-        this.riskAnalysers = new CopyOnWriteArrayList<>();
-        this.riskAnalysers.add(firstRiskAnalysers);
+        this.risksAnalysers = new CopyOnWriteArrayList<>();
+        this.risksAnalysers.add(firstRiskAnalysers);
         this.riskAnalysisResultSet = new CopyOnWriteArrayList<>();
     }
     
-    public void addRiskAnalyser(AbstractRiskAnalyser riskAnalysers) {
-        this.riskAnalysers.add(riskAnalysers);
+    public void addRiskAnalyser(AbstractRiskAnalyser riskAnalyser) {
+        this.risksAnalysers.add(riskAnalyser);
     }
     
     public RiskAnalysisResult[] getRiskAnalysisResultSet() {
-        for (AbstractRiskAnalyser ra: this.riskAnalysers) {
-            this.riskAnalysisResultSet.add(ra.getRiskAnalysisResult());
+        for (AbstractRiskAnalyser riskAnaliser: this.risksAnalysers) {
+            this.riskAnalysisResultSet.add(riskAnaliser.getRiskAnalysisResult());
         }
         return this.riskAnalysisResultSet.toArray(new RiskAnalysisResult[0]);
     }

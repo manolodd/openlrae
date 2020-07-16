@@ -22,21 +22,21 @@ import org.slf4j.LoggerFactory;
  *
  * @author manolodd
  */
-public enum SupportedContributions {
+public enum SupportedComponentWeights {
     LOW(0.05f),
     NEAR_LOW(0.33f),
     NEAR_HIGH(0.67f),
     HIGH(0.95f);
 
-    private Logger logger = LoggerFactory.getLogger(SupportedContributions.class);
+    private Logger logger = LoggerFactory.getLogger(SupportedComponentWeights.class);
     
-    private final float contributionValue;
+    private final float weightValue;
 
-    private SupportedContributions(float contributionValue) {
-        this.contributionValue = contributionValue;
+    private SupportedComponentWeights(float weightValue) {
+        this.weightValue = weightValue;
     }
 
-    public float getContributionValue() {
-        return this.contributionValue;
+    public float getWeightValue() {
+        return weightValue;
     }
 }

@@ -36,6 +36,6 @@ public enum SupportedLinks {
     }
 
     public boolean isStatic() {
-        return this.isStatic;
+        return isStatic;
     }
 }

@@ -33,35 +33,35 @@ public class LicenseCompatibilityEntry {
     private SupportedLicenses componentLicense;
     private SupportedLicenses projectLicense;
     private SupportedCompatibilities compatibility;
-    private SupportedLinks linkingType;
-    private SupportedRedistributions redistributionType;
+    private SupportedLinks link;
+    private SupportedRedistributions redistribution;
 
-    public LicenseCompatibilityEntry(SupportedLicenses componentLicense, SupportedLicenses projectLicense, SupportedCompatibilities compatibility, SupportedLinks linkingType, SupportedRedistributions redistributionType) {
+    public LicenseCompatibilityEntry(SupportedLicenses componentLicense, SupportedLicenses projectLicense, SupportedCompatibilities compatibility, SupportedLinks link, SupportedRedistributions redistribution) {
         this.componentLicense = componentLicense;
         this.projectLicense = projectLicense;
         this.compatibility = compatibility;
-        this.linkingType = linkingType;
-        this.redistributionType = redistributionType;
+        this.link = link;
+        this.redistribution = redistribution;
     }
 
     public SupportedLicenses getComponentLicense() {
-        return this.componentLicense;
+        return componentLicense;
     }
 
     public SupportedLicenses getProjectLicense() {
-        return this.projectLicense;
+        return projectLicense;
     }
 
     public SupportedCompatibilities getCompatibility() {
-        return this.compatibility;
+        return compatibility;
     }
 
-    public SupportedLinks getLinkingType() {
-        return this.linkingType;
+    public SupportedLinks getLink() {
+        return link;
     }
 
-    public SupportedRedistributions getRedistributionType() {
-        return this.redistributionType;
+    public SupportedRedistributions getRedistribution() {
+        return redistribution;
     }
 
     

@@ -56,14 +56,14 @@ public enum SupportedLicenses {
     }
 
     public int getLicenseIDValue() {
-        return this.licenseIDValue;
+        return licenseIDValue;
     }
 
     public String getShortNameValue() {
-        return this.shortNameValue;
+        return shortNameValue;
     }
 
     public String getLongNameValue() {
-        return this.longNameValue;
+        return longNameValue;
     }
 }

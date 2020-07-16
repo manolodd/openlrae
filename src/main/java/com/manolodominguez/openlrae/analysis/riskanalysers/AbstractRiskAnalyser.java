@@ -17,7 +17,7 @@ package com.manolodominguez.openlrae.analysis.riskanalysers;
 
 import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
-import com.manolodominguez.openlrae.swdefinition.SwProject;
+import com.manolodominguez.openlrae.swdefinition.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,16 +28,16 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractRiskAnalyser {
 
     private Logger logger = LoggerFactory.getLogger(AbstractRiskAnalyser.class);
-    protected SwProject project;
-    protected SupportedRisks riskType;
+    protected Project project;
+    protected SupportedRisks handledRiskType;
 
-    public AbstractRiskAnalyser(SwProject project, SupportedRisks riskType) {
+    public AbstractRiskAnalyser(Project project, SupportedRisks handledRiskType) {
         this.project = project;
-        this.riskType = riskType;
+        this.handledRiskType = handledRiskType;
     }
 
-    public SupportedRisks getRiskType() {
-        return this.riskType;
+    public SupportedRisks getHandledRiskType() {
+        return handledRiskType;
     }
 
     public abstract RiskAnalysisResult getRiskAnalysisResult();

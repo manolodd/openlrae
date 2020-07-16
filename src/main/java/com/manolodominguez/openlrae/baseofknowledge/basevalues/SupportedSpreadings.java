@@ -37,6 +37,6 @@ public enum SupportedSpreadings {
     }
 
     public float getSpreadingValue() {
-        return this.spreadingValue;
+        return spreadingValue;
     }
 }

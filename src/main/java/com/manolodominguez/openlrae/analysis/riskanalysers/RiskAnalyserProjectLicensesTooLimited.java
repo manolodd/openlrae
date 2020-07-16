@@ -19,9 +19,9 @@ import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
-import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicenseCompatibilityFactory;
-import com.manolodominguez.openlrae.swdefinition.SwProject;
-import com.manolodominguez.openlrae.swdefinition.SwComponentAddition;
+import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCompatibilityFactory;
+import com.manolodominguez.openlrae.swdefinition.Project;
+import com.manolodominguez.openlrae.swdefinition.ComponentBinding;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
@@ -38,7 +38,7 @@ public class RiskAnalyserProjectLicensesTooLimited extends AbstractRiskAnalyser 
 
     private Logger logger = LoggerFactory.getLogger(RiskAnalyserProjectLicensesTooLimited.class);
 
-    public RiskAnalyserProjectLicensesTooLimited(SwProject project) {
+    public RiskAnalyserProjectLicensesTooLimited(Project project) {
         super(project, SupportedRisks.PROJECT_LICENSES_TOO_LIMITED);
     }
 
@@ -64,44 +64,44 @@ public class RiskAnalyserProjectLicensesTooLimited extends AbstractRiskAnalyser 
         potentialProjectLicenses.remove(SupportedLicenses.UNDEFINED);
         potentialProjectLicenses.remove(SupportedLicenses.FORCED_AS_PROJECT_LICENSE);
         numberOfPotentialProjectLicenses = potentialProjectLicenses.size();
-        LicenseCompatibilityFactory licenseCompatibility = LicenseCompatibilityFactory.getInstance();
-        for (SwComponentAddition spp : this.project.getComponentAdditions()) {
-            for (SupportedLicenses aPotentialProjectLicense : SupportedLicenses.values()) {
-                if ((aPotentialProjectLicense != SupportedLicenses.FORCED_AS_PROJECT_LICENSE) && (aPotentialProjectLicense != SupportedLicenses.UNDEFINED)) {
-                    compatibility = licenseCompatibility.getCompatibilityOf(spp.getComponent().getComponentLicense(), aPotentialProjectLicense, spp.getLinkType(), this.project.getProjectRedistribution());
+        LicensesCompatibilityFactory licensesCompatibilities = LicensesCompatibilityFactory.getInstance();
+        for (ComponentBinding componentBinding : this.project.getComponentsBindings()) {
+            for (SupportedLicenses potentialProjectLicense : SupportedLicenses.values()) {
+                if ((potentialProjectLicense != SupportedLicenses.FORCED_AS_PROJECT_LICENSE) && (potentialProjectLicense != SupportedLicenses.UNDEFINED)) {
+                    compatibility = licensesCompatibilities.getCompatibilityOf(componentBinding.getComponent().getLicense(), potentialProjectLicense, componentBinding.getLinkType(), this.project.getRedistribution());
                     switch (compatibility) {
                         case COMPATIBLE:
                             // Nothing to do. There's no risk.
                             break;
                         case FORCED_COMPATIBLE:
-                            if (this.project.getProjectLicense() != aPotentialProjectLicense) {
-                                rootCauses.add(aPotentialProjectLicense.getShortNameValue() + " could not be used as project license because of " + spp.getComponent().getComponentName() + "-" + spp.getComponent().getComponentVersion() + " (" + spp.getComponent().getComponentLicense().getShortNameValue() + ") that is forced to be compatible with " + this.project.getProjectLicense().getShortNameValue() + " but perhaps is not compatible with " + aPotentialProjectLicense.getShortNameValue() + " via a " + spp.getLinkType().toString() + " link and " + this.project.getProjectRedistribution().toString() + " redistribution.");
-                                tips.add("Try changing " + spp.getComponent().getComponentName() + "-" + spp.getComponent().getComponentVersion() + " (" + spp.getComponent().getComponentLicense().getShortNameValue() + ") by another component compatible also with a project licensed under " + aPotentialProjectLicense.getShortNameValue() + " via a " + spp.getLinkType().toString() + " link and " + this.project.getProjectRedistribution().toString() + " redistribution.");
-                                potentialProjectLicenses.remove(aPotentialProjectLicense);
-                                riskImpact += (compatibility.getCompatibilityValue() * spp.getComponentContribution().getContributionValue());
+                            if (this.project.getLicense() != potentialProjectLicense) {
+                                rootCauses.add(potentialProjectLicense.getShortNameValue() + " could not be used as project license because of " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is forced to be compatible with " + this.project.getLicense().getShortNameValue() + " but perhaps is not compatible with " + potentialProjectLicense.getShortNameValue() + " via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                                tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component compatible also with a project licensed under " + potentialProjectLicense.getShortNameValue() + " via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                                potentialProjectLicenses.remove(potentialProjectLicense);
+                                riskImpact += (compatibility.getCompatibilityValue() * componentBinding.getWeight().getWeightValue());
                             }
                             break;
                         case UNCOMPATIBLE:
-                            rootCauses.add(aPotentialProjectLicense.getShortNameValue() + " could not be used as project license because of " + spp.getComponent().getComponentName() + "-" + spp.getComponent().getComponentVersion() + " (" + spp.getComponent().getComponentLicense().getShortNameValue() + ") that is uncompatible via a " + spp.getLinkType().toString() + " link and " + this.project.getProjectRedistribution().toString() + " redistribution.");
-                            tips.add("Try changing " + spp.getComponent().getComponentName() + "-" + spp.getComponent().getComponentVersion() + " (" + spp.getComponent().getComponentLicense().getShortNameValue() + ") by another component compatible also with a project licensed under " + aPotentialProjectLicense.getShortNameValue() + " via a " + spp.getLinkType().toString() + " link and " + this.project.getProjectRedistribution().toString() + " redistribution.");
-                            potentialProjectLicenses.remove(aPotentialProjectLicense);
-                            riskImpact += (compatibility.getCompatibilityValue() * spp.getComponentContribution().getContributionValue());
+                            rootCauses.add(potentialProjectLicense.getShortNameValue() + " could not be used as project license because of " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is uncompatible via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                            tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component compatible also with a project licensed under " + potentialProjectLicense.getShortNameValue() + " via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                            potentialProjectLicenses.remove(potentialProjectLicense);
+                            riskImpact += (compatibility.getCompatibilityValue() * componentBinding.getWeight().getWeightValue());
                             break;
                         case UNKNOWN:
-                            rootCauses.add(aPotentialProjectLicense.getShortNameValue() + " could not be used as project license because of " + spp.getComponent().getComponentName() + "-" + spp.getComponent().getComponentVersion() + " (" + spp.getComponent().getComponentLicense().getShortNameValue() + ") that is not known to be compatible via a " + spp.getLinkType().toString() + " link and " + this.project.getProjectRedistribution().toString() + " redistribution.");
-                            tips.add("Try changing " + spp.getComponent().getComponentName() + "-" + spp.getComponent().getComponentVersion() + " (" + spp.getComponent().getComponentLicense().getShortNameValue() + ") by another component compatible also with a project licensed under " + aPotentialProjectLicense.getShortNameValue() + " via a " + spp.getLinkType().toString() + " link and " + this.project.getProjectRedistribution().toString() + " redistribution.");
-                            potentialProjectLicenses.remove(aPotentialProjectLicense);
-                            riskImpact += (compatibility.getCompatibilityValue() * spp.getComponentContribution().getContributionValue());
+                            rootCauses.add(potentialProjectLicense.getShortNameValue() + " could not be used as project license because of " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is not known to be compatible via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                            tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component compatible also with a project licensed under " + potentialProjectLicense.getShortNameValue() + " via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                            potentialProjectLicenses.remove(potentialProjectLicense);
+                            riskImpact += (compatibility.getCompatibilityValue() * componentBinding.getWeight().getWeightValue());
                             break;
                         case MOSTLY_COMPATIBLE:
-                            rootCauses.add(aPotentialProjectLicense.getShortNameValue() + " could be used as project license, but " + spp.getComponent().getComponentName() + "-" + spp.getComponent().getComponentVersion() + " (" + spp.getComponent().getComponentLicense().getShortNameValue() + ") is not completely compatible via a " + spp.getLinkType().toString() + " link and " + this.project.getProjectRedistribution().toString() + " redistribution.");
-                            tips.add("Try changing " + spp.getComponent().getComponentName() + "-" + spp.getComponent().getComponentVersion() + " (" + spp.getComponent().getComponentLicense().getShortNameValue() + ") by another component fully compatible with a project licensed under " + aPotentialProjectLicense.getShortNameValue() + " via a " + spp.getLinkType().toString() + " link and " + this.project.getProjectRedistribution().toString() + " redistribution.");
-                            riskImpact += (compatibility.getCompatibilityValue() * spp.getComponentContribution().getContributionValue());
+                            rootCauses.add(potentialProjectLicense.getShortNameValue() + " could be used as project license, but " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") is not completely compatible via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                            tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component fully compatible with a project licensed under " + potentialProjectLicense.getShortNameValue() + " via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                            riskImpact += (compatibility.getCompatibilityValue() * componentBinding.getWeight().getWeightValue());
                             break;
                         case MOSTLY_UNCOMPATIBLE:
-                            rootCauses.add(aPotentialProjectLicense.getShortNameValue() + " could be used as project license, but " + spp.getComponent().getComponentName() + "-" + spp.getComponent().getComponentVersion() + " (" + spp.getComponent().getComponentLicense().getShortNameValue() + ") is almost incompatible via a " + spp.getLinkType().toString() + " link and " + this.project.getProjectRedistribution().toString() + " redistribution.");
-                            tips.add("Try changing " + spp.getComponent().getComponentName() + "-" + spp.getComponent().getComponentVersion() + " (" + spp.getComponent().getComponentLicense().getShortNameValue() + ") by another component fully compatible with a project licensed under " + aPotentialProjectLicense.getShortNameValue() + " via a " + spp.getLinkType().toString() + " link and " + this.project.getProjectRedistribution().toString() + " redistribution.");
-                            riskImpact += (compatibility.getCompatibilityValue() * spp.getComponentContribution().getContributionValue());
+                            rootCauses.add(potentialProjectLicense.getShortNameValue() + " could be used as project license, but " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") is almost incompatible via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                            tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component fully compatible with a project licensed under " + potentialProjectLicense.getShortNameValue() + " via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                            riskImpact += (compatibility.getCompatibilityValue() * componentBinding.getWeight().getWeightValue());
                             break;
                     }
                     numberOfRiskImpactContributions++;
@@ -130,7 +130,7 @@ public class RiskAnalyserProjectLicensesTooLimited extends AbstractRiskAnalyser 
             }
         }
 
-        return new RiskAnalysisResult(this.riskType, riskExposure, riskImpact, rootCauses, tips);
+        return new RiskAnalysisResult(this.handledRiskType, riskExposure, riskImpact, rootCauses, tips);
     }
 
 }

@@ -16,7 +16,7 @@
 package com.manolodominguez.openlrae.swdefinition;
 
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedContributions;
+import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponentWeights;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,30 +24,30 @@ import org.slf4j.LoggerFactory;
  *
  * @author manolodd
  */
-public class SwComponentAddition {
+public class ComponentBinding {
 
-    private Logger logger = LoggerFactory.getLogger(SwComponentAddition.class);
+    private Logger logger = LoggerFactory.getLogger(ComponentBinding.class);
     
-    private SwComponent component;
-    private SupportedContributions componentContribution;
-    private SupportedLinks linkType;
+    private Component component;
+    private SupportedComponentWeights weight;
+    private SupportedLinks link;
 
-    public SwComponentAddition(SwComponent component, SupportedLinks linkType, SupportedContributions componentContribution) {
+    public ComponentBinding(Component component, SupportedLinks link, SupportedComponentWeights weight) {
         this.component = component;
-        this.linkType = linkType;
-        this.componentContribution = componentContribution;
+        this.link = link;
+        this.weight = weight;
     }
 
-    public SwComponent getComponent() {
+    public Component getComponent() {
         return component;
     }
 
     public SupportedLinks getLinkType() {
-        return linkType;
+        return link;
     }
 
-    public SupportedContributions getComponentContribution() {
-        return componentContribution;
+    public SupportedComponentWeights getWeight() {
+        return weight;
     }
 
 }
