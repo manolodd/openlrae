@@ -26,7 +26,7 @@ public enum SupportedComponentWeights {
     LOW(0.05f),
     NEAR_LOW(0.33f),
     NEAR_HIGH(0.67f),
-    HIGH(0.95f);
+    HIGH(1.0f);
 
     private Logger logger = LoggerFactory.getLogger(SupportedComponentWeights.class);
     

@@ -33,12 +33,12 @@ import org.slf4j.LoggerFactory;
  *
  * @author manolodd
  */
-public class RiskAnalyserComponentLicensesNotTrendy extends AbstractRiskAnalyser {
+public class RiskAnalyserUnfashionableLicensesOfComponents extends AbstractRiskAnalyser {
 
-    private Logger logger = LoggerFactory.getLogger(RiskAnalyserComponentLicensesNotTrendy.class);
+    private Logger logger = LoggerFactory.getLogger(RiskAnalyserUnfashionableLicensesOfComponents.class);
 
-    public RiskAnalyserComponentLicensesNotTrendy(Project project) {
-        super(project, SupportedRisks.COMPONENT_LICENSES_NOT_TRENDY);
+    public RiskAnalyserUnfashionableLicensesOfComponents(Project project) {
+        super(project, SupportedRisks.UNFASHIONABLE_LICENSES_OF_COMPONENTS);
     }
 
     @Override
@@ -66,13 +66,13 @@ public class RiskAnalyserComponentLicensesNotTrendy extends AbstractRiskAnalyser
                     riskImpact += (trend.getTrendValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
                     break;
-                case NEAR_UNPOPULAR:
+                case NEAR_UNFASHIONABLE:
                     rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is " + licensesTrends.getTrendOf(componentBinding.getComponent().getLicense()).toString() + " in terms of trend");
                     tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component released under a license more trendy.");
                     riskImpact += (trend.getTrendValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
                     break;
-                case UNPOPULAR:
+                case UNFASHIONABLE:
                     rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is " + licensesTrends.getTrendOf(componentBinding.getComponent().getLicense()).toString() + " in terms of trend");
                     tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component released under a license more trendy.");
                     riskImpact += (trend.getTrendValue() * componentBinding.getWeight().getWeightValue());

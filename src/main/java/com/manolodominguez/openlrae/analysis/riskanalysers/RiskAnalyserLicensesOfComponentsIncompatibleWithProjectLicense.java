@@ -29,12 +29,12 @@ import org.slf4j.LoggerFactory;
  *
  * @author manolodd
  */
-public class RiskAnalyserProjectLicenseIncompatibility extends AbstractRiskAnalyser {
+public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense extends AbstractRiskAnalyser {
 
-    private Logger logger = LoggerFactory.getLogger(RiskAnalyserProjectLicenseIncompatibility.class);
+    private Logger logger = LoggerFactory.getLogger(RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.class);
 
-    public RiskAnalyserProjectLicenseIncompatibility(Project project) {
-        super(project, SupportedRisks.PROJECT_LICENSE_INCOMPATIBILITY);
+    public RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense(Project project) {
+        super(project, SupportedRisks.LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSE);
     }
 
     @Override

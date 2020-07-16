@@ -16,9 +16,9 @@
 package com.manolodominguez.openlrae.analysis.riskanalysers;
 
 import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedAges;
+import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedObsolescences;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
-import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesAgesFactory;
+import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesObsolescencesFactory;
 import com.manolodominguez.openlrae.swdefinition.Project;
 import com.manolodominguez.openlrae.swdefinition.ComponentBinding;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -29,12 +29,12 @@ import org.slf4j.LoggerFactory;
  *
  * @author manolodd
  */
-public class RiskAnalyserComponentLicensesTooOld extends AbstractRiskAnalyser {
+public class RiskAnalyserObsoleteLicensesOfComponents extends AbstractRiskAnalyser {
 
-    private Logger logger = LoggerFactory.getLogger(RiskAnalyserComponentLicensesTooOld.class);
+    private Logger logger = LoggerFactory.getLogger(RiskAnalyserObsoleteLicensesOfComponents.class);
 
-    public RiskAnalyserComponentLicensesTooOld(Project project) {
-        super(project, SupportedRisks.COMPONENT_LICENSES_TOO_OLD);
+    public RiskAnalyserObsoleteLicensesOfComponents(Project project) {
+        super(project, SupportedRisks.OBSOLETE_LICENSES_OF_COMPONENTS);
     }
 
     @Override
@@ -49,29 +49,29 @@ public class RiskAnalyserComponentLicensesTooOld extends AbstractRiskAnalyser {
         rootCauses = new CopyOnWriteArrayList<>();
         tips = new CopyOnWriteArrayList<>();
 
-        LicensesAgesFactory licensesAges = LicensesAgesFactory.getInstance();
+        LicensesObsolescencesFactory licensesObsolescences = LicensesObsolescencesFactory.getInstance();
         for (ComponentBinding componentBinding : this.project.getComponentsBindings()) {
-            SupportedAges age = licensesAges.getAgeOf(componentBinding.getComponent().getLicense());
-            switch (age) {
+            SupportedObsolescences obsolescence = licensesObsolescences.getObsolescenceOf(componentBinding.getComponent().getLicense());
+            switch (obsolescence) {
                 case UPDATED:
                     // Nothing to do. There's no risk.
                     break;
                 case NEAR_UPDATED:
-                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is " + licensesAges.getAgeOf(componentBinding.getComponent().getLicense()).toString());
+                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is " + licensesObsolescences.getObsolescenceOf(componentBinding.getComponent().getLicense()).toString());
                     tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component released under a newer license.");
-                    riskImpact += (age.getAgeValue() * componentBinding.getWeight().getWeightValue());
+                    riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
                     break;
                 case NEAR_OUTDATED:
-                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is " + licensesAges.getAgeOf(componentBinding.getComponent().getLicense()).toString());
+                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is " + licensesObsolescences.getObsolescenceOf(componentBinding.getComponent().getLicense()).toString());
                     tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component released under a newer license.");
-                    riskImpact += (age.getAgeValue() * componentBinding.getWeight().getWeightValue());
+                    riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
                     break;
                 case OUTDATED:
-                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is " + licensesAges.getAgeOf(componentBinding.getComponent().getLicense()).toString());
+                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is " + licensesObsolescences.getObsolescenceOf(componentBinding.getComponent().getLicense()).toString());
                     tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component released under a newer license.");
-                    riskImpact += (age.getAgeValue() * componentBinding.getWeight().getWeightValue());
+                    riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
                     break;
             }

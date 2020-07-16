@@ -34,12 +34,12 @@ import org.slf4j.LoggerFactory;
  *
  * @author manolodd
  */
-public class RiskAnalyserProjectLicensesTooLimited extends AbstractRiskAnalyser {
+public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRiskAnalyser {
 
-    private Logger logger = LoggerFactory.getLogger(RiskAnalyserProjectLicensesTooLimited.class);
+    private Logger logger = LoggerFactory.getLogger(RiskAnalyserLimitedSetOfPotentialProjectLicenses.class);
 
-    public RiskAnalyserProjectLicensesTooLimited(Project project) {
-        super(project, SupportedRisks.PROJECT_LICENSES_TOO_LIMITED);
+    public RiskAnalyserLimitedSetOfPotentialProjectLicenses(Project project) {
+        super(project, SupportedRisks.LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES);
     }
 
     @Override

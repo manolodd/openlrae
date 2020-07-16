@@ -22,21 +22,21 @@ import org.slf4j.LoggerFactory;
  *
  * @author manolodd
  */
-public enum SupportedAges {
+public enum SupportedObsolescences {
     UPDATED(0.0f), // The latest version of the license
     NEAR_UPDATED(0.33f), 
     NEAR_OUTDATED(0.67f), 
-    OUTDATED(1.0f); // The first version of the licenses// The first version of the licenses// The first version of the licenses// The first version of the licenses
+    OUTDATED(1.0f); // The first version of the licenses// The first version of the licenses// The first version of the licenses// The first version of the licenses// The first version of the licenses// The first version of the licenses// The first version of the licenses// The first version of the licenses
 
-    private Logger logger = LoggerFactory.getLogger(SupportedAges.class);
+    private Logger logger = LoggerFactory.getLogger(SupportedObsolescences.class);
 
-    private final float ageValue;
+    private final float obsolescenceValue;
 
-    private SupportedAges(float ageValue) {
-        this.ageValue = ageValue;
+    private SupportedObsolescences(float obsolescenceValue) {
+        this.obsolescenceValue = obsolescenceValue;
     }
 
-    public float getAgeValue() {
-        return ageValue;
+    public float getObsolescenceValue() {
+        return obsolescenceValue;
     }
 }

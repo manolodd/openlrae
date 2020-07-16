@@ -23,12 +23,12 @@ import org.slf4j.LoggerFactory;
  * @author manolodd
  */
 public enum SupportedRisks {
-    PROJECT_LICENSE_INCOMPATIBILITY("Risk of having a set of components whose license is nor compatible with the license of the project."),
-    PROJECT_LICENSES_TOO_LIMITED("Risk of having a reduced set of project licenses to choose because of the license of its components."),
-    COMPONENT_LICENSES_TOO_OLD("Risk of having a set of components with old license versions"),
-    COMPONENT_LICENSES_NOT_TRENDY("Risk of having a set of components with licenses that are not trendy"),
+    LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSE("Risk of having a set of components whose license is nor compatible with the license of the project."),
+    LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES("Risk of having a reduced set of project licenses to choose because of the license of its components."),
+    OBSOLETE_LICENSES_OF_COMPONENTS("Risk of having a set of components with old license versions"),
+    UNFASHIONABLE_LICENSES_OF_COMPONENTS("Risk of having a set of components with licenses that are not trendy"),
     COMPONENT_LICENSES_TOO_HETEROGENEOUS("Risk of having a set of components with licenses very heterogeneous"),
-    COMPONENT_LICENSES_WITH_LOW_SPREADING("Risk of having components with licenses not used by many OSS projects"),
+    SCARCE_DEPLOYMENT_OF_LICENSES_OF_COMPONENTS("Risk of having components with licenses not used by many OSS projects"),
     COMPONENT_LICENSES_UNCERTAINTY("Risk of having components with an unknown license compatibility"),
     PROJECT_LICENSE_TO_LIMITING("Risk of having a project license that does not allow a wide range of component licences"),
     PROJECT_LICENSE_NOT_SPREADED("Risk of having a project license not used by many OSS projects"),

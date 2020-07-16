@@ -23,8 +23,8 @@ import org.slf4j.LoggerFactory;
  * @author manolodd
  */
 public enum SupportedTrends {
-    UNPOPULAR(1.0f),
-    NEAR_UNPOPULAR(0.67f),
+    UNFASHIONABLE(1.0f),
+    NEAR_UNFASHIONABLE(0.67f),
     NEAR_TRENDY(0.33f),
     TRENDY(0.0f);
 

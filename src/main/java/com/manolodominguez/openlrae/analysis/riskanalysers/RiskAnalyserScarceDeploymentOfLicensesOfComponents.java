@@ -29,12 +29,12 @@ import org.slf4j.LoggerFactory;
  *
  * @author manolodd
  */
-public class RiskAnalyserComponentLicensesWithLowSpreading extends AbstractRiskAnalyser {
+public class RiskAnalyserScarceDeploymentOfLicensesOfComponents extends AbstractRiskAnalyser {
 
-    private Logger logger = LoggerFactory.getLogger(RiskAnalyserComponentLicensesWithLowSpreading.class);
+    private Logger logger = LoggerFactory.getLogger(RiskAnalyserScarceDeploymentOfLicensesOfComponents.class);
 
-    public RiskAnalyserComponentLicensesWithLowSpreading(Project project) {
-        super(project, SupportedRisks.COMPONENT_LICENSES_WITH_LOW_SPREADING);
+    public RiskAnalyserScarceDeploymentOfLicensesOfComponents(Project project) {
+        super(project, SupportedRisks.SCARCE_DEPLOYMENT_OF_LICENSES_OF_COMPONENTS);
     }
 
     @Override

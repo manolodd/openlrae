@@ -38,24 +38,24 @@ public final class LicensesTrendFactory {
         // license being used more and more on the time?
         this.licensesTrends = new EnumMap<>(SupportedLicenses.class);
         this.licensesTrends.put(SupportedLicenses.MIT, SupportedTrends.TRENDY);
-        this.licensesTrends.put(SupportedLicenses.BSD4_CLAUSE, SupportedTrends.UNPOPULAR);
+        this.licensesTrends.put(SupportedLicenses.BSD4_CLAUSE, SupportedTrends.UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.BSD3_CLAUSE, SupportedTrends.NEAR_TRENDY);
-        this.licensesTrends.put(SupportedLicenses.APACHE11, SupportedTrends.UNPOPULAR);
+        this.licensesTrends.put(SupportedLicenses.APACHE11, SupportedTrends.UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.APACHE20, SupportedTrends.TRENDY);
         this.licensesTrends.put(SupportedLicenses.ARTISTIC20, SupportedTrends.NEAR_TRENDY);
-        this.licensesTrends.put(SupportedLicenses.LGPL21, SupportedTrends.UNPOPULAR);
-        this.licensesTrends.put(SupportedLicenses.LGPL21_PLUS, SupportedTrends.NEAR_UNPOPULAR);
-        this.licensesTrends.put(SupportedLicenses.LGPL30_PLUS, SupportedTrends.NEAR_UNPOPULAR);
-        this.licensesTrends.put(SupportedLicenses.MPL11, SupportedTrends.NEAR_UNPOPULAR);
-        this.licensesTrends.put(SupportedLicenses.CDDL, SupportedTrends.NEAR_UNPOPULAR);
-        this.licensesTrends.put(SupportedLicenses.CPL_EPL, SupportedTrends.NEAR_UNPOPULAR);
-        this.licensesTrends.put(SupportedLicenses.EUPL11, SupportedTrends.NEAR_UNPOPULAR);
-        this.licensesTrends.put(SupportedLicenses.GPL20, SupportedTrends.NEAR_UNPOPULAR);
-        this.licensesTrends.put(SupportedLicenses.GPL20_PLUS, SupportedTrends.NEAR_UNPOPULAR);
+        this.licensesTrends.put(SupportedLicenses.LGPL21, SupportedTrends.UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.LGPL21_PLUS, SupportedTrends.NEAR_UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.LGPL30_PLUS, SupportedTrends.NEAR_UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.MPL11, SupportedTrends.NEAR_UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.CDDL, SupportedTrends.NEAR_UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.CPL_EPL, SupportedTrends.NEAR_UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.EUPL11, SupportedTrends.NEAR_UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.GPL20, SupportedTrends.NEAR_UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.GPL20_PLUS, SupportedTrends.NEAR_UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.GPL30, SupportedTrends.NEAR_TRENDY);
-        this.licensesTrends.put(SupportedLicenses.AGPL30, SupportedTrends.NEAR_UNPOPULAR);
-        this.licensesTrends.put(SupportedLicenses.UNDEFINED, SupportedTrends.UNPOPULAR);
-        this.licensesTrends.put(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, SupportedTrends.UNPOPULAR);
+        this.licensesTrends.put(SupportedLicenses.AGPL30, SupportedTrends.NEAR_UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.UNDEFINED, SupportedTrends.UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, SupportedTrends.UNFASHIONABLE);
     }
 
     // Singleton
