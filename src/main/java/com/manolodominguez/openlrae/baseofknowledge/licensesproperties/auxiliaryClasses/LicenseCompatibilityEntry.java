@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.manolodominguez.openlrae.baseofknowledge.licenseproperties.auxiliaryClasses;
+package com.manolodominguez.openlrae.baseofknowledge.licensesproperties.auxiliaryClasses;
 
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
@@ -35,13 +35,15 @@ public class LicenseCompatibilityEntry {
     private SupportedCompatibilities compatibility;
     private SupportedLinks link;
     private SupportedRedistributions redistribution;
+    private String explanation;
 
-    public LicenseCompatibilityEntry(SupportedLicenses componentLicense, SupportedLicenses projectLicense, SupportedCompatibilities compatibility, SupportedLinks link, SupportedRedistributions redistribution) {
+    public LicenseCompatibilityEntry(SupportedLicenses componentLicense, SupportedLicenses projectLicense, SupportedCompatibilities compatibility, SupportedLinks link, SupportedRedistributions redistribution, String explanation) {
         this.componentLicense = componentLicense;
         this.projectLicense = projectLicense;
         this.compatibility = compatibility;
         this.link = link;
         this.redistribution = redistribution;
+        this.explanation = explanation;
     }
 
     public SupportedLicenses getComponentLicense() {
@@ -64,5 +66,7 @@ public class LicenseCompatibilityEntry {
         return redistribution;
     }
 
-    
+    public String getExplanation() {
+        return explanation;
+    }
 }

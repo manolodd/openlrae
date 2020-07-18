@@ -18,9 +18,9 @@ package com.manolodominguez.openlrae.analysis.riskanalysers;
 import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
-import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCompatibilityFactory;
-import com.manolodominguez.openlrae.swdefinition.Project;
-import com.manolodominguez.openlrae.swdefinition.ComponentBinding;
+import com.manolodominguez.openlrae.baseofknowledge.licensesproperties.LicensesCompatibilityFactory;
+import com.manolodominguez.openlrae.arquitecture.Project;
+import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -102,7 +102,7 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
             }
         }
 
-        return new RiskAnalysisResult(this.handledRiskType, riskExposure, riskImpact, rootCauses, tips);
+        return new RiskAnalysisResult(this.handledRiskType, (float) (Math.round(riskExposure * 100.0) / 100.0), (float) (Math.round(riskImpact * 100.0) / 100.0), rootCauses, tips);
     }
 
 }

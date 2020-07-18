@@ -18,9 +18,9 @@ package com.manolodominguez.openlrae.analysis.riskanalysers;
 import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedSpreadings;
-import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesSpreadingFactory;
-import com.manolodominguez.openlrae.swdefinition.Project;
-import com.manolodominguez.openlrae.swdefinition.ComponentBinding;
+import com.manolodominguez.openlrae.baseofknowledge.licensesproperties.LicensesSpreadingFactory;
+import com.manolodominguez.openlrae.arquitecture.Project;
+import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,8 +78,6 @@ public class RiskAnalyserScarceDeploymentOfLicensesOfComponents extends Abstract
             }
         }
 
-                System.out.println("\nRisk exposure = "+riskExposure);
-
         riskExposure = riskExposure / (float) this.project.getComponentsBindings().size();
         riskImpact = riskImpact / (float) this.project.getComponentsBindings().size();
         if (riskExposure > 0.0f) {
@@ -88,7 +86,7 @@ public class RiskAnalyserScarceDeploymentOfLicensesOfComponents extends Abstract
             tips.add("If you own all right on a given component involved in rik root causes, try changing its license instead of looking for another component.");
         } 
 
-        return new RiskAnalysisResult(this.handledRiskType, riskExposure, riskImpact, rootCauses, tips);
+        return new RiskAnalysisResult(this.handledRiskType, (float) (Math.round(riskExposure * 100.0) / 100.0), (float) (Math.round(riskImpact * 100.0) / 100.0), rootCauses, tips);
     }
 
 }

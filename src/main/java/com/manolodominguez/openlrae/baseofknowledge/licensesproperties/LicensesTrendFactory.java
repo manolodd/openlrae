@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.manolodominguez.openlrae.baseofknowledge.licenseproperties;
+package com.manolodominguez.openlrae.baseofknowledge.licensesproperties;
 
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedTrends;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;

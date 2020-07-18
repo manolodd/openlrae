@@ -22,13 +22,14 @@ import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSe
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserObsoleteLicensesOfComponents;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserScarceDeploymentOfLicensesOfComponents;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense;
+import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSetOfPotentialComponentsLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponentWeights;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistributions;
-import com.manolodominguez.openlrae.swdefinition.Component;
-import com.manolodominguez.openlrae.swdefinition.Project;
-import com.manolodominguez.openlrae.swdefinition.ComponentBinding;
+import com.manolodominguez.openlrae.arquitecture.Component;
+import com.manolodominguez.openlrae.arquitecture.Project;
+import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,16 +48,16 @@ public class ExampleAllRiskAnalysers {
         logger.info("Starting example");
         // Define four components
         Component component1 = new Component("one-software-component", "3.7", SupportedLicenses.MIT);
-        Component component2 = new Component("another-sw-component", "1.7.2", SupportedLicenses.APACHE20);
-        Component component3 = new Component("openLRAE own code", "1.0", SupportedLicenses.LGPL21);
-        Component component4 = new Component("other-legacy-component", "0.9", SupportedLicenses.EUPL11);
+        Component component2 = new Component("another-sw-component", "1.7.2", SupportedLicenses.LGPL30_PLUS);
+        Component component3 = new Component("openLRAE own code", "1.0", SupportedLicenses.APACHE20);
+        Component component4 = new Component("other-legacy-component", "0.9", SupportedLicenses.MPL11);
         // Define how the aforementioned software components are included into the project
         ComponentBinding componentBinding1 = new ComponentBinding(component1, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
         ComponentBinding componentBinding2 = new ComponentBinding(component2, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
         ComponentBinding componentBinding3 = new ComponentBinding(component3, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
         ComponentBinding componentBinding4 = new ComponentBinding(component4, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
         // Define the set of components additions of the project 
-        Project project = new Project("OpenLRAE", "1.0", SupportedLicenses.APACHE20, SupportedRedistributions.SOFTWARE_PACKAGE, componentBinding1);
+        Project project = new Project("OpenLRAE", "1.0", SupportedLicenses.LGPL21, SupportedRedistributions.SOFTWARE_PACKAGE, componentBinding1);
         project.addComponentBinding(componentBinding2);
         project.addComponentBinding(componentBinding3);
         project.addComponentBinding(componentBinding4);
@@ -66,12 +67,14 @@ public class ExampleAllRiskAnalysers {
         RiskAnalyserUnfashionableLicensesOfComponents riskAnalyser3 = new RiskAnalyserUnfashionableLicensesOfComponents(project);
         RiskAnalyserScarceDeploymentOfLicensesOfComponents riskAnalyser4 = new RiskAnalyserScarceDeploymentOfLicensesOfComponents(project);
         RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense riskAnalyser5 = new RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense(project);
+        RiskAnalyserLimitedSetOfPotentialComponentsLicenses riskAnalyser6 = new RiskAnalyserLimitedSetOfPotentialComponentsLicenses(project);
         // Define a Risk analysis engine and add these risk analysers
         LicenseRiskAnalysisEngine riskAnalisisEngine = new LicenseRiskAnalysisEngine(riskAnalyser1);
         riskAnalisisEngine.addRiskAnalyser(riskAnalyser2);
         riskAnalisisEngine.addRiskAnalyser(riskAnalyser3);
         riskAnalisisEngine.addRiskAnalyser(riskAnalyser4);
         riskAnalisisEngine.addRiskAnalyser(riskAnalyser5);
+        riskAnalisisEngine.addRiskAnalyser(riskAnalyser6);
         // Run the license risks analysis and collect results
         RiskAnalysisResult[] resultSet = riskAnalisisEngine.getRiskAnalysisResultSet();
 

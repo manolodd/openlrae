@@ -17,7 +17,7 @@ package com.manolodominguez.openlrae.analysis.riskanalysers;
 
 import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
-import com.manolodominguez.openlrae.swdefinition.Project;
+import com.manolodominguez.openlrae.arquitecture.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
