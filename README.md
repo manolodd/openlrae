@@ -84,7 +84,7 @@ If you want to contribute to OpenLRAE project, follow these instructions:
  - Choose the development branch of manolodd/OpenLRAE as base branch to merge to. Then "Create pull request" (give a title and a description, please).
  - That's all; I will have your contribution and I will try to merge it into the development branch of OpenLRAE. Please, comment your contribution as much as possible; I have to be able to understand your contribution.
 
-REMEMBER!!!! all your contributions have to be compatible with Lesser General Public License 3.0 or above (LGPL3.0+) and you have to own all rights on them. 
+REMEMBER!!! all your contributions have to be compatible with Lesser General Public License 3.0 or above (LGPL3.0+) and you have to own all rights on them. 
 
 # WHAT CAN YOU CONTRIBUTE?
 
