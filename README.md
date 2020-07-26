@@ -13,13 +13,12 @@ After decades working in public and private and academic sector, assesing hundre
 This approach part from the point of view that a development team doesn't know and control the bill of components of their projects, and are not beware of the licensing risks their use imply.
 
 Also, there are lots of potential risks derived from licensing; not only licensing incompatibilities but maintenance risks, risks in bussiness terms, etc.
-It supports standard MPLS operation as well as GoS/MPLS operation. See "Guarantee of Service (GoS) Support Over MPLS using Active Techniques" proposal at http://opensimmpls.manolodominguez.com/content/common/pdf/documentation/gossobrempls.pdf
 
 OpenLRAE approach is that developement teams have to know the bill of components they're using, their versions, their licenses and all kind of things related to the use of third parties components in their own projects.
 
 With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard of licensing risks that can help them in decission making.
 
-![OpenLRAE logo](https://github.com/manolodd/opensimmpls/raw/master/src/main/resources/com/manolodominguez/opensimmpls/resources/images/splash_inicio.png)
+![OpenLRAE logo](https://github.com/manolodd/openlrae/raw/develop/src/main/resources/com/manolodominguez/openlrae/logo/logo_openlrae.png)
 
 # LICENSE
 
