@@ -1,3 +1,5 @@
+<img src="https://github.com/manolodd/openlrae/raw/develop/src/main/resources/com/manolodominguez/openlrae/logo/logo_openlrae.png" alt="OpenLRAE logo" width="400"/>
+
 # PROJECT STATUS (Java 8)
 
 - Master branch [![Build Status](https://api.travis-ci.org/manolodd/openlrae.svg?branch=master)](https://travis-ci.org/manolodd/openlrae)
@@ -17,8 +19,6 @@ Also, there are lots of potential risks derived from licensing; not only licensi
 OpenLRAE approach is that developement teams have to know the bill of components they're using, their versions, their licenses and all kind of things related to the use of third parties components in their own projects.
 
 With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard of licensing risks that can help them in decission making.
-
-<img src="https://github.com/manolodd/openlrae/raw/develop/src/main/resources/com/manolodominguez/openlrae/logo/logo_openlrae.png" alt="OpenLRAE logo" width="300"/>
 
 # LICENSE
 
