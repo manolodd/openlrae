@@ -18,9 +18,7 @@ OpenLRAE approach is that developement teams have to know the bill of components
 
 With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard of licensing risks that can help them in decission making.
 
-<img src="https://github.com/manolodd/openlrae/raw/develop/src/main/resources/com/manolodominguez/openlrae/logo/logo_openlrae.png" alt="drawing" style="width:200px;"/>
-
-![OpenLRAE logo](https://github.com/manolodd/openlrae/raw/develop/src/main/resources/com/manolodominguez/openlrae/logo/logo_openlrae.png =300x)
+<img src="https://github.com/manolodd/openlrae/raw/develop/src/main/resources/com/manolodominguez/openlrae/logo/logo_openlrae.png" alt="OpenLRAE logo" width="300"/>
 
 # LICENSE
 
