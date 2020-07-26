@@ -1,17 +1,18 @@
 /* 
  * Copyright (C) Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the Lesser GNU General Public License as published by the Free 
+ * Software Foundation, either version 3 of the License, or (at your option) any
+ * later version.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * This program is distributed in the hope that it will be useful, but WITHOUT 
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the Lesser GNU General Public License for more 
+ * details.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * You should have received a copy of the Lesser GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.manolodominguez.openlrae.baseofknowledge.basevalues;
 
@@ -23,20 +24,25 @@ import org.slf4j.LoggerFactory;
  * @author manolodd
  */
 public enum SupportedTrends {
-    UNFASHIONABLE(1.0f),
-    NEAR_UNFASHIONABLE(0.67f),
-    NEAR_TRENDY(0.33f),
-    TRENDY(0.0f);
+    UNFASHIONABLE(1.0f, "The license is unfashionable"),
+    NEAR_UNFASHIONABLE(0.67f, "The license is almost unfashionable"),
+    NEAR_TRENDY(0.33f, "The license is almost trendy"),
+    TRENDY(0.0f, "The license is trendy");
 
     private Logger logger = LoggerFactory.getLogger(SupportedTrends.class);
 
     private final float trendValue;
+    private final String descriptionValue;
 
-    private SupportedTrends(float trendValue) {
+    private SupportedTrends(float trendValue, String descriptionValue) {
         this.trendValue = trendValue;
+        this.descriptionValue = descriptionValue;
     }
 
     public float getTrendValue() {
         return trendValue;
+    }
+    public String getDescriptionValue() {
+        return descriptionValue;
     }
 }
