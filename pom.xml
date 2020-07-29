@@ -20,7 +20,7 @@
     <name>openlrae</name>
     <url>http://openlrae.manolodominguez.com/</url>
     <build>
-        <finalName>openlrae-bin-v${project.version}</finalName>
+        <finalName>openlrae-${project.version}</finalName>
         <plugins>         
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -83,6 +83,8 @@
                                     <mainClass>com.manolodominguez.openlrae.analysis.examples.ExampleAllRiskAnalysers</mainClass>
                                 </transformer>
                             </transformers>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <shadedClassifierName>with-dependencies</shadedClassifierName>
                         </configuration>
                     </execution>
                 </executions>

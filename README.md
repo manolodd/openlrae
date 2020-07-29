@@ -8,7 +8,7 @@
 
 # THE PROJECT
 
-<b>OpenLRAE</b> is a Licensing Risks Analysis Engine, multiplatform and mutilanguage. It's a java library that allow knowing the risk induced by the bill of components you have included in your project, the way they are binded, the kind of distribution you're going to do of yout project, and so on.
+<b>OpenLRAE</b> is a Licensing Risks Analysis Engine, multiplatform and mutilanguage. It's a java library that allow knowing the risk induced by the bill of components you have included in your project, the way they are binded, the kind of distribution you're going to do of your project, and so on.
 
 After decades working in public and private and academic sector, assesing hundreds of platforms from an Opensource perspective I realized that most of the existing tools try to detect the components that have been included in a project and, then, they try to infer their licenses. Only after that (that brings a lots of false positives and a lot of false negatives) a license analysis is done.
 
@@ -55,7 +55,7 @@ cd target
 ```
 - Now, run the simulator:
 ```console
-openlrae-bin-v{YourVersion}.jar
+openlrae-v{YourVersion}.jar
 ```
 
 # THIRD-PARTY COMPONENTS
@@ -84,7 +84,7 @@ If you want to contribute to OpenLRAE project, follow these instructions:
  - Choose the development branch of manolodd/OpenLRAE as base branch to merge to. Then "Create pull request" (give a title and a description, please).
  - That's all; I will have your contribution and I will try to merge it into the development branch of OpenLRAE. Please, comment your contribution as much as possible; I have to be able to understand your contribution.
 
-REMEMBER!!! all your contributions have to be compatible with Lesser General Public License 3.0 or above (LGPL3.0+) and you have to own all rights on them. 
+REMEMBER!!!! all your contributions have to be compatible with Apache Software License 2.0 and you have to own all rights on them. And no source code contributions has to be compatible to Creative Commons - By.
 
 # WHAT CAN YOU CONTRIBUTE?
 
