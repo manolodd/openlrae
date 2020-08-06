@@ -24,7 +24,7 @@ With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard o
 
 ## This release:
  
-- <b>OpenLRAE 1.0</b> is released under the terms of Lesser General Public License 3.0 or above (LGPL 3.0+).
+- <b>OpenLRAE 1.0</b> is released under the terms of Apache License, Version 2.0.
 
 # PEOPLE BEHIND OPENSIMMPLS
 
@@ -84,7 +84,7 @@ If you want to contribute to OpenLRAE project, follow these instructions:
  - Choose the development branch of manolodd/OpenLRAE as base branch to merge to. Then "Create pull request" (give a title and a description, please).
  - That's all; I will have your contribution and I will try to merge it into the development branch of OpenLRAE. Please, comment your contribution as much as possible; I have to be able to understand your contribution.
 
-REMEMBER!!!! all your contributions have to be compatible with Apache Software License 2.0 and you have to own all rights on them. And no source code contributions has to be compatible to Creative Commons - By.
+REMEMBER!!!! all your contributions have to be compatible with Apache License, Version 2.0 and you have to own all rights on them. And no source code contributions has to be compatible to Creative Commons - By.
 
 # WHAT CAN YOU CONTRIBUTE?
 

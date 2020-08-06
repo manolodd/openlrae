@@ -21,9 +21,6 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesObsolescencesFactory;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
-import java.util.concurrent.CopyOnWriteArrayList;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -32,8 +29,7 @@ import org.slf4j.LoggerFactory;
 public class RiskAnalyserObsoleteLicensesOfComponents extends AbstractRiskAnalyser {
 
     public RiskAnalyserObsoleteLicensesOfComponents(Project project) {
-        super(project, SupportedRisks.OBSOLETE_LICENSES_OF_COMPONENTS);
-        logger = LoggerFactory.getLogger(RiskAnalyserObsoleteLicensesOfComponents.class);
+        super(project, SupportedRisks.OBSOLETE_LICENSES_OF_COMPONENTS, RiskAnalyserObsoleteLicensesOfComponents.class);
     }
 
     @Override

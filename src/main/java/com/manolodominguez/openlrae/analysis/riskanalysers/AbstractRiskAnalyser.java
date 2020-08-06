@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class AbstractRiskAnalyser {
 
-    protected Logger logger = LoggerFactory.getLogger(AbstractRiskAnalyser.class);
+    protected final Logger logger;
     protected Project project;
     protected SupportedRisks handledRiskType;
     protected float riskExposure;
@@ -38,9 +38,10 @@ public abstract class AbstractRiskAnalyser {
     protected CopyOnWriteArrayList<String> goodThings;
     protected CopyOnWriteArrayList<String> tips;
 
-    public AbstractRiskAnalyser(Project project, SupportedRisks handledRiskType) {
+    public AbstractRiskAnalyser(Project project, SupportedRisks handledRiskType, Class<?> logForClass) {
         this.project = project;
         this.handledRiskType = handledRiskType;
+        logger = LoggerFactory.getLogger(logForClass);
         riskExposure = AbstractRiskAnalyser.DEFAULT_EXPOSURE_LEVEL;
         riskImpact = AbstractRiskAnalyser.DEFAULT_IMPACT_LEVEL;
         rootCauses = new CopyOnWriteArrayList<>();
@@ -63,11 +64,11 @@ public abstract class AbstractRiskAnalyser {
     }
     
     protected RiskAnalysisResult normalizeResult() {
-        return new RiskAnalysisResult(this.handledRiskType, (float) (Math.round(riskExposure * 10000.0) / 10000.0), (float) (Math.round(riskImpact * 100.0) / 100.0), rootCauses, warnings, goodThings, tips);
+        return new RiskAnalysisResult(this.handledRiskType, (float) (Math.round(riskExposure * 10000.0) / 10000.0), (float) (Math.round(riskImpact * 10000.0) / 10000.0), rootCauses, warnings, goodThings, tips);
     }
 
     public abstract RiskAnalysisResult getRiskAnalisysResult();
     
-    public static final float DEFAULT_EXPOSURE_LEVEL = 0.0f;
-    public static final float DEFAULT_IMPACT_LEVEL = 0.0f;
+    private static final float DEFAULT_EXPOSURE_LEVEL = 0.0f;
+    private static final float DEFAULT_IMPACT_LEVEL = 0.0f;
 }

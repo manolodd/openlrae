@@ -23,14 +23,14 @@ import org.slf4j.LoggerFactory;
  * @author manolodd
  */
 public enum SupportedCompatibilities {
-    FORCED_COMPATIBLE(0.95f, "Forced to be compatible with the project license"),
-    COMPATIBLE(0.0f, "Compatible with the project license"),
-    MOSTLY_COMPATIBLE(0.33f, "Ccompatible with the project license except in some cases"),
-    MOSTLY_UNCOMPATIBLE(0.67f, "Compatible with the project license only in a few cases"),
-    UNCOMPATIBLE(1.0f, "Incompatible with the project license"),
-    UNKNOWN(1.0f, "Impossible to analyse and then, is assimilated as incompatible with the project license"),
-    UNSUPPORTED(1.0f, "Not supported by Open LRAE and then, is assimilated as incompatible with the project license");
-
+    FORCED_COMPATIBLE(1.0f, "Forced to be compatible with the project license"),
+    COMPATIBLE(1.0f, "Compatible with the project license"),
+    MOSTLY_COMPATIBLE(0.67f, "Ccompatible with the project license except in some cases"),
+    MOSTLY_UNCOMPATIBLE(0.33f, "Compatible with the project license only in a few cases"),
+    UNCOMPATIBLE(0.0f, "Incompatible with the project license"),
+    UNKNOWN(0.0f, "Impossible to analyse and then, is assimilated as incompatible with the project license"),
+    UNSUPPORTED(0.0f, "Not supported by Open LRAE and then, is assimilated as incompatible with the project license");
+    
     private Logger logger = LoggerFactory.getLogger(SupportedCompatibilities.class);
 
     private final float compatibilityValue;

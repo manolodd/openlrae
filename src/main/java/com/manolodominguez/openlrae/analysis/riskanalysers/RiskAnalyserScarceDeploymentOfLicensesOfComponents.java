@@ -21,8 +21,6 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedSpreadin
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesSpreadingFactory;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
-import java.util.concurrent.CopyOnWriteArrayList;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -31,8 +29,7 @@ import org.slf4j.LoggerFactory;
 public class RiskAnalyserScarceDeploymentOfLicensesOfComponents extends AbstractRiskAnalyser {
 
     public RiskAnalyserScarceDeploymentOfLicensesOfComponents(Project project) {
-        super(project, SupportedRisks.SCARCE_DEPLOYMENT_OF_LICENSES_OF_COMPONENTS);
-        logger = LoggerFactory.getLogger(RiskAnalyserScarceDeploymentOfLicensesOfComponents.class);
+        super(project, SupportedRisks.SCARCE_DEPLOYMENT_OF_LICENSES_OF_COMPONENTS, RiskAnalyserScarceDeploymentOfLicensesOfComponents.class);
     }
 
     @Override

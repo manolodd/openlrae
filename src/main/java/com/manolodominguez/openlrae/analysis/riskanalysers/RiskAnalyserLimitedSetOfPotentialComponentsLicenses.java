@@ -25,94 +25,134 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Set;
-import java.util.concurrent.CopyOnWriteArrayList;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements a risk analyser whose mission is to detect those that
+ * components licenses cannot be used in the project because they are
+ * incompatible with the project license, the type of link that component will
+ * use and the type of distribution specified for the project. It is desiderable
+ * that any component can be included in the project without incompatibilities
+ * independently of its license. This way we can choose among a wide variety of
+ * components all components that provide the functionality we need. On the
+ * contrary, there are certain level of risk.
  *
- * @author manolodd
+ * We will use the totalCases as the reference point to compute risk exposure
+ * and risk impact. totalCases is the number of potential combinations of
+ * component licenses/bindings that OpenLRAE supports.
+ *
+ * The important is computed this way:
+ *
+ * riskExposure = average of number of components in the project whose license
+ * is not fully compatible with the project license, multiplied, each one of
+ * them by its relative weight in the overall project.
+ *
+ * riskImpact = average of the compatibility value of each components in the
+ * project whose license is not fully compatible with the project license,
+ * multiplied, each one of them by its relative weight in the overall project.
+ *
+ * @author Manuel Domínguez Dorado
  */
 public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends AbstractRiskAnalyser {
 
+    /**
+     * This is the constructor of the class. It creates a new instance of
+     * RiskAnalyserLimitedSetOfPotentialComponentsLicenses.
+     *
+     * @param project. The software project to be analised.
+     */
     public RiskAnalyserLimitedSetOfPotentialComponentsLicenses(Project project) {
-        super(project, SupportedRisks.LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES);
-        logger = LoggerFactory.getLogger(RiskAnalyserLimitedSetOfPotentialComponentsLicenses.class);
+        super(project, SupportedRisks.LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES, RiskAnalyserLimitedSetOfPotentialComponentsLicenses.class);
     }
 
     @Override
     public RiskAnalysisResult getRiskAnalisysResult() {
         reset();
-        int numberOfPotentialCombinations;
+
+        int totalCases;
         SupportedCompatibilities compatibility;
-        Set<SupportedLicenses> potentialComponentsLicenses;
-        int numberOfUnfeasibleCombinations;
-        potentialComponentsLicenses = Collections.synchronizedSet(EnumSet.allOf(SupportedLicenses.class));
+        Set<SupportedLicenses> allPotentialComponentsLicenses;
+
+        allPotentialComponentsLicenses = Collections.synchronizedSet(EnumSet.allOf(SupportedLicenses.class));
         // These licenses are not real licenses and then are not used to compute
         // the risk exposure level.
-        potentialComponentsLicenses.remove(SupportedLicenses.UNDEFINED);
-        potentialComponentsLicenses.remove(SupportedLicenses.FORCED_AS_PROJECT_LICENSE);
-        potentialComponentsLicenses.remove(SupportedLicenses.UNSUPPORTED);
-        numberOfPotentialCombinations = potentialComponentsLicenses.size() * SupportedLinks.values().length;
-        numberOfUnfeasibleCombinations = 0;
+        allPotentialComponentsLicenses.remove(SupportedLicenses.UNDEFINED);
+        allPotentialComponentsLicenses.remove(SupportedLicenses.UNSUPPORTED);
+        totalCases = allPotentialComponentsLicenses.size() * SupportedLinks.values().length;
+
         LicensesCompatibilityFactory licensesCompatibilities = LicensesCompatibilityFactory.getInstance();
-        for (SupportedLicenses potentialComponentLicense : SupportedLicenses.values()) {
+        for (SupportedLicenses potentialComponentLicense : allPotentialComponentsLicenses) {
             for (SupportedLinks potentialLink : SupportedLinks.values()) {
-                if ((potentialComponentLicense != SupportedLicenses.FORCED_AS_PROJECT_LICENSE) && (potentialComponentLicense != SupportedLicenses.UNDEFINED) && (potentialComponentLicense != SupportedLicenses.UNSUPPORTED)) {
-                    compatibility = licensesCompatibilities.getCompatibilityOf(potentialComponentLicense, project.getLicense(), potentialLink, this.project.getRedistribution());
-                    switch (compatibility) {
-                        case COMPATIBLE:
-                            // Nothing to do. There's no risk.
-                            break;
-                        case FORCED_COMPATIBLE:
-                            if (this.project.getLicense() != potentialComponentLicense) {
-                                rootCauses.add("A component under " + potentialComponentLicense.getShortNameValue() + " cannot not be included in " + project.getName() + " " + project.getVersion() + " because it is incompatible with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
-                                tips.add("Try changing the license of the project (" + project.getLicense().getShortNameValue() + ") by another that that allow that components under license " + potentialComponentLicense.getShortNameValue() + " can be included.");
-                                numberOfUnfeasibleCombinations++;
-                                riskImpact += compatibility.getCompatibilityValue();
-                            }
-                            break;
-                        case UNCOMPATIBLE:
-                            rootCauses.add("A component under " + potentialComponentLicense.getShortNameValue() + " cannot not be included in " + project.getName() + " " + project.getVersion() + " because it is incompatible with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
-                            tips.add("Try changing the license of the project (" + project.getLicense().getShortNameValue() + ") by another that that allow that components under license " + potentialComponentLicense.getShortNameValue() + " can be included.");
-                            numberOfUnfeasibleCombinations++;
-                            riskImpact += compatibility.getCompatibilityValue();
-                            break;
-                        case UNKNOWN:
-                            rootCauses.add("A component under " + potentialComponentLicense.getShortNameValue() + " cannot not be included in " + project.getName() + " " + project.getVersion() + " because it is incompatible with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
-                            tips.add("Try changing the license of the project (" + project.getLicense().getShortNameValue() + ") by another that that allow that components under license " + potentialComponentLicense.getShortNameValue() + " can be included.");
-                            numberOfUnfeasibleCombinations++;
-                            riskImpact += compatibility.getCompatibilityValue();
-                            break;
-                        case MOSTLY_COMPATIBLE:
-                            rootCauses.add("A component under " + potentialComponentLicense.getShortNameValue() + " can be included in " + project.getName() + " " + project.getVersion() + " altough it is not compatible in a few cases with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
-                            tips.add("Try changing the license of the project (" + project.getLicense().getShortNameValue() + ") by another that that allow that components under license " + potentialComponentLicense.getShortNameValue() + " can be included.");
-                            tips.add("Review your specifica case to be sure that a component under " + potentialComponentLicense.getShortNameValue() + " is compatible with the license of the project (" + project.getLicense().getShortNameValue() + ") in your case.");
-                            riskImpact += compatibility.getCompatibilityValue();
-                            break;
-                        case MOSTLY_UNCOMPATIBLE:
-                            rootCauses.add("A component under " + potentialComponentLicense.getShortNameValue() + " can be included in " + project.getName() + " " + project.getVersion() + " altough it is not compatible in most cases with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
-                            tips.add("Try changing the license of the project (" + project.getLicense().getShortNameValue() + ") by another that that allow that components under license " + potentialComponentLicense.getShortNameValue() + " can be included.");
-                            tips.add("Review your specifica case to be sure that a component under " + potentialComponentLicense.getShortNameValue() + " is compatible with the license of the project (" + project.getLicense().getShortNameValue() + ") in your case.");
-                            riskImpact += compatibility.getCompatibilityValue();
-                            break;
-                    }
+                compatibility = licensesCompatibilities.getCompatibilityOf(potentialComponentLicense, project.getLicense(), potentialLink, project.getRedistribution());
+                switch (compatibility) {
+                    case COMPATIBLE:
+                        // The analyzed potential component license and link 
+                        // type is compatible with the project license (taking 
+                        // into account the project distribution that has been 
+                        // specified). Therefore, a component with that 
+                        // combination can be used in the project without risk.
+                        goodThings.add("A component under " + potentialComponentLicense.getShortNameValue() + " can be included in " + project.getName() + " " + project.getVersion() + " because it is compatible with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                        break;
+                    case FORCED_COMPATIBLE:
+                        // The analyzed potential component license and link 
+                        // type is compatible with the project license (taking 
+                        // into account project distribution that has been 
+                        // specified). Only because it has ben forced to be 
+                        // compatible. Generally this happens when the author of
+                        // the component give written permission to use the 
+                        // component in a project with a given license. Also,
+                        // when you are using a commercial component that allow
+                        // including it in the project.
+                        goodThings.add("A component under " + potentialComponentLicense.getShortNameValue() + " can be included in " + project.getName() + " " + project.getVersion() + " because it is forced to be compatible with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                        warnings.add("Although a component under " + potentialComponentLicense.getShortNameValue() + " can be included in " + project.getName() + "-" + project.getVersion() + " (because it is forced as compatible with " + project.getLicense().getShortNameValue() + ", the license of the project) via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution, it could be a source of risk for project maintenance in the future.");
+                        tips.add("Try changing the license of the project (" + project.getLicense().getShortNameValue() + ") by another that that allow that components under license " + potentialComponentLicense.getShortNameValue() + " can be included without need of forcing as compatible.");
+                        break;
+                    case UNCOMPATIBLE:
+                        // The analyzed potential component license and link 
+                        // type is incompatible with the project license (taking 
+                        // into account the project distribution that has been 
+                        // specified). Therefore it cannot be used in the 
+                        // project.
+                        rootCauses.add("A component under " + potentialComponentLicense.getShortNameValue() + " cannot not be included in " + project.getName() + " " + project.getVersion() + " because it is incompatible with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                        tips.add("Try changing the license of the project (" + project.getLicense().getShortNameValue() + ") by another that that allow that components under license " + potentialComponentLicense.getShortNameValue() + " can be included.");
+                        riskExposure++;
+                        riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
+                        break;
+                    case UNKNOWN:
+                        rootCauses.add("A component under " + potentialComponentLicense.getShortNameValue() + " cannot not be included in " + project.getName() + " " + project.getVersion() + " because it is incompatible with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                        tips.add("Try changing the license of the project (" + project.getLicense().getShortNameValue() + ") by another that that allow that components under license " + potentialComponentLicense.getShortNameValue() + " can be included.");
+                        riskExposure++;
+                        riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
+                        break;
+                    case MOSTLY_COMPATIBLE:
+                        rootCauses.add("A component under " + potentialComponentLicense.getShortNameValue() + " can be included carefully in " + project.getName() + " " + project.getVersion() + " because it is not compatible in a few cases with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                        warnings.add("Although a component under " + potentialComponentLicense.getShortNameValue() + " can often be included in " + project.getName() + " " + project.getVersion() + " because it is usually compatible with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution, this is not always really true because it depends on your specific case.");
+                        tips.add("Try changing the license of the project (" + project.getLicense().getShortNameValue() + ") by another that that allow that components under license " + potentialComponentLicense.getShortNameValue() + " can be included.");
+                        tips.add("Review your specific case to be sure that a component under " + potentialComponentLicense.getShortNameValue() + " is compatible with the license of the project (" + project.getLicense().getShortNameValue() + ") in your case before using the component in the project.");
+                        riskExposure++;
+                        riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
+                        break;
+                    case MOSTLY_UNCOMPATIBLE:
+                        rootCauses.add("A component under " + potentialComponentLicense.getShortNameValue() + " should not be included in " + project.getName() + " " + project.getVersion() + " because it is not compatible in most cases with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                        warnings.add("Although a component under " + potentialComponentLicense.getShortNameValue() + " can be included in " + project.getName() + " " + project.getVersion() + " altough it is not compatible in a few cases with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution, this is not always really true because it depends on your specific case.");
+                        tips.add("Try changing the license of the project (" + project.getLicense().getShortNameValue() + ") by another that that allow that components under license " + potentialComponentLicense.getShortNameValue() + " can be included.");
+                        tips.add("Review your specific case to be sure that a component under " + potentialComponentLicense.getShortNameValue() + " is compatible with the license of the project (" + project.getLicense().getShortNameValue() + ") in your case.");
+                        riskExposure++;
+                        riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
+                        break;
                 }
             }
         }
 
-        riskExposure = (float) numberOfUnfeasibleCombinations / (float) numberOfPotentialCombinations;
-        riskImpact = riskImpact / numberOfPotentialCombinations;
+        riskExposure /= (float) totalCases;
+        riskImpact /= (float) totalCases;
 
         if (riskExposure > 0.0f) {
-            // At this point the riskImpact is a sum of (#Pieces * #SupportedLicenses) 
-            // values and, we need to know this number in order to compute the average
-            // that will be the riskImpact
             tips.add("In general, try not to use static linking as it is more probable to have incompatibilities.");
             tips.add("In general, try to use components with permisive licenses.");
             tips.add("When modifying the project set of components to reduce the exposure to this risk, start changing components that are root causes in more cases.");
             tips.add("When modifying the project set of components to reduce the exposure to this risk, start with those with higher level of contribution to the overall project.");
             tips.add("If you own all right on a given component involved in rik root causes, try changing its license instead of looking for another component.");
+            tips.add("Try to use project licenses that allow component with many diffrerent licenses to be included in the project. This way you will have a wide set of components to choose.");
             if (riskExposure == 1.0f) {
                 rootCauses.add("There is not an open source license that is compatible with the license of the project.");
             }
@@ -120,5 +160,5 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
 
         return normalizeResult();
     }
-
+    private static final float TOTAL_COMPATIBILITY = 1.0f;
 }

@@ -21,9 +21,6 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedTrends;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesTrendFactory;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
-import java.util.concurrent.CopyOnWriteArrayList;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Risk impact: Measured as the effort needed to change those licenses that are
@@ -36,8 +33,7 @@ import org.slf4j.LoggerFactory;
 public class RiskAnalyserUnfashionableLicensesOfComponents extends AbstractRiskAnalyser {
 
     public RiskAnalyserUnfashionableLicensesOfComponents(Project project) {
-        super(project, SupportedRisks.UNFASHIONABLE_LICENSES_OF_COMPONENTS);
-        logger = LoggerFactory.getLogger(RiskAnalyserUnfashionableLicensesOfComponents.class);
+        super(project, SupportedRisks.UNFASHIONABLE_LICENSES_OF_COMPONENTS, RiskAnalyserUnfashionableLicensesOfComponents.class);
     }
 
     @Override
