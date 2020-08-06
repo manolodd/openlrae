@@ -35,6 +35,9 @@ public class Project {
     private SupportedRedistributions redistribution;
     private CopyOnWriteArrayList<ComponentBinding> componentsBindings;
 
+    // FIX: Project license should not be "FORCED_AS_PROJECT_LICENSE". It cul be 
+    // "UNDEFINED" or "UNSUPPORTED", althoug it sounds a bit extrange.
+    
     public Project(String name, String version, SupportedLicenses license, SupportedRedistributions redistribution, CopyOnWriteArrayList<ComponentBinding> componentsBindings) {
         this.name = name;
         this.version = version;

@@ -2,9 +2,9 @@
 
 # PROJECT STATUS (Java 8)
 
-- Master branch [![Build Status](https://api.travis-ci.org/manolodd/openlrae.svg?branch=master)](https://travis-ci.org/manolodd/openlrae)
+- Master branch [![Build Status](https://api.travis-ci.org/manolodd/openlrae.svg?branch=master)](https://api.travis-ci.org/manolodd/openlrae.svg?branch=master)
 
-- Development branch [![Build Status](https://api.travis-ci.org/manolodd/openlrae.svg?branch=development)](https://travis-ci.org/manolodd/openlrae?branch=development)
+- Development branch [![Build Status](https://api.travis-ci.org/manolodd/openlrae.svg?branch=development)](https://api.travis-ci.org/manolodd/openlrae.svg?branch=development)
 
 # THE PROJECT
 
