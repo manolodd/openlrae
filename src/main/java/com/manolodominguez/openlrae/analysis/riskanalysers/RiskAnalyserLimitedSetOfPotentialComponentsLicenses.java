@@ -42,13 +42,13 @@ import java.util.Set;
  *
  * The important is computed this way:
  *
- * riskExposure = average of number of components in the project whose license
- * is not fully compatible with the project license, multiplied, each one of
- * them by its relative weight in the overall project.
+ * riskExposure = average of number of potential combination of component
+ * licenses and component bindings whose license is not fully compatible with
+ * the project license.
  *
- * riskImpact = average of the compatibility value of each components in the
- * project whose license is not fully compatible with the project license,
- * multiplied, each one of them by its relative weight in the overall project.
+ * riskImpact = average of the compatibility value of each potential combination
+ * of components licenses and component bindings whose license is not fully
+ * compatible with the project license.
  *
  * @author Manuel Domínguez Dorado
  */
@@ -64,6 +64,19 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
         super(project, SupportedRisks.LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES, RiskAnalyserLimitedSetOfPotentialComponentsLicenses.class);
     }
 
+    /**
+     * This method analyse the project and its components looking for risk of
+     * incompatibilities with the project license (taking into account the link
+     * type of each component and the selected distribution type).
+     *
+     * A component cannot be included in a given project unless it is compatible
+     * with the project license for a given kind of distribution and a given
+     * type of linking. The overall supported component licenses and bindings
+     * are analyzed toguether with the project license and distribution and a 
+     * global risk is computed.
+     *
+     * @return the result of the analysis.
+     */
     @Override
     public RiskAnalysisResult getRiskAnalisysResult() {
         reset();
@@ -118,12 +131,26 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                         riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
                         break;
                     case UNKNOWN:
-                        rootCauses.add("A component under " + potentialComponentLicense.getShortNameValue() + " cannot not be included in " + project.getName() + " " + project.getVersion() + " because it is incompatible with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                        // This is only possible if the license of the project 
+                        // is undefined. The analyzed potential component 
+                        // license and link type is not known to be compatible 
+                        // with the project license (taking into account the 
+                        // project distribution that has been specified). 
+                        // Therefore it is handled as an uncompatible 
+                        // combination. The component/binding pair cannot be 
+                        // used in the project.
+                        rootCauses.add("A component under " + potentialComponentLicense.getShortNameValue() + " cannot not be included in " + project.getName() + " " + project.getVersion() + " because it not known to be compatible with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution, and therefore, it is handled as incompatible.");
                         tips.add("Try changing the license of the project (" + project.getLicense().getShortNameValue() + ") by another that that allow that components under license " + potentialComponentLicense.getShortNameValue() + " can be included.");
                         riskExposure++;
                         riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
                         break;
                     case MOSTLY_COMPATIBLE:
+                        // The analyzed potential component license and link 
+                        // type is compatible with the project license (taking 
+                        // into account the project distribution that has been 
+                        // specified) except in a few cases. Therefore it can be 
+                        // used in the project ONLY after reviewing the specific
+                        // case to be sure that is not one of them.
                         rootCauses.add("A component under " + potentialComponentLicense.getShortNameValue() + " can be included carefully in " + project.getName() + " " + project.getVersion() + " because it is not compatible in a few cases with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
                         warnings.add("Although a component under " + potentialComponentLicense.getShortNameValue() + " can often be included in " + project.getName() + " " + project.getVersion() + " because it is usually compatible with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution, this is not always really true because it depends on your specific case.");
                         tips.add("Try changing the license of the project (" + project.getLicense().getShortNameValue() + ") by another that that allow that components under license " + potentialComponentLicense.getShortNameValue() + " can be included.");
@@ -132,6 +159,12 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                         riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
                         break;
                     case MOSTLY_UNCOMPATIBLE:
+                        // The analyzed potential component license and link 
+                        // type is incompatible with the project license (taking 
+                        // into account the project distribution that has been 
+                        // specified) except in a few cases. Therefore it cannot 
+                        // be used in the project UNLESS reviewing the specific 
+                        // case to be sure that is one of these exceptions.
                         rootCauses.add("A component under " + potentialComponentLicense.getShortNameValue() + " should not be included in " + project.getName() + " " + project.getVersion() + " because it is not compatible in most cases with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
                         warnings.add("Although a component under " + potentialComponentLicense.getShortNameValue() + " can be included in " + project.getName() + " " + project.getVersion() + " altough it is not compatible in a few cases with the project license (" + project.getLicense().getShortNameValue() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution, this is not always really true because it depends on your specific case.");
                         tips.add("Try changing the license of the project (" + project.getLicense().getShortNameValue() + ") by another that that allow that components under license " + potentialComponentLicense.getShortNameValue() + " can be included.");
