@@ -24,12 +24,12 @@ import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 
 /**
  * This class implements a risk analyser whose mission is to detect those
- * elements whose licenses are old. It is desiderable that all components used
- * in a project uses a modern license, because modern licenses are more easy to
- * be put toguether with others and also because they are often adequated to new
- * national and international legislation. Unles all components of the bill of
- * components are using the latest version of their licenses, there are certain
- * level of risk.
+ * elements whose licenses are obsolete. It is desiderable that all components
+ * used in a project uses a modern license, because modern licenses are more
+ * easy to be put toguether with others and also because they are often
+ * adequated to new national and international legislation. Unless all
+ * components of the bill of components are using the latest version of their
+ * licenses, there are certain level of risk.
  *
  * We will use the totalCases as the reference point to compute risk exposure
  * and risk impact. totalCases is the number of component bindings that composes
@@ -47,10 +47,10 @@ import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
  *
  * @author Manuel Domínguez Dorado
  */
-public class RiskAnalyserObsoleteLicensesOfComponents extends AbstractRiskAnalyser {
+public class RiskAnalyserLicensesOfComponentsTooObsolete extends AbstractRiskAnalyser {
 
-    public RiskAnalyserObsoleteLicensesOfComponents(Project project) {
-        super(project, SupportedRisks.OBSOLETE_LICENSES_OF_COMPONENTS, RiskAnalyserObsoleteLicensesOfComponents.class);
+    public RiskAnalyserLicensesOfComponentsTooObsolete(Project project) {
+        super(project, SupportedRisks.LICENSES_OF_COMPONENTS_TOO_OBSOLETE, RiskAnalyserLicensesOfComponentsTooObsolete.class);
     }
 
     @Override
@@ -64,21 +64,33 @@ public class RiskAnalyserObsoleteLicensesOfComponents extends AbstractRiskAnalys
             SupportedObsolescences obsolescence = licensesObsolescences.getObsolescenceOf(componentBinding.getComponent().getLicense());
             switch (obsolescence) {
                 case UPDATED:
-                    // Nothing to do. There's no risk.
+                    // The analyzed component is using the latest version of its
+                    // license. Therefore there is not obsolescence risk in this
+                    // case. 
+                    goodThings.add(componentBinding.getComponent().getName()+"-"+componentBinding.getComponent().getVersion() +" ("+ componentBinding.getComponent().getLicense().getShortNameValue() +") " + "is already using the latest version of its license.");
                     break;
                 case NEAR_UPDATED:
+                    // The analyzed component is not using the latest version of
+                    // its license, but a license version closer to the latest
+                    // one. Therefore there is obsolescence risk in this case. 
                     rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is " + licensesObsolescences.getObsolescenceOf(componentBinding.getComponent().getLicense()).toString());
                     tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component released under a newer license.");
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
                     break;
                 case NEAR_OUTDATED:
+                    // The analyzed component is not using the latest version of
+                    // its license, but a license version far from the latest
+                    // one. Therefore there is obsolescence risk in this case. 
                     rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is " + licensesObsolescences.getObsolescenceOf(componentBinding.getComponent().getLicense()).toString());
                     tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component released under a newer license.");
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
                     break;
                 case OUTDATED:
+                    // The analyzed component is not using the latest version of
+                    // its license, but the first version of it. Therefore there 
+                    // is obsolescence risk in this case. 
                     rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is " + licensesObsolescences.getObsolescenceOf(componentBinding.getComponent().getLicense()).toString());
                     tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component released under a newer license.");
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());

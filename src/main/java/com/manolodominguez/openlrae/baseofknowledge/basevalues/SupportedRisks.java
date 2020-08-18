@@ -26,7 +26,7 @@ public enum SupportedRisks {
     LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSE("Risk of having a set of components whose licenses are nor compatible with the license of the project."),
     LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES("Risk of having a reduced set of project licenses to choose because of the license of its components."),
     LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES("Risk of having a reduced set of components licenses to choose because of the license of the project."),
-    OBSOLETE_LICENSES_OF_COMPONENTS("Risk of having a set of components with old license versions"),
+    LICENSES_OF_COMPONENTS_TOO_OBSOLETE("Risk of having a set of components with old license versions"),
     OBSOLETE_LICENSE_OF_PROJECT("Risk of having a project with old license version."),
     UNFASHIONABLE_LICENSES_OF_COMPONENTS("Risk of having a set of components with licenses that are not trendy"),
     UNFASHIONABLE_LICENSE_OF_PROJECT("Risk of having a project license that is not trendy"),
