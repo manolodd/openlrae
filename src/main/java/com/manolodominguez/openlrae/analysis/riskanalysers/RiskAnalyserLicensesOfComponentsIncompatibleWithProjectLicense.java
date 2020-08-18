@@ -44,6 +44,10 @@ import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
  * project whose license is not fully compatible with the project license,
  * multiplied, each one of them by its relative weight in the overall project.
  *
+ * riskExposure should be undestood as the portion of the project that is 
+ * affected by the risk. riskImpact should be undestood as the effort needed to
+ * reduce the risk exposure (think in riskImpact in cost terms).
+ * 
  * @author Manuel Domínguez Dorado
  */
 public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense extends AbstractRiskAnalyser {

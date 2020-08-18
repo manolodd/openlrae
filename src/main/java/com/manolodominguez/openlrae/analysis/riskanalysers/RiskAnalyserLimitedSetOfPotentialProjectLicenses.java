@@ -60,6 +60,11 @@ import java.util.Set;
  * license, multiplied, in every case by its relative weight in the overall
  * project.
  *
+ * riskExposure should be undestood as the portion of the project that is
+ * affected by the risk. riskImpact should be undestood as the effort needed to
+ * reduce the risk exposure (think in riskImpact in cost terms).
+ *
+ *
  * @author Manuel Domínguez Dorado
  */
 public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRiskAnalyser {
@@ -92,7 +97,7 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
     @Override
     public RiskAnalysisResult getRiskAnalisysResult() {
         reset();
-        
+
         int totalCases;
         boolean canBeProjectLicense;
         SupportedCompatibilities compatibility;

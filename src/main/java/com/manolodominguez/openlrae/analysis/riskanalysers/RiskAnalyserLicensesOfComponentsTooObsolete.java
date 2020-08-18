@@ -38,36 +38,57 @@ import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
  * The important is computed this way:
  *
  * riskExposure = average of number of components in the project whose license
- * is not fully compatible with the project license, multiplied, each one of
- * them by its relative weight in the overall project.
+ * are obsolete in a given grade, multiplied, each one of them, by its relative
+ * weight in the overall project.
  *
- * riskImpact = average of the compatibility value of each components in the
- * project whose license is not fully compatible with the project license,
- * multiplied, each one of them by its relative weight in the overall project.
- *
+ * riskImpact = average of the obsolescence value of each components in the
+ * project whose license are obsolete, multiplied, each one of them by its
+ * relative weight in the overall project.
+  *
+ * riskExposure should be undestood as the portion of the project that is 
+ * affected by the risk. riskImpact should be undestood as the effort needed to
+ * reduce the risk exposure (think in riskImpact in cost terms).
+ * 
  * @author Manuel Domínguez Dorado
  */
 public class RiskAnalyserLicensesOfComponentsTooObsolete extends AbstractRiskAnalyser {
 
+    /**
+     * This is the constructor of the class. It creates a new instance of
+     * RiskAnalyserLicensesOfComponentsTooObsolete.
+     *
+     * @param project. The software project to be analised.
+     */
     public RiskAnalyserLicensesOfComponentsTooObsolete(Project project) {
         super(project, SupportedRisks.LICENSES_OF_COMPONENTS_TOO_OBSOLETE, RiskAnalyserLicensesOfComponentsTooObsolete.class);
     }
 
+    /**
+     * This method analyse the project and its components looking for risk of
+     * using components whose license are obsolete.
+     *
+     * A component that uses obsolete licenses includes certain grade of risk in
+     * the project. The overall bill of components of the project is analyzed
+     * and a global risk is computed.
+     *
+     * @return the result of the analysis.
+     */
     @Override
     public RiskAnalysisResult getRiskAnalisysResult() {
         reset();
 
+        SupportedObsolescences obsolescence;
         LicensesObsolescencesFactory licensesObsolescences = LicensesObsolescencesFactory.getInstance();
         int totalCases = this.project.getComponentsBindings().size();
 
         for (ComponentBinding componentBinding : this.project.getComponentsBindings()) {
-            SupportedObsolescences obsolescence = licensesObsolescences.getObsolescenceOf(componentBinding.getComponent().getLicense());
+            obsolescence = licensesObsolescences.getObsolescenceOf(componentBinding.getComponent().getLicense());
             switch (obsolescence) {
                 case UPDATED:
                     // The analyzed component is using the latest version of its
                     // license. Therefore there is not obsolescence risk in this
                     // case. 
-                    goodThings.add(componentBinding.getComponent().getName()+"-"+componentBinding.getComponent().getVersion() +" ("+ componentBinding.getComponent().getLicense().getShortNameValue() +") " + "is already using the latest version of its license.");
+                    goodThings.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") " + "is already using the latest version of its license.");
                     break;
                 case NEAR_UPDATED:
                     // The analyzed component is not using the latest version of

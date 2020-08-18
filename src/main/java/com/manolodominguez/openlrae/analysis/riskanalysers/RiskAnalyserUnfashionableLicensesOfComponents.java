@@ -23,12 +23,34 @@ import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 
 /**
- * Risk impact: Measured as the effort needed to change those licenses that are
- * not trendy average of (TrendValue * ContributionLevel). Risk exposure:
- * Measured as the number of component that are not trendy in relation to the
- * total number of components of this project.
+ * This class implements a risk analyser whose mission is to detect those
+ * elements whose licenses are not used by many opensource projects. It is
+ * desiderable that all components used in a project uses a license that is also
+ * used in lot of projects. This way if you need to change a component by
+ * another one that provide a given functionality should find out a component
+ * that provides that functionality, with the same license, easily. Unless all
+ * components of the bill of components are using a wide spreaded license, there
+ * are certain level of risk.
  *
- * @author manolodd
+ * We will use the totalCases as the reference point to compute risk exposure
+ * and risk impact. totalCases is the number of component bindings that composes
+ * the project.
+ *
+ * The important is computed this way:
+ *
+ * riskExposure = average of number of components in the project whose license
+ * are wide spreaded, multiplied, each one of them, by its relative weight in
+ * the overall project.
+ *
+ * riskImpact = average of the spreading value of each components in the project
+ * whose license are not wide spreaded, multiplied, each one of them by its
+ * relative weight in the overall project.
+ *
+ * riskExposure should be undestood as the portion of the project that is 
+ * affected by the risk. riskImpact should be undestood as the effort needed to
+ * reduce the risk exposure (think in riskImpact in cost terms).
+ * 
+ * @author Manuel Domínguez Dorado
  */
 public class RiskAnalyserUnfashionableLicensesOfComponents extends AbstractRiskAnalyser {
 
@@ -39,9 +61,12 @@ public class RiskAnalyserUnfashionableLicensesOfComponents extends AbstractRiskA
     @Override
     public RiskAnalysisResult getRiskAnalisysResult() {
         reset();
+        
+        SupportedTrends trend;
         LicensesTrendFactory licensesTrends = LicensesTrendFactory.getInstance();
+        
         for (ComponentBinding componentBinding : this.project.getComponentsBindings()) {
-            SupportedTrends trend = licensesTrends.getTrendOf(componentBinding.getComponent().getLicense());
+            trend = licensesTrends.getTrendOf(componentBinding.getComponent().getLicense());
             switch (trend) {
                 case TRENDY:
                     // Nothing to do. There's no risk
