@@ -21,31 +21,52 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements a risk analyser engine. It contains a set of risk
+ * analysers and run them in a loop to obtain the measurement of each one of
+ * them.
  *
- * @author manolodd
+ * @author Manuel Domínguez Dorado
  */
 public class LicenseRiskAnalysisEngine {
+
     private Logger logger = LoggerFactory.getLogger(LicenseRiskAnalysisEngine.class);
     private CopyOnWriteArrayList<AbstractRiskAnalyser> risksAnalysers;
     private CopyOnWriteArrayList<RiskAnalysisResult> riskAnalysisResultSet;
 
-    public LicenseRiskAnalysisEngine(AbstractRiskAnalyser firstRiskAnalysers) {
+    /**
+     * This is the constructor of the class.It creates a new instance of
+     * LicenseRiskAnalysisEngine, adding the first risk analyser.
+     *
+     * @param firstRiskAnalyser the first analyser added to the risk analyser
+     * engine. At least one risk analyser has to be added to the engine.
+     */
+    public LicenseRiskAnalysisEngine(AbstractRiskAnalyser firstRiskAnalyser) {
         this.risksAnalysers = new CopyOnWriteArrayList<>();
-        this.risksAnalysers.add(firstRiskAnalysers);
+        this.risksAnalysers.add(firstRiskAnalyser);
         this.riskAnalysisResultSet = new CopyOnWriteArrayList<>();
     }
-    
+
+    /**
+     * This method adds a new risk analyser to the engine, that will be run when
+     * required.
+     *
+     * @param riskAnalyser an additional risk analyser to be included in the set
+     * of risk analysers of this engine.
+     */
     public void addRiskAnalyser(AbstractRiskAnalyser riskAnalyser) {
         this.risksAnalysers.add(riskAnalyser);
     }
-    
-    public void analyse() {
+
+    /**
+     * This method executes in a loop all risk analysers that have been
+     * configured in the engine, and returns the corresponding results.
+     *
+     * @return the results of running each risk analysers.
+     */
+    public RiskAnalysisResult[] analyse() {
         this.risksAnalysers.forEach(riskAnaliser -> {
             this.riskAnalysisResultSet.add(riskAnaliser.getRiskAnalisysResult());
         });
-    }
-    
-    public RiskAnalysisResult[] getAnalysisResults() {
         return this.riskAnalysisResultSet.toArray(new RiskAnalysisResult[0]);
     }
 }
