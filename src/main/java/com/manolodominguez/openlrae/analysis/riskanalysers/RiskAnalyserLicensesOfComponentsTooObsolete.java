@@ -44,11 +44,11 @@ import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
  * riskImpact = average of the obsolescence value of each components in the
  * project whose license are obsolete, multiplied, each one of them by its
  * relative weight in the overall project.
-  *
- * riskExposure should be undestood as the portion of the project that is 
+ *
+ * riskExposure should be undestood as the portion of the project that is
  * affected by the risk. riskImpact should be undestood as the effort needed to
  * reduce the risk exposure (think in riskImpact in cost terms).
- * 
+ *
  * @author Manuel Domínguez Dorado
  */
 public class RiskAnalyserLicensesOfComponentsTooObsolete extends AbstractRiskAnalyser {
@@ -70,13 +70,9 @@ public class RiskAnalyserLicensesOfComponentsTooObsolete extends AbstractRiskAna
      * A component that uses obsolete licenses includes certain grade of risk in
      * the project. The overall bill of components of the project is analyzed
      * and a global risk is computed.
-     *
-     * @return the result of the analysis.
      */
     @Override
-    public RiskAnalysisResult getRiskAnalisysResult() {
-        reset();
-
+    public void runAnalyser() {
         SupportedObsolescences obsolescence;
         LicensesObsolescencesFactory licensesObsolescences = LicensesObsolescencesFactory.getInstance();
         int totalCases = this.project.getComponentsBindings().size();
@@ -127,8 +123,6 @@ public class RiskAnalyserLicensesOfComponentsTooObsolete extends AbstractRiskAna
             tips.add("When modifying the project set of components to reduce the exposure to this risk, start with those with higher level of contribution to the overall project.");
             tips.add("If you own all right on a given component involved in rik root causes, try changing its license instead of looking for another component.");
         }
-
-        return normalizeResult();
     }
 
 }

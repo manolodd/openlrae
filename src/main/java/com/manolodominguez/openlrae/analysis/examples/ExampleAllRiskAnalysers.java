@@ -75,8 +75,7 @@ public class ExampleAllRiskAnalysers {
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser5);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser6);
         // Run the license risks analysis and collect results
-        riskAnalysisEngine.analyse();
-        RiskAnalysisResult[] resultSet = riskAnalysisEngine.getAnalysisResults();
+        RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
 
         // Print analysis info. This is only for visualizing the computed 
         // results

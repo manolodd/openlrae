@@ -71,13 +71,9 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
      * with the project license for a given kind of distribution and a given
      * type of linking. The overall bill of components of the project is
      * analyzed and a global risk is computed.
-     *
-     * @return the result of the analysis.
      */
     @Override
-    public RiskAnalysisResult getRiskAnalisysResult() {
-        reset();
-        
+    public void runAnalyser() {
         SupportedCompatibilities compatibility;
         
         LicensesCompatibilityFactory licensesCompatibilities = LicensesCompatibilityFactory.getInstance();
@@ -194,8 +190,6 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
                 rootCauses.add("There is not an open source license that is compatible with all licenses of the defined set of compenents.");
             }
         }
-
-        return normalizeResult();
     }
 
     private static final float TOTAL_COMPATIBILITY = 1.0f;

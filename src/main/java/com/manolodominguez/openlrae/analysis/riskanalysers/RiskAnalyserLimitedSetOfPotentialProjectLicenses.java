@@ -82,22 +82,17 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
     /**
      * This method analyse the project and its components looking for risk
      * having a low number of potential project licenses to use for the project
-     * because of the bill of components it uses. It takes into account the link
+     * because of the bill of components it uses.It takes into account the link
      * type of each component and the selected distribution type for the
-     * project.
+     * project. A given license cannot be used for the project unless all
+     * components of the bill of componentes are compatible with it. The overall
+     * bill of components of the project and their licenses, toguether with the
+     * complete set of licenses supported by OpenLRAE are analyzed and a global
+     * risk is computed.
      *
-     * A given license cannot be used for the project unless all components of
-     * the bill of componentes are compatible with it. The overall bill of
-     * components of the project and their licenses, toguether with the complete
-     * set of licenses supported by OpenLRAE are analyzed and a global risk is
-     * computed.
-     *
-     * @return the result of the analysis.
      */
     @Override
-    public RiskAnalysisResult getRiskAnalisysResult() {
-        reset();
-
+    public void runAnalyser() {
         int totalCases;
         boolean canBeProjectLicense;
         SupportedCompatibilities compatibility;
@@ -242,8 +237,6 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
                 rootCauses.add("There is not an open source license that is compatible with all licenses of the defined set of compenents.");
             }
         }
-
-        return normalizeResult();
     }
 
     private static final boolean CAN_BE_PROJECT_LICENSE = true;

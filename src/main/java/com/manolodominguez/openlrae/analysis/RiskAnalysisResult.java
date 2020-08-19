@@ -21,8 +21,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements a data structure to contain the result of a risk
+ * analyser.
  *
- * @author manolodd
+ * @author Manuel Domínguez Dorado
  */
 public class RiskAnalysisResult {
 
@@ -38,8 +40,8 @@ public class RiskAnalysisResult {
 
     public RiskAnalysisResult(SupportedRisks riskType, float riskExposure, float riskImpact, CopyOnWriteArrayList<String> rootCauses, CopyOnWriteArrayList<String> warnings, CopyOnWriteArrayList<String> goodThings, CopyOnWriteArrayList<String> tips) {
         this.riskType = riskType;
-        this.riskExposure = riskExposure;
-        this.riskImpact = riskImpact;
+        this.riskExposure = Math.round(riskExposure * PRECISSION) / PRECISSION;
+        this.riskImpact = Math.round(riskImpact * PRECISSION) / PRECISSION;
         this.rootCauses = rootCauses;
         this.warnings = warnings;
         this.goodThings = goodThings;
@@ -73,5 +75,7 @@ public class RiskAnalysisResult {
     public CopyOnWriteArrayList<String> getTips() {
         return tips;
     }
+
+    private static final float PRECISSION = 10000.0f;
     
 }

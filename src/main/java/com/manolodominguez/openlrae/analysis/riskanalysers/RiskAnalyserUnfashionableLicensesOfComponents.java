@@ -65,20 +65,17 @@ public class RiskAnalyserUnfashionableLicensesOfComponents extends AbstractRiskA
 
     /**
      * This method analyse the project and its components looking for risk of
-     * using components whose license are not trendy.
+     * using components whose license are not trendy.It is better to use
+     * components whose license is trendy (is being used more and more in third
+     * party projects) in order to have the possibility to choose third party
+     * components in teh future, easily, without licensing risks.
      *
-     * It is better to use components whose license is trendy (is being used
-     * more and more in third party projects) in order to have the possibility
-     * to choose third party components in teh future, easily, without licensing
-     * risks. The overall bill of components of the project is analyzed and a
-     * global risk is computed.
+     * The overall bill of components of the project is analyzed and a global
+     * risk is computed.
      *
-     * @return the result of the analysis.
      */
     @Override
-    public RiskAnalysisResult getRiskAnalisysResult() {
-        reset();
-
+    public void runAnalyser() {
         SupportedTrends trend;
         LicensesTrendFactory licensesTrends = LicensesTrendFactory.getInstance();
         int totalCases = this.project.getComponentsBindings().size();
@@ -133,8 +130,6 @@ public class RiskAnalyserUnfashionableLicensesOfComponents extends AbstractRiskA
             tips.add("When modifying the project set of components to reduce the exposure to this risk, start with those with higher level of contribution to the overall project.");
             tips.add("If you own all right on a given component involved in rik root causes, try changing its license instead of looking for another component.");
         }
-
-        return normalizeResult();
     }
 
 }

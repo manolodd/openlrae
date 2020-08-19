@@ -50,10 +50,10 @@ import java.util.Set;
  * of components licenses and component bindings whose license is not fully
  * compatible with the project license.
  *
- * riskExposure should be undestood as the portion of the project that is 
+ * riskExposure should be undestood as the portion of the project that is
  * affected by the risk. riskImpact should be undestood as the effort needed to
  * reduce the risk exposure (think in riskImpact in cost terms).
- * 
+ *
  * @author Manuel Domínguez Dorado
  */
 public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends AbstractRiskAnalyser {
@@ -71,20 +71,18 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
     /**
      * This method analyse the project and its components looking for risk of
      * incompatibilities with the project license (taking into account the link
-     * type of each component and the selected distribution type).
+     * type of each component and the selected distribution type).A component
+     * cannot be included in a given project unless it is compatible with the
+     * project license for a given kind of distribution and a given type of
+     * linking.
      *
-     * A component cannot be included in a given project unless it is compatible
-     * with the project license for a given kind of distribution and a given
-     * type of linking. The overall supported component licenses and bindings
-     * are analyzed toguether with the project license and distribution and a 
-     * global risk is computed.
+     * The overall supported component licenses and bindings are analyzed
+     * toguether with the project license and distribution and a global risk is
+     * computed.
      *
-     * @return the result of the analysis.
      */
     @Override
-    public RiskAnalysisResult getRiskAnalisysResult() {
-        reset();
-
+    public void runAnalyser() {
         int totalCases;
         SupportedCompatibilities compatibility;
         Set<SupportedLicenses> allPotentialComponentsLicenses;
@@ -194,8 +192,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                 rootCauses.add("There is not an open source license that is compatible with the license of the project.");
             }
         }
-
-        return normalizeResult();
     }
+    
     private static final float TOTAL_COMPATIBILITY = 1.0f;
 }

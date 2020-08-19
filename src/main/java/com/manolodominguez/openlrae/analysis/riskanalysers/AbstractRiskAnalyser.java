@@ -50,7 +50,7 @@ public abstract class AbstractRiskAnalyser {
         tips = new CopyOnWriteArrayList<>();
     }
 
-    protected void reset() {
+    private void reset() {
         riskExposure = AbstractRiskAnalyser.DEFAULT_EXPOSURE_LEVEL;
         riskImpact = AbstractRiskAnalyser.DEFAULT_IMPACT_LEVEL;
         rootCauses.clear();
@@ -58,17 +58,19 @@ public abstract class AbstractRiskAnalyser {
         goodThings.clear();
         tips.clear();
     }
-    
+
     public SupportedRisks getHandledRiskType() {
         return handledRiskType;
     }
+
+    protected abstract void runAnalyser();
     
-    protected RiskAnalysisResult normalizeResult() {
-        return new RiskAnalysisResult(this.handledRiskType, (float) (Math.round(riskExposure * 10000.0) / 10000.0), (float) (Math.round(riskImpact * 10000.0) / 10000.0), rootCauses, warnings, goodThings, tips);
+    public RiskAnalysisResult getRiskAnalisysResult() {
+        reset();
+        runAnalyser();
+        return new RiskAnalysisResult(handledRiskType, riskExposure, riskImpact, rootCauses, warnings, goodThings, tips);
     }
 
-    public abstract RiskAnalysisResult getRiskAnalisysResult();
-    
     private static final float DEFAULT_EXPOSURE_LEVEL = 0.0f;
     private static final float DEFAULT_IMPACT_LEVEL = 0.0f;
 }
