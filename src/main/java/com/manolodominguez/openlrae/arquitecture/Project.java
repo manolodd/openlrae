@@ -33,17 +33,17 @@ public class Project {
     private String version;
     private SupportedLicenses license;
     private SupportedRedistributions redistribution;
-    private CopyOnWriteArrayList<ComponentBinding> componentsBindings;
+    private CopyOnWriteArrayList<ComponentBinding> billOfComponentBindings;
 
-    // FIX: Project license should not be "FORCED_AS_PROJECT_LICENSE". It cul be 
+    // FIX: Project license should not be "FORCED_AS_PROJECT_LICENSE". It could be 
     // "UNDEFINED" or "UNSUPPORTED", althoug it sounds a bit extrange.
     
-    public Project(String name, String version, SupportedLicenses license, SupportedRedistributions redistribution, CopyOnWriteArrayList<ComponentBinding> componentsBindings) {
+    public Project(String name, String version, SupportedLicenses license, SupportedRedistributions redistribution, CopyOnWriteArrayList<ComponentBinding> billOfComponentBindings) {
         this.name = name;
         this.version = version;
         this.license = license;
         this.redistribution = redistribution;
-        this.componentsBindings = new CopyOnWriteArrayList<>(componentsBindings);
+        this.billOfComponentBindings = new CopyOnWriteArrayList<>(billOfComponentBindings);
     }
 
     public Project(String name, String version, SupportedLicenses license, SupportedRedistributions redistribution, ComponentBinding firstComponentBinding) {
@@ -51,12 +51,12 @@ public class Project {
         this.version = version;
         this.license = license;
         this.redistribution = redistribution;
-        this.componentsBindings = new CopyOnWriteArrayList<>();
-        this.componentsBindings.add(firstComponentBinding);
+        this.billOfComponentBindings = new CopyOnWriteArrayList<>();
+        this.billOfComponentBindings.add(firstComponentBinding);
     }
 
     public void addComponentBinding(ComponentBinding componentBinding) {
-        componentsBindings.add(componentBinding);
+        billOfComponentBindings.add(componentBinding);
     }
 
     public String getName() {
@@ -76,6 +76,6 @@ public class Project {
     }
 
     public CopyOnWriteArrayList<ComponentBinding> getComponentsBindings() {
-        return componentsBindings;
+        return billOfComponentBindings;
     }
 }
