@@ -46,9 +46,9 @@ public class ExampleAllRiskAnalysers {
      */
     public static void main(String[] args) {
         // Define four components
-        Component component1 = new Component("a-given-component", "3.7", SupportedLicenses.UNDEFINED);
-        Component component2 = new Component("my-favourite-component", "1.7.2", SupportedLicenses.UNDEFINED);
-        Component component3 = new Component("an-updated-component", "1.0", SupportedLicenses.UNDEFINED);
+        Component component1 = new Component("a-given-component", "3.7", SupportedLicenses.MIT);
+        Component component2 = new Component("my-favourite-component", "1.7.2", SupportedLicenses.APACHE11);
+        Component component3 = new Component("an-updated-component", "1.0", SupportedLicenses.BSD4_CLAUSE);
         Component component4 = new Component("legacy-component", "0.9", SupportedLicenses.LGPL30_PLUS);
         // Define how the aforementioned software components are included into the project
         ComponentBinding componentBinding1 = new ComponentBinding(component1, SupportedLinks.DYNAMIC, SupportedComponentWeights.LOW);
