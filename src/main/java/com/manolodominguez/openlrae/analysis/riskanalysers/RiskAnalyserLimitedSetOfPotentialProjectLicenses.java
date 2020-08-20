@@ -92,7 +92,7 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
      */
     @Override
     public void runAnalyser() {
-        int totalCases;
+        float totalCases;
         boolean canBeProjectLicense;
         SupportedCompatibilities compatibility;
         Set<SupportedLicenses> allPotentialProjectLicenses;
@@ -103,8 +103,12 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
         allPotentialProjectLicenses.remove(SupportedLicenses.UNDEFINED);
         allPotentialProjectLicenses.remove(SupportedLicenses.FORCED_AS_PROJECT_LICENSE);
         allPotentialProjectLicenses.remove(SupportedLicenses.UNSUPPORTED);
-        // Poner aquí también la multiplicación por el peso de cada binding
-        totalCases = project.getComponentsBindings().size() * allPotentialProjectLicenses.size();
+        totalCases = 0.0f;
+        for (int i=0; i< allPotentialProjectLicenses.size(); i++) {
+            for (ComponentBinding componentBinding : this.project.getComponentsBindings()) {
+                totalCases += componentBinding.getWeight().getWeightValue();
+            }
+        }
         LicensesCompatibilityFactory licensesCompatibilities = LicensesCompatibilityFactory.getInstance();
         for (SupportedLicenses potentialProjectLicense : allPotentialProjectLicenses) {
             canBeProjectLicense = CAN_BE_PROJECT_LICENSE;
@@ -186,6 +190,7 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
                         rootCauses.add(potentialProjectLicense.getShortNameValue() + " could not be used as project license because of " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is not supported by OpenLRAE and, therefore, cannot be assured that is compatible via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution. By default it is handled as incompatible.");
                         warnings.add("Although " + potentialProjectLicense.getShortNameValue() + " could not be used as a project license because " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") is handled as incompatible by default because its license is not supported by OpenLRAE, perhaps it could be used as project license once OpenLRAE knows how to analyse this license. We apologize for the inconvenience.");
                         tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component with a license supported by OpenLRAE and compatible with " + potentialProjectLicense.getShortNameValue() + " via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                        canBeProjectLicense = false;
                         break;
                     case MOSTLY_COMPATIBLE:
                         // The analyzed component is compatible with the 
@@ -200,6 +205,7 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
                         tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component fully compatible with a project licensed under " + potentialProjectLicense.getShortNameValue() + " via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
                         riskExposure += componentBinding.getWeight().getWeightValue();
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
+                        canBeProjectLicense = false;
                         break;
                     case MOSTLY_UNCOMPATIBLE:
                         // The analyzed component is incompatible with the 
@@ -214,6 +220,7 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
                         tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component fully compatible with a project licensed under " + potentialProjectLicense.getShortNameValue() + " via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
                         riskExposure += componentBinding.getWeight().getWeightValue();
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
+                        canBeProjectLicense = false;
                         break;
                 }
             }
@@ -222,8 +229,8 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
             }
         }
 
-        riskExposure /= (float) totalCases;
-        riskImpact /= (float) totalCases;
+        riskExposure /= totalCases;
+        riskImpact /= totalCases;
 
         if (riskExposure > 0.0f) {
             tips.add("In general, try not to use static linking as it is more probable to have incompatibilities.");
@@ -233,7 +240,7 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
             tips.add("If you own all right on a given component involved in rik root causes, try changing its license instead of looking for another component.");
             tips.add("When possible, try to use a set of components whose licenses are compatible with many potential project licenses. This way you could change the project license in the future or release the project under some licenses simultaneously easily.");
             if (riskExposure == 1.0f) {
-                rootCauses.add("There is not an open source license that is compatible with all licenses of the defined set of compenents.");
+                rootCauses.add("There is not an open source license that is compatible with all licenses of the defined set of compenents. At least without a deep analysis of your case.");
             }
         }
     }

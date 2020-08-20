@@ -33,6 +33,7 @@ public class RiskAnalysisResult {
     private SupportedRisks riskType;
     private float riskExposure;
     private float riskImpact;
+    private float riskValue;
     private CopyOnWriteArrayList<String> rootCauses;
     private CopyOnWriteArrayList<String> warnings;
     private CopyOnWriteArrayList<String> goodThings;
@@ -40,8 +41,9 @@ public class RiskAnalysisResult {
 
     public RiskAnalysisResult(SupportedRisks riskType, float riskExposure, float riskImpact, CopyOnWriteArrayList<String> rootCauses, CopyOnWriteArrayList<String> warnings, CopyOnWriteArrayList<String> goodThings, CopyOnWriteArrayList<String> tips) {
         this.riskType = riskType;
-        this.riskExposure = Math.round(riskExposure * PRECISSION) / PRECISSION;
-        this.riskImpact = Math.round(riskImpact * PRECISSION) / PRECISSION;
+        this.riskExposure = Math.round(riskExposure * RISK_COMPUTATION_PRECISSION) / RISK_COMPUTATION_PRECISSION;
+        this.riskImpact = Math.round(riskImpact * RISK_COMPUTATION_PRECISSION) / RISK_COMPUTATION_PRECISSION;
+        this.riskValue = Math.round(riskImpact * riskExposure * RISK_COMPUTATION_PRECISSION) / RISK_COMPUTATION_PRECISSION;
         this.rootCauses = rootCauses;
         this.warnings = warnings;
         this.goodThings = goodThings;
@@ -60,6 +62,10 @@ public class RiskAnalysisResult {
         return riskImpact;
     }
 
+    public float getRiskValue() {
+        return riskValue;
+    }
+    
     public CopyOnWriteArrayList<String> getRootCauses() {
         return rootCauses;
     }
@@ -76,6 +82,7 @@ public class RiskAnalysisResult {
         return tips;
     }
 
-    private static final float PRECISSION = 10000.0f;
+    // Four decimals
+    private static final float RISK_COMPUTATION_PRECISSION = 10000.0f; 
     
 }
