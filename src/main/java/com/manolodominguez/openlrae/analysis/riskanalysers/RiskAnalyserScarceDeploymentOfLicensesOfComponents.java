@@ -15,7 +15,6 @@
  */
 package com.manolodominguez.openlrae.analysis.riskanalysers;
 
-import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedSpreadings;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesSpreadingFactory;
