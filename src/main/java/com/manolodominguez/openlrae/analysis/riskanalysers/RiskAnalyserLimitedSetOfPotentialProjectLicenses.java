@@ -64,7 +64,7 @@ import java.util.Set;
  * reduce the risk exposure (think in riskImpact in cost terms).
  *
  *
- * @author Manuel Domínguez Dorado
+ * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRiskAnalyser {
 

@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  *
- * @author manolodd
+ * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedCompatibilities {
     FORCED_COMPATIBLE(1.0f, "Forced to be compatible with the project license"),

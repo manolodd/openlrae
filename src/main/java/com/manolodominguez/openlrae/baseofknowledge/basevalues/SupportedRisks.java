@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  *
- * @author manolodd
+ * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedRisks {
     LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSE("Risk of having a set of components whose licenses are nor compatible with the license of the project."),

@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  *
- * @author manolodd
+ * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedSpreadings {
     HIGHLY_WIDESPREAD(0.0f, "It is difficult to find out projects, now, that don't use this license."),

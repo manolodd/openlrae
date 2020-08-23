@@ -17,7 +17,7 @@ package com.manolodominguez.openlrae.baseofknowledge.basevalues;
 
 /**
  *
- * @author manolodd
+ * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedRedistributions {
     NONE("The project is not going to be redistributed."),

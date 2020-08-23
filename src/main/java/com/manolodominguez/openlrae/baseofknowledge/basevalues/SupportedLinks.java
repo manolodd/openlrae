@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  *
- * @author manolodd
+ * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 // Types of links the compatibility refers to
 public enum SupportedLinks {

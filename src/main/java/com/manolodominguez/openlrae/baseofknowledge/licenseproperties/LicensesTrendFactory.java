@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  *
- * @author manolodd
+ * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public final class LicensesTrendFactory {
 

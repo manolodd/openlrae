@@ -20,13 +20,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implement a component. A component is a part of a software project
+ * that is linked to the project in a given way and has a specifica license. For
+ * instance, an artifact, module or library developed by third parties, code of
+ * your company reused from another project, or the specific portion of code of
+ * the project itself.
  *
- * @author manolodd
+ * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public class Component {
 
     private Logger logger = LoggerFactory.getLogger(Component.class);
-    
+
     private String name;
     private String version;
     private SupportedLicenses license;

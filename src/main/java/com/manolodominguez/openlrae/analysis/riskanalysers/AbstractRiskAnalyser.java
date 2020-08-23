@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
  * common behaviour and several common attributes that, again, every
  * implementing class has to use.
  *
- * @author Manuel Domínguez Dorado
+ * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public abstract class AbstractRiskAnalyser {
 

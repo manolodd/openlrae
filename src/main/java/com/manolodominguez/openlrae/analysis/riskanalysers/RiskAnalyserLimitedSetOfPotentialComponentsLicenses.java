@@ -53,7 +53,7 @@ import java.util.Set;
  * affected by the risk. riskImpact should be undestood as the effort needed to
  * reduce the risk exposure (think in riskImpact in cost terms).
  *
- * @author Manuel Domínguez Dorado
+ * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends AbstractRiskAnalyser {
 

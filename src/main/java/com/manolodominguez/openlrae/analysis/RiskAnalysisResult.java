@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
  * root causes, warnings, well-done things and tips to provide to help decission
  * making.
  *
- * @author Manuel Domínguez Dorado
+ * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public class RiskAnalysisResult {
 

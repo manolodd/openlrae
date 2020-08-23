@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
  * analysers and run them in a loop to obtain the measurement of each one of
  * them.
  *
- * @author Manuel Domínguez Dorado
+ * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public class LicenseRiskAnalysisEngine {
 
