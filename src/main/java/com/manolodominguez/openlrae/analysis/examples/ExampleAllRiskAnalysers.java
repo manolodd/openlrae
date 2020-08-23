@@ -91,23 +91,23 @@ public class ExampleAllRiskAnalysers {
             System.out.println("\t=> " + spp.getComponent().getName() + "-" + spp.getComponent().getVersion() + " (" + spp.getComponent().getLicense().getShortNameValue() + ") --> Contribution to the project: " + spp.getWeight().getDescriptionValue());
         }
         System.out.println("### Risk analysis");
-        for (RiskAnalysisResult rar : resultSet) {
-            System.out.println("\t=> " + rar.getRiskType().getDescriptionValue());
-            System.out.println("\t\t*** Risk = " + rar.getRiskValue() + " (Exposure = " + rar.getRiskExposure() + ", Impact = " + rar.getRiskImpact()+")");
+        for (RiskAnalysisResult riskAnalysisResult : resultSet) {
+            System.out.println("\t=> " + riskAnalysisResult.getRiskType().getDescriptionValue());
+            System.out.println("\t\t*** Risk = " + riskAnalysisResult.getRiskValue() + " (Exposure = " + riskAnalysisResult.getRiskExposure() + ", Impact = " + riskAnalysisResult.getRiskImpact()+")");
             System.out.println("\t\t*** Root causes");
-            for (String rc : rar.getRootCauses()) {
-                System.out.println("\t\t\t=> " + rc);
+            for (String rootCause : riskAnalysisResult.getRootCauses()) {
+                System.out.println("\t\t\t=> " + rootCause);
             }
             System.out.println("\t\t*** Warnings");
-            for (String warning : rar.getWarnings()) {
+            for (String warning : riskAnalysisResult.getWarnings()) {
                 System.out.println("\t\t\t=> " + warning);
             }
             System.out.println("\t\t*** Good things");
-            for (String goodThing : rar.getGoodThings()) {
+            for (String goodThing : riskAnalysisResult.getGoodThings()) {
                 System.out.println("\t\t\t=> " + goodThing);
             }
             System.out.println("\t\t*** Tips to mitigate the risk");
-            for (String tip : rar.getTips()) {
+            for (String tip : riskAnalysisResult.getTips()) {
                 System.out.println("\t\t\t=> " + tip);
             }
         }

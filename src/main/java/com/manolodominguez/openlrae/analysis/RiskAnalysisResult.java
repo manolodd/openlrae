@@ -21,8 +21,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class implements a data structure to contain the result of a risk
- * analyser.
+ * This class implements a container to store the result of a risk analyser. It
+ * includes not only risk exposure and risk impact values, but also a set of
+ * root causes, warnings, well-done things and tips to provide to help decission
+ * making.
  *
  * @author Manuel Domínguez Dorado
  */
@@ -39,6 +41,30 @@ public class RiskAnalysisResult {
     private CopyOnWriteArrayList<String> goodThings;
     private CopyOnWriteArrayList<String> tips;
 
+    /**
+     * This is the constructor of the class.It creates a new instance of
+     * RiskAnalysisResult.
+     *
+     * @param riskType This is the tipe of riks this results refers to.
+     * @param riskExposure A float number, between 0.00f and 1.00f representing
+     * the percentage of exposure to the risk (0% - 100%). This is the
+     * percentage of the project that is affected by the analyzed risk.
+     * @param riskImpact A float number, between 0.00f and 1.00f representing
+     * the percentage of risk impact (0% - 100%). This is a representation of
+     * the effort (or cost) that have to be done in order to reduce the risk
+     * exposure to 0%.
+     * @param rootCauses These are a set of text explaining each thing that has
+     * been taken into account to compute the risk exposure and risk impact. In
+     * human readable format.
+     * @param warnings These are a set of text with information of interest to
+     * complete the contexto of the risk analysis and, maybe, avoid adding
+     * additional risk.
+     * @param goodThings These are a set of text with information of interest to
+     * know wich kind of things are well done and do not induces risk.
+     * @param tips Whenever the risk exposure and impact are greater than zero,
+     * this will be a set of text with recommendations to mitigate, avoid or
+     * transfer the risk.
+     */
     public RiskAnalysisResult(SupportedRisks riskType, float riskExposure, float riskImpact, CopyOnWriteArrayList<String> rootCauses, CopyOnWriteArrayList<String> warnings, CopyOnWriteArrayList<String> goodThings, CopyOnWriteArrayList<String> tips) {
         this.riskType = riskType;
         this.riskExposure = Math.round(riskExposure * RISK_COMPUTATION_PRECISSION) / RISK_COMPUTATION_PRECISSION;
@@ -50,39 +76,104 @@ public class RiskAnalysisResult {
         this.tips = tips;
     }
 
+    /**
+     * This method gets the risk type this risk analysis refers to.
+     *
+     * @return the risk type this risk analysis refers to.
+     */
     public SupportedRisks getRiskType() {
         return riskType;
     }
 
+    /**
+     * This method gets a float number, between 0.00f and 1.00f representing the
+     * percentage of exposure to the risk (0% - 100%). This is the percentage of
+     * the project that is affected by the analyzed risk.
+     *
+     * @return a float number, between 0.00f and 1.00f representing the
+     * percentage of exposure to the risk (0% - 100%). This is the percentage of
+     * the project that is affected by the analyzed risk.
+     */
     public float getRiskExposure() {
         return riskExposure;
     }
 
+    /**
+     * This method gets a float number, between 0.00f and 1.00f representing the
+     * percentage of risk impact (0% - 100%). This is a representation of the
+     * effort (or cost) that have to be done in order to reduce the risk
+     * exposure to 0%.
+     *
+     * @return a float number, between 0.00f and 1.00f representing the
+     * percentage of risk impact (0% - 100%). This is a representation of the
+     * effort (or cost) that have to be done in order to reduce the risk
+     * exposure to 0%.
+     */
     public float getRiskImpact() {
         return riskImpact;
     }
 
+    /**
+     * This method gets the global risk value. It's the multiplication of risk
+     * exposure and risk impact. You can undestand this value as a sort of
+     * "priority" to make a decission about what risk to face when you have
+     * several ones.
+     *
+     * @return the multiplication of risk exposure and risk impact, as a float
+     * number, between 0.00f and 1.00f
+     */
     public float getRiskValue() {
         return riskValue;
     }
-    
+
+    /**
+     * This method gets a set of text explaining each thing that has been taken
+     * into account to compute the risk exposure and risk impact. In human
+     * readable format.
+     *
+     * @return a set of text explaining each thing that has been taken into
+     * account to compute the risk exposure and risk impact. In human readable
+     * format.
+     */
     public CopyOnWriteArrayList<String> getRootCauses() {
         return rootCauses;
     }
 
+    /**
+     * This method gets a set of text with information of interest to complete
+     * the contexto of the risk analysis and, maybe, avoid adding additional
+     * risk.
+     *
+     * @return a set of text with information of interest to complete the
+     * contexto of the risk analysis. In human readable format.
+     */
     public CopyOnWriteArrayList<String> getWarnings() {
         return warnings;
     }
 
+    /**
+     * This method gets a set of text with information of interest to know wich
+     * kind of things are well done and do not induces risk.
+     *
+     * @return a set of text with information of interest to know wich kind of
+     * things are well done and do not induces risk. In human readable format.
+     */
     public CopyOnWriteArrayList<String> getGoodThings() {
         return goodThings;
     }
 
+    /**
+     * This method gets a set of text with recommendations to mitigate, avoid or
+     * transfer the risk.
+     *
+     * @return a set of text with recommendations to mitigate, avoid or transfer
+     * the risk. In human readable format.
+     */
     public CopyOnWriteArrayList<String> getTips() {
         return tips;
     }
 
     // Four decimals
-    private static final float RISK_COMPUTATION_PRECISSION = 10000.0f; 
-    
+    private static final float RISK_COMPUTATION_PRECISSION = 10000f;
+
 }
