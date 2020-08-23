@@ -20,11 +20,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class implement a component. A component is a part of a software project
- * that is linked to the project in a given way and has a specifica license. For
- * instance, an artifact, module or library developed by third parties, code of
- * your company reused from another project, or the specific portion of code of
- * the project itself.
+ * This class implements a component. A component is a part of a software
+ * project that has its own authors or license that can be different from the
+ * authors or license of the project. For instance, an artifact, module or
+ * library developed by third parties, code of your company reused from another
+ * project, or the specific portion of code of the project itself.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -36,20 +36,47 @@ public class Component {
     private String version;
     private SupportedLicenses license;
 
+    /**
+     * This is the constructor of the class. It creates a new instance of
+     * Component.
+     *
+     * @param name The name of the component. For instance "itext-pdf", "log4j",
+     * "ojdbc10", etc.
+     * @param version The version of the component. For instance "1.2.3",
+     * "0.9-SNAPSHOT", "1.4-M1", etc.
+     * @param license The license of the component. Has to be one of the
+     * licenses that are supported by OpenLRA as defined in SupportedLicenses
+     * enum.
+     */
     public Component(String name, String version, SupportedLicenses license) {
         this.name = name;
         this.version = version;
         this.license = license;
     }
 
+    /**
+     * This method gets the name of the component.
+     *
+     * @return the name of the component.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * This method gets the version of the component.
+     *
+     * @return the version of the component.
+     */
     public String getVersion() {
         return version;
     }
 
+    /**
+     * This method gets the license of the component.
+     *
+     * @return the license of the component.
+     */
     public SupportedLicenses getLicense() {
         return license;
     }
