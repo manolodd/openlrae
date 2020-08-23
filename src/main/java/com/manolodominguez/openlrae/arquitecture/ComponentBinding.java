@@ -21,31 +21,67 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implement a component binding. A component by itself does not
+ * induces risk until we know how this component is linked in the project and
+ * also the use your project does of this component. It can be a component that
+ * is linked statically in the project and is used everywhere or perhaps can be
+ * a component included in the project dinamically and used only in a small and
+ * isolated functionality. These conceps are very important to measure risk and
+ * therefore has to be specified before starting an analysis.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public class ComponentBinding {
 
     private Logger logger = LoggerFactory.getLogger(ComponentBinding.class);
-    
+
     private Component component;
     private SupportedComponentWeights weight;
     private SupportedLinks link;
 
+    /**
+     * This is the constuctor of the class. It creates a new instance of
+     * ComponentBinding.
+     *
+     * @param component the component that is included in the project.
+     * @param link The way the component is included in the project, as a type
+     * of link from those defined in SupportedLinks enum.
+     * @param weight The use the project does of the component, as a value from
+     * those defined in SupportedComponentWeights enum. This is not an empyrical
+     * value but an orientative one.
+     */
     public ComponentBinding(Component component, SupportedLinks link, SupportedComponentWeights weight) {
         this.component = component;
         this.link = link;
         this.weight = weight;
     }
 
+    /**
+     * This method gets the component of this component binding.
+     *
+     * @return the component of this component binding.
+     */
     public Component getComponent() {
         return component;
     }
 
+    /**
+     * This method gets the way the component is included in the project. In
+     * other words, the linking type.
+     *
+     * @return the way the component is included in the project. In other words,
+     * the linking type.
+     */
     public SupportedLinks getLinkType() {
         return link;
     }
 
+    /**
+     * This method gets the use the project does of the component. As an
+     * orientative value, not an empyrical one.
+     *
+     * @return the use the project does of the component.
+     */
     public SupportedComponentWeights getWeight() {
         return weight;
     }
