@@ -87,13 +87,13 @@ public class RiskAnalyserScarceDeploymentOfLicensesOfComponents extends Abstract
                     // The analyzed component is using a license that is used
                     // in lots of third party projects. Therefore there is not 
                     // scarce deployment risk in this case. 
-                    goodThings.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " uses a license (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") " + "that is is used in lots of third party projects.");
+                    goodThings.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " uses a license (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") " + "that is is used in lots of third party projects.");
                     break;
                 case NEAR_HIGHLY_WIDESPREAD:
                     // The analyzed component is using a license that is not 
                     // used in lots of third party projects. Therefore there is
                     // a little scarce deployment risk in this case.                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is " + licensesSpreadings.getSpreadingOf(componentBinding.getComponent().getLicense()).toString());
-                    tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component released under a license more spreaded.");
+                    tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") by another component released under a license more spreaded.");
                     riskImpact += (spreading.getSpreadingValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
                     break;
@@ -101,8 +101,8 @@ public class RiskAnalyserScarceDeploymentOfLicensesOfComponents extends Abstract
                     // The analyzed component is using a license that is not 
                     // used in many third party projects. Therefore there is a
                     // moderated scarce deployment risk in this case.                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is " + licensesSpreadings.getSpreadingOf(componentBinding.getComponent().getLicense()).toString());
-                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is " + licensesSpreadings.getSpreadingOf(componentBinding.getComponent().getLicense()).toString());
-                    tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component released under a license more spreaded.");
+                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") that is " + licensesSpreadings.getSpreadingOf(componentBinding.getComponent().getLicense()).toString());
+                    tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") by another component released under a license more spreaded.");
                     riskImpact += (spreading.getSpreadingValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
                     break;
@@ -110,8 +110,8 @@ public class RiskAnalyserScarceDeploymentOfLicensesOfComponents extends Abstract
                     // The analyzed component is using a license that is used  
                     // in a few third party projects. Therefore there is
                     // a high scarce deployment risk in this case.                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is " + licensesSpreadings.getSpreadingOf(componentBinding.getComponent().getLicense()).toString());
-                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") that is " + licensesSpreadings.getSpreadingOf(componentBinding.getComponent().getLicense()).toString());
-                    tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getShortNameValue() + ") by another component released under a license more spreaded.");
+                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") that is " + licensesSpreadings.getSpreadingOf(componentBinding.getComponent().getLicense()).toString());
+                    tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") by another component released under a license more spreaded.");
                     riskImpact += (spreading.getSpreadingValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
                     break;

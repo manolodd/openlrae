@@ -84,11 +84,11 @@ public class ExampleAllRiskAnalysers {
         System.out.println("*************** Open LRAE report ***************");
         System.out.println("************************************************");
         System.out.println("\t=> Project name: " + project.getName() + "-" + project.getVersion());
-        System.out.println("\t=> Project's selected license: " + project.getLicense().getLongNameValue() + " (" + project.getLicense().getShortNameValue() + ")");
+        System.out.println("\t=> Project's selected license: " + project.getLicense().getSPDXFullName() + " (" + project.getLicense().getSPDXIdentifier() + ")");
         System.out.println("\t=> Project redistribution: " + project.getRedistribution().getDescriptionValue());
         System.out.println("### Component bindigs:");
         for (ComponentBinding spp : project.getBillOfComponentBindings()) {
-            System.out.println("\t=> " + spp.getComponent().getName() + "-" + spp.getComponent().getVersion() + " (" + spp.getComponent().getLicense().getShortNameValue() + ") --> Contribution to the project: " + spp.getWeight().getDescriptionValue());
+            System.out.println("\t=> " + spp.getComponent().getName() + "-" + spp.getComponent().getVersion() + " (" + spp.getComponent().getLicense().getSPDXIdentifier() + ") --> Contribution to the project: " + spp.getWeight().getDescriptionValue());
         }
         System.out.println("### Risk analysis");
         for (RiskAnalysisResult riskAnalysisResult : resultSet) {
