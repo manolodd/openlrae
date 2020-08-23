@@ -87,7 +87,7 @@ public class ExampleAllRiskAnalysers {
         System.out.println("\t=> Project's selected license: " + project.getLicense().getLongNameValue() + " (" + project.getLicense().getShortNameValue() + ")");
         System.out.println("\t=> Project redistribution: " + project.getRedistribution().getDescriptionValue());
         System.out.println("### Component bindigs:");
-        for (ComponentBinding spp : project.getComponentsBindings()) {
+        for (ComponentBinding spp : project.getBillOfComponentBindings()) {
             System.out.println("\t=> " + spp.getComponent().getName() + "-" + spp.getComponent().getVersion() + " (" + spp.getComponent().getLicense().getShortNameValue() + ") --> Contribution to the project: " + spp.getWeight().getDescriptionValue());
         }
         System.out.println("### Risk analysis");

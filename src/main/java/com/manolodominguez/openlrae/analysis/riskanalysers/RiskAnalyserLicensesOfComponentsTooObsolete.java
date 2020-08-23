@@ -74,9 +74,9 @@ public class RiskAnalyserLicensesOfComponentsTooObsolete extends AbstractRiskAna
     public void runAnalyser() {
         SupportedObsolescences obsolescence;
         LicensesObsolescencesFactory licensesObsolescences = LicensesObsolescencesFactory.getInstance();
-        int totalCases = this.project.getComponentsBindings().size();
+        int totalCases = this.project.getBillOfComponentBindings().size();
 
-        for (ComponentBinding componentBinding : this.project.getComponentsBindings()) {
+        for (ComponentBinding componentBinding : this.project.getBillOfComponentBindings()) {
             obsolescence = licensesObsolescences.getObsolescenceOf(componentBinding.getComponent().getLicense());
             switch (obsolescence) {
                 case UPDATED:

@@ -22,6 +22,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements a project. It includes all component bindings as well
+ * as information specific to the project itself. This way risk analysers will
+ * have the complete bill of component bindins as well as all the needed
+ * information to perform a licensing risk analysis.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -35,19 +39,27 @@ public class Project {
     private SupportedRedistributions redistribution;
     private CopyOnWriteArrayList<ComponentBinding> billOfComponentBindings;
 
-    // FIX: Project license should not be "FORCED_AS_PROJECT_LICENSE". It could be 
-    // "UNDEFINED" or "UNSUPPORTED", althoug it sounds a bit extrange.
-    
-    public Project(String name, String version, SupportedLicenses license, SupportedRedistributions redistribution, CopyOnWriteArrayList<ComponentBinding> billOfComponentBindings) {
-        this.name = name;
-        this.version = version;
-        this.license = license;
-        this.redistribution = redistribution;
-        this.billOfComponentBindings = new CopyOnWriteArrayList<>(billOfComponentBindings);
-    }
-
+    /**
+     * This is the constuctor of the class.It creates a new instance of Project.
+     *
+     * @param name The name of the project to be analysed. For instance
+     * "opensimmpls", "apache", "jasperreport", etc.
+     * @param version The version of the project to be analysed. For instance
+     * "1.2.3", "1.4-SNAPSHOT", "3.4-M4", "4.23-ALPHA", etc.
+     * @param license The desired license for the project to be analysed,
+     * choosen from those defined in SupportedLicenses enum. Has to be one of
+     * these values as these values are the values supported by OpenLRAE.
+     * @param redistribution The desired redistribution for the project to be
+     * analysed, from the set of types defined in SupportedRedistributions enum.
+     * Redistribution matters. Lots of licenses only applies if the project is
+     * going to be redistributed.
+     * @param firstComponentBinding The first component binding of the bill of
+     * component bindings. A project has to have at least one component binding
+     * in order tho be analyzed. This fist one is specified here.
+     */
     public Project(String name, String version, SupportedLicenses license, SupportedRedistributions redistribution, ComponentBinding firstComponentBinding) {
-        this.name = name;
+        // FIX: Project license should not be "FORCED_AS_PROJECT_LICENSE". It could be 
+        // "UNDEFINED" or "UNSUPPORTED", althoug it sounds a bit extrange.        this.name = name;
         this.version = version;
         this.license = license;
         this.redistribution = redistribution;
@@ -55,27 +67,58 @@ public class Project {
         this.billOfComponentBindings.add(firstComponentBinding);
     }
 
+    /**
+     * This method adds a component binding to the project in order to complete
+     * it and to be analysed.
+     *
+     * @param componentBinding a component binding to be added the project.
+     */
     public void addComponentBinding(ComponentBinding componentBinding) {
         billOfComponentBindings.add(componentBinding);
     }
 
+    /**
+     * This method gets the name of the project.
+     *
+     * @return the name of the project.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * This method gets the version of the project.
+     *
+     * @return the version of the project.
+     */
     public String getVersion() {
         return version;
     }
 
+    /**
+     * This method gets the license of the project.
+     *
+     * @return the license of the project.
+     */
     public SupportedLicenses getLicense() {
         return license;
     }
 
+    /**
+     * This method gets the redistribution of the project.
+     *
+     * @return the redistribution of the project.
+     */
     public SupportedRedistributions getRedistribution() {
         return redistribution;
     }
 
-    public CopyOnWriteArrayList<ComponentBinding> getComponentsBindings() {
+    /**
+     * This mnethod gets the complete bill of components bindigs of the project.
+     *
+     * @return the complete bill of components bindigs of the project.
+     */
+    public CopyOnWriteArrayList<ComponentBinding> getBillOfComponentBindings() {
         return billOfComponentBindings;
     }
 }

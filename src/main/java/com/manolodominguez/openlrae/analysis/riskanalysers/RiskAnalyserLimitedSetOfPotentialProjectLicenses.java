@@ -108,7 +108,7 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
         totalExposure = allPotentialProjectLicenses.size();
         totalImpact = 0.0f;
         for (int i = 0; i < totalExposure; i++) {
-            for (ComponentBinding componentBinding : this.project.getComponentsBindings()) {
+            for (ComponentBinding componentBinding : this.project.getBillOfComponentBindings()) {
                 totalImpact += componentBinding.getWeight().getWeightValue();
             }
         }
@@ -116,7 +116,7 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
         LicensesCompatibilityFactory licensesCompatibilities = LicensesCompatibilityFactory.getInstance();
         for (SupportedLicenses potentialProjectLicense : allPotentialProjectLicenses) {
             canBeProjectLicense = CAN_BE_PROJECT_LICENSE;
-            for (ComponentBinding componentBinding : this.project.getComponentsBindings()) {
+            for (ComponentBinding componentBinding : this.project.getBillOfComponentBindings()) {
                 compatibility = licensesCompatibilities.getCompatibilityOf(componentBinding.getComponent().getLicense(), potentialProjectLicense, componentBinding.getLinkType(), this.project.getRedistribution());
                 switch (compatibility) {
                     case COMPATIBLE:

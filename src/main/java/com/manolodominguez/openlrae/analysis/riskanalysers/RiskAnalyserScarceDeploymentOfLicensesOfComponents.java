@@ -78,9 +78,9 @@ public class RiskAnalyserScarceDeploymentOfLicensesOfComponents extends Abstract
     public void runAnalyser() {
         SupportedSpreadings spreading;
         LicensesSpreadingFactory licensesSpreadings = LicensesSpreadingFactory.getInstance();
-        int totalCases = this.project.getComponentsBindings().size();
+        int totalCases = this.project.getBillOfComponentBindings().size();
 
-        for (ComponentBinding componentBinding : this.project.getComponentsBindings()) {
+        for (ComponentBinding componentBinding : this.project.getBillOfComponentBindings()) {
             spreading = licensesSpreadings.getSpreadingOf(componentBinding.getComponent().getLicense());
             switch (spreading) {
                 case HIGHLY_WIDESPREAD:

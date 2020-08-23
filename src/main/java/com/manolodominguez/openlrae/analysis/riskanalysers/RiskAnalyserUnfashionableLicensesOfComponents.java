@@ -77,9 +77,9 @@ public class RiskAnalyserUnfashionableLicensesOfComponents extends AbstractRiskA
     public void runAnalyser() {
         SupportedTrends trend;
         LicensesTrendFactory licensesTrends = LicensesTrendFactory.getInstance();
-        int totalCases = this.project.getComponentsBindings().size();
+        int totalCases = this.project.getBillOfComponentBindings().size();
 
-        for (ComponentBinding componentBinding : this.project.getComponentsBindings()) {
+        for (ComponentBinding componentBinding : this.project.getBillOfComponentBindings()) {
             trend = licensesTrends.getTrendOf(componentBinding.getComponent().getLicense());
             switch (trend) {
                 case TRENDY:
