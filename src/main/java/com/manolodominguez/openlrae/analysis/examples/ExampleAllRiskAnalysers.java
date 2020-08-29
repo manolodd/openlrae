@@ -30,6 +30,7 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistri
 import com.manolodominguez.openlrae.arquitecture.Component;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
+import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCompatibilityFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,9 +81,9 @@ public class ExampleAllRiskAnalysers {
         // Print analysis info. This is only for visualizing the computed 
         // results
         System.out.println();
-        System.out.println("************************************************");
-        System.out.println("*************** Open LRAE report ***************");
-        System.out.println("************************************************");
+        System.out.println("**************************************************");
+        System.out.println("Open LRAE report. (License coverage = "+LicensesCompatibilityFactory.getInstance().getLicensesCoverage()*100+"%)");
+        System.out.println("**************************************************");
         System.out.println("\t=> Project name: " + project.getFullName());
         System.out.println("\t=> Project's selected license: " + project.getLicense().getSPDXFullName() + " (" + project.getLicense().getSPDXIdentifier() + ")");
         System.out.println("\t=> Project redistribution: " + project.getRedistribution().getDescriptionValue());
@@ -93,7 +94,7 @@ public class ExampleAllRiskAnalysers {
         System.out.println("### Risk analysis");
         for (RiskAnalysisResult riskAnalysisResult : resultSet) {
             System.out.println("\t=> " + riskAnalysisResult.getRiskType().getDescriptionValue());
-            System.out.println("\t\t*** Risk = " + riskAnalysisResult.getRiskValue() + " (Exposure = " + riskAnalysisResult.getRiskExposure() + ", Impact = " + riskAnalysisResult.getRiskImpact()+")");
+            System.out.println("\t\t*** Risk = " + riskAnalysisResult.getRiskValue() + " (Exposure = " + riskAnalysisResult.getRiskExposure() + ", Impact = " + riskAnalysisResult.getRiskImpact() + ")");
             System.out.println("\t\t*** Root causes");
             for (String rootCause : riskAnalysisResult.getRootCauses()) {
                 System.out.println("\t\t\t=> " + rootCause);

@@ -817,10 +817,11 @@ public final class LicensesCompatibilityFactory {
     public int getNumberOfSupportedCombinations() {
         return this.licensesCompatibilities.size();
     }
-    
-    public boolean isLicensesCoverage100x100() {
-        int potentialCombinations = SupportedLicenses.values().length * SupportedLicenses.values().length * SupportedLinks.values().length;
-        return potentialCombinations == licensesCompatibilities.size();
+
+    public float getLicensesCoverage() {
+        getInstance();
+        int potentialCombinations = (SupportedLicenses.values().length - 3) * (SupportedLicenses.values().length - 3) * SupportedLinks.values().length * SupportedRedistributions.values().length;
+        return ((float) licensesCompatibilities.size() / (float) potentialCombinations);
     }
 
 }
