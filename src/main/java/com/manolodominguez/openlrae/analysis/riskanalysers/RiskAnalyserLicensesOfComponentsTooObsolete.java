@@ -59,7 +59,7 @@ public class RiskAnalyserLicensesOfComponentsTooObsolete extends AbstractRiskAna
      * @param project. The software project to be analised.
      */
     public RiskAnalyserLicensesOfComponentsTooObsolete(Project project) {
-        super(project, SupportedRisks.LICENSES_OF_COMPONENTS_TOO_OBSOLETE, RiskAnalyserLicensesOfComponentsTooObsolete.class);
+        super(project, SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE, RiskAnalyserLicensesOfComponentsTooObsolete.class);
     }
 
     /**

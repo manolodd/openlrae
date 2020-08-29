@@ -20,9 +20,9 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This class implements an enum to define all type of uses a given project does
- * of a given component. In other words, to know whether the component is used
- * everywhere in the project or, on the contrary, it is used only in a n
- * isolated and small functionality.
+ * of a component. In other words, to know whether the component is used
+ * everywhere in the project or, on the contrary, it is used only in an isolated
+ * and small functionality.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */

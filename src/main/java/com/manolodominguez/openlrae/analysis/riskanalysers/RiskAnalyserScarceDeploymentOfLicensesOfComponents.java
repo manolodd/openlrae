@@ -60,7 +60,7 @@ public class RiskAnalyserScarceDeploymentOfLicensesOfComponents extends Abstract
      * @param project. The software project to be analised.
      */
     public RiskAnalyserScarceDeploymentOfLicensesOfComponents(Project project) {
-        super(project, SupportedRisks.SCARCE_DEPLOYMENT_OF_LICENSES_OF_COMPONENTS, RiskAnalyserScarceDeploymentOfLicensesOfComponents.class);
+        super(project, SupportedRisks.SCARCE_DEPLOYMENT_OF_COMPONENTS_LICENSES, RiskAnalyserScarceDeploymentOfLicensesOfComponents.class);
     }
 
     /**

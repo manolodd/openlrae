@@ -38,23 +38,25 @@ public final class LicensesObsolescencesFactory {
         // How old is a given license in relation to the versions line of this
         // license? Is it the oldest? The latest?
         this.licensesObsolescenses = new EnumMap<>(SupportedLicenses.class);
-        this.licensesObsolescenses.put(SupportedLicenses.MIT, SupportedObsolescences.UPDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.BSD4_CLAUSE, SupportedObsolescences.NEAR_OUTDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.BSD3_CLAUSE, SupportedObsolescences.NEAR_UPDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.APACHE11, SupportedObsolescences.NEAR_UPDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.APACHE20, SupportedObsolescences.UPDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.ARTISTIC20, SupportedObsolescences.UPDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.LGPL21, SupportedObsolescences.NEAR_OUTDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.LGPL21_PLUS, SupportedObsolescences.NEAR_OUTDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.LGPL30_PLUS, SupportedObsolescences.UPDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.MPL11, SupportedObsolescences.NEAR_UPDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.CDDL, SupportedObsolescences.UPDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.CPL_EPL, SupportedObsolescences.NEAR_UPDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.EUPL11, SupportedObsolescences.NEAR_UPDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.GPL20, SupportedObsolescences.NEAR_OUTDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.GPL20_PLUS, SupportedObsolescences.NEAR_UPDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.GPL30, SupportedObsolescences.UPDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.AGPL30, SupportedObsolescences.UPDATED);
+        this.licensesObsolescenses.put(SupportedLicenses.MIT, computeObsolescence(ONE, FIRST));
+        this.licensesObsolescenses.put(SupportedLicenses.BSD_4_CLAUSE, computeObsolescence(FIVE, FIRST));
+        this.licensesObsolescenses.put(SupportedLicenses.BSD_3_CLAUSE, computeObsolescence(FIVE, SECOND));
+        this.licensesObsolescenses.put(SupportedLicenses.APACHE_1_1, computeObsolescence(THREE, SECOND));
+        this.licensesObsolescenses.put(SupportedLicenses.APACHE_2_0, computeObsolescence(THREE, THIRD));
+        this.licensesObsolescenses.put(SupportedLicenses.ARTISTIC_2_0, computeObsolescence(TWO, SECOND));
+        this.licensesObsolescenses.put(SupportedLicenses.LGPL_2_1_ONLY, computeObsolescence(SIX, THIRD));
+        this.licensesObsolescenses.put(SupportedLicenses.LGPL_2_1_OR_LATER, computeObsolescence(SIX, FOURTH));
+        this.licensesObsolescenses.put(SupportedLicenses.LGPL_3_0_OR_LATER, computeObsolescence(SIX, SIXTH));
+        this.licensesObsolescenses.put(SupportedLicenses.MPL_1_1, computeObsolescence(THREE, SECOND));
+        this.licensesObsolescenses.put(SupportedLicenses.CDDL_1_0, computeObsolescence(TWO, FIRST));
+        this.licensesObsolescenses.put(SupportedLicenses.CPL_1_0, computeObsolescence(ONE, FIRST));
+        this.licensesObsolescenses.put(SupportedLicenses.EPL_1_0, computeObsolescence(TWO, FIRST));
+        this.licensesObsolescenses.put(SupportedLicenses.EUPL_1_1, computeObsolescence(THREE, SECOND));
+        this.licensesObsolescenses.put(SupportedLicenses.GPL_2_0_ONLY, computeObsolescence(SIX, THIRD));
+        this.licensesObsolescenses.put(SupportedLicenses.GPL_2_0_OR_LATER, computeObsolescence(SIX, FOURTH));
+        this.licensesObsolescenses.put(SupportedLicenses.GPL_3_0_ONLY, computeObsolescence(SIX, FIVETH));
+        this.licensesObsolescenses.put(SupportedLicenses.AGPL_3_0_ONLY, computeObsolescence(FOUR, THIRD));
+        // The following ones are forced OUTDATED by design
         this.licensesObsolescenses.put(SupportedLicenses.UNDEFINED, SupportedObsolescences.OUTDATED);
         this.licensesObsolescenses.put(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, SupportedObsolescences.OUTDATED);
         this.licensesObsolescenses.put(SupportedLicenses.UNSUPPORTED, SupportedObsolescences.OUTDATED);
@@ -74,8 +76,52 @@ public final class LicensesObsolescencesFactory {
         return localInstance;
     }
 
+    private SupportedObsolescences computeObsolescence(int numberOfVersions, int currentVersion) {
+        float computedObsolescence = TOTAL_OBSOLESCENCE - (float) currentVersion / (float) numberOfVersions;
+        // Using the latest version
+        if (computedObsolescence == SupportedObsolescences.UPDATED.getObsolescenceValue()) {
+            return SupportedObsolescences.UPDATED;
+        }
+        // Thre are more than one version and is using the fist one, the 
+        // original.
+        if ((numberOfVersions > FIRST_VERSION) && (currentVersion == FIRST_VERSION)) {
+            return SupportedObsolescences.OUTDATED;
+        }
+        // The rest of cases
+        if (computedObsolescence < HALF_OBSOLESCENCE) {
+            return SupportedObsolescences.NEAR_UPDATED;
+        } else {
+            return SupportedObsolescences.NEAR_OUTDATED;
+        }
+    }
+
     public SupportedObsolescences getObsolescenceOf(SupportedLicenses license) {
         return licensesObsolescenses.get(license);
     }
 
+    private static final int FIRST_VERSION = 1;
+    private static final float TOTAL_OBSOLESCENCE = 1.0f;
+    private static final float HALF_OBSOLESCENCE = 0.5f;
+
+    private static final int ONE = 1;
+    private static final int TWO = 2;
+    private static final int THREE = 3;
+    private static final int FOUR = 4;
+    private static final int FIVE = 5;
+    private static final int SIX = 6;
+    private static final int SEVEN = 7;
+    private static final int EIGHT = 8;
+    private static final int NINE = 9;
+    private static final int TEN = 10;
+
+    private static final int FIRST = 1;
+    private static final int SECOND = 2;
+    private static final int THIRD = 3;
+    private static final int FOURTH = 4;
+    private static final int FIVETH = 5;
+    private static final int SIXTH = 6;
+    private static final int SEVENTH = 7;
+    private static final int EIGHTH = 8;
+    private static final int NOVENO = 9;
+    private static final int TENTH = 10;
 }

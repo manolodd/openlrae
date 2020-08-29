@@ -19,6 +19,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements an enum to define all type of spreadings related to a
+ * given component. In other words, this is used to know whether the component
+ * is being used NOW in a lot of projects all around the world or not.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -33,15 +36,36 @@ public enum SupportedSpreadings {
     private final float spreadingValue;
     private final String descriptionValue;
 
+    /**
+     * This is the constructor of the class. It defines SupportedSpreadings
+     * enum.
+     *
+     * @param spreadingValue A spreading value that will be used in a risk
+     * analysis to compute some licensing risks. A float value between 0.0f and
+     * 1.0f, being 0.0 a value that represents that a given license is used NOW
+     * by lots and lots of third party projects and 1.0 a value that represents
+     * that the license is almost unused NOW by third party projects.
+     * @param descriptionValue A text describing the meaning of the enum item.
+     */
     private SupportedSpreadings(float spreadingValue, String descriptionValue) {
         this.spreadingValue = spreadingValue;
         this.descriptionValue = descriptionValue;
     }
 
+    /**
+     * This method gets the spreading value of the enum item.
+     *
+     * @return the spreading value of the menu item.
+     */
     public float getSpreadingValue() {
         return spreadingValue;
     }
 
+    /**
+     * This method get the description of the enum item.
+     *
+     * @return the description of the enum item.
+     */
     public String getDescriptionValue() {
         return descriptionValue;
     }

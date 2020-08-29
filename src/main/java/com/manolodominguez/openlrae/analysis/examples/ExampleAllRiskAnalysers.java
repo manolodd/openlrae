@@ -47,16 +47,16 @@ public class ExampleAllRiskAnalysers {
     public static void main(String[] args) {
         // Define four components
         Component component1 = new Component("a-given-component", "3.7", SupportedLicenses.MIT);
-        Component component2 = new Component("my-favourite-component", "1.7.2", SupportedLicenses.APACHE11);
-        Component component3 = new Component("an-updated-component", "1.0", SupportedLicenses.BSD4_CLAUSE);
-        Component component4 = new Component("legacy-component", "0.9", SupportedLicenses.LGPL30_PLUS);
+        Component component2 = new Component("my-favourite-component", "1.7.2", SupportedLicenses.APACHE_1_1);
+        Component component3 = new Component("an-updated-component", "1.0", SupportedLicenses.BSD_4_CLAUSE);
+        Component component4 = new Component("legacy-component", "0.9", SupportedLicenses.LGPL_3_0_OR_LATER);
         // Define how the aforementioned software components are included into the project
         ComponentBinding componentBinding1 = new ComponentBinding(component1, SupportedLinks.DYNAMIC, SupportedComponentWeights.LOW);
         ComponentBinding componentBinding2 = new ComponentBinding(component2, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
         ComponentBinding componentBinding3 = new ComponentBinding(component3, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
         ComponentBinding componentBinding4 = new ComponentBinding(component4, SupportedLinks.STATIC, SupportedComponentWeights.HIGH);
         // Define the set of components additions of the project 
-        Project project = new Project("OpenLRAE", "1.0", SupportedLicenses.APACHE20, SupportedRedistributions.SOFTWARE_PACKAGE, componentBinding1);
+        Project project = new Project("OpenLRAE", "1.0", SupportedLicenses.APACHE_2_0, SupportedRedistributions.SOFTWARE_PACKAGE, componentBinding1);
         project.addComponentBinding(componentBinding2);
         project.addComponentBinding(componentBinding3);
         project.addComponentBinding(componentBinding4);
@@ -83,7 +83,7 @@ public class ExampleAllRiskAnalysers {
         System.out.println("************************************************");
         System.out.println("*************** Open LRAE report ***************");
         System.out.println("************************************************");
-        System.out.println("\t=> Project name: " + project.getName() + "-" + project.getVersion());
+        System.out.println("\t=> Project name: " + project.getFullName());
         System.out.println("\t=> Project's selected license: " + project.getLicense().getSPDXFullName() + " (" + project.getLicense().getSPDXIdentifier() + ")");
         System.out.println("\t=> Project redistribution: " + project.getRedistribution().getDescriptionValue());
         System.out.println("### Component bindigs:");

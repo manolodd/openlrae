@@ -59,7 +59,7 @@ public class RiskAnalyserUnfashionableLicensesOfComponents extends AbstractRiskA
      * @param project. The software project to be analised.
      */
     public RiskAnalyserUnfashionableLicensesOfComponents(Project project) {
-        super(project, SupportedRisks.UNFASHIONABLE_LICENSES_OF_COMPONENTS, RiskAnalyserUnfashionableLicensesOfComponents.class);
+        super(project, SupportedRisks.COMPONENTS_LICENSES_UNFASHIONABLE, RiskAnalyserUnfashionableLicensesOfComponents.class);
     }
 
     /**

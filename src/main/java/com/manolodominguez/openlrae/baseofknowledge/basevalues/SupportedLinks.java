@@ -19,10 +19,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements an enum to define all type of links of a component in a
+ * given project. This is important because some component licenses have
+ * different terms depending on the way the component is linked in the project.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
-// Types of links the compatibility refers to
 public enum SupportedLinks {
     STATIC("The component is included statically in the project."),
     DYNAMIC("The component is included dinamically in the project.");
@@ -31,10 +33,20 @@ public enum SupportedLinks {
 
     private final String descriptionValue;
 
+    /**
+     * This is the constructor of the class. It defines SupportedLinks enum.
+     *
+     * @param descriptionValue A text describing the meaning of the enum item.
+     */
     private SupportedLinks(String descriptionValue) {
         this.descriptionValue = descriptionValue;
     }
 
+    /**
+     * This method get the description of the enum item.
+     *
+     * @return the description of the enum item.
+     */
     public String getDescriptionValue() {
         return descriptionValue;
     }

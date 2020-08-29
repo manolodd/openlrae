@@ -16,6 +16,9 @@
 package com.manolodominguez.openlrae.baseofknowledge.basevalues;
 
 /**
+ * This class implements an enum to define all type of distributions that can be
+ * done of a given project. Some licenses have different terms or interpretation
+ * depending on whether the project is going to be redistributed or not.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -26,10 +29,21 @@ public enum SupportedRedistributions {
 
     private final String descriptionValue;
 
+    /**
+     * This is the constructor of the class. It defines SupportedRedistributions
+     * enum.
+     *
+     * @param descriptionValue A text describing the meaning of the enum item.
+     */
     private SupportedRedistributions(String descriptionValue) {
         this.descriptionValue = descriptionValue;
     }
 
+    /**
+     * This method get the description of the enum item.
+     *
+     * @return the description of the enum item.
+     */
     public String getDescriptionValue() {
         return descriptionValue;
     }

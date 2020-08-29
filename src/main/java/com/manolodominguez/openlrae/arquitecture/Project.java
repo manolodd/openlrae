@@ -60,6 +60,7 @@ public class Project {
     public Project(String name, String version, SupportedLicenses license, SupportedRedistributions redistribution, ComponentBinding firstComponentBinding) {
         // FIX: Project license should not be "FORCED_AS_PROJECT_LICENSE". It could be 
         // "UNDEFINED" or "UNSUPPORTED", althoug it sounds a bit extrange.        this.name = name;
+        this.name = name;
         this.version = version;
         this.license = license;
         this.redistribution = redistribution;
@@ -84,6 +85,15 @@ public class Project {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * This method gets the name of the project followed by its version.
+     *
+     * @return the name of the project concatenated with the project version.
+     */
+    public String getFullName() {
+        return name + "-" + version;
     }
 
     /**
