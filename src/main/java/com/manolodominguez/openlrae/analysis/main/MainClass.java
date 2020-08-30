@@ -32,6 +32,9 @@ import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedObsolescences;
+import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
+import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedSpreadings;
+import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedTrends;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCompatibilityFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,7 +64,8 @@ public class MainClass {
                     break;
             }
         } else {
-            showOptions();
+            //showOptions();
+            runExample();
         }
     }
 
@@ -72,6 +76,11 @@ public class MainClass {
         System.out.println("****************************");
         System.out.println("Open LRAE supported features");
         System.out.println("****************************");
+        System.out.println();
+        System.out.println("=== Supported risks analysis");
+        for (SupportedRisks risk : SupportedRisks.values()) {
+            System.out.println("\t- " + risk.getDescriptionValue());
+        }
         System.out.println();
         System.out.println("=== Supported licenses for components");
         for (SupportedLicenses license : SupportedLicenses.values()) {
@@ -110,6 +119,54 @@ public class MainClass {
             System.out.println("\t- " + obsolescence.getDescriptionValue());
         }
         System.out.println();
+        System.out.println("=== Supported licenses spreading (measures how many third party project use the same license NOW)");
+        for (SupportedSpreadings spreading : SupportedSpreadings.values()) {
+            System.out.println("\t- " + spreading.getDescriptionValue());
+        }
+        System.out.println();
+        System.out.println("=== Supported licenses trend (measures whether the use of the license is growing NOW or declining)");
+        for (SupportedTrends trend : SupportedTrends.values()) {
+            System.out.println("\t- " + trend.getDescriptionValue());
+        }
+        System.out.println();
+        System.out.println("=== Supported license compatibilities combination (can be analysed by OpenLRAE right now)");
+        System.out.println("=== COMPONENT_LICENSE (LINK_TYPE) --> PROJECT_LICENSE (REDISTRIBUTION_TYPE)");
+        LicensesCompatibilityFactory compatibilities = LicensesCompatibilityFactory.getInstance();
+        int i = 0;
+        for (SupportedRedistributions redistribution : SupportedRedistributions.values()) {
+            for (SupportedLinks link : SupportedLinks.values()) {
+                for (SupportedLicenses projectLicense : SupportedLicenses.values()) {
+                    if (!projectLicense.isOnlyForComponents()) {
+                        for (SupportedLicenses componentLicense : SupportedLicenses.values()) {
+                            if (compatibilities.getCompatibilityOf(componentLicense, projectLicense, link, redistribution) != SupportedCompatibilities.UNSUPPORTED) {
+                                i++;
+                                System.out.println(i+"- Component: " + componentLicense.getSPDXIdentifier() + " (" + link + ") --> Project: " + projectLicense.getSPDXIdentifier() + " (" + redistribution + ")");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println();
+        System.out.println("=== Still unsupported license compatibilities combination (cannot be analysed by OpenLRAE right now)");
+        System.out.println("=== COMPONENT_LICENSE (LINK_TYPE) --> PROJECT_LICENSE (REDISTRIBUTION_TYPE)");
+        int j=0;
+        for (SupportedRedistributions redistribution : SupportedRedistributions.values()) {
+            for (SupportedLinks link : SupportedLinks.values()) {
+                for (SupportedLicenses projectLicense : SupportedLicenses.values()) {
+                    if (!projectLicense.isOnlyForComponents()) {
+                        for (SupportedLicenses componentLicense : SupportedLicenses.values()) {
+                            if (compatibilities.getCompatibilityOf(componentLicense, projectLicense, link, redistribution) == SupportedCompatibilities.UNSUPPORTED) {
+                                j++;
+                                System.out.println(j+"- Component: " + componentLicense.getSPDXIdentifier() + " (" + link + ") --> Project: " + projectLicense.getSPDXIdentifier() + " (" + redistribution + ")");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println();
+        System.out.println(compatibilities.getCompatibilityOf(SupportedLicenses.BSD_4_CLAUSE, SupportedLicenses.ARTISTIC_2_0, SupportedLinks.STATIC, SupportedRedistributions.NONE));
     }
 
     public static void runExample() {

@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This class implements an enum to define all type of spreadings related to a
- * given component. In other words, this is used to know whether the component
+ * given component. In other words, this is used to know whether the license use
  * is being used NOW in a lot of projects all around the world or not.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com

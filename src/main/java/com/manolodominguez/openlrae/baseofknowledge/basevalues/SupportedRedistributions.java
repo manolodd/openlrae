@@ -23,9 +23,9 @@ package com.manolodominguez.openlrae.baseofknowledge.basevalues;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedRedistributions {
-    NONE("The project is not going to be redistributed."),
-    SOFTWARE_PACKAGE("The project is going to be redistributed as a software package"),
-    SAAS("The project is going to be redistributed as an online service: SaaS, web application, webservice, RESTful service, etc.");
+    NONE("The project is not going to be redistributed in any way."),
+    SAAS("The project is going to be redistributed as an online service: SaaS, web application, webservice, RESTful service, etc."),
+    SOFTWARE_PACKAGE("The project is going to be redistributed as a software package");
 
     private final String descriptionValue;
 

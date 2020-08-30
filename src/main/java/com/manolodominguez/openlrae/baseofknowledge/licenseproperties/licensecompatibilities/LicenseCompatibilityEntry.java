@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.manolodominguez.openlrae.baseofknowledge.licenseproperties;
+package com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities;
 
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
@@ -68,5 +68,9 @@ public class LicenseCompatibilityEntry {
 
     public String getSpecificWarning() {
         return explanation;
+    }
+    
+    public boolean hasSpecificWarning() {
+        return this.explanation != null;
     }
 }
