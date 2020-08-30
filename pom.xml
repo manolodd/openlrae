@@ -71,7 +71,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.manolodominguez.openlrae.analysis.examples.ExampleAllRiskAnalysers</mainClass>
+                            <mainClass>com.manolodominguez.openlrae.analysis.main.MainClass</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -89,7 +89,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.manolodominguez.openlrae.analysis.examples.ExampleAllRiskAnalysers</mainClass>
+                                    <mainClass>com.manolodominguez.openlrae.analysis.main.MainClass</mainClass>
                                 </transformer>
                             </transformers>
                             <shadedArtifactAttached>true</shadedArtifactAttached>

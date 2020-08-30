@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.manolodominguez.openlrae.analysis.examples;
+package com.manolodominguez.openlrae.analysis.main;
 
 import com.manolodominguez.openlrae.analysis.LicenseRiskAnalysisEngine;
 import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
@@ -30,6 +30,8 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistri
 import com.manolodominguez.openlrae.arquitecture.Component;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
+import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
+import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedObsolescences;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCompatibilityFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,14 +40,81 @@ import org.slf4j.LoggerFactory;
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
-public class ExampleAllRiskAnalysers {
+public class MainClass {
 
-    private static final Logger logger = LoggerFactory.getLogger(ExampleAllRiskAnalysers.class);
+    private static final Logger logger = LoggerFactory.getLogger(MainClass.class);
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        if (args.length == 1) {
+            switch (args[0]) {
+                case "-i":
+                    showInfo();
+                    break;
+                case "-e":
+                    runExample();
+                    break;
+                default:
+                    showOptions();
+                    break;
+            }
+        } else {
+            showOptions();
+        }
+    }
+
+    public static void showInfo() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+        System.out.println();
+        System.out.println("****************************");
+        System.out.println("Open LRAE supported features");
+        System.out.println("****************************");
+        System.out.println();
+        System.out.println("=== Supported licenses for components");
+        for (SupportedLicenses license : SupportedLicenses.values()) {
+            System.out.println("\t- " + license.getSPDXIdentifier());
+        }
+        System.out.println();
+        System.out.println("=== Supported licenses for projects");
+        for (SupportedLicenses license : SupportedLicenses.values()) {
+            if (!license.isOnlyForComponents()) {
+                System.out.println("\t- " + license.getSPDXIdentifier());
+            }
+        }
+        System.out.println();
+        System.out.println("=== Supported types of links (of components linked to a project)");
+        for (SupportedLinks link : SupportedLinks.values()) {
+            System.out.println("\t- " + link.getDescriptionValue());
+        }
+        System.out.println();
+        System.out.println("=== Supported types of project redistributions");
+        for (SupportedRedistributions redistribution : SupportedRedistributions.values()) {
+            System.out.println("\t- " + redistribution.getDescriptionValue());
+        }
+        System.out.println();
+        System.out.println("=== Supported types of license compatibility (of components added to a project)");
+        for (SupportedCompatibilities compatibility : SupportedCompatibilities.values()) {
+            System.out.println("\t- " + compatibility.getDescriptionValue());
+        }
+        System.out.println();
+        System.out.println("=== Supported components weight (real use of the component in the project)");
+        for (SupportedComponentWeights weight : SupportedComponentWeights.values()) {
+            System.out.println("\t- " + weight.getDescriptionValue());
+        }
+        System.out.println();
+        System.out.println("=== Supported licenses obsolescence (measures how old is the license version)");
+        for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {
+            System.out.println("\t- " + obsolescence.getDescriptionValue());
+        }
+        System.out.println();
+    }
+
+    public static void runExample() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         // Define four components
         Component component1 = new Component("a-given-component", "3.7", SupportedLicenses.MIT);
         Component component2 = new Component("my-favourite-component", "1.7.2", SupportedLicenses.APACHE_1_1);
@@ -82,7 +151,7 @@ public class ExampleAllRiskAnalysers {
         // results
         System.out.println();
         System.out.println("**************************************************");
-        System.out.println("Open LRAE report. (License coverage = "+LicensesCompatibilityFactory.getInstance().getLicensesCoverage()*100+"%)");
+        System.out.println("Open LRAE report. (License coverage = " + LicensesCompatibilityFactory.getInstance().getLicensesCoverage() * 100 + "%)");
         System.out.println("**************************************************");
         System.out.println("\t=> Project name: " + project.getFullName());
         System.out.println("\t=> Project's selected license: " + project.getLicense().getSPDXFullName() + " (" + project.getLicense().getSPDXIdentifier() + ")");
@@ -112,5 +181,24 @@ public class ExampleAllRiskAnalysers {
                 System.out.println("\t\t\t=> " + tip);
             }
         }
+    }
+
+    public static void showOptions() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+        System.out.println();
+        System.out.println("******************");
+        System.out.println("Open LRAE options.");
+        System.out.println("******************");
+        System.out.println();
+        System.out.println("OpenLRAE operates as a library. However it is an executable to allow");
+        System.out.println("obtaning some information about the library. See the usage below:");
+        System.out.println();
+        System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -i");
+        System.out.println("\t This will show information about features supported by this version of OpenLRAE.");
+        System.out.println();
+        System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -e");
+        System.out.println("\t This will execute a ficticious risk analysis and show you the resulting risk report.");
+        System.out.println();
     }
 }
