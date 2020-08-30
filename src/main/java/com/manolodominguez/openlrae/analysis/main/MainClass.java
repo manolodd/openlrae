@@ -166,7 +166,6 @@ public class MainClass {
             }
         }
         System.out.println();
-        System.out.println(compatibilities.getCompatibilityOf(SupportedLicenses.BSD_4_CLAUSE, SupportedLicenses.ARTISTIC_2_0, SupportedLinks.STATIC, SupportedRedistributions.NONE));
     }
 
     public static void runExample() {

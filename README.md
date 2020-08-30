@@ -24,7 +24,7 @@ With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard o
 
 ## This release:
  
-- <b>OpenLRAE 1.0</b> is released under the terms of Apache License, Version 2.0.
+- <b>OpenLRAE 0.1</b> is released under the terms of Apache License, Version 2.0.
 
 # PEOPLE BEHIND OPENSIMMPLS
 
@@ -53,9 +53,19 @@ mvn package
 ```console
 cd target
 ```
-- Now, run the simulator:
+- Now, pick te artifact you need:
 ```console
-openlrae-v{YourVersion}.jar
+openlrae-{YourVersion}.jar
+```
+if you are going to use a project builder in your project (maven, graddle) that will supply dependencies at compile time, or
+```console
+openlrae-{YourVersion}-with-dependencies.jar
+```
+If you want openlrae and all its dependencies in a bundle.
+
+You can also run the latter to do some things: to know wich things are supported in the librery, to run a buil-in risk analysis example, etc.
+```console
+java -jar openlrae-{YourVersion}-with-dependencies.jar
 ```
 
 # THIRD-PARTY COMPONENTS
