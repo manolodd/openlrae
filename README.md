@@ -26,7 +26,7 @@ With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard o
  
 - <b>OpenLRAE 0.1</b> is released under the terms of Apache License, Version 2.0.
 
-# PEOPLE BEHIND OPENSIMMPLS
+# PEOPLE BEHIND OPENLRAE
 
 ## Author:
     
