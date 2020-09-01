@@ -18,10 +18,22 @@ package com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licenseco
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
+ * This interface has to be implemented by classes that generates partial bases
+ * of knowledge for LicenseCompatiblityClass class.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public interface InterfaceLicenseCompatibilitiesSubfactory {
 
+    /**
+     * This interface, once implemented, will get the set of compatiblity
+     * entries related to components linked (in a given way) to a project that
+     * is going to be redistributed (in any form), or not, depending on the
+     * specific implementation.
+     *
+     * @return the set of compatiblity entries related to components linked (in
+     * a given way) to a project that is going to be redistributed (in any
+     * form), or not.
+     */
     public CopyOnWriteArrayList<LicenseCompatibilityEntry> getCompatibilities();
 }
