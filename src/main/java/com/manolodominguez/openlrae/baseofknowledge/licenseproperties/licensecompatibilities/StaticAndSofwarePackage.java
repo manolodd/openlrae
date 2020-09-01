@@ -24,6 +24,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements factory class that generates and loads the licenses
+ * compatibility combinations of components linked statically to a project that
+ * is going to be redistributed as a software package (binary or source code).
+ * This is an utility class to avoid a very, very large
+ * LicenseCompatibilityFactory class. Due to the number of licenses an the the
+ * number of potential combinations, building the base of knowledge in a single
+ * class is unmaintenable.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -34,6 +41,13 @@ public final class StaticAndSofwarePackage implements InterfaceLicenseCompatibil
     private static volatile StaticAndSofwarePackage instance;
     private final CopyOnWriteArrayList<LicenseCompatibilityEntry> licensesCompatibilities;
 
+    /**
+     * This is the constuctor of the class.It creates a new instance of
+     * StaticAndSofwarePackage containing the base of knowledge related to
+     * components linked statically to a project that is going to be
+     * redistributed as a software package (binary or source code); taking into
+     * account the component license and the project license.
+     */
     private StaticAndSofwarePackage() {
         this.licensesCompatibilities = new CopyOnWriteArrayList<>();
         //
@@ -407,7 +421,14 @@ public final class StaticAndSofwarePackage implements InterfaceLicenseCompatibil
         }
     }
 
-    // Singleton
+    /**
+     * This method implements the singleton patter to return the existing
+     * instance of StaticAndSoftwarePackage or, if it does is instantiated yet,
+     * it creates the first instance.
+     *
+     * @return an instance of StaticAndSofwarePackage (new, or the existing
+     * one).
+     */
     public static StaticAndSofwarePackage getInstance() {
         StaticAndSofwarePackage localInstance = StaticAndSofwarePackage.instance;
         if (localInstance == null) {
@@ -421,6 +442,15 @@ public final class StaticAndSofwarePackage implements InterfaceLicenseCompatibil
         return localInstance;
     }
 
+    /**
+     * This method get the set of compatiblity entries related to components
+     * linked statically to a project that is going to be redistributed as a
+     * software package (binary or source code).
+     *
+     * @return the set of compatiblity entries related to components linked
+     * statically to a project that is going to be redistributed as a software
+     * package (binary or source code).
+     */
     @Override
     public CopyOnWriteArrayList<LicenseCompatibilityEntry> getCompatibilities() {
         return this.licensesCompatibilities;

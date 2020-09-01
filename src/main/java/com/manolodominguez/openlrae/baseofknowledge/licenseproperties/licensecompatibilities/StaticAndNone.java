@@ -24,6 +24,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements factory class that generates and loads the licenses
+ * compatibility combinations of components linked statically to a project that
+ * is not going to be redistributed. This is an utility class to avoid a very,
+ * very large LicenseCompatibilityFactory class. Due to the number of licenses
+ * an the the number of potential combinations, building the base of knowledge
+ * in a single class is unmaintenable.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -34,6 +40,12 @@ public final class StaticAndNone implements InterfaceLicenseCompatibilitiesSubfa
     private static volatile StaticAndNone instance;
     private final CopyOnWriteArrayList<LicenseCompatibilityEntry> licensesCompatibilities;
 
+    /**
+     * This is the constuctor of the class.It creates a new instance of
+     * StaticAndNone containing the base of knowledge related to components
+     * linked statically to a project that is not going to be redistributed;
+     * taking into account the component license and the project license.
+     */
     private StaticAndNone() {
         this.licensesCompatibilities = new CopyOnWriteArrayList<>();
         //
@@ -61,7 +73,13 @@ public final class StaticAndNone implements InterfaceLicenseCompatibilitiesSubfa
         }
     }
 
-    // Singleton
+    /**
+     * This method implements the singleton patter to return the existing
+     * instance of StaticAndNone or, if it does is instantiated yet, it creates
+     * the first instance.
+     *
+     * @return an instance of StaticAndNone (new, or the existing one).
+     */
     public static StaticAndNone getInstance() {
         StaticAndNone localInstance = StaticAndNone.instance;
         if (localInstance == null) {
@@ -75,6 +93,13 @@ public final class StaticAndNone implements InterfaceLicenseCompatibilitiesSubfa
         return localInstance;
     }
 
+    /**
+     * This method get the set of compatiblity entries related to components
+     * linked statically to a project that is not going to be redistributed.
+     *
+     * @return the set of compatiblity entries related to components linked
+     * statically to a project that is not going to be redistributed.
+     */
     @Override
     public CopyOnWriteArrayList<LicenseCompatibilityEntry> getCompatibilities() {
         return this.licensesCompatibilities;

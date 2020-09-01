@@ -97,10 +97,10 @@ public final class DinamicAndNone implements InterfaceLicenseCompatibilitiesSubf
 
     /**
      * This method get the set of compatiblity entries related to components
-     * linked dinamically to a project is not going to be redistributed.
+     * linked dinamically to a project that is not going to be redistributed.
      *
      * @return the set of compatiblity entries related to components linked
-     * dinamically to a project is not going to be redistributed.
+     * dinamically to a project that is not going to be redistributed.
      */
     @Override
     public CopyOnWriteArrayList<LicenseCompatibilityEntry> getCompatibilities() {

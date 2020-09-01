@@ -43,10 +43,10 @@ public final class DinamicAndSofwarePackage implements InterfaceLicenseCompatibi
 
     /**
      * This is the constuctor of the class.It creates a new instance of
-     * DinamicAndNone containing the base of knowledge related to components
-     * linked dinamically to a project that is going to be redistributed as a
-     * software package (binary or source code); taking into account the
-     * component license and the project license.
+     * DinamicAndSofwarePackage containing the base of knowledge related to
+     * components linked dinamically to a project that is going to be
+     * redistributed as a software package (binary or source code); taking into
+     * account the component license and the project license.
      */
     private DinamicAndSofwarePackage() {
         this.licensesCompatibilities = new CopyOnWriteArrayList<>();
@@ -421,8 +421,8 @@ public final class DinamicAndSofwarePackage implements InterfaceLicenseCompatibi
 
     /**
      * This method implements the singleton patter to return the existing
-     * instance of DinamicAndNone or, if it does is instantiated yet, it creates
-     * the first instance.
+     * instance of DinamicAndSofwarePackage or, if it does is instantiated yet,
+     * it creates the first instance.
      *
      * @return an instance of DinamicAndSofwarePackage (new, or the existing
      * one).

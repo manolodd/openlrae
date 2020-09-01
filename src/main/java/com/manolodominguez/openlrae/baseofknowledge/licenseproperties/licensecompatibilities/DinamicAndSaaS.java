@@ -42,7 +42,7 @@ public final class DinamicAndSaaS implements InterfaceLicenseCompatibilitiesSubf
 
     /**
      * This is the constuctor of the class.It creates a new instance of
-     * DinamicAndNone containing the base of knowledge related to components
+     * DinamicAndSaaS containing the base of knowledge related to components
      * linked dinamically to a project that is going to be redistributed as
      * SaaS; taking into account the component license and the project license.
      */
@@ -61,7 +61,7 @@ public final class DinamicAndSaaS implements InterfaceLicenseCompatibilitiesSubf
 
     /**
      * This method implements the singleton patter to return the existing
-     * instance of DinamicAndNone or, if it does is instantiated yet, it creates
+     * instance of DinamicAndSaaS or, if it does is instantiated yet, it creates
      * the first instance.
      *
      * @return an instance of DinamicAndSaaS (new, or the existing one).
