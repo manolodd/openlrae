@@ -24,6 +24,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements factory class that generates and loads the licenses
+ * compatibility combinations of components linked dinamically to a project that
+ * is not going to be redistributed. This is an utility class to avoid a very,
+ * very large LicenseCompatibilityFactory class. Due to the number of licenses
+ * an the the number of potential combinations, building the base of knowledge
+ * in a single class is unmaintenable.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -34,24 +40,32 @@ public final class DinamicAndNone implements InterfaceLicenseCompatibilitiesSubf
     private static volatile DinamicAndNone instance;
     private final CopyOnWriteArrayList<LicenseCompatibilityEntry> licensesCompatibilities;
 
+    /**
+     * This is the constuctor of the class.It creates a new instance of
+     * DinamicAndNone containing the base of knowledge related to components
+     * linked dinamically to a project that is not going to be redistributed;
+     * taking into account the component license and the project license.
+     */
     private DinamicAndNone() {
         this.licensesCompatibilities = new CopyOnWriteArrayList<>();
         //
-        // All licenses except fake licenses for dinamic linking and every potential project licenses
-        // At this moment, all *real* licenses supported by OpenLRAE are 
-        // compatible with each other if no redistribution is done. So, we use a 
-        // loop to initialize. If at a given moment a supported license is not 
-        // compatible even not redistributing, this has to be changed and 
+        // All licenses except fake licenses for dinamic linking and every 
+        // potential project licenses. At this moment, all *real* licenses 
+        // supported by OpenLRAE are compatible with each other if no 
+        // redistribution is done. So, we use a loop to initialize. If at a 
+        // given moment a supported license is not compatible with the project 
+        // license even not redistributing, this has to be changed and 
         // initialize them one by one.
-        for (SupportedLicenses componentLicense : SupportedLicenses.values()) { 
-            for (SupportedLicenses projectLicense: SupportedLicenses.values()) {
+        for (SupportedLicenses componentLicense : SupportedLicenses.values()) {
+            for (SupportedLicenses projectLicense : SupportedLicenses.values()) {
                 if (!projectLicense.isOnlyForComponents() && !componentLicense.isOnlyForComponents()) {
                     this.licensesCompatibilities.add(new LicenseCompatibilityEntry(componentLicense, projectLicense, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.NONE, null));
                 }
             }
         }
         //
-        // Fake licenses for dinamic linking and every potential project licenses
+        // Fake licenses for dinamic linking and every potential project 
+        // licenses
         for (SupportedLicenses projectLicense : SupportedLicenses.values()) {
             if (!projectLicense.isOnlyForComponents()) {
                 this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNDEFINED, projectLicense, SupportedCompatibilities.UNKNOWN, SupportedLinks.DYNAMIC, SupportedRedistributions.NONE, null));
@@ -61,7 +75,13 @@ public final class DinamicAndNone implements InterfaceLicenseCompatibilitiesSubf
         }
     }
 
-    // Singleton
+    /**
+     * This method implements the singleton patter to return the existing
+     * instance of DinamicAndNone or, if it does is instantiated yet, it creates
+     * the first instance.
+     *
+     * @return an instance of DinamicAndNone (new, or the existing one).
+     */
     public static DinamicAndNone getInstance() {
         DinamicAndNone localInstance = DinamicAndNone.instance;
         if (localInstance == null) {
@@ -75,6 +95,13 @@ public final class DinamicAndNone implements InterfaceLicenseCompatibilitiesSubf
         return localInstance;
     }
 
+    /**
+     * This method get the set of compatiblity entries related to components
+     * linked dinamically to a project is not going to be redistributed.
+     *
+     * @return the set of compatiblity entries related to components linked
+     * dinamically to a project is not going to be redistributed.
+     */
     @Override
     public CopyOnWriteArrayList<LicenseCompatibilityEntry> getCompatibilities() {
         return this.licensesCompatibilities;

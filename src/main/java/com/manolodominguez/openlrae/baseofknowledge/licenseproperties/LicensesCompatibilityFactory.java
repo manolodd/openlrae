@@ -86,8 +86,8 @@ public final class LicensesCompatibilityFactory {
 
     public float getLicensesCoverage() {
         getInstance();
-        int numberOfSupportedComponentLicenses = 0;
-        int numberOfSupportedProjectLicenses = 0;
+        int numberOfSupportedComponentLicenses = ZERO;
+        int numberOfSupportedProjectLicenses = ZERO;
         for (SupportedLicenses supportedLicense : SupportedLicenses.values()) {
             if (!supportedLicense.isOnlyForComponents()) {
                 numberOfSupportedComponentLicenses++;
@@ -100,4 +100,6 @@ public final class LicensesCompatibilityFactory {
         return ((float) licensesCompatibilities.size() / (float) potentialCombinations);
     }
 
+    private static final int ZERO = 0;
+    
 }

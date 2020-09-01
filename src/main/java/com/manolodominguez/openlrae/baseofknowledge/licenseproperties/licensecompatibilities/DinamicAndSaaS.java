@@ -24,6 +24,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements factory class that generates and loads the licenses
+ * compatibility combinations of components linked dinamically to a project that
+ * is going to be redistributed as SaaS. This is an utility class to avoid a
+ * very, very large LicenseCompatibilityFactory class. Due to the number of
+ * licenses an the the number of potential combinations, building the base of
+ * knowledge in a single class is unmaintenable.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -34,6 +40,12 @@ public final class DinamicAndSaaS implements InterfaceLicenseCompatibilitiesSubf
     private static volatile DinamicAndSaaS instance;
     private final CopyOnWriteArrayList<LicenseCompatibilityEntry> licensesCompatibilities;
 
+    /**
+     * This is the constuctor of the class.It creates a new instance of
+     * DinamicAndNone containing the base of knowledge related to components
+     * linked dinamically to a project that is going to be redistributed as
+     * SaaS; taking into account the component license and the project license.
+     */
     private DinamicAndSaaS() {
         this.licensesCompatibilities = new CopyOnWriteArrayList<>();
         //
@@ -47,7 +59,13 @@ public final class DinamicAndSaaS implements InterfaceLicenseCompatibilitiesSubf
         }
     }
 
-    // Singleton
+    /**
+     * This method implements the singleton patter to return the existing
+     * instance of DinamicAndNone or, if it does is instantiated yet, it creates
+     * the first instance.
+     *
+     * @return an instance of DinamicAndSaaS (new, or the existing one).
+     */
     public static DinamicAndSaaS getInstance() {
         DinamicAndSaaS localInstance = DinamicAndSaaS.instance;
         if (localInstance == null) {
@@ -61,6 +79,14 @@ public final class DinamicAndSaaS implements InterfaceLicenseCompatibilitiesSubf
         return localInstance;
     }
 
+    /**
+     * This method get the set of compatiblity entries related to components
+     * linked dinamically to a project that is going to be redistributed as
+     * SaaS.
+     *
+     * @return the set of compatiblity entries related to components linked
+     * dinamically to a project that is going to be redistributed as SaaS.
+     */
     @Override
     public CopyOnWriteArrayList<LicenseCompatibilityEntry> getCompatibilities() {
         return this.licensesCompatibilities;
