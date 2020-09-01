@@ -8,7 +8,7 @@
 
 # THE PROJECT
 
-<b>OpenLRAE</b> is a Licensing Risks Analysis Engine, multiplatform and mutilanguage. It's a java library that allow knowing the risk induced by the bill of components you have included in your project, the way they are binded, the kind of distribution you're going to do of your project, and so on.
+<b>OpenLRAE</b> is a Licensing Risks Analysis Engine, multiplatform and mutilanguage. It's a java library that allow knowing the risk induced by the bill of components you have included in your project, the way they are bound, the kind of distribution you're going to do of your project, and so on.
 
 After decades working in public and private and academic sector, assesing hundreds of platforms from an Opensource perspective I realized that most of the existing tools try to detect the components that have been included in a project and, then, they try to infer their licenses. Only after that (that brings a lots of false positives and a lot of false negatives) a license analysis is done.
 
