@@ -64,8 +64,8 @@ public class MainClass {
                     break;
             }
         } else {
-            //showOptions();
-            runExample();
+            showOptions();
+            //runExample();
         }
     }
 
