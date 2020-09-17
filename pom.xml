@@ -4,6 +4,7 @@
         <!--- Dependency versions -->
         <lsf4j-api.version>2.0.0-alpha1</lsf4j-api.version>
         <lsf4j-simple.version>2.0.0-alpha1</lsf4j-simple.version>
+        <mjson.version>1.4.1</mjson.version>
         <!--- Dependency for testing -->
         <junit-jupiter-engine.version>5.7.0-RC1</junit-jupiter-engine.version>
         <!-- Maven plugins versions -->
@@ -165,6 +166,11 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit-jupiter-engine.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.sharegov</groupId>
+            <artifactId>mjson</artifactId>
+            <version>${mjson.version}</version>
         </dependency>
     </dependencies>
 </project>
