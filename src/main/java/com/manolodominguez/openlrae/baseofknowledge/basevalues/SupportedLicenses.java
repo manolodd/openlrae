@@ -46,16 +46,12 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedLicenses {
-    MIT("MIT", "MIT License", false),
-    BSD_4_CLAUSE("BSD-4-clause", "BSD 4-Clause \"Original\" or \"Old\" License", false),
-    BSD_3_CLAUSE("BSD-3-clause", "BSD 3-Clause \"New\" or \"Revised\" License", false),
+    AGPL_3_0_ONLY("AGPL-3.0-only", "GNU Affero General Public License v3.0 only", false),
     APACHE_1_1("Apache-1.1", "Apache License 1.1", false),
     APACHE_2_0("Apache-2.0", "Apache License 2.0", false),
     ARTISTIC_2_0("Artistic-2.0", "Artistic License 2.0", false),
-    LGPL_2_1_ONLY("LGPL-2.1-only", "GNU Lesser General Public License v2.1 only", false),
-    LGPL_2_1_OR_LATER("LGPL-2.1-or-later", "GNU Lesser General Public License v2.1 or later", false),
-    LGPL_3_0_OR_LATER("LGPL-3.0-or-later", "GNU Lesser General Public License v3.0 or later", false),
-    MPL_1_1("MPL-1.1", "Mozilla Public License 1.1", false),
+    BSD_3_CLAUSE("BSD-3-clause", "BSD 3-Clause \"New\" or \"Revised\" License", false),
+    BSD_4_CLAUSE("BSD-4-clause", "BSD 4-Clause \"Original\" or \"Old\" License", false),
     CDDL_1_0("CDDL-1.0", "Common Development and Distribution License 1.0", false),
     CPL_1_0("CPL-1.0", "Common Public License 1.0", false),
     EPL_1_0("EPL-1.0", "Eclipse Public License 1.0", false),
@@ -63,7 +59,12 @@ public enum SupportedLicenses {
     GPL_2_0_ONLY("GPL-2.0-only", "GNU General Public License v2.0 only", false),
     GPL_2_0_OR_LATER("GPL-2.0-or-later", "GNU General Public License v2.0 or later", false),
     GPL_3_0_ONLY("GPL-3.0-only", "GNU General Public License v3.0 only", false),
-    AGPL_3_0_ONLY("AGPL-3.0-only", "GNU Affero General Public License v3.0 only", false),
+    LGPL_2_1_ONLY("LGPL-2.1-only", "GNU Lesser General Public License v2.1 only", false),
+    LGPL_2_1_OR_LATER("LGPL-2.1-or-later", "GNU Lesser General Public License v2.1 or later", false),
+    LGPL_3_0_OR_LATER("LGPL-3.0-or-later", "GNU Lesser General Public License v3.0 or later", false),
+    MIT("MIT", "MIT License", false),
+    MPL_1_1("MPL-1.1", "Mozilla Public License 1.1", false),
+    // These ones are special licenses, not real ones.
     UNDEFINED("Undefined", "An unknown license", true),
     UNSUPPORTED("Unsupported", "License known but not supported by Open LRAE.", true),
     FORCED_AS_PROJECT_LICENSE("Forced", "Written permission to use the component under the terms of the project licenses.", true);
@@ -114,7 +115,7 @@ public enum SupportedLicenses {
     public String getSPDXFullName() {
         return spdxFullName;
     }
-    
+
     public boolean isOnlyForComponents() {
         return this.onlyForComponents;
     }
