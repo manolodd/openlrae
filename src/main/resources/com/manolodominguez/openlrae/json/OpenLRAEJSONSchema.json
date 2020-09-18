@@ -38,7 +38,7 @@
             ]
         },
         "componentLicensesEnum": {
-            "allOf": [
+            "anyOf": [
                 {"$ref": "#/definitions/projectsLicensesEnum"},
                 {"$ref": "#/definitions/specialLicensesEnum"}
             ]
