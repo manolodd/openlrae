@@ -17,7 +17,10 @@ package com.manolodominguez.openlrae.arquitecture;
 
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistributions;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.concurrent.CopyOnWriteArrayList;
+import mjson.Json;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +38,7 @@ public class Project {
 
     private String name;
     private String version;
-    private SupportedLicenses license;
+    private CopyOnWriteArrayList<SupportedLicenses> licenses;
     private SupportedRedistributions redistribution;
     private CopyOnWriteArrayList<ComponentBinding> billOfComponentBindings;
 
@@ -46,26 +49,114 @@ public class Project {
      * "opensimmpls", "apache", "jasperreport", etc.
      * @param version The version of the project to be analysed. For instance
      * "1.2.3", "1.4-SNAPSHOT", "3.4-M4", "4.23-ALPHA", etc.
-     * @param license The desired license for the project to be analysed,
+     * @param firstLicense The first license for the project to be analysed,
      * choosen from those defined in SupportedLicenses enum. Has to be one of
-     * these values as these values are the values supported by OpenLRAE.
+     * these values as these values are the values supported by OpenLRAE. If you
+     * want to dual-license your project (or even more licenses), then you have
+     * to add the additional licenses using addLicense(...) method.
      * @param redistribution The desired redistribution for the project to be
      * analysed, from the set of types defined in SupportedRedistributions enum.
      * Redistribution matters. Lots of licenses only applies if the project is
      * going to be redistributed.
      * @param firstComponentBinding The first component binding of the bill of
      * component bindings. A project has to have at least one component binding
-     * in order tho be analyzed. This fist one is specified here.
+     * in order tho be analyzed. This fist one is specified here. If you want to
+     * add additional component bindings, you have to use
+     * addComponentBinding(...) method.
      */
-    public Project(String name, String version, SupportedLicenses license, SupportedRedistributions redistribution, ComponentBinding firstComponentBinding) {
-        // FIX: Project license should not be "FORCED_AS_PROJECT_LICENSE". It could be 
-        // "UNDEFINED" or "UNSUPPORTED", althoug it sounds a bit extrange.        this.name = name;
+    public Project(String name, String version, SupportedLicenses firstLicense, SupportedRedistributions redistribution, ComponentBinding firstComponentBinding) {
+        // FIX: Project license should not be "FORCED_AS_PROJECT_LICENSE",  
+        // "UNDEFINED" or "UNSUPPORTED". 
         this.name = name;
         this.version = version;
-        this.license = license;
+        licenses = new CopyOnWriteArrayList<>();
+        licenses.add(firstLicense);
         this.redistribution = redistribution;
-        this.billOfComponentBindings = new CopyOnWriteArrayList<>();
-        this.billOfComponentBindings.add(firstComponentBinding);
+        billOfComponentBindings = new CopyOnWriteArrayList<>();
+        billOfComponentBindings.add(firstComponentBinding);
+    }
+
+    /**
+     * This is the constuctor of the class.It creates a new instance of Project.
+     *
+     * @param projectDefinitionAsJSONString a JSON project definition as a
+     * String.
+     */
+    public Project(String projectDefinitionAsJSONString) {
+        Json projectDefinition = Json.read(projectDefinitionAsJSONString);
+        if (isValidJSONProjectDefinition(projectDefinition)) {
+            initializeFromJSON(projectDefinition);
+        } else {
+            throw new IllegalArgumentException(getValidationReport(projectDefinition).toString(MAX_JSON_ERRORS_LENGTH));
+        }
+    }
+
+    /**
+     * This is the constuctor of the class.It creates a new instance of Project.
+     *
+     * @param projectDefinition a JSON project definition.
+     */
+    public Project(Json projectDefinition) {
+        if (isValidJSONProjectDefinition(projectDefinition)) {
+            initializeFromJSON(projectDefinition);
+        } else {
+            throw new IllegalArgumentException(getValidationReport(projectDefinition).toString(MAX_JSON_ERRORS_LENGTH));
+        }
+    }
+
+    /**
+     * This method check whether the JSON project definition can be validated
+     * against the OpenLRAE JSON Schema. In other words, it checks that the
+     * project definition is a valid one.
+     *
+     * @param projectDefinition a JSON project definition.
+     * @return TRUE, if the JSON project definition can be ckecked as a valid
+     * one. Otherwise, returns FALSE.
+     */
+    private boolean isValidJSONProjectDefinition(Json projectDefinition) {
+        Json.Schema schema;
+        try {
+            URI schemaURI = getClass().getResource(OPENLRAE_JSON_SCHEMA).toURI();
+            schema = Json.schema(schemaURI);
+            Json validationResult = schema.validate(projectDefinition);
+            if (validationResult.at("ok").asBoolean()) {
+                return true;
+            }
+            return false;
+        } catch (URISyntaxException ex) {
+            return false;
+        }
+    }
+
+    /**
+     * This method validates the JSON project definition specified as an
+     * argument against the OpenLRAE JSON Schema and returns a JSON report about
+     * the validation process. It could be an OK or, can be a list of error
+     * messages.
+     *
+     * @param projectDefinition a JSON project definition.
+     * @return a JSON report about the validation process.
+     */
+    private Json getValidationReport(Json projectDefinition) {
+        Json.Schema schema;
+        try {
+            URI schemaURI = getClass().getResource(OPENLRAE_JSON_SCHEMA).toURI();
+            schema = Json.schema(schemaURI);
+            return schema.validate(projectDefinition);
+        } catch (URISyntaxException ex) {
+            return Json.read("{\"ok\":false, errors:[\"Open LRAE JSON Schema cannot be loaded.\"]}");
+        }
+    }
+
+    /**
+     * This method initialize all fields of this project using the values from
+     * the validated JSON project definition passed as an argument.
+     *
+     * @param validatedJSONProjectDefinition a validated JSON project
+     * definition.
+     */
+    private void initializeFromJSON(Json validatedJSONProjectDefinition) {
+        throw new UnsupportedOperationException("Functionality still uncomplete");
     }
 
     /**
@@ -106,12 +197,24 @@ public class Project {
     }
 
     /**
+     * This method adds an additional license to the project. This is needed if
+     * you want to dual-license the project (or license even under more
+     * licenses).
+     *
+     * @param additionalLicense the additional license to be added to the
+     * project.
+     */
+    public void addLicense(SupportedLicenses additionalLicense) {
+        licenses.add(additionalLicense);
+    }
+
+    /**
      * This method gets the license of the project.
      *
      * @return the license of the project.
      */
-    public SupportedLicenses getLicense() {
-        return license;
+    public CopyOnWriteArrayList<SupportedLicenses> getLicense() {
+        return licenses;
     }
 
     /**
@@ -131,4 +234,7 @@ public class Project {
     public CopyOnWriteArrayList<ComponentBinding> getBillOfComponentBindings() {
         return billOfComponentBindings;
     }
+
+    private static final String OPENLRAE_JSON_SCHEMA = "/com/manolodominguez/openlrae/json/OpenLRAEJSONSchema.json";
+    private static final int MAX_JSON_ERRORS_LENGTH = 1024;
 }
