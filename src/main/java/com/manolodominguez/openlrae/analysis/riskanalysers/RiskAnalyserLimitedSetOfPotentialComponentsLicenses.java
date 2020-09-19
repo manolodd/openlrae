@@ -96,7 +96,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
         LicensesCompatibilityFactory licensesCompatibilities = LicensesCompatibilityFactory.getInstance();
         for (SupportedLicenses potentialComponentLicense : allPotentialComponentsLicenses) {
             for (SupportedLinks potentialLink : SupportedLinks.values()) {
-                compatibility = licensesCompatibilities.getCompatibilityOf(potentialComponentLicense, project.getLicense(), potentialLink, project.getRedistribution());
+                compatibility = licensesCompatibilities.getCompatibilityOf(potentialComponentLicense, project.getLicenses().get(0), potentialLink, project.getRedistribution());
                 switch (compatibility) {
                     case COMPATIBLE:
                         // The analyzed potential component license and link 
@@ -104,7 +104,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                         // into account the project distribution that has been 
                         // specified). Therefore, a component with that 
                         // combination can be used in the project without risk.
-                        goodThings.add("A component under " + potentialComponentLicense.getSPDXIdentifier() + " can be included in " + project.getFullName() + " because it is compatible with the project license (" + project.getLicense().getSPDXIdentifier() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                        goodThings.add("A component under " + potentialComponentLicense.getSPDXIdentifier() + " can be included in " + project.getFullName() + " because it is compatible with the project license (" + project.getLicenses().get(0).getSPDXIdentifier() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
                         break;
                     case FORCED_COMPATIBLE:
                         // The analyzed potential component license and link 
@@ -116,9 +116,9 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                         // component in a project with a given license. Also,
                         // when you are using a commercial component that allow
                         // including it in the project.
-                        goodThings.add("A component under " + potentialComponentLicense.getSPDXIdentifier() + " can be included in " + project.getFullName() + " because it is forced to be compatible with the project license (" + project.getLicense().getSPDXIdentifier() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
-                        warnings.add("Although a component under " + potentialComponentLicense.getSPDXIdentifier() + " can be included in " + project.getFullName() + " (because it is forced as compatible with " + project.getLicense().getSPDXIdentifier() + ", the license of the project) via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution, it could be a source of risk for project maintenance in the future.");
-                        tips.add("Try changing the license of the project (" + project.getLicense().getSPDXIdentifier() + ") by another that that allow that components under license " + potentialComponentLicense.getSPDXIdentifier() + " can be included without need of forcing as compatible.");
+                        goodThings.add("A component under " + potentialComponentLicense.getSPDXIdentifier() + " can be included in " + project.getFullName() + " because it is forced to be compatible with the project license (" + project.getLicenses().get(0).getSPDXIdentifier() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                        warnings.add("Although a component under " + potentialComponentLicense.getSPDXIdentifier() + " can be included in " + project.getFullName() + " (because it is forced as compatible with " + project.getLicenses().get(0).getSPDXIdentifier() + ", the license of the project) via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution, it could be a source of risk for project maintenance in the future.");
+                        tips.add("Try changing the license of the project (" + project.getLicenses().get(0).getSPDXIdentifier() + ") by another that that allow that components under license " + potentialComponentLicense.getSPDXIdentifier() + " can be included without need of forcing as compatible.");
                         break;
                     case UNCOMPATIBLE:
                         // The analyzed potential component license and link 
@@ -126,8 +126,8 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                         // into account the project distribution that has been 
                         // specified). Therefore it cannot be used in the 
                         // project.
-                        rootCauses.add("A component under " + potentialComponentLicense.getSPDXIdentifier() + " cannot not be included in " + project.getFullName() + " because it is incompatible with the project license (" + project.getLicense().getSPDXIdentifier() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
-                        tips.add("Try changing the license of the project (" + project.getLicense().getSPDXIdentifier() + ") by another that that allow that components under license " + potentialComponentLicense.getSPDXIdentifier() + " can be included.");
+                        rootCauses.add("A component under " + potentialComponentLicense.getSPDXIdentifier() + " cannot not be included in " + project.getFullName() + " because it is incompatible with the project license (" + project.getLicenses().get(0).getSPDXIdentifier() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                        tips.add("Try changing the license of the project (" + project.getLicenses().get(0).getSPDXIdentifier() + ") by another that that allow that components under license " + potentialComponentLicense.getSPDXIdentifier() + " can be included.");
                         riskExposure++;
                         riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
                         break;
@@ -140,8 +140,8 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                         // Therefore it is handled as an uncompatible 
                         // combination. The component/binding pair cannot be 
                         // used in the project.
-                        rootCauses.add("A component under " + potentialComponentLicense.getSPDXIdentifier() + " cannot not be included in " + project.getFullName() + " because it not known to be compatible with the project license (" + project.getLicense().getSPDXIdentifier() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution, and therefore, it is handled as incompatible.");
-                        tips.add("Try changing the license of the project (" + project.getLicense().getSPDXIdentifier() + ") by another that that allow that components under license " + potentialComponentLicense.getSPDXIdentifier() + " can be included.");
+                        rootCauses.add("A component under " + potentialComponentLicense.getSPDXIdentifier() + " cannot not be included in " + project.getFullName() + " because it not known to be compatible with the project license (" + project.getLicenses().get(0).getSPDXIdentifier() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution, and therefore, it is handled as incompatible.");
+                        tips.add("Try changing the license of the project (" + project.getLicenses().get(0).getSPDXIdentifier() + ") by another that that allow that components under license " + potentialComponentLicense.getSPDXIdentifier() + " can be included.");
                         riskExposure++;
                         riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
                         break;
@@ -152,10 +152,10 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                         // specified) except in a few cases. Therefore it can be 
                         // used in the project ONLY after reviewing the specific
                         // case to be sure that is not one of them.
-                        rootCauses.add("A component under " + potentialComponentLicense.getSPDXIdentifier() + " can be included carefully in " + project.getFullName() + " because it is not compatible in a few cases with the project license (" + project.getLicense().getSPDXIdentifier() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
-                        warnings.add("Although a component under " + potentialComponentLicense.getSPDXIdentifier() + " can often be included in " + project.getFullName() + " because it is usually compatible with the project license (" + project.getLicense().getSPDXIdentifier() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution, this is not always really true because it depends on your specific case.");
-                        tips.add("Try changing the license of the project (" + project.getLicense().getSPDXIdentifier() + ") by another that that allow that components under license " + potentialComponentLicense.getSPDXIdentifier() + " can be included.");
-                        tips.add("Review your specific case to be sure that a component under " + potentialComponentLicense.getSPDXIdentifier() + " is compatible with the license of the project (" + project.getLicense().getSPDXIdentifier() + ") in your case before using the component in the project.");
+                        rootCauses.add("A component under " + potentialComponentLicense.getSPDXIdentifier() + " can be included carefully in " + project.getFullName() + " because it is not compatible in a few cases with the project license (" + project.getLicenses().get(0).getSPDXIdentifier() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                        warnings.add("Although a component under " + potentialComponentLicense.getSPDXIdentifier() + " can often be included in " + project.getFullName() + " because it is usually compatible with the project license (" + project.getLicenses().get(0).getSPDXIdentifier() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution, this is not always really true because it depends on your specific case.");
+                        tips.add("Try changing the license of the project (" + project.getLicenses().get(0).getSPDXIdentifier() + ") by another that that allow that components under license " + potentialComponentLicense.getSPDXIdentifier() + " can be included.");
+                        tips.add("Review your specific case to be sure that a component under " + potentialComponentLicense.getSPDXIdentifier() + " is compatible with the license of the project (" + project.getLicenses().get(0).getSPDXIdentifier() + ") in your case before using the component in the project.");
                         riskExposure++;
                         riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
                         break;
@@ -166,10 +166,10 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                         // specified) except in a few cases. Therefore it cannot 
                         // be used in the project UNLESS reviewing the specific 
                         // case to be sure that is one of these exceptions.
-                        rootCauses.add("A component under " + potentialComponentLicense.getSPDXIdentifier() + " should not be included in " + project.getFullName() + " because it is not compatible in most cases with the project license (" + project.getLicense().getSPDXIdentifier() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
-                        warnings.add("Although a component under " + potentialComponentLicense.getSPDXIdentifier() + " can be included in " + project.getFullName() + " altough it is not compatible in a few cases with the project license (" + project.getLicense().getSPDXIdentifier() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution, this is not always really true because it depends on your specific case.");
-                        tips.add("Try changing the license of the project (" + project.getLicense().getSPDXIdentifier() + ") by another that that allow that components under license " + potentialComponentLicense.getSPDXIdentifier() + " can be included.");
-                        tips.add("Review your specific case to be sure that a component under " + potentialComponentLicense.getSPDXIdentifier() + " is compatible with the license of the project (" + project.getLicense().getSPDXIdentifier() + ") in your case.");
+                        rootCauses.add("A component under " + potentialComponentLicense.getSPDXIdentifier() + " should not be included in " + project.getFullName() + " because it is not compatible in most cases with the project license (" + project.getLicenses().get(0).getSPDXIdentifier() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                        warnings.add("Although a component under " + potentialComponentLicense.getSPDXIdentifier() + " can be included in " + project.getFullName() + " altough it is not compatible in a few cases with the project license (" + project.getLicenses().get(0).getSPDXIdentifier() + ") via a " + potentialLink + " link and " + this.project.getRedistribution().toString() + " redistribution, this is not always really true because it depends on your specific case.");
+                        tips.add("Try changing the license of the project (" + project.getLicenses().get(0).getSPDXIdentifier() + ") by another that that allow that components under license " + potentialComponentLicense.getSPDXIdentifier() + " can be included.");
+                        tips.add("Review your specific case to be sure that a component under " + potentialComponentLicense.getSPDXIdentifier() + " is compatible with the license of the project (" + project.getLicenses().get(0).getSPDXIdentifier() + ") in your case.");
                         riskExposure++;
                         riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
                         break;

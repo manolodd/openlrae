@@ -213,7 +213,7 @@ public class Project {
      *
      * @return the license of the project.
      */
-    public CopyOnWriteArrayList<SupportedLicenses> getLicense() {
+    public CopyOnWriteArrayList<SupportedLicenses> getLicenses() {
         return licenses;
     }
 

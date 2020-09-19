@@ -56,12 +56,12 @@ public class LicenseCompatibilityEntry {
      * going to be (or it is) included.
      * @param compatibility The type of compatibility that applies to this case
      * taking into account the value of the rest of attributes. This is how the
-     * knowledge is included in OpenLRAE. 
+     * knowledge is included in OpenLRAE.
      * @param link The way the component is going to be included (or its is
      * included) in the prtoject.
      * @param redistribution The kind of project distribution.
      * @param specificWarning If the is any additional hint related to this
-     * specific licene compatiliblity combination, it should be put here so taht
+     * specific license compatiliblity combination, it should be put here so
      * different risk analysers can use it properly. If ther is no hints to
      * highlight, null should be specified.
      */

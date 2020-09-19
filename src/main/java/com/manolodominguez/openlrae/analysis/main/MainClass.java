@@ -36,6 +36,8 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedSpreadings;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedTrends;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCompatibilityFactory;
+import java.net.URI;
+import mjson.Json;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,7 +59,7 @@ public class MainClass {
                     showInfo();
                     break;
                 case "-e":
-                    runExample();
+                    new ExampleProject().runExample();
                     break;
                 default:
                     showOptions();
@@ -139,7 +141,7 @@ public class MainClass {
                         for (SupportedLicenses componentLicense : SupportedLicenses.values()) {
                             if (compatibilities.getCompatibilityOf(componentLicense, projectLicense, link, redistribution) != SupportedCompatibilities.UNSUPPORTED) {
                                 i++;
-                                System.out.println(i+"- Component: " + componentLicense.getSPDXIdentifier() + " (" + link + ") --> Project: " + projectLicense.getSPDXIdentifier() + " (" + redistribution + ")");
+                                System.out.println(i + "- Component: " + componentLicense.getSPDXIdentifier() + " (" + link + ") --> Project: " + projectLicense.getSPDXIdentifier() + " (" + redistribution + ")");
                             }
                         }
                     }
@@ -149,7 +151,7 @@ public class MainClass {
         System.out.println();
         System.out.println("=== Still unsupported license compatibilities combination (cannot be analysed by OpenLRAE right now)");
         System.out.println("=== COMPONENT_LICENSE (LINK_TYPE) --> PROJECT_LICENSE (REDISTRIBUTION_TYPE)");
-        int j=0;
+        int j = 0;
         for (SupportedRedistributions redistribution : SupportedRedistributions.values()) {
             for (SupportedLinks link : SupportedLinks.values()) {
                 for (SupportedLicenses projectLicense : SupportedLicenses.values()) {
@@ -157,7 +159,7 @@ public class MainClass {
                         for (SupportedLicenses componentLicense : SupportedLicenses.values()) {
                             if (compatibilities.getCompatibilityOf(componentLicense, projectLicense, link, redistribution) == SupportedCompatibilities.UNSUPPORTED) {
                                 j++;
-                                System.out.println(j+"- Component: " + componentLicense.getSPDXIdentifier() + " (" + link + ") --> Project: " + projectLicense.getSPDXIdentifier() + " (" + redistribution + ")");
+                                System.out.println(j + "- Component: " + componentLicense.getSPDXIdentifier() + " (" + link + ") --> Project: " + projectLicense.getSPDXIdentifier() + " (" + redistribution + ")");
                             }
                         }
                     }
@@ -165,77 +167,6 @@ public class MainClass {
             }
         }
         System.out.println();
-    }
-
-    public static void runExample() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-        // Define four components
-        Component component1 = new Component("a-given-component", "3.7", SupportedLicenses.MIT);
-        Component component2 = new Component("my-favourite-component", "1.7.2", SupportedLicenses.APACHE_1_1);
-        Component component3 = new Component("an-updated-component", "1.0", SupportedLicenses.BSD_4_CLAUSE);
-        Component component4 = new Component("legacy-component", "0.9", SupportedLicenses.LGPL_3_0_OR_LATER);
-        // Define how the aforementioned software components are included into the project
-        ComponentBinding componentBinding1 = new ComponentBinding(component1, SupportedLinks.DYNAMIC, SupportedComponentWeights.LOW);
-        ComponentBinding componentBinding2 = new ComponentBinding(component2, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
-        ComponentBinding componentBinding3 = new ComponentBinding(component3, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
-        ComponentBinding componentBinding4 = new ComponentBinding(component4, SupportedLinks.STATIC, SupportedComponentWeights.HIGH);
-        // Define the set of components additions of the project 
-        Project project = new Project("OpenLRAE", "1.0", SupportedLicenses.APACHE_2_0, SupportedRedistributions.SOFTWARE_PACKAGE, componentBinding1);
-        project.addComponentBinding(componentBinding2);
-        project.addComponentBinding(componentBinding3);
-        project.addComponentBinding(componentBinding4);
-        // Define desired risk analysers we want to use for this project
-        RiskAnalyserLimitedSetOfPotentialProjectLicenses riskAnalyser1 = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
-        RiskAnalyserLicensesOfComponentsTooObsolete riskAnalyser2 = new RiskAnalyserLicensesOfComponentsTooObsolete(project);
-        RiskAnalyserUnfashionableLicensesOfComponents riskAnalyser3 = new RiskAnalyserUnfashionableLicensesOfComponents(project);
-        RiskAnalyserScarceDeploymentOfLicensesOfComponents riskAnalyser4 = new RiskAnalyserScarceDeploymentOfLicensesOfComponents(project);
-        RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense riskAnalyser5 = new RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense(project);
-        RiskAnalyserLimitedSetOfPotentialComponentsLicenses riskAnalyser6 = new RiskAnalyserLimitedSetOfPotentialComponentsLicenses(project);
-        // Define a Risk analysis engine and add these risk analysers
-        LicenseRiskAnalysisEngine riskAnalysisEngine = new LicenseRiskAnalysisEngine(riskAnalyser1);
-        riskAnalysisEngine.addRiskAnalyser(riskAnalyser2);
-        riskAnalysisEngine.addRiskAnalyser(riskAnalyser3);
-        riskAnalysisEngine.addRiskAnalyser(riskAnalyser4);
-        riskAnalysisEngine.addRiskAnalyser(riskAnalyser5);
-        riskAnalysisEngine.addRiskAnalyser(riskAnalyser6);
-        // Run the license risks analysis and collect results
-        RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
-
-        // Print analysis info. This is only for visualizing the computed 
-        // results
-        System.out.println();
-        System.out.println("**************************************************");
-        System.out.println("Open LRAE report. (License coverage = " + LicensesCompatibilityFactory.getInstance().getLicensesCoverage() * 100 + "%)");
-        System.out.println("**************************************************");
-        System.out.println("\t=> Project name: " + project.getFullName());
-        System.out.println("\t=> Project's selected license: " + project.getLicense().getSPDXFullName() + " (" + project.getLicense().getSPDXIdentifier() + ")");
-        System.out.println("\t=> Project redistribution: " + project.getRedistribution().getDescriptionValue());
-        System.out.println("### Component bindigs:");
-        for (ComponentBinding spp : project.getBillOfComponentBindings()) {
-            System.out.println("\t=> " + spp.getComponent().getName() + "-" + spp.getComponent().getVersion() + " (" + spp.getComponent().getLicense().getSPDXIdentifier() + ") --> Contribution to the project: " + spp.getWeight().getDescriptionValue());
-        }
-        System.out.println("### Risk analysis");
-        for (RiskAnalysisResult riskAnalysisResult : resultSet) {
-            System.out.println("\t=> " + riskAnalysisResult.getRiskType().getDescriptionValue());
-            System.out.println("\t\t*** Risk = " + riskAnalysisResult.getRiskValue() + " (Exposure = " + riskAnalysisResult.getRiskExposure() + ", Impact = " + riskAnalysisResult.getRiskImpact() + ")");
-            System.out.println("\t\t*** Root causes");
-            for (String rootCause : riskAnalysisResult.getRootCauses()) {
-                System.out.println("\t\t\t=> " + rootCause);
-            }
-            System.out.println("\t\t*** Warnings");
-            for (String warning : riskAnalysisResult.getWarnings()) {
-                System.out.println("\t\t\t=> " + warning);
-            }
-            System.out.println("\t\t*** Good things");
-            for (String goodThing : riskAnalysisResult.getGoodThings()) {
-                System.out.println("\t\t\t=> " + goodThing);
-            }
-            System.out.println("\t\t*** Tips to mitigate the risk");
-            for (String tip : riskAnalysisResult.getTips()) {
-                System.out.println("\t\t\t=> " + tip);
-            }
-        }
     }
 
     public static void showOptions() {
