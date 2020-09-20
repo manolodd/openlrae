@@ -35,13 +35,13 @@ import org.slf4j.LoggerFactory;
  *
  * So, for instance, here you have some examples:
  *
- * - Artistic-1.0-Perl --> ARTISTIC_1_0_PERL
+ * - Artistic-1.0-Perl has to be ARTISTIC_1_0_PERL
  *
- * - BSD-3-Clause-Attribution --> BSD_3_CLAUSE_ATTRIBUTION
+ * - BSD-3-Clause-Attribution has to be BSD_3_CLAUSE_ATTRIBUTION
  *
- * - copyleft-next-0.3.1 --> COPYLEFT_NEXT_0_3_1
+ * - copyleft-next-0.3.1 has to be COPYLEFT_NEXT_0_3_1
  *
- * - Intel --> INTEL
+ * - Intel has to be INTEL
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */

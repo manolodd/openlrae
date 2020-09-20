@@ -18,8 +18,7 @@
         <jacoco.maven.plugin.version>0.8.5</jacoco.maven.plugin.version>
         <!--- Build parameters -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target> 
+        <maven.compiler.release>9</maven.compiler.release> 
     </properties>
     
     <modelVersion>4.0.0</modelVersion>
@@ -113,6 +112,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>${maven.javadoc.plugin.version}</version>                
+                <configuration>
+                    <detectJavaApiLink>false</detectJavaApiLink>
+                </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
