@@ -1,6 +1,6 @@
 <div align="center"><img src="https://github.com/manolodd/openlrae/raw/develop/src/main/resources/com/manolodominguez/openlrae/logo/logo_openlrae.png" alt="OpenLRAE logo" width="400"/></div>
 
-# PROJECT STATUS (Java 8)
+# PROJECT STATUS (Tested from JDK 9 to 15)
 
 - Master branch [![Build Status](https://img.shields.io/travis/manolodd/openlrae/master.svg)](https://travis-ci.org/manolodd/openlrae?branch=development)
 
