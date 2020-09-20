@@ -64,7 +64,8 @@ public enum SupportedLicenses {
     LGPL_3_0_OR_LATER("LGPL-3.0-or-later", "GNU Lesser General Public License v3.0 or later", false),
     MIT("MIT", "MIT License", false),
     MPL_1_1("MPL-1.1", "Mozilla Public License 1.1", false),
-    // These ones are special licenses, not real ones.
+    // These ones are special licenses, not real ones. They only apply to 
+    // component definitions, but not to project definition.
     UNDEFINED("Undefined", "An unknown license", true),
     UNSUPPORTED("Unsupported", "License known but not supported by Open LRAE.", true),
     FORCED_AS_PROJECT_LICENSE("Forced", "Written permission to use the component under the terms of the project licenses.", true);
@@ -116,7 +117,16 @@ public enum SupportedLicenses {
         return spdxFullName;
     }
 
+    /**
+     * This method check whether a enum item can be applied only for components.
+     * There are some "special" licenses that are only used to cover "extrange"
+     * situations but are not real licenses. These enum items can only be used
+     * in component definitions, not in project definitions.
+     *
+     * @return TRUE, if the component can be applied only to components.
+     * Otherwise, returns FALSE.
+     */
     public boolean isOnlyForComponents() {
-        return this.onlyForComponents;
+        return onlyForComponents;
     }
 }
