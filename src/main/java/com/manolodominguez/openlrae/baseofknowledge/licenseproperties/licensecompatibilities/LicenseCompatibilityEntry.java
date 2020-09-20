@@ -62,8 +62,10 @@ public class LicenseCompatibilityEntry {
      * @param redistribution The kind of project distribution.
      * @param specificWarning If the is any additional hint related to this
      * specific license compatiliblity combination, it should be put here so
-     * different risk analysers can use it properly. If ther is no hints to
-     * highlight, null should be specified.
+     * different risk analysers can use it properly. If there is no hints to
+     * highlight, null should be specified. Often, this is used when the
+     * compatiblity value is neither 100% compatible nor 100% incompatible and
+     * an intermediate value has to be explained.
      */
     public LicenseCompatibilityEntry(SupportedLicenses componentLicense, SupportedLicenses projectLicense, SupportedCompatibilities compatibility, SupportedLinks link, SupportedRedistributions redistribution, String specificWarning) {
         this.componentLicense = componentLicense;
@@ -74,30 +76,70 @@ public class LicenseCompatibilityEntry {
         this.specificWarning = specificWarning;
     }
 
+    /**
+     * This method get the component license part of this compatibility entry.
+     *
+     * @return the component license part of this compatibility entry
+     */
     public SupportedLicenses getComponentLicense() {
         return componentLicense;
     }
 
+    /**
+     * This method get the project license part of this compatibility entry.
+     *
+     * @return the project license part of this compatibility entry.
+     */
     public SupportedLicenses getProjectLicense() {
         return projectLicense;
     }
 
+    /**
+     * This method get the compatibility value of this compatibility entry.
+     *
+     * @return the compatibility valur of this compatibility entry.
+     */
     public SupportedCompatibilities getCompatibility() {
         return compatibility;
     }
 
+    /**
+     * This method get the component link type of this compatibility entry.
+     *
+     * @return the component link type of this compatibility entry.
+     */
     public SupportedLinks getLink() {
         return link;
     }
 
+    /**
+     * This method get the project redistribution type of this compatibility
+     * entry.
+     *
+     * @return the project redistribution type of this compatibility entry.
+     */
     public SupportedRedistributions getRedistribution() {
         return redistribution;
     }
 
+    /**
+     * This method get the specific warning message, if defined, of this
+     * compatibility entry.
+     *
+     * @return the specific warning message, if defined, of this compatibility
+     * entry. If undefined, returns null.
+     */
     public String getSpecificWarning() {
         return specificWarning;
     }
 
+    /**
+     * This method check whether a specific hint has been defined for this
+     * compatibility entry.
+     *
+     * @return TRUE, if a specific hint has been defined for this compatibility
+     * entry. Otherwise, return FALSE.
+     */
     public boolean hasSpecificWarning() {
         return this.specificWarning != null;
     }
