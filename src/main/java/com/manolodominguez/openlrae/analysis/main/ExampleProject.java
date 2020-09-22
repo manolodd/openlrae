@@ -17,6 +17,7 @@ package com.manolodominguez.openlrae.analysis.main;
 
 import com.manolodominguez.openlrae.analysis.LicenseRiskAnalysisEngine;
 import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
+import com.manolodominguez.openlrae.analysis.reports.ReportsFactory;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserUnfashionableLicensesOfComponents;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSetOfPotentialProjectLicenses;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLicensesOfComponentsTooObsolete;
@@ -30,13 +31,7 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistri
 import com.manolodominguez.openlrae.arquitecture.Component;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedObsolescences;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedSpreadings;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedTrends;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCompatibilityFactory;
-import java.net.URI;
 import java.net.URL;
 import mjson.Json;
 import org.slf4j.Logger;
@@ -91,39 +86,8 @@ public class ExampleProject {
         // Print analysis info. This is only for visualizing the computed 
         // results
         System.out.println();
-        System.out.println("**************************************************");
-        System.out.println("Open LRAE report. (License coverage = " + LicensesCompatibilityFactory.getInstance().getLicensesCoverage() * 100 + "%)");
-        System.out.println("**************************************************");
-        System.out.println("\t=> Project name: " + project.getFullName());
-        System.out.println("\t=> Project's selected license: " + project.getLicenses().get(0).getSPDXFullName() + " (" + project.getLicenses().get(0).getSPDXIdentifier() + ")");
-        System.out.println("\t=> Project redistribution: " + project.getRedistribution().getDescriptionValue());
-        System.out.println("### Component bindigs:");
-        for (ComponentBinding spp : project.getBillOfComponentBindings()) {
-            System.out.println("\t=> " + spp.getComponent().getName() + "-" + spp.getComponent().getVersion() + " (" + spp.getComponent().getLicense().getSPDXIdentifier() + ") --> Contribution to the project: " + spp.getWeight().getDescriptionValue());
-        }
-        System.out.println("### Risk analysis");
-        for (RiskAnalysisResult riskAnalysisResult : resultSet) {
-            System.out.println("\t=> " + riskAnalysisResult.getRiskType().getDescriptionValue());
-            System.out.println("\t\t*** Risk = " + riskAnalysisResult.getRiskValue() + " (Exposure = " + riskAnalysisResult.getRiskExposure() + ", Impact = " + riskAnalysisResult.getRiskImpact() + ")");
-            System.out.println("\t\t*** Root causes");
-            for (String rootCause : riskAnalysisResult.getRootCauses()) {
-                System.out.println("\t\t\t=> " + rootCause);
-            }
-            System.out.println("\t\t*** Warnings");
-            for (String warning : riskAnalysisResult.getWarnings()) {
-                System.out.println("\t\t\t=> " + warning);
-            }
-            System.out.println("\t\t*** Good things");
-            for (String goodThing : riskAnalysisResult.getGoodThings()) {
-                System.out.println("\t\t\t=> " + goodThing);
-            }
-            System.out.println("\t\t*** Tips to mitigate the risk");
-            for (String tip : riskAnalysisResult.getTips()) {
-                System.out.println("\t\t\t=> " + tip);
-            }
-        }
-        URL projectURL = getClass().getResource("/com/manolodominguez/openlrae/analysis/main/ExampleProject.json");
-        Project prj = new Project(Json.read(projectURL));
+        System.out.println(ReportsFactory.getInstance().getReportAsPlainText(project, resultSet));
+//        URL projectURL = getClass().getResource("/com/manolodominguez/openlrae/analysis/main/ExampleProject.json");
+//        Project prj = new Project(Json.read(projectURL));
     }
-
 }
