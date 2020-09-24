@@ -53,6 +53,10 @@ public class ReportsFactory {
     }
 
     public String getReportAsJSONString(Project project, RiskAnalysisResult[] resultSet) {
+        return getReportAsJSON(project, resultSet).toString();
+    }
+
+    public Json getReportAsJSON(Project project, RiskAnalysisResult[] resultSet) {
         Json report = object();
         Json projectinfo = object();
         Json licenses = array();
@@ -97,7 +101,7 @@ public class ReportsFactory {
 
         report.set("projectinfo", projectinfo);
         report.set("riskanalyses", riskanalyses);
-        return report.toString();
+        return report;
     }
 
     public String getReportAsPlainText(Project project, RiskAnalysisResult[] resultSet) {
@@ -136,6 +140,5 @@ public class ReportsFactory {
         return report;
     }
 
-    private static final String EMPTY_REPORT_AS_JSON_STRING = "";
     private static final String EMPTY_REPORT_AS_PLAIN_TEXT = "";
 }
