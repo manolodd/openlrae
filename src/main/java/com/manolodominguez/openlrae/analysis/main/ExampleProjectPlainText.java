@@ -46,21 +46,23 @@ public class ExampleProjectPlainText {
     }
 
     public void runExample() {
-        // Define four components
+        // Define the project. In this case, it is defined programatically.
+        // Four components:
         Component component1 = new Component("a-given-component", "3.7", SupportedLicenses.MIT);
         Component component2 = new Component("my-favourite-component", "1.7.2", SupportedLicenses.APACHE_1_1);
         Component component3 = new Component("an-updated-component", "1.0", SupportedLicenses.BSD_4_CLAUSE);
         Component component4 = new Component("legacy-component", "0.9", SupportedLicenses.LGPL_3_0_OR_LATER);
-        // Define how the aforementioned software components are included into the project
+        // Component bindings:
         ComponentBinding componentBinding1 = new ComponentBinding(component1, SupportedLinks.DYNAMIC, SupportedComponentWeights.LOW);
         ComponentBinding componentBinding2 = new ComponentBinding(component2, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
         ComponentBinding componentBinding3 = new ComponentBinding(component3, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
         ComponentBinding componentBinding4 = new ComponentBinding(component4, SupportedLinks.STATIC, SupportedComponentWeights.HIGH);
-        // Define the set of components additions of the project 
+        // Add the component bindigs to the project
         Project project = new Project("OpenLRAE", "1.0", SupportedLicenses.APACHE_2_0, SupportedRedistributions.SOFTWARE_PACKAGE, componentBinding1);
         project.addComponentBinding(componentBinding2);
         project.addComponentBinding(componentBinding3);
         project.addComponentBinding(componentBinding4);
+        
         // Define desired risk analysers we want to use for this project
         RiskAnalyserLimitedSetOfPotentialProjectLicenses riskAnalyser1 = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
         RiskAnalyserLicensesOfComponentsTooObsolete riskAnalyser2 = new RiskAnalyserLicensesOfComponentsTooObsolete(project);
@@ -75,12 +77,12 @@ public class ExampleProjectPlainText {
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser4);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser5);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser6);
+        
         // Run the license risks analysis and collect results
         RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
-        // Print analysis report. 
+        
+        // Print analysis report. As a plain text in this case.
         System.out.println();
-        System.out.println(ReportsFactory.getInstance().getReportAsJSONString(project, resultSet));
-//        URL projectURL = getClass().getResource("/com/manolodominguez/openlrae/analysis/main/ExampleProject.json");
-//        Project prj = new Project(Json.read(projectURL));
+        System.out.println(ReportsFactory.getInstance().getReportAsPlainText(project, resultSet));
     }
 }
