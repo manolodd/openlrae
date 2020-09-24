@@ -18,6 +18,7 @@ package com.manolodominguez.openlrae.analysis.reports;
 import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.arquitecture.Project;
+import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import mjson.Json;
 import static mjson.Json.array;
 import static mjson.Json.object;
@@ -109,7 +110,11 @@ public class ReportsFactory {
         report += "**************************************************\n";
         report += "\t=> Project name: " + project.getName() + "\n";
         report += "\t=> Project version: " + project.getVersion() + "\n";
-        report += "\t=> Project's selected license: " + project.getLicenses().get(0).getSPDXFullName() + " (" + project.getLicenses().get(0).getSPDXIdentifier() + ")\n";
+        report += "\t=> Project's selected licenses: ";
+        for (SupportedLicenses projectLicense : project.getLicenses()) {
+            report += projectLicense.getSPDXFullName() + " (" + projectLicense.getSPDXIdentifier() + "),";
+        }
+        report += "\n";
         report += "\t=> Project redistribution: " + project.getRedistribution().getDescriptionValue() + "\n";
         report += "**************************************************\n";
         report += "### Component bindigs:\n";
