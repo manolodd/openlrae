@@ -3,7 +3,7 @@
         "name": "OpenLRAE",
         "version": "1.0",
         "redistribution": "SOFTWARE_PACKAGE",
-        "licenses": ["APACHE_2_0"]
+        "licenses": ["APACHE_2_0", "MIT"]
     },
     "componentbindings": [
         {
@@ -11,21 +11,21 @@
             "version": "1.7.2",
             "license": "APACHE_1_1",
             "weight": "LOW",
-            "link": "DINAMIC"
+            "link": "DYNAMIC"
         },
         {
             "component": "a-given-component",
             "version": "3.7",
             "license": "MIT",
             "weight": "HIGH",
-            "link": "DINAMIC"
+            "link": "DYNAMIC"
         },
         {
             "component": "an-updated-component",
             "version": "1.0",
             "license": "BSD_4_CLAUSE",
             "weight": "HIGH",
-            "link": "DINAMIC"
+            "link": "DYNAMIC"
         },
         {
             "component": "legacy-component",
