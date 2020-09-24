@@ -227,7 +227,7 @@ public class Project {
     }
 
     /**
-     * This mnethod gets the complete bill of components bindigs of the project.
+     * This method gets the complete bill of components bindigs of the project.
      *
      * @return the complete bill of components bindigs of the project.
      */
