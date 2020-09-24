@@ -45,8 +45,11 @@ public class MainClass {
                 case "-i":
                     showInfo();
                     break;
-                case "-e":
+                case "-e1":
                     new ExampleProjectPlainText().runExample();
+                    break;
+                case "-e2":
+                    new ExampleProjectJSONString().runExample();
                     break;
                 default:
                     showOptions();
@@ -58,8 +61,6 @@ public class MainClass {
     }
 
     public static void showInfo() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
         System.out.println();
         System.out.println("****************************");
         System.out.println("Open LRAE supported features");
@@ -170,8 +171,11 @@ public class MainClass {
         System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -i");
         System.out.println("\t This will show information about features supported by this version of OpenLRAE.");
         System.out.println();
-        System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -e");
-        System.out.println("\t This will execute a ficticious risk analysis and show you the resulting risk report.");
+        System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -e1");
+        System.out.println("\t This will execute a ficticious risk analysis and show you the resulting risk report as a plain text.");
+        System.out.println();
+        System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -e2");
+        System.out.println("\t This will execute a ficticious risk analysis and show you the resulting risk report as a JSON string.");
         System.out.println();
     }
 }
