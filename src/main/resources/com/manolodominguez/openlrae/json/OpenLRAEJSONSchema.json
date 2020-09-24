@@ -39,8 +39,12 @@
         },
         "componentLicensesEnum": {
             "anyOf": [
-                {"$ref": "#/definitions/projectsLicensesEnum"},
-                {"$ref": "#/definitions/specialLicensesEnum"}
+                {
+                    "$ref": "#/definitions/projectsLicensesEnum"
+                },
+                {
+                    "$ref": "#/definitions/specialLicensesEnum"
+                }
             ]
         },
         "redistributionsEnum": {
@@ -53,7 +57,7 @@
         "linksEnum": {
             "enum": [
                 "STATIC",
-                "DINAMIC"
+                "DYNAMIC"
             ]
         },
         "weightsEnum": {
@@ -95,11 +99,7 @@
                     "type": "string",
                     "minLength": 1,
                     "maxLength": 128,
-                    "enum": [
-                        "NONE",
-                        "SOFTWARE_PACKAGE",
-                        "SAAS"
-                    ]
+                    "$ref": "#/definitions/redistributionsEnum" 
                 },
                 "licenses": {
                     "type": "array",
