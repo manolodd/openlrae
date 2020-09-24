@@ -15,10 +15,13 @@
  */
 package com.manolodominguez.openlrae.arquitecture;
 
+import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponentWeights;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
+import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistributions;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import mjson.Json;
 import org.slf4j.Logger;
@@ -156,7 +159,76 @@ public class Project {
      * definition.
      */
     private void initializeFromJSON(Json validatedJSONProjectDefinition) {
-        throw new UnsupportedOperationException("Functionality still incomplete");
+        licenses = new CopyOnWriteArrayList<>();
+        billOfComponentBindings = new CopyOnWriteArrayList<>();
+
+        if (validatedJSONProjectDefinition.at("projectinfo").at("name").isString()) {
+            name = validatedJSONProjectDefinition.at("projectinfo").at("name").asString();
+        } else {
+            throw new IllegalArgumentException("Cannot deserialize project name from JSON");
+        }
+        if (validatedJSONProjectDefinition.at("projectinfo").at("version").isString()) {
+            version = validatedJSONProjectDefinition.at("projectinfo").at("version").asString();
+        } else {
+            throw new IllegalArgumentException("Cannot deserialize project version from JSON");
+        }
+        if (validatedJSONProjectDefinition.at("projectinfo").at("redistribution").isString()) {
+            redistribution = SupportedRedistributions.valueOf(validatedJSONProjectDefinition.at("projectinfo").at("redistribution").asString());
+        } else {
+            throw new IllegalArgumentException("Cannot deserialize project redistribution from JSON");
+        }
+        if (validatedJSONProjectDefinition.at("projectinfo").at("licenses").isArray()) {
+            List<Object> auxLicenses = validatedJSONProjectDefinition.at("projectinfo").at("licenses").asList();
+            for (Object auxObject : auxLicenses) {
+                if (auxObject instanceof String) {
+                    licenses.add(SupportedLicenses.valueOf((String) auxObject));
+                }
+            }
+        } else {
+            throw new IllegalArgumentException("Cannot deserialize project licenses from JSON");
+        }
+        if (validatedJSONProjectDefinition.at("componentbindings").isArray()) {
+            String auxComponentName;
+            String auxComponentVersion;
+            SupportedLicenses auxComponentLicense;
+            SupportedComponentWeights auxWeight;
+            SupportedLinks auxLink;
+            Component auxComponent;
+            ComponentBinding auxComponentBinding;
+            List<Object> auxComponentBindings = validatedJSONProjectDefinition.at("componentbindings").asList();
+            for (int i = 0; i < auxComponentBindings.size(); i++) {
+                if (validatedJSONProjectDefinition.at("componentbindings").at(i).at("component").isString()) {
+                    auxComponentName = validatedJSONProjectDefinition.at("componentbindings").at(i).at("component").asString();
+                } else {
+                    throw new IllegalArgumentException("Cannot deserialize one project component name from JSON");
+                }
+                if (validatedJSONProjectDefinition.at("componentbindings").at(i).at("version").isString()) {
+                    auxComponentVersion = validatedJSONProjectDefinition.at("componentbindings").at(i).at("version").asString();
+                } else {
+                    throw new IllegalArgumentException("Cannot deserialize one project component version from JSON");
+                }
+                if (validatedJSONProjectDefinition.at("componentbindings").at(i).at("license").isString()) {
+                    auxComponentLicense = SupportedLicenses.valueOf(validatedJSONProjectDefinition.at("componentbindings").at(i).at("license").asString());
+                } else {
+                    throw new IllegalArgumentException("Cannot deserialize one project component license from JSON");
+                }
+                if (validatedJSONProjectDefinition.at("componentbindings").at(i).at("weight").isString()) {
+                    auxWeight = SupportedComponentWeights.valueOf(validatedJSONProjectDefinition.at("componentbindings").at(i).at("weight").asString());
+                } else {
+                    throw new IllegalArgumentException("Cannot deserialize one project component binding weight from JSON");
+                }
+                if (validatedJSONProjectDefinition.at("componentbindings").at(i).at("link").isString()) {
+                    auxLink = SupportedLinks.valueOf(validatedJSONProjectDefinition.at("componentbindings").at(i).at("link").asString());
+                } else {
+                    throw new IllegalArgumentException("Cannot deserialize one project component binding weight from JSON");
+                }
+                auxComponent = new Component(auxComponentName, auxComponentVersion, auxComponentLicense);
+                auxComponentBinding = new ComponentBinding(auxComponent, auxLink, auxWeight);
+                billOfComponentBindings.add(auxComponentBinding);
+            }
+        } else {
+            throw new IllegalArgumentException("Cannot deserialize a project component from JSON");
+        }
     }
 
     /**
@@ -234,7 +306,7 @@ public class Project {
     public CopyOnWriteArrayList<ComponentBinding> getBillOfComponentBindings() {
         return billOfComponentBindings;
     }
-    
+
     private static final String OPENLRAE_JSON_SCHEMA = "/com/manolodominguez/openlrae/json/OpenLRAEJSONSchema.json";
     private static final int MAX_JSON_ERRORS_LENGTH = 2048;
 }
