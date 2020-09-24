@@ -59,6 +59,7 @@ public class ExampleProjectPlainText {
         ComponentBinding componentBinding4 = new ComponentBinding(component4, SupportedLinks.STATIC, SupportedComponentWeights.HIGH);
         // Add the component bindigs to the project
         Project project = new Project("OpenLRAE", "1.0", SupportedLicenses.APACHE_2_0, SupportedRedistributions.SOFTWARE_PACKAGE, componentBinding1);
+        project.addLicense(SupportedLicenses.MIT);
         project.addComponentBinding(componentBinding2);
         project.addComponentBinding(componentBinding3);
         project.addComponentBinding(componentBinding4);
