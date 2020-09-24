@@ -15,29 +15,16 @@
  */
 package com.manolodominguez.openlrae.analysis.main;
 
-import com.manolodominguez.openlrae.analysis.LicenseRiskAnalysisEngine;
-import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
-import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserUnfashionableLicensesOfComponents;
-import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSetOfPotentialProjectLicenses;
-import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLicensesOfComponentsTooObsolete;
-import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserScarceDeploymentOfLicensesOfComponents;
-import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense;
-import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSetOfPotentialComponentsLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponentWeights;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistributions;
-import com.manolodominguez.openlrae.arquitecture.Component;
-import com.manolodominguez.openlrae.arquitecture.Project;
-import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedObsolescences;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedSpreadings;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedTrends;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCompatibilityFactory;
-import java.net.URI;
-import mjson.Json;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,7 +46,7 @@ public class MainClass {
                     showInfo();
                     break;
                 case "-e":
-                    new ExampleProject().runExample();
+                    new ExampleProjectPlainText().runExample();
                     break;
                 default:
                     showOptions();

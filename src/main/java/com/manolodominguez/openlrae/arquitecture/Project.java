@@ -234,7 +234,7 @@ public class Project {
     public CopyOnWriteArrayList<ComponentBinding> getBillOfComponentBindings() {
         return billOfComponentBindings;
     }
-
+    
     private static final String OPENLRAE_JSON_SCHEMA = "/com/manolodominguez/openlrae/json/OpenLRAEJSONSchema.json";
     private static final int MAX_JSON_ERRORS_LENGTH = 1024;
 }

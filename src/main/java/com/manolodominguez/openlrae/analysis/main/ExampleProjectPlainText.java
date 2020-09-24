@@ -31,9 +31,6 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistri
 import com.manolodominguez.openlrae.arquitecture.Component;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
-import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCompatibilityFactory;
-import java.net.URL;
-import mjson.Json;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,16 +38,14 @@ import org.slf4j.LoggerFactory;
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
-public class ExampleProject {
+public class ExampleProjectPlainText {
 
-    private static final Logger logger = LoggerFactory.getLogger(ExampleProject.class);
+    private static final Logger logger = LoggerFactory.getLogger(ExampleProjectPlainText.class);
 
-    public ExampleProject() {
+    public ExampleProjectPlainText() {
     }
 
     public void runExample() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
         // Define four components
         Component component1 = new Component("a-given-component", "3.7", SupportedLicenses.MIT);
         Component component2 = new Component("my-favourite-component", "1.7.2", SupportedLicenses.APACHE_1_1);
@@ -82,11 +77,9 @@ public class ExampleProject {
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser6);
         // Run the license risks analysis and collect results
         RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
-
-        // Print analysis info. This is only for visualizing the computed 
-        // results
+        // Print analysis report. 
         System.out.println();
-        System.out.println(ReportsFactory.getInstance().getReportAsPlainText(project, resultSet));
+        System.out.println(ReportsFactory.getInstance().getReportAsJSONString(project, resultSet));
 //        URL projectURL = getClass().getResource("/com/manolodominguez/openlrae/analysis/main/ExampleProject.json");
 //        Project prj = new Project(Json.read(projectURL));
     }
