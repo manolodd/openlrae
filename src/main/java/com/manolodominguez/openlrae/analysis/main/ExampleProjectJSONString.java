@@ -66,6 +66,6 @@ public class ExampleProjectJSONString {
         
         // Print analysis report. As a JSON string in this case.
         System.out.println();
-        System.out.println(ReportsFactory.getInstance().getReportAsJSONString(project, resultSet));
+        System.out.println(ReportsFactory.getInstance().getReportAsBeautifiedJSONString(project, resultSet));
     }
 }
