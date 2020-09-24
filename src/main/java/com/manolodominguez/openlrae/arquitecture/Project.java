@@ -156,7 +156,7 @@ public class Project {
      * definition.
      */
     private void initializeFromJSON(Json validatedJSONProjectDefinition) {
-        throw new UnsupportedOperationException("Functionality still uncomplete");
+        throw new UnsupportedOperationException("Functionality still incomplete");
     }
 
     /**
@@ -236,5 +236,5 @@ public class Project {
     }
     
     private static final String OPENLRAE_JSON_SCHEMA = "/com/manolodominguez/openlrae/json/OpenLRAEJSONSchema.json";
-    private static final int MAX_JSON_ERRORS_LENGTH = 1024;
+    private static final int MAX_JSON_ERRORS_LENGTH = 2048;
 }
