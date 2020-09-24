@@ -53,8 +53,8 @@ public class ReportsFactory {
         return localInstance;
     }
 
-    public String getReportAsJSONString(Project project, RiskAnalysisResult[] resultSet) {
-        return getReportAsJSON(project, resultSet).toString();
+    public String getReportAsBeautifiedJSONString(Project project, RiskAnalysisResult[] resultSet) {
+        return beautifyJSONString(getReportAsJSON(project, resultSet).toString());
     }
 
     public Json getReportAsJSON(Project project, RiskAnalysisResult[] resultSet) {
@@ -63,9 +63,9 @@ public class ReportsFactory {
         Json licenses = array();
         Json riskanalyses = array();
 
-        licenses.add("License 1");
-        licenses.add("License 2");
-        licenses.add("License 3");
+        for (SupportedLicenses projectLicense : project.getLicenses()) {
+            licenses.add(projectLicense.toString());
+        }
         projectinfo.set("name", project.getName());
         projectinfo.set("version", project.getVersion());
         projectinfo.set("licenses", licenses);
@@ -143,6 +143,73 @@ public class ReportsFactory {
             }
         }
         return report;
+    }
+
+    /**
+     * A simple implementation to pretty-print JSON file.
+     *
+     * https://stackoverflow.com/questions/4105795/pretty-print-json-in-java
+     *
+     * @param uglyJSONString
+     * @return
+     */
+    private static String beautifyJSONString(String uglyJSONString) {
+        StringBuilder prettyJSONBuilder = new StringBuilder();
+        int indentLevel = 0;
+        boolean inQuote = false;
+        for (char charFromUnformattedJson : uglyJSONString.toCharArray()) {
+            switch (charFromUnformattedJson) {
+                case '"':
+                    // switch the quoting status
+                    inQuote = !inQuote;
+                    prettyJSONBuilder.append(charFromUnformattedJson);
+                    break;
+                case ' ':
+                    // For space: ignore the space if it is not being quoted.
+                    if (inQuote) {
+                        prettyJSONBuilder.append(charFromUnformattedJson);
+                    }
+                    break;
+                case '{':
+                case '[':
+                    // Starting a new block: increase the indent level
+                    prettyJSONBuilder.append(charFromUnformattedJson);
+                    indentLevel++;
+                    appendIndentedNewLine(indentLevel, prettyJSONBuilder);
+                    break;
+                case '}':
+                case ']':
+                    // Ending a new block; decrese the indent level
+                    indentLevel--;
+                    appendIndentedNewLine(indentLevel, prettyJSONBuilder);
+                    prettyJSONBuilder.append(charFromUnformattedJson);
+                    break;
+                case ',':
+                    // Ending a json item; create a new line after
+                    prettyJSONBuilder.append(charFromUnformattedJson);
+                    if (!inQuote) {
+                        appendIndentedNewLine(indentLevel, prettyJSONBuilder);
+                    }
+                    break;
+                default:
+                    prettyJSONBuilder.append(charFromUnformattedJson);
+            }
+        }
+        return prettyJSONBuilder.toString();
+    }
+
+    /**
+     * Print a new line with indention at the beginning of the new line.
+     *
+     * @param indentLevel
+     * @param stringBuilder
+     */
+    private static void appendIndentedNewLine(int indentLevel, StringBuilder stringBuilder) {
+        stringBuilder.append("\n");
+        for (int i = 0; i < indentLevel; i++) {
+            // Assuming indention using 4 spaces
+            stringBuilder.append("    ");
+        }
     }
 
     private static final String EMPTY_REPORT_AS_PLAIN_TEXT = "";
