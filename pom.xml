@@ -24,7 +24,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.manolodominguez</groupId>
     <artifactId>openlrae</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
     <packaging>jar</packaging>
     <name>openlrae</name>
     <url>http://openlrae.manolodominguez.com/</url>
