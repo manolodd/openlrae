@@ -153,7 +153,7 @@ public class ReportsFactory {
      * @param uglyJSONString
      * @return
      */
-    private static String beautifyJSONString(String uglyJSONString) {
+    private String beautifyJSONString(String uglyJSONString) {
         StringBuilder prettyJSONBuilder = new StringBuilder();
         int indentLevel = 0;
         boolean inQuote = false;
@@ -204,7 +204,7 @@ public class ReportsFactory {
      * @param indentLevel
      * @param stringBuilder
      */
-    private static void appendIndentedNewLine(int indentLevel, StringBuilder stringBuilder) {
+    private void appendIndentedNewLine(int indentLevel, StringBuilder stringBuilder) {
         stringBuilder.append("\n");
         for (int i = 0; i < indentLevel; i++) {
             // Assuming indention using 4 spaces
