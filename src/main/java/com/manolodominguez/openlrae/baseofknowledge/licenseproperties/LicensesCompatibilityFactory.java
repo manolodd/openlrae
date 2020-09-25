@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This class implements a factory that can be queried to know the compatibility
- * value of component in the context of a given project.
+ * of component in the context of a given project.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -74,6 +74,20 @@ public final class LicensesCompatibilityFactory {
         return localInstance;
     }
 
+    /**
+     * This method gets the compatibility of a component (with a license) if it
+     * is included in a project having its own license.
+     *
+     * @param componentLicense The license of the component whose compatiblity
+     * is to be queried.
+     * @param projectLicense The license of the project where the component is
+     * going to be included.
+     * @param link The way the component is included in the project.
+     * @param redistribution How the project is going to be redistributed.
+     * @return The compatibility between the license of the component and the
+     * license of the project taking into account the overall context defined by
+     * the rest of parameters.
+     */
     public SupportedCompatibilities getCompatibilityOf(SupportedLicenses componentLicense, SupportedLicenses projectLicense, SupportedLinks link, SupportedRedistributions redistribution) {
         for (LicenseCompatibilityEntry licenseCompatibilityEntry : this.licensesCompatibilities) {
             if (licenseCompatibilityEntry.getComponentLicense() == componentLicense) {
@@ -89,18 +103,24 @@ public final class LicensesCompatibilityFactory {
         return SupportedCompatibilities.UNSUPPORTED;
     }
 
+    /**
+     * This method gets the number of different combinations (componentLicense,
+     * projectLicense, link, redistribution) contained in the base of knowledge
+     * of this factory.
+     *
+     * @return the number of different combinations (componentLicense,
+     * projectLicense, link, redistribution) contained in the base of knowledge
+     * of this factory
+     */
     public int getNumberOfSupportedCombinations() {
         return this.licensesCompatibilities.size();
     }
 
     public float getLicensesCoverage() {
-        getInstance();
         int numberOfSupportedComponentLicenses = SupportedLicenses.getLicensesForComponents().length;
         int numberOfSupportedProjectLicenses = SupportedLicenses.getLicensesForProjects().length;
         int potentialCombinations = numberOfSupportedComponentLicenses * numberOfSupportedProjectLicenses * SupportedLinks.values().length * SupportedRedistributions.values().length;
         return ((float) licensesCompatibilities.size() / (float) potentialCombinations);
     }
-
-    private static final int ZERO = 0;
 
 }
