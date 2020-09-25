@@ -35,6 +35,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements an example risk analysis.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -42,9 +43,21 @@ public class ExampleProjectPlainText {
 
     private static final Logger logger = LoggerFactory.getLogger(ExampleProjectPlainText.class);
 
+    /**
+     * This method is the constructor of the class. It creates a new instance of
+     * ExampleProjectPlainText.
+     */
     public ExampleProjectPlainText() {
+        // Do nothing
     }
 
+    /**
+     * This method runs an example risk analysis. It aids to be instructive for
+     * developers that want to know how to use OpenLRAE. It uses a ficticious
+     * project, defined programatically, and generates a plain texto report. So,
+     * reading the code, a developer can learn how to biuld a project definition
+     * programatically, run the analysis and generate a plain text report.
+     */
     public void runExample() {
         // Define the project. In this case, it is defined programatically.
         // Four components:
@@ -63,7 +76,7 @@ public class ExampleProjectPlainText {
         project.addComponentBinding(componentBinding2);
         project.addComponentBinding(componentBinding3);
         project.addComponentBinding(componentBinding4);
-        
+
         // Define desired risk analysers we want to use for this project
         RiskAnalyserLimitedSetOfPotentialProjectLicenses riskAnalyser1 = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
         RiskAnalyserLicensesOfComponentsTooObsolete riskAnalyser2 = new RiskAnalyserLicensesOfComponentsTooObsolete(project);
@@ -78,10 +91,10 @@ public class ExampleProjectPlainText {
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser4);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser5);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser6);
-        
+
         // Run the license risks analysis and collect results
         RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
-        
+
         // Print analysis report. As a plain text in this case.
         System.out.println();
         System.out.println(ReportsFactory.getInstance().getReportAsPlainText(project, resultSet));

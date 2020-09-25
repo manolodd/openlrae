@@ -31,6 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements an example risk analysis.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -38,14 +39,27 @@ public class ExampleProjectJSONString {
 
     private static final Logger logger = LoggerFactory.getLogger(ExampleProjectJSONString.class);
 
+    /**
+     * This method is the constructor of the class. It creates a new instance of
+     * ExampleProjectJSONString.
+     */
     public ExampleProjectJSONString() {
+        // Do nothing
     }
 
+    /**
+     * This method runs an example risk analysis. It aids to be instructive for
+     * developers that want to know how to use OpenLRAE. It uses a ficticious
+     * project, defined as a JSON file that follows the OpenLRAE JSON schema
+     * rules. And generates a beautified JSON report. So, reading the code, a
+     * developer can learn how to read a project definition from JSON, run the
+     * analysis and generate a JSON report.
+     */
     public void runExample() {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource("/com/manolodominguez/openlrae/analysis/main/ExampleProject.json");
         Project project = new Project(Json.read(projectURL));
-        
+
         // Define desired risk analysers we want to use for this project
         RiskAnalyserLimitedSetOfPotentialProjectLicenses riskAnalyser1 = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
         RiskAnalyserLicensesOfComponentsTooObsolete riskAnalyser2 = new RiskAnalyserLicensesOfComponentsTooObsolete(project);
@@ -60,10 +74,10 @@ public class ExampleProjectJSONString {
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser4);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser5);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser6);
-        
+
         // Run the license risks analysis and collect results
         RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
-        
+
         // Print analysis report. As a JSON string in this case.
         System.out.println();
         System.out.println(ReportsFactory.getInstance().getReportAsBeautifiedJSONString(project, resultSet));
