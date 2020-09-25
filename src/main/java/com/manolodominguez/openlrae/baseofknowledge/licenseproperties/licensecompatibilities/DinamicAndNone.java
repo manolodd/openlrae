@@ -56,7 +56,7 @@ public final class DinamicAndNone implements InterfaceLicenseCompatibilitiesSubf
         // given moment a supported license is not compatible with the project 
         // license even not redistributing, this has to be changed and 
         // initialize them one by one.
-        for (SupportedLicenses componentLicense : SupportedLicenses.getLicensesForComponents()) {
+        for (SupportedLicenses componentLicense : SupportedLicenses.getNotFicticiousLicenses()) {
             for (SupportedLicenses projectLicense : SupportedLicenses.getLicensesForProjects()) {
                 this.licensesCompatibilities.add(new LicenseCompatibilityEntry(componentLicense, projectLicense, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.NONE, null));
             }

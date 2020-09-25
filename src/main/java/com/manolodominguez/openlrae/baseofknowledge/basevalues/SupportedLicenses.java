@@ -132,9 +132,15 @@ public enum SupportedLicenses {
         return onlyForComponents;
     }
 
+    /**
+     * This method returns the subset of items of this enum corresponding to the
+     * licenses that can be applied to projects
+     *
+     * @return an array containing licenses that can be used for projects.
+     */
     public static SupportedLicenses[] getLicensesForProjects() {
         CopyOnWriteArrayList<SupportedLicenses> licensesList = new CopyOnWriteArrayList<>();
-        for (SupportedLicenses license: SupportedLicenses.values()) {
+        for (SupportedLicenses license : SupportedLicenses.values()) {
             if (!license.isOnlyForComponents()) {
                 licensesList.add(license);
             }
@@ -142,10 +148,48 @@ public enum SupportedLicenses {
         return licensesList.toArray(new SupportedLicenses[0]);
     }
 
+    /**
+     * This method returns the subset of items of this enum corresponding to the
+     * licenses that can be applied to components
+     *
+     * @return an array containing licenses that can be used for components.
+     */
     public static SupportedLicenses[] getLicensesForComponents() {
         CopyOnWriteArrayList<SupportedLicenses> licensesList = new CopyOnWriteArrayList<>();
-        for (SupportedLicenses license: SupportedLicenses.values()) {
+        for (SupportedLicenses license : SupportedLicenses.values()) {
+            licensesList.add(license);
+        }
+        return licensesList.toArray(new SupportedLicenses[0]);
+    }
+
+    /**
+     * This method returns the subset of items of this enum corresponding to
+     * licenses that are not real ones but they are used to denote specific
+     * special situations.
+     *
+     * @return an array containing licenses that are not real ones but they are
+     * used to denote specific special situations.
+     */
+    public static SupportedLicenses[] getFicticiousLicenses() {
+        CopyOnWriteArrayList<SupportedLicenses> licensesList = new CopyOnWriteArrayList<>();
+        for (SupportedLicenses license : SupportedLicenses.values()) {
             if (license.isOnlyForComponents()) {
+                licensesList.add(license);
+            }
+        }
+        return licensesList.toArray(new SupportedLicenses[0]);
+    }
+
+    /**
+     * This method returns the subset of items of this enum corresponding to
+     * licenses that are real ones.
+     *
+     * @return an array containing licenses that are ones.
+     */
+    public static SupportedLicenses[] getNotFicticiousLicenses() {
+        CopyOnWriteArrayList<SupportedLicenses> licensesList = new CopyOnWriteArrayList<>();
+        for (SupportedLicenses license : SupportedLicenses.values()) {
+            if (!license.isOnlyForComponents()) {
                 licensesList.add(license);
             }
         }

@@ -55,7 +55,7 @@ public final class StaticAndNone implements InterfaceLicenseCompatibilitiesSubfa
         // loop to initialize. If at a given moment a supported license is not 
         // compatible even not redistributing, this has to be changed and 
         // initialize them one by one.
-        for (SupportedLicenses componentLicense : SupportedLicenses.getLicensesForComponents()) {
+        for (SupportedLicenses componentLicense : SupportedLicenses.getNotFicticiousLicenses()) {
             for (SupportedLicenses projectLicense : SupportedLicenses.getLicensesForProjects()) {
                 this.licensesCompatibilities.add(new LicenseCompatibilityEntry(componentLicense, projectLicense, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.NONE, null));
             }
