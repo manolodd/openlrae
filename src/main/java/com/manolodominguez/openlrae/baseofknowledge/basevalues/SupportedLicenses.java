@@ -121,7 +121,8 @@ public enum SupportedLicenses {
      * This method check whether a enum item can be applied only for components.
      * There are some "special" licenses that are only used to cover "extrange"
      * situations but are not real licenses. These enum items can only be used
-     * in component definitions, not in project definitions.
+     * in component definitions, not in project definitions. I had to develop
+     * this method because ENUMs cannot be extended :-(
      *
      * @return TRUE, if the component can be applied only to components.
      * Otherwise, returns FALSE.
