@@ -173,7 +173,7 @@ public class RiskAnalysisResult {
         return tips;
     }
 
-    // Four decimals
+    // Each zero means a decimal. 
     private static final float RISK_COMPUTATION_PRECISSION = 10000f;
 
 }
