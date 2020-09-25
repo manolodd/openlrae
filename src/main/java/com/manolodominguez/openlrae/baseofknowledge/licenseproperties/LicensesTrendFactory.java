@@ -22,6 +22,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements a factory that can be queried to know the trend of a
+ * license.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -32,8 +34,11 @@ public final class LicensesTrendFactory {
     private static volatile LicensesTrendFactory instance;
     private final EnumMap<SupportedLicenses, SupportedTrends> licensesTrends;
 
+    /**
+     * This is the constructor of the class. It creates a new instance of
+     * LicensesTrendFactory.
+     */
     private LicensesTrendFactory() {
-
         // Generating trend values for each supported licenses ID. Is this 
         // license being used more and more on the time?
         this.licensesTrends = new EnumMap<>(SupportedLicenses.class);
@@ -55,12 +60,20 @@ public final class LicensesTrendFactory {
         this.licensesTrends.put(SupportedLicenses.GPL_2_0_OR_LATER, SupportedTrends.NEAR_UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.GPL_3_0_ONLY, SupportedTrends.NEAR_TRENDY);
         this.licensesTrends.put(SupportedLicenses.AGPL_3_0_ONLY, SupportedTrends.NEAR_UNFASHIONABLE);
-        this.licensesTrends.put(SupportedLicenses.UNDEFINED, SupportedTrends.UNFASHIONABLE);
-        this.licensesTrends.put(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, SupportedTrends.UNFASHIONABLE);
-        this.licensesTrends.put(SupportedLicenses.UNSUPPORTED, SupportedTrends.UNFASHIONABLE);
+        // The following ones are forced UNFASHIONABLE by design
+        for (SupportedLicenses license : SupportedLicenses.getFicticiousLicenses()) {
+            this.licensesTrends.put(license, SupportedTrends.UNFASHIONABLE);
+        }
     }
 
-    // Singleton
+    /**
+     * This method returns an instance of this class. This class implements the
+     * singleton pattern. This means that only a single instance of this class
+     * can be created. This method creates the first instance or returns it if
+     * it is already created.
+     *
+     * @return An instance of LicensesTrendFactory.
+     */
     public static LicensesTrendFactory getInstance() {
         LicensesTrendFactory localInstance = LicensesTrendFactory.instance;
         if (localInstance == null) {
@@ -74,6 +87,12 @@ public final class LicensesTrendFactory {
         return localInstance;
     }
 
+    /**
+     * This method gets the trend of the specified license.
+     *
+     * @param license The license whose trend is going to be queried.
+     * @return the trend of the specified license.
+     */
     public SupportedTrends getTrendOf(SupportedLicenses license) {
         return licensesTrends.get(license);
     }
