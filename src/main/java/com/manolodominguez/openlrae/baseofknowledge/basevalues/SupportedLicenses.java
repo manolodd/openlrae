@@ -15,6 +15,7 @@
  */
 package com.manolodominguez.openlrae.baseofknowledge.basevalues;
 
+import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -127,7 +128,27 @@ public enum SupportedLicenses {
      * @return TRUE, if the component can be applied only to components.
      * Otherwise, returns FALSE.
      */
-    public boolean isOnlyForComponents() {
+    private boolean isOnlyForComponents() {
         return onlyForComponents;
+    }
+
+    public static SupportedLicenses[] getLicensesForProjects() {
+        CopyOnWriteArrayList<SupportedLicenses> licensesList = new CopyOnWriteArrayList<>();
+        for (SupportedLicenses license: SupportedLicenses.values()) {
+            if (!license.isOnlyForComponents()) {
+                licensesList.add(license);
+            }
+        }
+        return licensesList.toArray(new SupportedLicenses[0]);
+    }
+
+    public static SupportedLicenses[] getLicensesForComponents() {
+        CopyOnWriteArrayList<SupportedLicenses> licensesList = new CopyOnWriteArrayList<>();
+        for (SupportedLicenses license: SupportedLicenses.values()) {
+            if (license.isOnlyForComponents()) {
+                licensesList.add(license);
+            }
+        }
+        return licensesList.toArray(new SupportedLicenses[0]);
     }
 }

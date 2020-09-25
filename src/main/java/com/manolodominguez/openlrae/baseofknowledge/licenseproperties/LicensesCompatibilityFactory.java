@@ -31,6 +31,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements a factory that can be queried to know the compatibility
+ * value of component in the context of a given project.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -51,7 +53,14 @@ public final class LicensesCompatibilityFactory {
         licensesCompatibilities.addAll(DinamicAndSaaS.getInstance().getCompatibilities());
     }
 
-    // Singleton
+    /**
+     * This method returns an instance of this class. This class implements the
+     * singleton pattern. This means that only a single instance of this class
+     * can be created. This method creates the first instance or returns it if
+     * it is already created.
+     *
+     * @return An instance of LicensesCompatibilityFactory.
+     */
     public static LicensesCompatibilityFactory getInstance() {
         LicensesCompatibilityFactory localInstance = LicensesCompatibilityFactory.instance;
         if (localInstance == null) {
@@ -86,20 +95,12 @@ public final class LicensesCompatibilityFactory {
 
     public float getLicensesCoverage() {
         getInstance();
-        int numberOfSupportedComponentLicenses = ZERO;
-        int numberOfSupportedProjectLicenses = ZERO;
-        for (SupportedLicenses supportedLicense : SupportedLicenses.values()) {
-            if (!supportedLicense.isOnlyForComponents()) {
-                numberOfSupportedComponentLicenses++;
-                numberOfSupportedProjectLicenses++;
-            } else {
-                numberOfSupportedComponentLicenses++;
-            }
-        }
+        int numberOfSupportedComponentLicenses = SupportedLicenses.getLicensesForComponents().length;
+        int numberOfSupportedProjectLicenses = SupportedLicenses.getLicensesForProjects().length;
         int potentialCombinations = numberOfSupportedComponentLicenses * numberOfSupportedProjectLicenses * SupportedLinks.values().length * SupportedRedistributions.values().length;
         return ((float) licensesCompatibilities.size() / (float) potentialCombinations);
     }
 
     private static final int ZERO = 0;
-    
+
 }

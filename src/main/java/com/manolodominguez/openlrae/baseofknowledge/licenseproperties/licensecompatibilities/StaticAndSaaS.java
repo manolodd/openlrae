@@ -43,19 +43,17 @@ public final class StaticAndSaaS implements InterfaceLicenseCompatibilitiesSubfa
     /**
      * This is the constuctor of the class.It creates a new instance of
      * StaticAndSaaS containing the base of knowledge related to components
-     * linked statically to a project that is going to be redistributed as
-     * SaaS; taking into account the component license and the project license.
+     * linked statically to a project that is going to be redistributed as SaaS;
+     * taking into account the component license and the project license.
      */
     private StaticAndSaaS() {
         this.licensesCompatibilities = new CopyOnWriteArrayList<>();
         //
         // Fake licenses for static linking and every potential project licenses
-        for (SupportedLicenses projectLicense : SupportedLicenses.values()) {
-            if (!projectLicense.isOnlyForComponents()) {
-                this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNDEFINED, projectLicense, SupportedCompatibilities.UNKNOWN, SupportedLinks.STATIC, SupportedRedistributions.SAAS, null));
-                this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, projectLicense, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SAAS, null));
-                this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNSUPPORTED, projectLicense, SupportedCompatibilities.UNSUPPORTED, SupportedLinks.STATIC, SupportedRedistributions.SAAS, null));
-            }
+        for (SupportedLicenses projectLicense : SupportedLicenses.getLicensesForProjects()) {
+            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNDEFINED, projectLicense, SupportedCompatibilities.UNKNOWN, SupportedLinks.STATIC, SupportedRedistributions.SAAS, null));
+            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, projectLicense, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SAAS, null));
+            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNSUPPORTED, projectLicense, SupportedCompatibilities.UNSUPPORTED, SupportedLinks.STATIC, SupportedRedistributions.SAAS, null));
         }
     }
 
@@ -81,8 +79,7 @@ public final class StaticAndSaaS implements InterfaceLicenseCompatibilitiesSubfa
 
     /**
      * This method get the set of compatiblity entries related to components
-     * linked statically to a project that is going to be redistributed as
-     * SaaS.
+     * linked statically to a project that is going to be redistributed as SaaS.
      *
      * @return the set of compatiblity entries related to components linked
      * statically to a project that is going to be redistributed as SaaS.

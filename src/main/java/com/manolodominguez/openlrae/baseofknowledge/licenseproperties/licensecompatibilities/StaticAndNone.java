@@ -55,21 +55,17 @@ public final class StaticAndNone implements InterfaceLicenseCompatibilitiesSubfa
         // loop to initialize. If at a given moment a supported license is not 
         // compatible even not redistributing, this has to be changed and 
         // initialize them one by one.
-        for (SupportedLicenses componentLicense : SupportedLicenses.values()) { 
-            for (SupportedLicenses projectLicense: SupportedLicenses.values()) {
-                if (!projectLicense.isOnlyForComponents() && !componentLicense.isOnlyForComponents()) {
-                    this.licensesCompatibilities.add(new LicenseCompatibilityEntry(componentLicense, projectLicense, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.NONE, null));
-                }
+        for (SupportedLicenses componentLicense : SupportedLicenses.getLicensesForComponents()) {
+            for (SupportedLicenses projectLicense : SupportedLicenses.getLicensesForProjects()) {
+                this.licensesCompatibilities.add(new LicenseCompatibilityEntry(componentLicense, projectLicense, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.NONE, null));
             }
         }
         //
         // Fake licenses for dinamic linking and every potential project licenses
-        for (SupportedLicenses projectLicense : SupportedLicenses.values()) {
-            if (!projectLicense.isOnlyForComponents()) {
-                this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNDEFINED, projectLicense, SupportedCompatibilities.UNKNOWN, SupportedLinks.STATIC, SupportedRedistributions.NONE, null));
-                this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, projectLicense, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.NONE, null));
-                this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNSUPPORTED, projectLicense, SupportedCompatibilities.UNSUPPORTED, SupportedLinks.STATIC, SupportedRedistributions.NONE, null));
-            }
+        for (SupportedLicenses projectLicense : SupportedLicenses.getLicensesForProjects()) {
+            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNDEFINED, projectLicense, SupportedCompatibilities.UNKNOWN, SupportedLinks.STATIC, SupportedRedistributions.NONE, null));
+            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, projectLicense, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.NONE, null));
+            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNSUPPORTED, projectLicense, SupportedCompatibilities.UNSUPPORTED, SupportedLinks.STATIC, SupportedRedistributions.NONE, null));
         }
     }
 

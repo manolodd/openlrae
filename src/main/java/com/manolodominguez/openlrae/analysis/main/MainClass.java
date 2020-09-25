@@ -89,15 +89,13 @@ public class MainClass {
         }
         System.out.println();
         System.out.println("=== Supported licenses for components");
-        for (SupportedLicenses license : SupportedLicenses.values()) {
+        for (SupportedLicenses license : SupportedLicenses.getLicensesForComponents()) {
             System.out.println("\t- " + license.getSPDXIdentifier());
         }
         System.out.println();
         System.out.println("=== Supported licenses for projects");
-        for (SupportedLicenses license : SupportedLicenses.values()) {
-            if (!license.isOnlyForComponents()) {
-                System.out.println("\t- " + license.getSPDXIdentifier());
-            }
+        for (SupportedLicenses license : SupportedLicenses.getLicensesForProjects()) {
+            System.out.println("\t- " + license.getSPDXIdentifier());
         }
         System.out.println();
         System.out.println("=== Supported types of links (of components linked to a project)");
@@ -141,13 +139,11 @@ public class MainClass {
         int i = 0;
         for (SupportedRedistributions redistribution : SupportedRedistributions.values()) {
             for (SupportedLinks link : SupportedLinks.values()) {
-                for (SupportedLicenses projectLicense : SupportedLicenses.values()) {
-                    if (!projectLicense.isOnlyForComponents()) {
-                        for (SupportedLicenses componentLicense : SupportedLicenses.values()) {
-                            if (compatibilities.getCompatibilityOf(componentLicense, projectLicense, link, redistribution) != SupportedCompatibilities.UNSUPPORTED) {
-                                i++;
-                                System.out.println(i + "- Component: " + componentLicense.getSPDXIdentifier() + " (" + link + ") --> Project: " + projectLicense.getSPDXIdentifier() + " (" + redistribution + ")");
-                            }
+                for (SupportedLicenses projectLicense : SupportedLicenses.getLicensesForProjects()) {
+                    for (SupportedLicenses componentLicense : SupportedLicenses.getLicensesForComponents()) {
+                        if (compatibilities.getCompatibilityOf(componentLicense, projectLicense, link, redistribution) != SupportedCompatibilities.UNSUPPORTED) {
+                            i++;
+                            System.out.println(i + "- Component: " + componentLicense.getSPDXIdentifier() + " (" + link + ") --> Project: " + projectLicense.getSPDXIdentifier() + " (" + redistribution + ")");
                         }
                     }
                 }
@@ -159,13 +155,11 @@ public class MainClass {
         int j = 0;
         for (SupportedRedistributions redistribution : SupportedRedistributions.values()) {
             for (SupportedLinks link : SupportedLinks.values()) {
-                for (SupportedLicenses projectLicense : SupportedLicenses.values()) {
-                    if (!projectLicense.isOnlyForComponents()) {
-                        for (SupportedLicenses componentLicense : SupportedLicenses.values()) {
-                            if (compatibilities.getCompatibilityOf(componentLicense, projectLicense, link, redistribution) == SupportedCompatibilities.UNSUPPORTED) {
-                                j++;
-                                System.out.println(j + "- Component: " + componentLicense.getSPDXIdentifier() + " (" + link + ") --> Project: " + projectLicense.getSPDXIdentifier() + " (" + redistribution + ")");
-                            }
+                for (SupportedLicenses projectLicense : SupportedLicenses.getLicensesForProjects()) {
+                    for (SupportedLicenses componentLicense : SupportedLicenses.values()) {
+                        if (compatibilities.getCompatibilityOf(componentLicense, projectLicense, link, redistribution) == SupportedCompatibilities.UNSUPPORTED) {
+                            j++;
+                            System.out.println(j + "- Component: " + componentLicense.getSPDXIdentifier() + " (" + link + ") --> Project: " + projectLicense.getSPDXIdentifier() + " (" + redistribution + ")");
                         }
                     }
                 }

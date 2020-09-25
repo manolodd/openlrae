@@ -412,12 +412,10 @@ public final class StaticAndSofwarePackage implements InterfaceLicenseCompatibil
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_ONLY, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE, null));
         //
         // Fake licenses for dinamic linking and every potential project licenses
-        for (SupportedLicenses projectLicense : SupportedLicenses.values()) {
-            if (!projectLicense.isOnlyForComponents()) {
-                this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNDEFINED, projectLicense, SupportedCompatibilities.UNKNOWN, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE, null));
-                this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, projectLicense, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE, null));
-                this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNSUPPORTED, projectLicense, SupportedCompatibilities.UNSUPPORTED, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE, null));
-            }
+        for (SupportedLicenses projectLicense : SupportedLicenses.getLicensesForProjects()) {
+            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNDEFINED, projectLicense, SupportedCompatibilities.UNKNOWN, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE, null));
+            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, projectLicense, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE, null));
+            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNSUPPORTED, projectLicense, SupportedCompatibilities.UNSUPPORTED, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE, null));
         }
     }
 

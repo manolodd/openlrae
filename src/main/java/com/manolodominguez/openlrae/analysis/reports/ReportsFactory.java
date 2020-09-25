@@ -49,7 +49,7 @@ public class ReportsFactory {
 
     /**
      * This method returns an instance of this class. This class implements the
-     * singleton patter. This means that only a single instance of this class
+     * singleton pattern. This means that only a single instance of this class
      * can be created. This method creates the first instance or returns it if
      * it is already created.
      *
