@@ -22,6 +22,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements a factory that can be queried to know the spreading of
+ * a license.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -32,6 +34,10 @@ public final class LicensesSpreadingFactory {
     private static volatile LicensesSpreadingFactory instance;
     private final EnumMap<SupportedLicenses, SupportedSpreadings> licensesSpreadings;
 
+    /**
+     * This is the constructor of the class. It creates a new instance of
+     * LicensesSpreadingFactory.
+     */
     private LicensesSpreadingFactory() {
         // Generating values related to the spread each license ID in the 
         // overall set of existing projecs. Are there many existing projects 
@@ -55,12 +61,20 @@ public final class LicensesSpreadingFactory {
         this.licensesSpreadings.put(SupportedLicenses.GPL_2_0_OR_LATER, SupportedSpreadings.HIGHLY_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.GPL_3_0_ONLY, SupportedSpreadings.NEAR_HIGHLY_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.AGPL_3_0_ONLY, SupportedSpreadings.LITTLE_WIDESPREAD);
-        this.licensesSpreadings.put(SupportedLicenses.UNDEFINED, SupportedSpreadings.LITTLE_WIDESPREAD);
-        this.licensesSpreadings.put(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, SupportedSpreadings.LITTLE_WIDESPREAD);
-        this.licensesSpreadings.put(SupportedLicenses.UNSUPPORTED, SupportedSpreadings.LITTLE_WIDESPREAD);
+        // The following ones are forced LITTLE_WIDESPREAD by design
+        for (SupportedLicenses license : SupportedLicenses.getFicticiousLicenses()) {
+            this.licensesSpreadings.put(license, SupportedSpreadings.LITTLE_WIDESPREAD);
+        }
     }
 
-    // Singleton
+    /**
+     * This method returns an instance of this class. This class implements the
+     * singleton pattern. This means that only a single instance of this class
+     * can be created. This method creates the first instance or returns it if
+     * it is already created.
+     *
+     * @return An instance of LicensesSpreadingFactory.
+     */
     public static LicensesSpreadingFactory getInstance() {
         LicensesSpreadingFactory localInstance = LicensesSpreadingFactory.instance;
         if (localInstance == null) {
@@ -74,6 +88,12 @@ public final class LicensesSpreadingFactory {
         return localInstance;
     }
 
+    /**
+     * This method gets the spreading of the specified license.
+     *
+     * @param license The license whose spreading is going to be queried.
+     * @return the spreading of the specified license.
+     */
     public SupportedSpreadings getSpreadingOf(SupportedLicenses license) {
         return licensesSpreadings.get(license);
     }

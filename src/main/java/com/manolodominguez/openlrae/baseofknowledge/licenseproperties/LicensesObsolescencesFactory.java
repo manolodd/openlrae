@@ -37,7 +37,6 @@ public final class LicensesObsolescencesFactory {
     /**
      * This is the constructor of the class. It creates a new instance of
      * LicensesObsolescencesFactory.
-     *
      */
     private LicensesObsolescencesFactory() {
 
