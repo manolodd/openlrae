@@ -196,29 +196,29 @@ public class Project {
             Component auxComponent;
             ComponentBinding auxComponentBinding;
             List<Object> auxComponentBindings = validatedJSONProjectDefinition.at("componentbindings").asList();
-            for (int i = 0; i < auxComponentBindings.size(); i++) {
-                if (validatedJSONProjectDefinition.at("componentbindings").at(i).at("component").isString()) {
-                    auxComponentName = validatedJSONProjectDefinition.at("componentbindings").at(i).at("component").asString();
+            for (int componentIndex = 0; componentIndex < auxComponentBindings.size(); componentIndex++) {
+                if (validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("component").isString()) {
+                    auxComponentName = validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("component").asString();
                 } else {
                     throw new IllegalArgumentException("Cannot deserialize one project component name from JSON");
                 }
-                if (validatedJSONProjectDefinition.at("componentbindings").at(i).at("version").isString()) {
-                    auxComponentVersion = validatedJSONProjectDefinition.at("componentbindings").at(i).at("version").asString();
+                if (validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("version").isString()) {
+                    auxComponentVersion = validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("version").asString();
                 } else {
                     throw new IllegalArgumentException("Cannot deserialize one project component version from JSON");
                 }
-                if (validatedJSONProjectDefinition.at("componentbindings").at(i).at("license").isString()) {
-                    auxComponentLicense = SupportedLicenses.valueOf(validatedJSONProjectDefinition.at("componentbindings").at(i).at("license").asString());
+                if (validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("license").isString()) {
+                    auxComponentLicense = SupportedLicenses.valueOf(validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("license").asString());
                 } else {
                     throw new IllegalArgumentException("Cannot deserialize one project component license from JSON");
                 }
-                if (validatedJSONProjectDefinition.at("componentbindings").at(i).at("weight").isString()) {
-                    auxWeight = SupportedComponentWeights.valueOf(validatedJSONProjectDefinition.at("componentbindings").at(i).at("weight").asString());
+                if (validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("weight").isString()) {
+                    auxWeight = SupportedComponentWeights.valueOf(validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("weight").asString());
                 } else {
                     throw new IllegalArgumentException("Cannot deserialize one project component binding weight from JSON");
                 }
-                if (validatedJSONProjectDefinition.at("componentbindings").at(i).at("link").isString()) {
-                    auxLink = SupportedLinks.valueOf(validatedJSONProjectDefinition.at("componentbindings").at(i).at("link").asString());
+                if (validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("link").isString()) {
+                    auxLink = SupportedLinks.valueOf(validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("link").asString());
                 } else {
                     throw new IllegalArgumentException("Cannot deserialize one project component binding weight from JSON");
                 }
