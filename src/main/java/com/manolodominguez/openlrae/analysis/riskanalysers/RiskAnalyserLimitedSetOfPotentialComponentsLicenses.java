@@ -90,7 +90,8 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
         // These licenses are not real licenses and then are not used to compute
         // the risk exposure level.
         // FIX: Remove special licenses by using isOnlyForComponents() method of
-        // SupportedLicenses, in a loop, instead of harcoding.
+        // SupportedLicenses, in a loop, instead of harcoding. Should these two
+        // be removed or analised?
         allPotentialComponentsLicenses.remove(SupportedLicenses.UNDEFINED);
         allPotentialComponentsLicenses.remove(SupportedLicenses.UNSUPPORTED);
         totalCases = allPotentialComponentsLicenses.size() * SupportedLinks.values().length;
