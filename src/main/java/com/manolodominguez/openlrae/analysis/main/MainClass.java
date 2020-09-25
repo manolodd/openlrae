@@ -29,6 +29,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements a set of options that can be called from CLI by an
+ * user, using OpenLRAE as an executable application instead of as a library.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -37,6 +39,10 @@ public class MainClass {
     private static final Logger logger = LoggerFactory.getLogger(MainClass.class);
 
     /**
+     * This is the main method, that converts OpenLRAE in an executable
+     * application in addition to be a java library. It reads CLI options and
+     * perform some actions.
+     *
      * @param args the command line arguments
      */
     public static void main(String[] args) {
