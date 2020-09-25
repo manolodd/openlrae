@@ -74,7 +74,9 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
     @Override
     public void runAnalyser() {
         SupportedCompatibilities compatibility;
-
+        
+        // FIX: Only support projects rleased under a single license. Has to be 
+        // extended to support project released under two or more licenses.
         LicensesCompatibilityFactory licensesCompatibilities = LicensesCompatibilityFactory.getInstance();
         int totalCases = this.project.getBillOfComponentBindings().size();
         for (ComponentBinding componentBinding : this.project.getBillOfComponentBindings()) {
@@ -177,7 +179,7 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
         }
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
-        if (riskExposure > 0.0f) {
+        if (riskExposure > NO_RISK) {
             warnings.add("Your project has legal issues to solve before you can use the set of component you have defined with their corresponding bindigs and with the selected project distribution. This is not about trends, maintenance difficulties, etc. Somtehing is legal or it is not; but cannot be half-legal. Be careful and be respectful of the license terms selected by other authors. A simple line of code under the wrong license can give you a lot of headaches.");
             tips.add("In general, try not to use static linking as it is more probable to have incompatibilities.");
             tips.add("In general, try not to include a derivative work of a component under a different license than the original component as it is more probable to have incompatibilities.");
@@ -185,11 +187,13 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
             tips.add("When modifying the project set of components to reduce the exposure to this risk, start changing components that are root causes in more cases.");
             tips.add("When modifying the project set of components to reduce the exposure to this risk, start with those with higher level of contribution to the overall project.");
             tips.add("If you own all right on a given risky component, try changing its license instead of looking for another component.");
-            if (riskExposure == 1.0f) {
+            if (riskExposure == TOTAL_RISK) {
                 rootCauses.add("There is not an open source license that is compatible with all licenses of the defined set of compenents.");
             }
         }
     }
 
     private static final float TOTAL_COMPATIBILITY = 1.0f;
+    private static final float TOTAL_RISK = 1.0f;
+    private static final float NO_RISK = 0.0f;
 }
