@@ -26,8 +26,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements a factory to generate different reports formats from a
+ * project definition and a set of risk analysis results.
  *
- * @author manolodd
+ * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public class ReportsFactory {
 
@@ -35,11 +37,24 @@ public class ReportsFactory {
 
     private static volatile ReportsFactory instance;
 
+    /**
+     * This method is the constructor of the class. It creates a new instance of
+     * ReportsFactory.
+     *
+     * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
+     */
     private ReportsFactory() {
         // Do nothing
     }
 
-    // Singleton
+    /**
+     * This method returns an instance of this class. This class implements the
+     * singleton patter. This means that only a single instance of this class
+     * can be created. This method creates the first instance or returns it if
+     * it is already created.
+     *
+     * @return An instance of ReportsFactory.
+     */
     public static ReportsFactory getInstance() {
         ReportsFactory localInstance = ReportsFactory.instance;
         if (localInstance == null) {
@@ -53,10 +68,29 @@ public class ReportsFactory {
         return localInstance;
     }
 
+    /**
+     * This method generates a licensing risk analysis report as a beautified
+     * (well indented) JSON string.
+     *
+     * @param project The analysed project.
+     * @param resultSet The set of risk analysis results obtained after a risks
+     * analysis execution, related to the project.
+     * @return a licensing risk analysis report as a beautified (well indented)
+     * JSON string.
+     */
     public String getReportAsBeautifiedJSONString(Project project, RiskAnalysisResult[] resultSet) {
         return beautifyJSONString(getReportAsJSON(project, resultSet).toString());
     }
 
+    /**
+     * This method generates a licensing risk analysis report as JSON object.
+     *
+     * @param project The analysed project.
+     * @param resultSet The set of risk analysis results obtained after a risks
+     * analysis execution, related to the project.
+     * @return a licensing risk analysis report as a JSON object (mjson
+     * library).
+     */
     public Json getReportAsJSON(Project project, RiskAnalysisResult[] resultSet) {
         Json report = object();
         Json projectinfo = object();
@@ -105,6 +139,14 @@ public class ReportsFactory {
         return report;
     }
 
+    /**
+     * This method generates a licensing risk analysis report as a plain text.
+     *
+     * @param project The analysed project.
+     * @param resultSet The set of risk analysis results obtained after a risks
+     * analysis execution, related to the project.
+     * @return a licensing risk analysis report as a plain text.
+     */
     public String getReportAsPlainText(Project project, RiskAnalysisResult[] resultSet) {
         String report = EMPTY_REPORT_AS_PLAIN_TEXT;
         report += "**************************************************\n";
@@ -146,12 +188,13 @@ public class ReportsFactory {
     }
 
     /**
-     * A simple implementation to pretty-print JSON file.
+     * This method beautify a compact JSON string (not indented). This code is a
+     * variation of the code proposed by of user asksw0rder at StackOverflow.
      *
      * https://stackoverflow.com/questions/4105795/pretty-print-json-in-java
      *
-     * @param uglyJSONString
-     * @return
+     * @param uglyJSONString an unformatted, difficult to read, JSON string.
+     * @return a beautified JSON string.
      */
     private String beautifyJSONString(String uglyJSONString) {
         StringBuilder prettyJSONBuilder = new StringBuilder();
@@ -160,7 +203,8 @@ public class ReportsFactory {
         for (char charFromUnformattedJson : uglyJSONString.toCharArray()) {
             switch (charFromUnformattedJson) {
                 case '"':
-                    // switch the quoting status
+                    // Switch the quoting status. Used to know whether we are
+                    // insed a quoting block or outside.
                     inQuote = !inQuote;
                     prettyJSONBuilder.append(charFromUnformattedJson);
                     break;
@@ -199,18 +243,22 @@ public class ReportsFactory {
     }
 
     /**
-     * Print a new line with indention at the beginning of the new line.
+     * This method print a new line with indention at the beginning of the new
+     * line.
      *
-     * @param indentLevel
-     * @param stringBuilder
+     * @param indentLevel the indention level to be applied to the new line.
+     * @param stringBuilder the string builder where new indented line has to be
+     * inserted.
      */
     private void appendIndentedNewLine(int indentLevel, StringBuilder stringBuilder) {
         stringBuilder.append("\n");
-        for (int i = 0; i < indentLevel; i++) {
-            // Assuming indention using 4 spaces
-            stringBuilder.append("    ");
+        for (int indentions = 0; indentions < indentLevel; indentions++) {
+            for (int spaces = 0; spaces < INDENTION_SPACES; spaces++) {
+                stringBuilder.append(" ");
+            }
         }
     }
 
     private static final String EMPTY_REPORT_AS_PLAIN_TEXT = "";
+    private static final int INDENTION_SPACES = 4;
 }
