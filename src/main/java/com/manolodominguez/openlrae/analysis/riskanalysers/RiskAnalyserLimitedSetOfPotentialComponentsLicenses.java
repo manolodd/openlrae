@@ -89,6 +89,8 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
         allPotentialComponentsLicenses = Collections.synchronizedSet(EnumSet.allOf(SupportedLicenses.class));
         // These licenses are not real licenses and then are not used to compute
         // the risk exposure level.
+        // FIX: Remove special licenses by using isOnlyForComponents() method of
+        // SupportedLicenses, in a loop, instead of harcoding.
         allPotentialComponentsLicenses.remove(SupportedLicenses.UNDEFINED);
         allPotentialComponentsLicenses.remove(SupportedLicenses.UNSUPPORTED);
         totalCases = allPotentialComponentsLicenses.size() * SupportedLinks.values().length;
@@ -180,18 +182,20 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
 
-        if (riskExposure > 0.0f) {
+        if (riskExposure > NO_RISK) {
             tips.add("In general, try not to use static linking as it is more probable to have incompatibilities.");
             tips.add("In general, try to use components with permisive licenses.");
             tips.add("When modifying the project set of components to reduce the exposure to this risk, start changing components that are root causes in more cases.");
             tips.add("When modifying the project set of components to reduce the exposure to this risk, start with those with higher level of contribution to the overall project.");
             tips.add("If you own all right on a given component involved in rik root causes, try changing its license instead of looking for another component.");
             tips.add("Try to use project licenses that allow component with many diffrerent licenses to be included in the project. This way you will have a wide set of components to choose.");
-            if (riskExposure == 1.0f) {
+            if (riskExposure == TOTAL_RISK) {
                 rootCauses.add("There is not an open source license that is compatible with the license of the project.");
             }
         }
     }
     
     private static final float TOTAL_COMPATIBILITY = 1.0f;
+    private static final float TOTAL_RISK = 1.0f;
+    private static final float NO_RISK = 0.0f;
 }
