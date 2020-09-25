@@ -56,7 +56,18 @@ public class MainClass {
                     break;
             }
         } else {
-            showOptions();
+            if (args.length == 2) {
+                switch (args[0]) {
+                    case "-a":
+                        new CLIAnalyser(args[1]).runAnalysis();
+                        break;
+                    default:
+                        showOptions();
+                        break;
+                }
+            } else {
+                showOptions();
+            }
         }
     }
 
@@ -158,8 +169,6 @@ public class MainClass {
     }
 
     public static void showOptions() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
         System.out.println();
         System.out.println("******************");
         System.out.println("Open LRAE options.");
@@ -176,6 +185,9 @@ public class MainClass {
         System.out.println();
         System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -e2");
         System.out.println("\t This will execute a ficticious risk analysis and show you the resulting risk report as a JSON string.");
+        System.out.println();
+        System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -a filename");
+        System.out.println("\t This will execute a risk analysis of a project that is defined in \"filename\" in JSON format and show you the resulting risk report as plain text.\n\tSee OpenLRAE JSON schema for projects to know how to write this project definition in JSON format properly.");
         System.out.println();
     }
 }
