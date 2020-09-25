@@ -13,28 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.manolodominguez.openlrae.resourcebundles;
+package com.manolodominguez.openlrae.resourceslocators;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This implements an enum that centralizes all bundles used for translations in
+ * a single place. As resource bundles require quoted paths to the bundle, this
+ * is a mechanism to make easier a potential refactoring.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
-public enum ResourceBundles {
+public enum TranslationResourceBundles {
     RB_1("/path/to/bundle"),
     RB_2("/path/to/bundle2");
 
-    private Logger logger = LoggerFactory.getLogger(ResourceBundles.class);
+    private Logger logger = LoggerFactory.getLogger(TranslationResourceBundles.class);
 
     private String resourceBundleName;
 
-    private ResourceBundles(String resourceBundleName) {
+    /**
+     * This is the constructor of the class. It defines
+     * TranslationResourceBundles enum.
+     *
+     * @param resourceBundleName The path to the resource bundle.
+     */
+    private TranslationResourceBundles(String resourceBundleName) {
         this.resourceBundleName = resourceBundleName;
     }
 
-    String getResourceBundleName() {
+    /**
+     * This method gets the to the resource bundle.
+     *
+     * @return the to the resource bundle.
+     */
+    public String getResourceBundleName() {
         return this.resourceBundleName;
     }
 }

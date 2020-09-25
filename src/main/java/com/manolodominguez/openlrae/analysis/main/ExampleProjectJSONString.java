@@ -25,6 +25,7 @@ import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserScarceDep
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSetOfPotentialComponentsLicenses;
 import com.manolodominguez.openlrae.arquitecture.Project;
+import com.manolodominguez.openlrae.resourceslocators.JSONFilesPaths;
 import java.net.URL;
 import mjson.Json;
 import org.slf4j.Logger;
@@ -57,7 +58,7 @@ public class ExampleProjectJSONString {
      */
     public void runExample() {
         // Define the project. In this case, it is defined from a JSON file.
-        URL projectURL = getClass().getResource("/com/manolodominguez/openlrae/analysis/main/ExampleProject.json");
+        URL projectURL = getClass().getResource(JSONFilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
 
         // Define desired risk analysers we want to use for this project
