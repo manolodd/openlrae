@@ -22,6 +22,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements a factory that can be queried to know the obsolescence
+ * of a license.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -32,9 +34,14 @@ public final class LicensesObsolescencesFactory {
     private static volatile LicensesObsolescencesFactory instance;
     private final EnumMap<SupportedLicenses, SupportedObsolescences> licensesObsolescenses;
 
+    /**
+     * This is the constructor of the class. It creates a new instance of
+     * LicensesObsolescencesFactory.
+     *
+     */
     private LicensesObsolescencesFactory() {
 
-        // Generating values related to the age of each supported licenses ID. 
+        // Generating values related to the obsolescence of each supported licenses ID. 
         // How old is a given license in relation to the versions line of this
         // license? Is it the oldest? The latest?
         this.licensesObsolescenses = new EnumMap<>(SupportedLicenses.class);
@@ -57,12 +64,19 @@ public final class LicensesObsolescencesFactory {
         this.licensesObsolescenses.put(SupportedLicenses.GPL_3_0_ONLY, computeObsolescence(SIX, FIVETH));
         this.licensesObsolescenses.put(SupportedLicenses.AGPL_3_0_ONLY, computeObsolescence(FOUR, THIRD));
         // The following ones are forced OUTDATED by design
-        this.licensesObsolescenses.put(SupportedLicenses.UNDEFINED, SupportedObsolescences.OUTDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, SupportedObsolescences.OUTDATED);
-        this.licensesObsolescenses.put(SupportedLicenses.UNSUPPORTED, SupportedObsolescences.OUTDATED);
+        for (SupportedLicenses license : SupportedLicenses.getFicticiousLicenses()) {
+            this.licensesObsolescenses.put(license, SupportedObsolescences.OUTDATED);
+        }
     }
 
-    // Singleton
+    /**
+     * This method returns an instance of this class. This class implements the
+     * singleton pattern. This means that only a single instance of this class
+     * can be created. This method creates the first instance or returns it if
+     * it is already created.
+     *
+     * @return An instance of LicensesObsolescencesFactory.
+     */
     public static LicensesObsolescencesFactory getInstance() {
         LicensesObsolescencesFactory localInstance = LicensesObsolescencesFactory.instance;
         if (localInstance == null) {
@@ -76,13 +90,22 @@ public final class LicensesObsolescencesFactory {
         return localInstance;
     }
 
+    /**
+     * This method computes the obsolescence corresponding to a given license
+     * version.
+     *
+     * @param numberOfVersions Number of versions of a given license.
+     * @param currentVersion The version number for wich the obsolescence value
+     * is going to be computed.
+     * @return The computed obsolescence.
+     */
     private SupportedObsolescences computeObsolescence(int numberOfVersions, int currentVersion) {
         float computedObsolescence = TOTAL_OBSOLESCENCE - (float) currentVersion / (float) numberOfVersions;
         // Using the latest version
         if (computedObsolescence == SupportedObsolescences.UPDATED.getObsolescenceValue()) {
             return SupportedObsolescences.UPDATED;
         }
-        // Thre are more than one version and is using the fist one, the 
+        // There are more than one version and is using the fist one, the 
         // original.
         if ((numberOfVersions > FIRST_VERSION) && (currentVersion == FIRST_VERSION)) {
             return SupportedObsolescences.OUTDATED;
@@ -95,6 +118,13 @@ public final class LicensesObsolescencesFactory {
         }
     }
 
+    /**
+     * This method gets the obsolescence of the specified license (all licenses
+     * includes its license version).
+     *
+     * @param license The license whose obsolescence is going to be queried.
+     * @return the obsolescence of the specified license.
+     */
     public SupportedObsolescences getObsolescenceOf(SupportedLicenses license) {
         return licensesObsolescenses.get(license);
     }
@@ -122,6 +152,6 @@ public final class LicensesObsolescencesFactory {
     private static final int SIXTH = 6;
     private static final int SEVENTH = 7;
     private static final int EIGHTH = 8;
-    private static final int NOVENO = 9;
+    private static final int NINETH = 9;
     private static final int TENTH = 10;
 }
