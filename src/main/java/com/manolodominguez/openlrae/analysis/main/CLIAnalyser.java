@@ -30,18 +30,33 @@ import mjson.Json;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements console analyser that allow invoking OpenLRAE to
+ * analyse a project from console, instead of using it as a library.
  *
- * @author manolodd
+ * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public class CLIAnalyser {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(CLIAnalyser.class);
     private String fileName;
 
+    /**
+     * This method is the constructor of the class. It creates a new instance of
+     * CLIAnalyser and fills their attributes.
+     *
+     * @param fileName the name of a JSON file that contains a project
+     * definition to be analysed.
+     */
     public CLIAnalyser(String fileName) {
         this.fileName = fileName;
     }
 
+    /**
+     * This method run a complete risk analysis of the project definition
+     * contained in the file that has been specified in the constructor of the
+     * class. It performs a complete analysis, applying all supported risk
+     * analysers, and generates a report in plain text.
+     */
     public void runAnalysis() {
         File file = new File(fileName);
         if (!file.exists()) {
@@ -54,7 +69,7 @@ public class CLIAnalyser {
                     System.out.println("File " + fileName + " cannot be read");
                 } else {
                     try {
-                        
+
                         Project project = new Project(Json.read(file.toURI().toURL()));
                         // Define desired risk analysers we want to use for this project
                         RiskAnalyserLimitedSetOfPotentialProjectLicenses riskAnalyser1 = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
@@ -78,7 +93,7 @@ public class CLIAnalyser {
                         System.out.println();
                         System.out.println(ReportsFactory.getInstance().getReportAsPlainText(project, resultSet));
                     } catch (Exception ex) {
-                        System.out.println("There was a problem trying to analyse " + fileName+". Is it a correct JSON file compliant with OpenLRAE JSON schema for projects definition?");
+                        System.out.println("There was a problem trying to analyse " + fileName + ". Is it a correct JSON file compliant with OpenLRAE JSON schema for projects definition?");
                     }
                 }
             }
