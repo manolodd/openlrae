@@ -101,12 +101,14 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
         allPotentialProjectLicenses = Collections.synchronizedSet(EnumSet.allOf(SupportedLicenses.class));
         // These licenses are not real licenses and then are not used as 
         // potential project licenses to compute the risk exposure level.
+        // FIX: Remove special licenses by using isOnlyForComponents() method of
+        // SupportedLicenses, in a loop, instead of harcoding.
         allPotentialProjectLicenses.remove(SupportedLicenses.UNDEFINED);
         allPotentialProjectLicenses.remove(SupportedLicenses.FORCED_AS_PROJECT_LICENSE);
         allPotentialProjectLicenses.remove(SupportedLicenses.UNSUPPORTED);
 
         totalExposure = allPotentialProjectLicenses.size();
-        totalImpact = 0.0f;
+        totalImpact = DEFAULT_TOTAL_IMPACT;
         for (int i = 0; i < totalExposure; i++) {
             for (ComponentBinding componentBinding : this.project.getBillOfComponentBindings()) {
                 totalImpact += componentBinding.getWeight().getWeightValue();
@@ -243,14 +245,14 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
         riskExposure /= totalExposure;
         riskImpact /= totalImpact;
 
-        if (riskExposure > 0.0f) {
+        if (riskExposure > NO_RISK) {
             tips.add("In general, try not to use static linking as it is more probable to have incompatibilities.");
             tips.add("In general, try to use components with permisive licenses.");
             tips.add("When modifying the project set of components to reduce the exposure to this risk, start changing components that are root causes in more cases.");
             tips.add("When modifying the project set of components to reduce the exposure to this risk, start with those with higher level of contribution to the overall project.");
             tips.add("If you own all right on a given component involved in rik root causes, try changing its license instead of looking for another component.");
             tips.add("When possible, try to use a set of components whose licenses are compatible with many potential project licenses. This way you could change the project license in the future or release the project under some licenses simultaneously easily.");
-            if (riskExposure == 1.0f) {
+            if (riskExposure == TOTAL_RISK) {
                 rootCauses.add("There is not an open source license that is compatible with all licenses of the defined set of compenents. At least without a deep analysis of your case.");
             }
         }
@@ -258,4 +260,7 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
 
     private static final boolean CAN_BE_PROJECT_LICENSE = true;
     private static final float TOTAL_COMPATIBILITY = 1.0f;
+    private static final float TOTAL_RISK = 1.0f;
+    private static final float NO_RISK = 0.0f;
+    private static final float DEFAULT_TOTAL_IMPACT = 0.0f;
 }
