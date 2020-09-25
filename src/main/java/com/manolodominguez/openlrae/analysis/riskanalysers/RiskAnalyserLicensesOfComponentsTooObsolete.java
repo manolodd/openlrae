@@ -117,11 +117,12 @@ public class RiskAnalyserLicensesOfComponentsTooObsolete extends AbstractRiskAna
 
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
-        if (riskExposure > 0.0f) {
+        if (riskExposure > NO_RISK) {
             tips.add("When modifying the project set of components to reduce the exposure to this risk, start changing components that are root causes in more cases.");
             tips.add("When modifying the project set of components to reduce the exposure to this risk, start with those with higher level of contribution to the overall project.");
             tips.add("If you own all right on a given component involved in rik root causes, try changing its license instead of looking for another component.");
         }
     }
+    private static final float NO_RISK = 0.0f;
 
 }
