@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.manolodominguez.openlrae.analysis.reports;
+package com.manolodominguez.openlrae.reporting;
 
 import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
