@@ -43,6 +43,11 @@ public final class LicensesCompatibilityFactory {
     private static volatile LicensesCompatibilityFactory instance;
     private final CopyOnWriteArrayList<LicenseCompatibilityEntry> licensesCompatibilities;
 
+    /**
+     * This is the constructor of the class. It creates a new instance of
+     * LicensesCompatibilityFactory.
+     *
+     */
     private LicensesCompatibilityFactory() {
         this.licensesCompatibilities = new CopyOnWriteArrayList<>();
         licensesCompatibilities.addAll(StaticAndNone.getInstance().getCompatibilities());
