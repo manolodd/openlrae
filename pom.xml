@@ -26,8 +26,28 @@
     <artifactId>openlrae</artifactId>
     <version>0.3</version>
     <packaging>jar</packaging>
-    <name>openlrae</name>
+    <name>Open Licensing Risks Analysis Engine</name>
+    <description>Open LRAE is a licensing risk analysis engine in the form of Java library that allow the detection of risks related to licensing from the set of components (and their respective licenses) you are using in a given project. </description>
     <url>http://openlrae.manolodominguez.com/</url>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>    
+    <developers>
+        <developer>
+            <name>Manuel Domínguez Dorado</name>
+            <email>ingeniero@ManoloDominguez.com</email>
+            <organization>Manuel Domínguez Dorado</organization>
+            <organizationUrl>https://manolodominguez.com</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git://github.com/manolodd/openlrae.git</connection>
+        <developerConnection>scm:git:ssh://github.com:manolodd/openlrae.git</developerConnection>
+        <url>http://github.com/manolodd/openlrae/tree/master</url>
+    </scm>    
     <build>
         <finalName>openlrae-${project.version}</finalName>
         <plugins>         
@@ -71,7 +91,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.manolodominguez.openlrae.analysis.main.MainClass</mainClass>
+                            <mainClass>com.manolodominguez.openlrae.main.MainClass</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -89,7 +109,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.manolodominguez.openlrae.analysis.main.MainClass</mainClass>
+                                    <mainClass>com.manolodominguez.openlrae.main.MainClass</mainClass>
                                 </transformer>
                             </transformers>
                             <shadedArtifactAttached>true</shadedArtifactAttached>
