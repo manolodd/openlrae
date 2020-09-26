@@ -42,7 +42,6 @@ import com.manolodominguez.openlrae.resourceslocators.JSONFilesPaths;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -52,8 +51,7 @@ import mjson.Json;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class implements console analyser that allow invoking OpenLRAE to
- * analyse a project from console, instead of using it as a library.
+ * This class implements methods to react to user input from console.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -152,7 +150,7 @@ public class CLIHandler {
         System.out.println();
         System.out.println(ReportsFactory.getInstance().getReportAsBeautifiedJSONString(project, resultSet));
     }
-    
+
     /**
      * This method runs an example risk analysis. It aids to be instructive for
      * developers that want to know how to use OpenLRAE. It uses a ficticious
@@ -201,7 +199,10 @@ public class CLIHandler {
         System.out.println();
         System.out.println(ReportsFactory.getInstance().getReportAsPlainText(project, resultSet));
     }
-    
+
+    /**
+     * This show all features supported by this version of OpenLRAE.
+     */
     public void showInfo() {
         System.out.println();
         System.out.println("****************************");
@@ -293,6 +294,9 @@ public class CLIHandler {
         System.out.println();
     }
 
+    /**
+     * This print in console the set of options that can be used by the user.
+     */
     public void showOptions() {
         System.out.println();
         System.out.println("******************");
@@ -318,7 +322,12 @@ public class CLIHandler {
         System.out.println("\t This will execute a risk analysis of a project that is defined in \"filename\" in JSON format and show you the resulting risk report as plain text.\n\tSee OpenLRAE JSON schema for projects to know how to write this project definition in JSON format properly.");
         System.out.println();
     }
-    
+
+    /**
+     * This print in console the OpenLRAE JSON schema for projects definition.
+     * This aims to help the user to write correctly he/she projects definitions
+     * in order to be analysed by OpenLRAE.
+     */
     public void showSchema() {
         InputStream inputStream = getClass().getResourceAsStream(JSONFilesPaths.PROJECT_SCHEMA.getFilePath());
         BufferedReader bufferedReader;
