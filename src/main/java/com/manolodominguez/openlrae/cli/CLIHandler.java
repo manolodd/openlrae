@@ -44,6 +44,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.logging.Level;
 import mjson.Json;
@@ -318,10 +320,10 @@ public class CLIHandler {
     }
     
     public void showSchema() {
-        File file = new File(getClass().getResource(JSONFilesPaths.PROJECT_SCHEMA.getFilePath()).getFile());
+        InputStream inputStream = getClass().getResourceAsStream(JSONFilesPaths.PROJECT_SCHEMA.getFilePath());
         BufferedReader bufferedReader;
         try {
-            bufferedReader = new BufferedReader(new FileReader(file));
+            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String string;
             while ((string = bufferedReader.readLine()) != null) {
                 System.out.println(string);
