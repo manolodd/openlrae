@@ -66,6 +66,34 @@ public class RiskAnalysisResult {
      * transfer the risk.
      */
     public RiskAnalysisResult(SupportedRisks riskType, float riskExposure, float riskImpact, CopyOnWriteArrayList<String> rootCauses, CopyOnWriteArrayList<String> warnings, CopyOnWriteArrayList<String> goodThings, CopyOnWriteArrayList<String> tips) {
+        if (riskType == null) {
+            logger.error("riskType cannot be null");
+            throw new IllegalArgumentException("riskType cannot be null");
+        }
+        if ((riskExposure < 0.0f) && (riskExposure > 1.0f)) {
+            logger.error("riskExposure has to be a float between 0.0f and 1.0");
+            throw new IllegalArgumentException("riskExposure has to be a float between 0.0f and 1.0");
+        }
+        if ((riskImpact < 0.0f) && (riskImpact > 1.0f)) {
+            logger.error("riskImpact has to be a float between 0.0f and 1.0");
+            throw new IllegalArgumentException("riskImpact has to be a float between 0.0f and 1.0");
+        }
+        if (rootCauses == null) {
+            logger.error("rootCauses cannot be null");
+            throw new IllegalArgumentException("rootCauses cannot be null");
+        }
+        if (warnings == null) {
+            logger.error("warnings cannot be null");
+            throw new IllegalArgumentException("warnings cannot be null");
+        }
+        if (goodThings == null) {
+            logger.error("goodThings cannot be null");
+            throw new IllegalArgumentException("goodThings cannot be null");
+        }
+        if (tips == null) {
+            logger.error("tips cannot be null");
+            throw new IllegalArgumentException("tips cannot be null");
+        }
         this.riskType = riskType;
         this.riskExposure = Math.round(riskExposure * RISK_COMPUTATION_PRECISSION) / RISK_COMPUTATION_PRECISSION;
         this.riskImpact = Math.round(riskImpact * RISK_COMPUTATION_PRECISSION) / RISK_COMPUTATION_PRECISSION;
