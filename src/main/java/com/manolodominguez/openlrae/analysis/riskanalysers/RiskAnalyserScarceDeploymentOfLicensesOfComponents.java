@@ -58,9 +58,23 @@ public class RiskAnalyserScarceDeploymentOfLicensesOfComponents extends Abstract
      * RiskAnalyserScarceDeploymentOfLicensesOfComponents.
      *
      * @param project. The software project to be analised.
+     * @deprecated This constructor is not longer acceptable as the class has
+     * has been refactored and this method does not operates well now. Use the
+     * {@link #RiskAnalyserScarceDeploymentOfLicensesOfComponents()} constructor
+     * instead.
      */
+    @Deprecated(since = "0.3", forRemoval = true)
     public RiskAnalyserScarceDeploymentOfLicensesOfComponents(Project project) {
         super(project, SupportedRisks.SCARCE_DEPLOYMENT_OF_COMPONENTS_LICENSES, RiskAnalyserScarceDeploymentOfLicensesOfComponents.class);
+    }
+
+    /**
+     * This is the constructor of the class. It creates a new instance of
+     * RiskAnalyserScarceDeploymentOfLicensesOfComponents.
+     *
+     */
+    public RiskAnalyserScarceDeploymentOfLicensesOfComponents() {
+        super(SupportedRisks.SCARCE_DEPLOYMENT_OF_COMPONENTS_LICENSES, RiskAnalyserScarceDeploymentOfLicensesOfComponents.class);
     }
 
     /**

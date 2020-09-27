@@ -73,9 +73,23 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
      * RiskAnalyserLimitedSetOfPotentialProjectLicenses.
      *
      * @param project. The software project to be analised.
+     * @deprecated This constructor is not longer acceptable as the class has
+     * has been refactored and this method does not operates well now. Use the
+     * {@link #RiskAnalyserLimitedSetOfPotentialProjectLicenses()} constructor
+     * instead.
      */
+    @Deprecated(since = "0.3", forRemoval = true)
     public RiskAnalyserLimitedSetOfPotentialProjectLicenses(Project project) {
         super(project, SupportedRisks.LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES, RiskAnalyserLimitedSetOfPotentialProjectLicenses.class);
+    }
+
+    /**
+     * This is the constructor of the class. It creates a new instance of
+     * RiskAnalyserLimitedSetOfPotentialProjectLicenses.
+     *
+     */
+    public RiskAnalyserLimitedSetOfPotentialProjectLicenses() {
+        super(SupportedRisks.LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES, RiskAnalyserLimitedSetOfPotentialProjectLicenses.class);
     }
 
     /**

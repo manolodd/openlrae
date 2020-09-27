@@ -63,6 +63,20 @@ public class RiskAnalyserUnfashionableLicensesOfComponents extends AbstractRiskA
     }
 
     /**
+     * This is the constructor of the class.It creates a new instance of
+     * RiskAnalyserUnfashionableLicensesOfComponents.
+     *
+     * @deprecated This constructor is not longer acceptable as the class has
+     * has been refactored and this method does not operates well now. Use the
+     * {@link #RiskAnalyserUnfashionableLicensesOfComponents()} constructor
+     * instead.
+     */
+    @Deprecated(since = "0.3", forRemoval = true)
+    public RiskAnalyserUnfashionableLicensesOfComponents() {
+        super(SupportedRisks.COMPONENTS_LICENSES_UNFASHIONABLE, RiskAnalyserUnfashionableLicensesOfComponents.class);
+    }
+
+    /**
      * This method analyse the project and its components looking for risk of
      * using components whose license are not trendy.It is better to use
      * components whose license is trendy (is being used more and more in third

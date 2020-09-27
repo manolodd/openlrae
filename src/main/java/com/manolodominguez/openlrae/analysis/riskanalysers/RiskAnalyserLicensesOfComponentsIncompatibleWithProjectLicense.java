@@ -56,9 +56,23 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
      * RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.
      *
      * @param project. The software project to be analised.
+     * @deprecated This constructor is not longer acceptable as the class has
+     * has been refactored and this method does not operates well now. Use the
+     * {@link #RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense()}
+     * constructor instead.
      */
+    @Deprecated(since = "0.3", forRemoval = true)
     public RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense(Project project) {
         super(project, SupportedRisks.LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSE, RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.class);
+    }
+
+    /**
+     * This is the constructor of the class. It creates a new instance of
+     * RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.
+     *
+     */
+    public RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense() {
+        super(SupportedRisks.LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSE, RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.class);
     }
 
     /**
@@ -74,7 +88,7 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
     @Override
     public void runAnalyser() {
         SupportedCompatibilities compatibility;
-        
+
         // FIX: Only support projects rleased under a single license. Has to be 
         // extended to support project released under two or more licenses.
         LicensesCompatibilityFactory licensesCompatibilities = LicensesCompatibilityFactory.getInstance();
@@ -123,7 +137,7 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
                     // uncompatible.
                     riskExposure += componentBinding.getWeight().getWeightValue();
                     riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
-                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") cannot be included in " + this.project.getFullName() +" (because it license is unknown and by default this is handled as uncompatible with " + this.project.getLicenses().get(0).getSPDXIdentifier() + ", the license of the project) via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
+                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") cannot be included in " + this.project.getFullName() + " (because it license is unknown and by default this is handled as uncompatible with " + this.project.getLicenses().get(0).getSPDXIdentifier() + ", the license of the project) via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
                     warnings.add("Although " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") is handled as incompatible by default because its license is undefined it could be compatible once the license is known.");
                     tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") by another component known to be compatible with " + this.project.getLicenses().get(0).getSPDXIdentifier() + " via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution. Also, you could ask the copyright holder of " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " to clarify which is the license of the component");
                     tips.add("In general, do not use software components whose license is undefined because from a legal point of view this is the same than a propietary license (all right reserved).");

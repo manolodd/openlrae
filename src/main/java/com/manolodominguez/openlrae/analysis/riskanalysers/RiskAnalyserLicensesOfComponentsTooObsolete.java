@@ -57,9 +57,23 @@ public class RiskAnalyserLicensesOfComponentsTooObsolete extends AbstractRiskAna
      * RiskAnalyserLicensesOfComponentsTooObsolete.
      *
      * @param project. The software project to be analised.
+     * @deprecated This constructor is not longer acceptable as the class has
+     * has been refactored and this method does not operates well now. Use the
+     * {@link #RiskAnalyserLicensesOfComponentsTooObsolete()} constructor
+     * instead.
      */
+    @Deprecated(since = "0.3", forRemoval = true)
     public RiskAnalyserLicensesOfComponentsTooObsolete(Project project) {
         super(project, SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE, RiskAnalyserLicensesOfComponentsTooObsolete.class);
+    }
+
+    /**
+     * This is the constructor of the class. It creates a new instance of
+     * RiskAnalyserLicensesOfComponentsTooObsolete.
+     *
+     */
+    public RiskAnalyserLicensesOfComponentsTooObsolete() {
+        super(SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE, RiskAnalyserLicensesOfComponentsTooObsolete.class);
     }
 
     /**
