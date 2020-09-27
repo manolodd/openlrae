@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum TranslationResourceBundles {
+    //Still unused
     RB_1("/path/to/bundle"),
     RB_2("/path/to/bundle2");
 
