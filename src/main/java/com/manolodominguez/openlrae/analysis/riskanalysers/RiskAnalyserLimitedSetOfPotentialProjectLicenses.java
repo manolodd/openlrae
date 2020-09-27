@@ -24,6 +24,7 @@ import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Set;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class implements a risk analyser whose mission is to detect those
@@ -75,7 +76,9 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
      * @param project. The software project to be analised.
      */
     public RiskAnalyserLimitedSetOfPotentialProjectLicenses(Project project) {
-        super(project, SupportedRisks.LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES, RiskAnalyserLimitedSetOfPotentialProjectLicenses.class);
+        // Project is ckecked at superclass
+        super(project, SupportedRisks.LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES);
+        logger = LoggerFactory.getLogger(RiskAnalyserLimitedSetOfPotentialProjectLicenses.class);
     }
 
     /**

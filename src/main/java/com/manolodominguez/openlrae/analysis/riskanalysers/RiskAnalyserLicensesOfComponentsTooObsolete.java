@@ -20,6 +20,7 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesObsolescencesFactory;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class implements a risk analyser whose mission is to detect those
@@ -59,7 +60,9 @@ public class RiskAnalyserLicensesOfComponentsTooObsolete extends AbstractRiskAna
      * @param project. The software project to be analised.
      */
     public RiskAnalyserLicensesOfComponentsTooObsolete(Project project) {
-        super(project, SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE, RiskAnalyserLicensesOfComponentsTooObsolete.class);
+        // Project is ckecked at superclass
+        super(project, SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE);
+        logger = LoggerFactory.getLogger(RiskAnalyserLicensesOfComponentsTooObsolete.class);
     }
 
     /**

@@ -24,6 +24,7 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Set;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class implements a risk analyser whose mission is to detect those that
@@ -64,7 +65,9 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
      * @param project. The software project to be analised.
      */
     public RiskAnalyserLimitedSetOfPotentialComponentsLicenses(Project project) {
-        super(project, SupportedRisks.LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES, RiskAnalyserLimitedSetOfPotentialComponentsLicenses.class);
+        // Project is ckecked at superclass
+        super(project, SupportedRisks.LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES);
+        logger = LoggerFactory.getLogger(RiskAnalyserLimitedSetOfPotentialComponentsLicenses.class);
     }
 
     /**

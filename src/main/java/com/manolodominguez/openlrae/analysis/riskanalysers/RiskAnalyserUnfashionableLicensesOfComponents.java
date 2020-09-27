@@ -20,6 +20,7 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedTrends;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesTrendFactory;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class implements a risk analyser whose mission is to detect those
@@ -59,7 +60,9 @@ public class RiskAnalyserUnfashionableLicensesOfComponents extends AbstractRiskA
      * @param project. The software project to be analised.
      */
     public RiskAnalyserUnfashionableLicensesOfComponents(Project project) {
-        super(project, SupportedRisks.COMPONENTS_LICENSES_UNFASHIONABLE, RiskAnalyserUnfashionableLicensesOfComponents.class);
+        // Project is ckecked at superclass
+        super(project, SupportedRisks.COMPONENTS_LICENSES_UNFASHIONABLE);
+        logger = LoggerFactory.getLogger(RiskAnalyserUnfashionableLicensesOfComponents.class);
     }
 
     /**

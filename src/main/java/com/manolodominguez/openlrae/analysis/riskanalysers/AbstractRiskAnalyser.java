@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class AbstractRiskAnalyser {
 
-    protected final Logger logger;
+    protected Logger logger;
     protected Project project = null;
     protected SupportedRisks handledRiskType;
     protected float riskExposure;
@@ -47,28 +47,25 @@ public abstract class AbstractRiskAnalyser {
      *
      * @param project The software project to be analised.
      * @param handledRiskType The type of risk the subclass addresses.
-     * @param logForClass The subclass that implements this abstract class. It
-     * is used for loggin purposes.
      */
-    public AbstractRiskAnalyser(Project project, SupportedRisks handledRiskType, Class<?> logForClass) {
+    public AbstractRiskAnalyser(Project project, SupportedRisks handledRiskType) {
+        logger = LoggerFactory.getLogger(AbstractRiskAnalyser.class);
+        if (project == null) {
+            logger.error("Project cannot be null");
+            throw new IllegalArgumentException("Project cannot be null");
+        }
+        if (handledRiskType == null) {
+            logger.error("handledRiskType cannot be null");
+            throw new IllegalArgumentException("handledRiskType cannot be null");
+        }
         this.project = project;
         this.handledRiskType = handledRiskType;
-        logger = LoggerFactory.getLogger(logForClass);
         riskExposure = AbstractRiskAnalyser.DEFAULT_EXPOSURE_LEVEL;
         riskImpact = AbstractRiskAnalyser.DEFAULT_IMPACT_LEVEL;
         rootCauses = new CopyOnWriteArrayList<>();
         warnings = new CopyOnWriteArrayList<>();
         goodThings = new CopyOnWriteArrayList<>();
         tips = new CopyOnWriteArrayList<>();
-    }
-
-    /**
-     * This method sets the project that will be abalysed.
-     *
-     * @param project the project to be analised.
-     */
-    public void setProject(Project project) {
-        this.project = project;
     }
 
     /**

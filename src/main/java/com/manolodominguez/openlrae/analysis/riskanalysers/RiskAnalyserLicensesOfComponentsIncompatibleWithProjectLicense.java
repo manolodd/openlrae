@@ -20,6 +20,7 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCompatibilityFactory;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class implements a risk analyser whose mission is to detect those
@@ -58,7 +59,9 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
      * @param project. The software project to be analised.
      */
     public RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense(Project project) {
-        super(project, SupportedRisks.LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSE, RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.class);
+        // Project is ckecked at superclass
+        super(project, SupportedRisks.LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSE);
+        logger = LoggerFactory.getLogger(RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.class);
     }
 
     /**
@@ -75,7 +78,7 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
     public void runAnalyser() {
         SupportedCompatibilities compatibility;
 
-        // FIX: Only support projects rleased under a single license. Has to be 
+        // FIX: Only support projects released under a single license. Has to be 
         // extended to support project released under two or more licenses.
         LicensesCompatibilityFactory licensesCompatibilities = LicensesCompatibilityFactory.getInstance();
         int totalCases = this.project.getBillOfComponentBindings().size();

@@ -20,6 +20,7 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedSpreadin
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesSpreadingFactory;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class implements a risk analyser whose mission is to detect those
@@ -60,7 +61,9 @@ public class RiskAnalyserScarceDeploymentOfLicensesOfComponents extends Abstract
      * @param project. The software project to be analised.
      */
     public RiskAnalyserScarceDeploymentOfLicensesOfComponents(Project project) {
-        super(project, SupportedRisks.SCARCE_DEPLOYMENT_OF_COMPONENTS_LICENSES, RiskAnalyserScarceDeploymentOfLicensesOfComponents.class);
+        // Project is ckecked at superclass
+        super(project, SupportedRisks.SCARCE_DEPLOYMENT_OF_COMPONENTS_LICENSES);
+        logger = LoggerFactory.getLogger(RiskAnalyserScarceDeploymentOfLicensesOfComponents.class);
     }
 
     /**
