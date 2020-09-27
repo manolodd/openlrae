@@ -49,6 +49,26 @@ public class Component {
      * enum.
      */
     public Component(String name, String version, SupportedLicenses license) {
+        if (name == null) {
+            logger.error("name cannot be null");
+            throw new IllegalArgumentException("name cannot be null");
+        }
+        if (name.isBlank()) {
+            logger.error("name cannot be blank");
+            throw new IllegalArgumentException("name cannot be blank");
+        }
+        if (version == null) {
+            logger.error("version cannot be null");
+            throw new IllegalArgumentException("version cannot be null");
+        }
+        if (version.isBlank()) {
+            logger.error("version cannot be blank");
+            throw new IllegalArgumentException("version cannot be blank");
+        }
+        if (license == null) {
+            logger.error("license cannot be null");
+            throw new IllegalArgumentException("license cannot be null");
+        }
         this.name = name;
         this.version = version;
         this.license = license;
