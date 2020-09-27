@@ -41,6 +41,10 @@ public class LicenseRiskAnalysisEngine {
      * engine. At least one risk analyser has to be added to the engine.
      */
     public LicenseRiskAnalysisEngine(AbstractRiskAnalyser firstRiskAnalyser) {
+        if (firstRiskAnalyser == null) {
+            logger.error("firstRiskAnalyser cannot be null");
+            throw new IllegalArgumentException("firstRiskAnalyser cannot be null");
+        }
         this.risksAnalysers = new CopyOnWriteArrayList<>();
         this.risksAnalysers.add(firstRiskAnalyser);
         this.riskAnalysisResultSet = new CopyOnWriteArrayList<>();
@@ -54,6 +58,10 @@ public class LicenseRiskAnalysisEngine {
      * of risk analysers of this engine.
      */
     public void addRiskAnalyser(AbstractRiskAnalyser riskAnalyser) {
+        if (riskAnalyser == null) {
+            logger.error("riskAnalyser cannot be null");
+            throw new IllegalArgumentException("riskAnalyser cannot be null");
+        }
         this.risksAnalysers.add(riskAnalyser);
     }
 
