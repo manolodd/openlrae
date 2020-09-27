@@ -56,23 +56,9 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
      * RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.
      *
      * @param project. The software project to be analised.
-     * @deprecated This constructor is not longer acceptable as the class has
-     * has been refactored and this method does not operates well now. Use the
-     * {@link #RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense()}
-     * constructor instead.
      */
-    @Deprecated(since = "0.3", forRemoval = true)
     public RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense(Project project) {
         super(project, SupportedRisks.LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSE, RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.class);
-    }
-
-    /**
-     * This is the constructor of the class. It creates a new instance of
-     * RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.
-     *
-     */
-    public RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense() {
-        super(SupportedRisks.LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSE, RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.class);
     }
 
     /**

@@ -62,23 +62,9 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
      * RiskAnalyserLimitedSetOfPotentialComponentsLicenses.
      *
      * @param project. The software project to be analised.
-     * @deprecated This constructor is not longer acceptable as the class has
-     * has been refactored and this method does not operates well now. Use the
-     * {@link #RiskAnalyserLimitedSetOfPotentialComponentsLicenses()} constructor
-     * instead.
      */
-    @Deprecated(since = "0.3", forRemoval = true)
     public RiskAnalyserLimitedSetOfPotentialComponentsLicenses(Project project) {
         super(project, SupportedRisks.LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES, RiskAnalyserLimitedSetOfPotentialComponentsLicenses.class);
-    }
-
-    /**
-     * This is the constructor of the class. It creates a new instance of
-     * RiskAnalyserLimitedSetOfPotentialComponentsLicenses.
-     *
-     */
-    public RiskAnalyserLimitedSetOfPotentialComponentsLicenses() {
-        super(SupportedRisks.LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES, RiskAnalyserLimitedSetOfPotentialComponentsLicenses.class);
     }
 
     /**

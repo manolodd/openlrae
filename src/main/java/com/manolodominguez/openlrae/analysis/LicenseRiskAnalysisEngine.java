@@ -16,7 +16,6 @@
 package com.manolodominguez.openlrae.analysis;
 
 import com.manolodominguez.openlrae.analysis.riskanalysers.AbstractRiskAnalyser;
-import com.manolodominguez.openlrae.arquitecture.Project;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,19 +32,6 @@ public class LicenseRiskAnalysisEngine {
     private Logger logger = LoggerFactory.getLogger(LicenseRiskAnalysisEngine.class);
     private CopyOnWriteArrayList<AbstractRiskAnalyser> risksAnalysers;
     private CopyOnWriteArrayList<RiskAnalysisResult> riskAnalysisResultSet;
-    private Project project;
-
-    /**
-     * This is the constructor of the class.It creates a new instance of
-     * LicenseRiskAnalysisEngine, adding the first risk analyser.
-     *
-     * @param project The project to which the risk anaysis wiil be done.
-     */
-    public LicenseRiskAnalysisEngine(Project project) {
-        this.risksAnalysers = new CopyOnWriteArrayList<>();
-        this.riskAnalysisResultSet = new CopyOnWriteArrayList<>();
-        this.project = project;
-    }
 
     /**
      * This is the constructor of the class.It creates a new instance of
@@ -53,13 +39,7 @@ public class LicenseRiskAnalysisEngine {
      *
      * @param firstRiskAnalyser the first analyser added to the risk analyser
      * engine. At least one risk analyser has to be added to the engine.
-     * @deprecated This constructor is not longer acceptable as the class has
-     * has been refactored and this method does not operates well now. Use the
-     * {@link #LicenseRiskAnalysisEngine(Project)} constructor instead and after
-     * having an instance, use {@link #addRiskAnalyser(AbstractRiskAnalyser)} to
-     * add the first and subsequent risks analysers.
      */
-    @Deprecated(since = "0.3", forRemoval = true)
     public LicenseRiskAnalysisEngine(AbstractRiskAnalyser firstRiskAnalyser) {
         this.risksAnalysers = new CopyOnWriteArrayList<>();
         this.risksAnalysers.add(firstRiskAnalyser);
@@ -74,7 +54,6 @@ public class LicenseRiskAnalysisEngine {
      * of risk analysers of this engine.
      */
     public void addRiskAnalyser(AbstractRiskAnalyser riskAnalyser) {
-        riskAnalyser.setProject(project);
         this.risksAnalysers.add(riskAnalyser);
     }
 

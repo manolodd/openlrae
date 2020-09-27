@@ -69,8 +69,12 @@ public class CLIHandler {
     /**
      * This method run a complete risk analysis of the project definition
      * contained in the file that has been specified in the constructor of the
-     * class. It performs a complete analysis, applying all supported risk
+     * class.It performs a complete analysis, applying all supported risk
      * analysers, and generates a report in plain text.
+     *
+     * @param fileName the name of a JSON file that contains a project
+     * definition as described by the OpenLRAE JSON schema for projects
+     * definitions.
      */
     public void runAnalysis(String fileName) {
         File file = new File(fileName);

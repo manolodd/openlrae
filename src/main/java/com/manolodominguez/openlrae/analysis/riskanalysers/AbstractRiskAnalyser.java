@@ -49,33 +49,9 @@ public abstract class AbstractRiskAnalyser {
      * @param handledRiskType The type of risk the subclass addresses.
      * @param logForClass The subclass that implements this abstract class. It
      * is used for loggin purposes.
-     * @deprecated This constructor is not longer acceptable as the class has
-     * has been refactored and this method does not operates well now. Use the
-     * {@link #AbstractRiskAnalyser(SupportedRisks, Class<?>)} constructor
-     * instead.
      */
-    @Deprecated(since = "0.3", forRemoval = true)
     public AbstractRiskAnalyser(Project project, SupportedRisks handledRiskType, Class<?> logForClass) {
         this.project = project;
-        this.handledRiskType = handledRiskType;
-        logger = LoggerFactory.getLogger(logForClass);
-        riskExposure = AbstractRiskAnalyser.DEFAULT_EXPOSURE_LEVEL;
-        riskImpact = AbstractRiskAnalyser.DEFAULT_IMPACT_LEVEL;
-        rootCauses = new CopyOnWriteArrayList<>();
-        warnings = new CopyOnWriteArrayList<>();
-        goodThings = new CopyOnWriteArrayList<>();
-        tips = new CopyOnWriteArrayList<>();
-    }
-
-    /**
-     * This is the constructor of the class.It has to be called from within the
-     * subclass constructyor.It configure attributes default values.
-     *
-     * @param handledRiskType The type of risk the subclass addresses.
-     * @param logForClass The subclass that implements this abstract class. It
-     * is used for loggin purposes.
-     */
-    public AbstractRiskAnalyser(SupportedRisks handledRiskType, Class<?> logForClass) {
         this.handledRiskType = handledRiskType;
         logger = LoggerFactory.getLogger(logForClass);
         riskExposure = AbstractRiskAnalyser.DEFAULT_EXPOSURE_LEVEL;
