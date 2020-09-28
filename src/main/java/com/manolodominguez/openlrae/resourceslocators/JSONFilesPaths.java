@@ -15,6 +15,8 @@
  */
 package com.manolodominguez.openlrae.resourceslocators;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,6 +41,19 @@ public enum JSONFilesPaths {
      * @param filePath The path to the file.
      */
     private JSONFilesPaths(String filePath) {
+        if (filePath == null) {
+            logger.error("filePath cannot be null");
+            throw new IllegalArgumentException("filePath cannot be null");
+        }
+        if (filePath.isBlank()) {
+            logger.error("filePath cannot be blank");
+            throw new IllegalArgumentException("filePath cannot be blank");
+        }
+        // Checks whether the file exist or not.
+        if (getClass().getResourceAsStream(filePath) == null) {
+            logger.error("filePath does not exist");
+            throw new IllegalArgumentException("filePath does not exist");
+        }
         this.filePath = filePath;
     }
 
