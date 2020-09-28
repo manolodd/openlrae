@@ -45,7 +45,7 @@ public enum JSONFilesPaths {
             logger.error("filePath cannot be null");
             throw new IllegalArgumentException("filePath cannot be null");
         }
-        if (filePath.isBlank()) {
+        if (filePath.isEmpty()) {
             logger.error("filePath cannot be blank");
             throw new IllegalArgumentException("filePath cannot be blank");
         }

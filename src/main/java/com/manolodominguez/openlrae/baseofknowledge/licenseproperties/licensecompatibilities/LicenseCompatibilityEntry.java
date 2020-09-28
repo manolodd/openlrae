@@ -88,7 +88,7 @@ public class LicenseCompatibilityEntry {
             logger.error("redistribution cannot be null");
             throw new IllegalArgumentException("redistribution cannot be null");
         }
-        if ((specificWarning != null) && (specificWarning.isBlank())) {
+        if ((specificWarning != null) && (specificWarning.isEmpty())) {
             logger.error("specificWarning cannot be blank. If not needed, set it to null.");
             throw new IllegalArgumentException("specificWarning cannot be blank. If not needed, set it to null.");
         }

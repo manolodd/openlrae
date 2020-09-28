@@ -53,7 +53,7 @@ public class Component {
             logger.error("name cannot be null");
             throw new IllegalArgumentException("name cannot be null");
         }
-        if (name.isBlank()) {
+        if (name.isEmpty()) {
             logger.error("name cannot be blank");
             throw new IllegalArgumentException("name cannot be blank");
         }
@@ -61,7 +61,7 @@ public class Component {
             logger.error("version cannot be null");
             throw new IllegalArgumentException("version cannot be null");
         }
-        if (version.isBlank()) {
+        if (version.isEmpty()) {
             logger.error("version cannot be blank");
             throw new IllegalArgumentException("version cannot be blank");
         }

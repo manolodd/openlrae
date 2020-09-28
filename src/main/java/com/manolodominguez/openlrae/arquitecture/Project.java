@@ -73,7 +73,7 @@ public class Project {
             logger.error("name cannot be null");
             throw new IllegalArgumentException("name cannot be null");
         }
-        if (name.isBlank()) {
+        if (name.isEmpty()) {
             logger.error("name cannot be blank");
             throw new IllegalArgumentException("name cannot be blank");
         }
@@ -81,7 +81,7 @@ public class Project {
             logger.error("version cannot be null");
             throw new IllegalArgumentException("version cannot be null");
         }
-        if (version.isBlank()) {
+        if (version.isEmpty()) {
             logger.error("version cannot be blank");
             throw new IllegalArgumentException("version cannot be blank");
         }
@@ -127,7 +127,7 @@ public class Project {
             logger.error("projectDefinitionAsJSONString cannot be null");
             throw new IllegalArgumentException("projectDefinitionAsJSONString cannot be null");
         }
-        if (projectDefinitionAsJSONString.isBlank()) {
+        if (projectDefinitionAsJSONString.isEmpty()) {
             logger.error("projectDefinitionAsJSONString cannot be blank");
             throw new IllegalArgumentException("version cannot be blank");
         }

@@ -55,7 +55,7 @@ public enum SupportedTrends {
             logger.error("descriptionValue cannot be null");
             throw new IllegalArgumentException("descriptionValue cannot be null");
         }
-        if (descriptionValue.isBlank()) {
+        if (descriptionValue.isEmpty()) {
             logger.error("descriptionValue cannot be blank");
             throw new IllegalArgumentException("descriptionValue cannot be blank");
         }

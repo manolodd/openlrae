@@ -99,7 +99,7 @@ public enum SupportedLicenses {
             logger.error("spdxIdentifier cannot be null");
             throw new IllegalArgumentException("spdxIdentifier cannot be null");
         }
-        if (spdxIdentifier.isBlank()) {
+        if (spdxIdentifier.isEmpty()) {
             logger.error("spdxIdentifier cannot be blank");
             throw new IllegalArgumentException("spdxIdentifier cannot be blank");
         }
@@ -107,7 +107,7 @@ public enum SupportedLicenses {
             logger.error("spdxFullName cannot be null");
             throw new IllegalArgumentException("spdxFullName cannot be null");
         }
-        if (spdxFullName.isBlank()) {
+        if (spdxFullName.isEmpty()) {
             logger.error("spdxFullName cannot be blank");
             throw new IllegalArgumentException("spdxFullName cannot be blank");
         }

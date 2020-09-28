@@ -225,7 +225,7 @@ public class ReportsFactory {
             logger.error("uglyJSONString cannot be null");
             throw new IllegalArgumentException("uglyJSONString cannot be null");
         }
-        if (uglyJSONString.isBlank()) {
+        if (uglyJSONString.isEmpty()) {
             logger.error("uglyJSONString cannot be blank");
             throw new IllegalArgumentException("uglyJSONString cannot be blank");
         }

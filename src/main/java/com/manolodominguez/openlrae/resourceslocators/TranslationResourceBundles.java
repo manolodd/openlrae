@@ -15,6 +15,8 @@
  */
 package com.manolodominguez.openlrae.resourceslocators;
 
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +29,7 @@ import org.slf4j.LoggerFactory;
  */
 public enum TranslationResourceBundles {
     //Still unused
-    RB_1("/path/to/bundle"),
+    RB_1("/path/to/bundle1"),
     RB_2("/path/to/bundle2");
 
     private Logger logger = LoggerFactory.getLogger(TranslationResourceBundles.class);
@@ -45,12 +47,14 @@ public enum TranslationResourceBundles {
             logger.error("resourceBundleName cannot be null");
             throw new IllegalArgumentException("resourceBundleName cannot be null");
         }
-        if (resourceBundleName.isBlank()) {
+        if (resourceBundleName.isEmpty()) {
             logger.error("resourceBundleName cannot be blank");
             throw new IllegalArgumentException("resourceBundleName cannot be blank");
         }
         // Checks whether the bundle exist or not.
-        if (getClass().getResourceAsStream(resourceBundleName) == null) {
+        try {
+            ResourceBundle.getBundle(resourceBundleName);
+        } catch (MissingResourceException ex) {
             logger.error("resourceBundleName does not exist");
             throw new IllegalArgumentException("resourceBundleName does not exist");
         }
