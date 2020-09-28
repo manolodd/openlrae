@@ -65,6 +65,7 @@ public class CLIHandler {
      * CLIAnalyser and fills their attributes.
      */
     public CLIHandler() {
+        // Does nothing
     }
 
     /**
