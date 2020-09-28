@@ -77,6 +77,14 @@ public class CLIHandler {
      * definitions.
      */
     public void runAnalysis(String fileName) {
+        if (fileName == null) {
+            logger.error("fileName cannot be null");
+            throw new IllegalArgumentException("fileName cannot be null");
+        }
+        if (fileName.isBlank()) {
+            logger.error("fileName cannot be blank");
+            throw new IllegalArgumentException("fileName cannot be blank");
+        }
         File file = new File(fileName);
         if (!file.exists()) {
             System.out.println("File " + fileName + " cannot be found");
