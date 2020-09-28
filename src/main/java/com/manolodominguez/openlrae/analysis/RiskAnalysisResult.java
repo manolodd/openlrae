@@ -70,11 +70,11 @@ public class RiskAnalysisResult {
             logger.error("riskType cannot be null");
             throw new IllegalArgumentException("riskType cannot be null");
         }
-        if ((riskExposure < 0.0f) && (riskExposure > 1.0f)) {
+        if ((riskExposure < MIN_RATIO) && (riskExposure > MAX_RATIO)) {
             logger.error("riskExposure has to be a float between 0.0f and 1.0");
             throw new IllegalArgumentException("riskExposure has to be a float between 0.0f and 1.0");
         }
-        if ((riskImpact < 0.0f) && (riskImpact > 1.0f)) {
+        if ((riskImpact < MIN_RATIO) && (riskImpact > MAX_RATIO)) {
             logger.error("riskImpact has to be a float between 0.0f and 1.0");
             throw new IllegalArgumentException("riskImpact has to be a float between 0.0f and 1.0");
         }
@@ -201,6 +201,8 @@ public class RiskAnalysisResult {
         return tips;
     }
 
+    private static final float MIN_RATIO = 0.0f;
+    private static final float MAX_RATIO = 1.0f;
     // Each zero means a decimal. 
     private static final float RISK_COMPUTATION_PRECISSION = 10000f;
 

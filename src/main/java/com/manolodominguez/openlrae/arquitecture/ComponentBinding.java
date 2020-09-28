@@ -51,6 +51,18 @@ public class ComponentBinding {
      * value but an orientative one.
      */
     public ComponentBinding(Component component, SupportedLinks link, SupportedComponentWeights weight) {
+        if (component == null) {
+            logger.error("component cannot be null");
+            throw new IllegalArgumentException("component cannot be null");
+        }
+        if (link == null) {
+            logger.error("link cannot be null");
+            throw new IllegalArgumentException("link cannot be null");
+        }
+        if (weight == null) {
+            logger.error("weight cannot be null");
+            throw new IllegalArgumentException("weight cannot be null");
+        }
         this.component = component;
         this.link = link;
         this.weight = weight;

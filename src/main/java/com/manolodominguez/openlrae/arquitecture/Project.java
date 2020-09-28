@@ -69,8 +69,44 @@ public class Project {
      * addComponentBinding(...) method.
      */
     public Project(String name, String version, SupportedLicenses firstLicense, SupportedRedistributions redistribution, ComponentBinding firstComponentBinding) {
-        // FIX: Project license should not be "FORCED_AS_PROJECT_LICENSE",  
-        // "UNDEFINED" or "UNSUPPORTED". 
+        if (name == null) {
+            logger.error("name cannot be null");
+            throw new IllegalArgumentException("name cannot be null");
+        }
+        if (name.isBlank()) {
+            logger.error("name cannot be blank");
+            throw new IllegalArgumentException("name cannot be blank");
+        }
+        if (version == null) {
+            logger.error("version cannot be null");
+            throw new IllegalArgumentException("version cannot be null");
+        }
+        if (version.isBlank()) {
+            logger.error("version cannot be blank");
+            throw new IllegalArgumentException("version cannot be blank");
+        }
+        if (firstLicense == null) {
+            logger.error("firstLicense cannot be null");
+            throw new IllegalArgumentException("firstLicense cannot be null");
+        }
+        boolean validFirstLicense = false;
+        for (SupportedLicenses licenseForProject : SupportedLicenses.getLicensesForProjects()) {
+            if (firstLicense == licenseForProject) {
+                validFirstLicense = true;
+            }
+        }
+        if (!validFirstLicense) {
+            logger.error("A project cannot use the speciefied firstLicense");
+            throw new IllegalArgumentException("A project cannot use the speciefied firstLicense");
+        }
+        if (redistribution == null) {
+            logger.error("redistribution cannot be null");
+            throw new IllegalArgumentException("redistribution cannot be null");
+        }
+        if (firstComponentBinding == null) {
+            logger.error("firstComponentBinding cannot be null");
+            throw new IllegalArgumentException("firstComponentBinding cannot be null");
+        }
         this.name = name;
         this.version = version;
         licenses = new CopyOnWriteArrayList<>();
@@ -87,11 +123,25 @@ public class Project {
      * String.
      */
     public Project(String projectDefinitionAsJSONString) {
-        Json projectDefinition = Json.read(projectDefinitionAsJSONString);
-        if (isValidJSONProjectDefinition(projectDefinition)) {
-            initializeFromJSON(projectDefinition);
-        } else {
-            throw new IllegalArgumentException(getValidationReport(projectDefinition).toString(MAX_JSON_ERRORS_LENGTH));
+        if (projectDefinitionAsJSONString == null) {
+            logger.error("projectDefinitionAsJSONString cannot be null");
+            throw new IllegalArgumentException("projectDefinitionAsJSONString cannot be null");
+        }
+        if (projectDefinitionAsJSONString.isBlank()) {
+            logger.error("projectDefinitionAsJSONString cannot be blank");
+            throw new IllegalArgumentException("version cannot be blank");
+        }
+        try {
+            Json projectDefinition = Json.read(projectDefinitionAsJSONString);
+            if (isValidJSONProjectDefinition(projectDefinition)) {
+                initializeFromJSON(projectDefinition);
+            } else {
+                logger.error("projectDefinitionAsJSONString does not follow OpenLRAE JSON schema rules.");
+                throw new IllegalArgumentException(getValidationReport(projectDefinition).toString());
+            }
+        } catch (RuntimeException e) {
+            logger.error("projectDefinitionAsJSONString is not a JSON File");
+            throw new IllegalArgumentException("projectDefinitionAsJSONString is not a JSON File");
         }
     }
 
@@ -101,10 +151,20 @@ public class Project {
      * @param projectDefinition a JSON project definition.
      */
     public Project(Json projectDefinition) {
-        if (isValidJSONProjectDefinition(projectDefinition)) {
-            initializeFromJSON(projectDefinition);
-        } else {
-            throw new IllegalArgumentException(getValidationReport(projectDefinition).toString(MAX_JSON_ERRORS_LENGTH));
+        if (projectDefinition == null) {
+            logger.error("projectDefinition cannot be null");
+            throw new IllegalArgumentException("projectDefinition cannot be null");
+        }
+        try {
+            if (isValidJSONProjectDefinition(projectDefinition)) {
+                initializeFromJSON(projectDefinition);
+            } else {
+                logger.error("projectDefinition does not follow OpenLRAE JSON schema rules.");
+                throw new IllegalArgumentException(getValidationReport(projectDefinition).toString());
+            }
+        } catch (RuntimeException e) {
+            logger.error("projectDefinition is not a JSON File");
+            throw new IllegalArgumentException("projectDefinition is not a JSON File");
         }
     }
 
@@ -118,6 +178,10 @@ public class Project {
      * one. Otherwise, returns FALSE.
      */
     private boolean isValidJSONProjectDefinition(Json projectDefinition) {
+        if (projectDefinition == null) {
+            logger.error("projectDefinition cannot be null");
+            throw new IllegalArgumentException("projectDefinition cannot be null");
+        }
         Json.Schema schema;
         try {
             URI schemaURI = getClass().getResource(JSONFilesPaths.PROJECT_SCHEMA.getFilePath()).toURI();
@@ -127,7 +191,7 @@ public class Project {
                 return true;
             }
             return false;
-        } catch (URISyntaxException ex) {
+        } catch (RuntimeException | URISyntaxException ex) {
             return false;
         }
     }
@@ -142,13 +206,17 @@ public class Project {
      * @return a JSON report about the validation process.
      */
     private Json getValidationReport(Json projectDefinition) {
+        if (projectDefinition == null) {
+            logger.error("projectDefinition cannot be null");
+            throw new IllegalArgumentException("projectDefinition cannot be null");
+        }
         Json.Schema schema;
         try {
             URI schemaURI = getClass().getResource(JSONFilesPaths.PROJECT_SCHEMA.getFilePath()).toURI();
             schema = Json.schema(schemaURI);
             return schema.validate(projectDefinition);
-        } catch (URISyntaxException ex) {
-            return Json.read("{\"ok\":false, errors:[\"Open LRAE JSON Schema cannot be loaded.\"]}");
+        } catch (RuntimeException | URISyntaxException ex) {
+            return Json.read(DEFAULT_INVALID_PROJECT_VALIDATION_REPORT);
         }
     }
 
@@ -160,9 +228,12 @@ public class Project {
      * definition.
      */
     private void initializeFromJSON(Json validatedJSONProjectDefinition) {
+        if (validatedJSONProjectDefinition == null) {
+            logger.error("validatedJSONProjectDefinition cannot be null");
+            throw new IllegalArgumentException("validatedJSONProjectDefinition cannot be null");
+        }
         licenses = new CopyOnWriteArrayList<>();
         billOfComponentBindings = new CopyOnWriteArrayList<>();
-
         if (validatedJSONProjectDefinition.at("projectinfo").at("name").isString()) {
             name = validatedJSONProjectDefinition.at("projectinfo").at("name").asString();
         } else {
@@ -197,7 +268,7 @@ public class Project {
             Component auxComponent;
             ComponentBinding auxComponentBinding;
             List<Object> auxComponentBindings = validatedJSONProjectDefinition.at("componentbindings").asList();
-            for (int componentIndex = 0; componentIndex < auxComponentBindings.size(); componentIndex++) {
+            for (int componentIndex = ZERO; componentIndex < auxComponentBindings.size(); componentIndex++) {
                 if (validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("component").isString()) {
                     auxComponentName = validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("component").asString();
                 } else {
@@ -239,6 +310,10 @@ public class Project {
      * @param componentBinding a component binding to be added the project.
      */
     public void addComponentBinding(ComponentBinding componentBinding) {
+        if (componentBinding == null) {
+            logger.error("componentBinding cannot be null");
+            throw new IllegalArgumentException("componentBinding cannot be null");
+        }
         billOfComponentBindings.add(componentBinding);
     }
 
@@ -278,6 +353,10 @@ public class Project {
      * project.
      */
     public void addLicense(SupportedLicenses additionalLicense) {
+        if (additionalLicense == null) {
+            logger.error("additionalLicense cannot be null");
+            throw new IllegalArgumentException("additionalLicense cannot be null");
+        }
         licenses.add(additionalLicense);
     }
 
@@ -308,6 +387,6 @@ public class Project {
         return billOfComponentBindings;
     }
 
-    private static final String OPENLRAE_JSON_SCHEMA = "/com/manolodominguez/openlrae/json/OpenLRAEJSONSchema.json";
-    private static final int MAX_JSON_ERRORS_LENGTH = 2048;
+    private static final String DEFAULT_INVALID_PROJECT_VALIDATION_REPORT = "{\"ok\":false, errors:[\"Open LRAE JSON Schema cannot be loaded.\"]}";
+    private static final int ZERO = 0;
 }
