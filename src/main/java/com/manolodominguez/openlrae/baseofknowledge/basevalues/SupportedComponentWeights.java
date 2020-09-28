@@ -52,6 +52,18 @@ public enum SupportedComponentWeights {
      * @param descriptionValue A text describing the meaning of the enum item.
      */
     private SupportedComponentWeights(float weightValue, String descriptionValue) {
+        if ((weightValue < MIN_RATIO) || (weightValue > MAX_RATIO)) {
+            logger.error("weightValue has to be a float between 0.0f and 1.0");
+            throw new IllegalArgumentException("weightValue has to be a float between 0.0f and 1.0");
+        }
+        if (descriptionValue == null) {
+            logger.error("descriptionValue cannot be null");
+            throw new IllegalArgumentException("descriptionValue cannot be null");
+        }
+        if (descriptionValue.isBlank()) {
+            logger.error("descriptionValue cannot be blank");
+            throw new IllegalArgumentException("descriptionValue cannot be blank");
+        }
         this.weightValue = weightValue;
         this.descriptionValue = descriptionValue;
     }
@@ -73,4 +85,7 @@ public enum SupportedComponentWeights {
     public String getDescriptionValue() {
         return descriptionValue;
     }
+    
+    private static final float MIN_RATIO = 0.0f;
+    private static final float MAX_RATIO = 1.0f;
 }

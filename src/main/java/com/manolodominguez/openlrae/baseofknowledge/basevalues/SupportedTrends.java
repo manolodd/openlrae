@@ -47,6 +47,18 @@ public enum SupportedTrends {
      * @param descriptionValue A text describing the meaning of the enum item.
      */
     private SupportedTrends(float trendValue, String descriptionValue) {
+        if ((trendValue < MIN_RATIO) || (trendValue > MAX_RATIO)) {
+            logger.error("trendValue has to be a float between 0.0f and 1.0");
+            throw new IllegalArgumentException("trendValue has to be a float between 0.0f and 1.0");
+        }
+        if (descriptionValue == null) {
+            logger.error("descriptionValue cannot be null");
+            throw new IllegalArgumentException("descriptionValue cannot be null");
+        }
+        if (descriptionValue.isBlank()) {
+            logger.error("descriptionValue cannot be blank");
+            throw new IllegalArgumentException("descriptionValue cannot be blank");
+        }
         this.trendValue = trendValue;
         this.descriptionValue = descriptionValue;
     }
@@ -68,4 +80,7 @@ public enum SupportedTrends {
     public String getDescriptionValue() {
         return descriptionValue;
     }
+
+    private static final float MIN_RATIO = 0.0f;
+    private static final float MAX_RATIO = 1.0f;
 }

@@ -95,6 +95,22 @@ public enum SupportedLicenses {
      * stated in by SPDX.
      */
     private SupportedLicenses(String spdxIdentifier, String spdxFullName, boolean onlyForComponents) {
+        if (spdxIdentifier == null) {
+            logger.error("spdxIdentifier cannot be null");
+            throw new IllegalArgumentException("spdxIdentifier cannot be null");
+        }
+        if (spdxIdentifier.isBlank()) {
+            logger.error("spdxIdentifier cannot be blank");
+            throw new IllegalArgumentException("spdxIdentifier cannot be blank");
+        }
+        if (spdxFullName == null) {
+            logger.error("spdxFullName cannot be null");
+            throw new IllegalArgumentException("spdxFullName cannot be null");
+        }
+        if (spdxFullName.isBlank()) {
+            logger.error("spdxFullName cannot be blank");
+            throw new IllegalArgumentException("spdxFullName cannot be blank");
+        }
         this.spdxIdentifier = spdxIdentifier;
         this.spdxFullName = spdxFullName;
         this.onlyForComponents = onlyForComponents;

@@ -15,6 +15,9 @@
  */
 package com.manolodominguez.openlrae.baseofknowledge.basevalues;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * This class implements an enum to define all type of distributions that can be
  * done of a given project. Some licenses have different terms or interpretation
@@ -27,6 +30,8 @@ public enum SupportedRedistributions {
     SAAS("The project is going to be redistributed as an online service: SaaS, web application, webservice, RESTful service, etc."),
     SOFTWARE_PACKAGE("The project is going to be redistributed as a software package (binary or source code)");
 
+    private Logger logger = LoggerFactory.getLogger(SupportedRedistributions.class);
+    
     private final String descriptionValue;
 
     /**
@@ -36,6 +41,14 @@ public enum SupportedRedistributions {
      * @param descriptionValue A text describing the meaning of the enum item.
      */
     private SupportedRedistributions(String descriptionValue) {
+        if (descriptionValue == null) {
+            logger.error("descriptionValue cannot be null");
+            throw new IllegalArgumentException("descriptionValue cannot be null");
+        }
+        if (descriptionValue.isBlank()) {
+            logger.error("descriptionValue cannot be blank");
+            throw new IllegalArgumentException("descriptionValue cannot be blank");
+        }
         this.descriptionValue = descriptionValue;
     }
 

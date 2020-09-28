@@ -48,6 +48,14 @@ public enum SupportedRisks {
      * @param descriptionValue A text describing the meaning of the enum item.
      */
     private SupportedRisks(String descriptionValue) {
+        if (descriptionValue == null) {
+            logger.error("descriptionValue cannot be null");
+            throw new IllegalArgumentException("descriptionValue cannot be null");
+        }
+        if (descriptionValue.isBlank()) {
+            logger.error("descriptionValue cannot be blank");
+            throw new IllegalArgumentException("descriptionValue cannot be blank");
+        }
         this.descriptionValue = descriptionValue;
     }
 
