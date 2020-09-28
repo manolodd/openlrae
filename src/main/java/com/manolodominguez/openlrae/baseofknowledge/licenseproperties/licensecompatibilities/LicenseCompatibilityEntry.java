@@ -68,6 +68,30 @@ public class LicenseCompatibilityEntry {
      * an intermediate value has to be explained.
      */
     public LicenseCompatibilityEntry(SupportedLicenses componentLicense, SupportedLicenses projectLicense, SupportedCompatibilities compatibility, SupportedLinks link, SupportedRedistributions redistribution, String specificWarning) {
+        if (componentLicense == null) {
+            logger.error("componentLicense cannot be null");
+            throw new IllegalArgumentException("componentLicense cannot be null");
+        }
+        if (projectLicense == null) {
+            logger.error("projectLicense cannot be null");
+            throw new IllegalArgumentException("projectLicense cannot be null");
+        }
+        if (compatibility == null) {
+            logger.error("compatibility cannot be null");
+            throw new IllegalArgumentException("compatibility cannot be null");
+        }
+        if (link == null) {
+            logger.error("link cannot be null");
+            throw new IllegalArgumentException("link cannot be null");
+        }
+        if (redistribution == null) {
+            logger.error("redistribution cannot be null");
+            throw new IllegalArgumentException("redistribution cannot be null");
+        }
+        if ((specificWarning != null) && (specificWarning.isBlank())) {
+            logger.error("specificWarning cannot be blank. If not needed, set it to null.");
+            throw new IllegalArgumentException("specificWarning cannot be blank. If not needed, set it to null.");
+        }
         this.componentLicense = componentLicense;
         this.projectLicense = projectLicense;
         this.compatibility = compatibility;
