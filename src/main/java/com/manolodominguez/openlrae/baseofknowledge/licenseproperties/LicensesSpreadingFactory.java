@@ -95,6 +95,10 @@ public final class LicensesSpreadingFactory {
      * @return the spreading of the specified license.
      */
     public SupportedSpreadings getSpreadingOf(SupportedLicenses license) {
+        if (license == null) {
+            logger.error("license cannot be null");
+            throw new IllegalArgumentException("license cannot be null");
+        }
         return licensesSpreadings.get(license);
     }
 

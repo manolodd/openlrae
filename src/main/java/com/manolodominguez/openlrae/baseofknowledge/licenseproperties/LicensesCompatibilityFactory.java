@@ -94,6 +94,22 @@ public final class LicensesCompatibilityFactory {
      * the rest of parameters.
      */
     public SupportedCompatibilities getCompatibilityOf(SupportedLicenses componentLicense, SupportedLicenses projectLicense, SupportedLinks link, SupportedRedistributions redistribution) {
+        if (componentLicense == null) {
+            logger.error("componentLicense cannot be null");
+            throw new IllegalArgumentException("componentLicense cannot be null");
+        }
+        if (projectLicense == null) {
+            logger.error("projectLicense cannot be null");
+            throw new IllegalArgumentException("projectLicense cannot be null");
+        }
+        if (link == null) {
+            logger.error("link cannot be null");
+            throw new IllegalArgumentException("link cannot be null");
+        }
+        if (redistribution == null) {
+            logger.error("redistribution cannot be null");
+            throw new IllegalArgumentException("redistribution cannot be null");
+        }
         for (LicenseCompatibilityEntry licenseCompatibilityEntry : this.licensesCompatibilities) {
             if (licenseCompatibilityEntry.getComponentLicense() == componentLicense) {
                 if (licenseCompatibilityEntry.getProjectLicense() == projectLicense) {

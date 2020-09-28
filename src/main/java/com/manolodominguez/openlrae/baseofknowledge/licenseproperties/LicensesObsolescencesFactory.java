@@ -99,6 +99,18 @@ public final class LicensesObsolescencesFactory {
      * @return The computed obsolescence.
      */
     private SupportedObsolescences computeObsolescence(int numberOfVersions, int currentVersion) {
+        if (numberOfVersions < MIN_NUMBER_OF_VERSIONS) {
+            logger.error("numberOfVersions has to be greater or equal than 1");
+            throw new IllegalArgumentException("numberOfVersions has to be greater or equal than 1");
+        }
+        if (currentVersion < MIN_NUMBER_OF_VERSIONS) {
+            logger.error("currentVersion has to be greater or equal than 1");
+            throw new IllegalArgumentException("currentVersion has to be greater or equal than 1");
+        }
+        if (currentVersion >  numberOfVersions) {
+            logger.error("currentVersion cannot be greater than numberOfVersions");
+            throw new IllegalArgumentException("currentVersion cannot be greater than numberOfVersions");
+        }
         float computedObsolescence = TOTAL_OBSOLESCENCE - (float) currentVersion / (float) numberOfVersions;
         // Using the latest version
         if (computedObsolescence == SupportedObsolescences.UPDATED.getObsolescenceValue()) {
@@ -125,12 +137,17 @@ public final class LicensesObsolescencesFactory {
      * @return the obsolescence of the specified license.
      */
     public SupportedObsolescences getObsolescenceOf(SupportedLicenses license) {
+        if (license == null) {
+            logger.error("license cannot be null");
+            throw new IllegalArgumentException("license cannot be null");
+        }
         return licensesObsolescenses.get(license);
     }
 
     private static final int FIRST_VERSION = 1;
     private static final float TOTAL_OBSOLESCENCE = 1.0f;
     private static final float HALF_OBSOLESCENCE = 0.5f;
+    private static final int MIN_NUMBER_OF_VERSIONS = 1;
 
     private static final int ONE = 1;
     private static final int TWO = 2;
