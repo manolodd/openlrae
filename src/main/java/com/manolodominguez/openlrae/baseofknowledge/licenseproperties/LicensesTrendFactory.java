@@ -94,6 +94,10 @@ public final class LicensesTrendFactory {
      * @return the trend of the specified license.
      */
     public SupportedTrends getTrendOf(SupportedLicenses license) {
+        if (license == null) {
+            logger.error("license cannot be null");
+            throw new IllegalArgumentException("license cannot be null");
+        }
         return licensesTrends.get(license);
     }
 }
