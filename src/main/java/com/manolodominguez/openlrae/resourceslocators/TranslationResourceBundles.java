@@ -41,6 +41,19 @@ public enum TranslationResourceBundles {
      * @param resourceBundleName The path to the resource bundle.
      */
     private TranslationResourceBundles(String resourceBundleName) {
+        if (resourceBundleName == null) {
+            logger.error("resourceBundleName cannot be null");
+            throw new IllegalArgumentException("resourceBundleName cannot be null");
+        }
+        if (resourceBundleName.isBlank()) {
+            logger.error("resourceBundleName cannot be blank");
+            throw new IllegalArgumentException("resourceBundleName cannot be blank");
+        }
+        // Checks whether the bundle exist or not.
+        if (getClass().getResourceAsStream(resourceBundleName) == null) {
+            logger.error("resourceBundleName does not exist");
+            throw new IllegalArgumentException("resourceBundleName does not exist");
+        }
         this.resourceBundleName = resourceBundleName;
     }
 
