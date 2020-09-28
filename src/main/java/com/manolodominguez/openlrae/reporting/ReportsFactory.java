@@ -79,6 +79,14 @@ public class ReportsFactory {
      * JSON string.
      */
     public String getReportAsBeautifiedJSONString(Project project, RiskAnalysisResult[] resultSet) {
+        if (project == null) {
+            logger.error("project cannot be null");
+            throw new IllegalArgumentException("project cannot be null");
+        }
+        if (resultSet == null) {
+            logger.error("resultSet cannot be null");
+            throw new IllegalArgumentException("resultSet cannot be null");
+        }
         return beautifyJSONString(getReportAsJSON(project, resultSet).toString());
     }
 
@@ -92,6 +100,14 @@ public class ReportsFactory {
      * library).
      */
     public Json getReportAsJSON(Project project, RiskAnalysisResult[] resultSet) {
+        if (project == null) {
+            logger.error("project cannot be null");
+            throw new IllegalArgumentException("project cannot be null");
+        }
+        if (resultSet == null) {
+            logger.error("resultSet cannot be null");
+            throw new IllegalArgumentException("resultSet cannot be null");
+        }
         Json report = object();
         Json projectinfo = object();
         Json licenses = array();
@@ -148,6 +164,14 @@ public class ReportsFactory {
      * @return a licensing risk analysis report as a plain text.
      */
     public String getReportAsPlainText(Project project, RiskAnalysisResult[] resultSet) {
+        if (project == null) {
+            logger.error("project cannot be null");
+            throw new IllegalArgumentException("project cannot be null");
+        }
+        if (resultSet == null) {
+            logger.error("resultSet cannot be null");
+            throw new IllegalArgumentException("resultSet cannot be null");
+        }
         String report = EMPTY_REPORT_AS_PLAIN_TEXT;
         report += "**************************************************\n";
         report += "\t=> Project name: " + project.getName() + "\n";
@@ -197,6 +221,14 @@ public class ReportsFactory {
      * @return a beautified JSON string.
      */
     private String beautifyJSONString(String uglyJSONString) {
+        if (uglyJSONString == null) {
+            logger.error("uglyJSONString cannot be null");
+            throw new IllegalArgumentException("uglyJSONString cannot be null");
+        }
+        if (uglyJSONString.isBlank()) {
+            logger.error("uglyJSONString cannot be blank");
+            throw new IllegalArgumentException("uglyJSONString cannot be blank");
+        }
         StringBuilder prettyJSONBuilder = new StringBuilder();
         int indentLevel = 0;
         boolean inQuote = false;
@@ -251,6 +283,14 @@ public class ReportsFactory {
      * inserted.
      */
     private void appendIndentedNewLine(int indentLevel, StringBuilder stringBuilder) {
+        if (indentLevel < MIN_INDENT_LEVEL) {
+            logger.error("indentLevel cannot be lower than " + MIN_INDENT_LEVEL);
+            throw new IllegalArgumentException("indentLevel cannot be lower than " + MIN_INDENT_LEVEL);
+        }
+        if (stringBuilder == null) {
+            logger.error("stringBuilder cannot be null");
+            throw new IllegalArgumentException("stringBuilder cannot be null");
+        }
         stringBuilder.append("\n");
         for (int indentions = 0; indentions < indentLevel; indentions++) {
             for (int spaces = 0; spaces < INDENTION_SPACES; spaces++) {
@@ -261,4 +301,5 @@ public class ReportsFactory {
 
     private static final String EMPTY_REPORT_AS_PLAIN_TEXT = "";
     private static final int INDENTION_SPACES = 4;
+    private static final int MIN_INDENT_LEVEL = 0;
 }
