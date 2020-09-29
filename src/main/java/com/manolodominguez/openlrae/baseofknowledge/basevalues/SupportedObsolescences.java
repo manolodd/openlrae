@@ -26,10 +26,10 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedObsolescences {
-    UPDATED(0.0f, "The license is in its latest version."),
-    NEAR_UPDATED(0.33f, "The license is not in its latest version but it is nearer of the latest than of the first version"),
-    NEAR_OUTDATED(0.67f, "The license is not in its latest version but it is nearer of the first than of the latest version"),
-    OUTDATED(1.0f, "The license is in its first version and there are more modern versions of that license");
+    UPDATED(0.0f, "in its latest version."),
+    NEAR_UPDATED(0.33f, "not in its latest version but it is nearer of the latest than of the first version."),
+    NEAR_OUTDATED(0.67f, "not in its latest version but it is nearer of the first than of the latest version."),
+    OUTDATED(1.0f, "in its first version and there are more modern versions of that license.");
 
     private Logger logger = LoggerFactory.getLogger(SupportedObsolescences.class);
 
