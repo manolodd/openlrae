@@ -27,7 +27,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.manolodominguez</groupId>
     <artifactId>openlrae</artifactId>
-    <version>${openlrae.version}</version>
+    <version>0.3</version>
     <packaging>jar</packaging>
     <name>Open Licensing Risks Analysis Engine</name>
     <description>Open LRAE is a licensing risk analysis engine in the form of Java library that allow the detection of risks related to licensing from the set of components (and their respective licenses) you are using in a given project. </description>
