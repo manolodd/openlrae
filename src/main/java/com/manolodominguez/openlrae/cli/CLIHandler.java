@@ -39,7 +39,6 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedSpreadin
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedTrends;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCompatibilityFactory;
 import com.manolodominguez.openlrae.resourceslocators.JSONFilesPaths;
-import com.manolodominguez.openlrae.resourceslocators.TranslationResourceBundles;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
