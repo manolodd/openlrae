@@ -25,15 +25,16 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This class implements a risk analyser whose mission is to detect those
- * elements whose licenses make impossible or, at least, risky, their use in the
- * project because of the project license, the type of link the component uses
+ * components whose licenses make impossible or, at least, risky, their use in
+ * the project because of project licenses, the type of link the component uses
  * and the type of distribution specified for the project. It is desiderable
- * that all components of the bill of components are compatible with the project
- * license; on the contrary, there are certain level of risk.
+ * that all components of the bill of components are fully compatible with
+ * project licenses; on the contrary, there are certain level of risk.
  *
  * We will use the totalCases as the reference point to compute risk exposure
  * and risk impact. totalCases is the number of component bindings that composes
- * the project.
+ * the project multiplied by the number of licenses the project will be released
+ * under.
  *
  * The important is computed this way:
  *
@@ -60,7 +61,7 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
      * @param project. The software project to be analised.
      */
     public RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense(Project project) {
-        // Project is ckecked at superclass
+        // Project is checked at superclass
         super(project, SupportedRisks.LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSE);
         logger = LoggerFactory.getLogger(RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.class);
     }
@@ -117,7 +118,7 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
                         // the exit of this loop to avoid repeating the same 
                         // tips, warnings, root causes... for each project 
                         // license.
-                        warnings.add("Although " + componentBinding.getFullName() + ", is compatible with a project released under "+projectLicense.getSPDXIdentifier()+" and can be included in " + this.project.getFullName() + ", it could be a source of risk for the evolution of the project in the future because it is not natively compatible.");
+                        warnings.add("Although " + componentBinding.getFullName() + ", is compatible with a project released under " + projectLicense.getSPDXIdentifier() + " and can be included in " + this.project.getFullName() + ", it could be a source of risk for the evolution of the project in the future because it is not natively compatible.");
                         warnings.add("Be sure that you have written permission from the copyright holder of " + componentBinding.getFullName() + ", to use the component in a project licensed under " + projectLicense.getSPDXIdentifier());
                         tips.add("Try to replace " + componentBinding.getFullName() + ", by another component natively compatible with a project released under " + projectLicense.getSPDXIdentifier());
                         break;
@@ -180,9 +181,9 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
                         // overall project, because it is prone to error.
                         riskExposure += componentBinding.getWeight().getWeightValue();
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
-                        rootCauses.add(componentBinding.getFullName()+ ", cannot be included in " + project.getFullName() + ", until a deep analysis. Its license is compatible wit a project released under " +projectLicense.getSPDXIdentifier()+ " except under certain circumstances.");
-                        warnings.add("Carry out a deep analysis to be sure that your specific case is not one of the exceptions in wich " + componentBinding.getFullName()+" is incompatible with a project released under "+projectLicense.getSPDXIdentifier()+" before using the component in the project.");
-                        tips.add("Try to replace " + componentBinding.getFullName()+ ", by another component fully compatible with a project licensed under " + projectLicense.getSPDXIdentifier());
+                        rootCauses.add(componentBinding.getFullName() + ", cannot be included in " + project.getFullName() + ", until a deep analysis. Its license is compatible wit a project released under " + projectLicense.getSPDXIdentifier() + " except under certain circumstances.");
+                        warnings.add("Carry out a deep analysis to be sure that your specific case is not one of the exceptions in wich " + componentBinding.getFullName() + " is incompatible with a project released under " + projectLicense.getSPDXIdentifier() + " before using the component in the project.");
+                        tips.add("Try to replace " + componentBinding.getFullName() + ", by another component fully compatible with a project licensed under " + projectLicense.getSPDXIdentifier());
                         break;
                     case MOSTLY_UNCOMPATIBLE:
                         // The analyzed component is incompatible with the 
@@ -197,9 +198,9 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
                         // overall project, because it is prone to error.
                         riskExposure += componentBinding.getWeight().getWeightValue();
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
-                        rootCauses.add(componentBinding.getFullName()+ ", cannot be included in " + project.getFullName() + ", until a deep analysis. Its license is incompatible wit a project released under " +projectLicense.getSPDXIdentifier()+ " except under certain circumstances.");
-                        warnings.add("Perform a deep analysis to be sure that your specific case is one of the exceptions in wich " + componentBinding.getFullName()+" is compatible with a project released under "+projectLicense.getSPDXIdentifier()+" before using the component in the project.");
-                        tips.add("Try to replace " + componentBinding.getFullName()+ ", by another component fully compatible with a project licensed under " + projectLicense.getSPDXIdentifier());
+                        rootCauses.add(componentBinding.getFullName() + ", cannot be included in " + project.getFullName() + ", until a deep analysis. Its license is incompatible wit a project released under " + projectLicense.getSPDXIdentifier() + " except under certain circumstances.");
+                        warnings.add("Perform a deep analysis to be sure that your specific case is one of the exceptions in wich " + componentBinding.getFullName() + " is compatible with a project released under " + projectLicense.getSPDXIdentifier() + " before using the component in the project.");
+                        tips.add("Try to replace " + componentBinding.getFullName() + ", by another component fully compatible with a project licensed under " + projectLicense.getSPDXIdentifier());
                         break;
                 }
             }
