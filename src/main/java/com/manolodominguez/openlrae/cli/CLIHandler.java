@@ -319,7 +319,7 @@ public class CLIHandler {
         System.out.println("OpenLRAE operates as a library. However it is an executable to allow");
         System.out.println("obtaning some information about the library. See the usage below:");
         System.out.println();
-        System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -e");
+        System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -s");
         System.out.println("\t This will show the OpenLRAE JSON schema for projects definition.");
         System.out.println();
         System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -i");
