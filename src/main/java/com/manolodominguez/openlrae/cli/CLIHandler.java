@@ -17,7 +17,6 @@ package com.manolodominguez.openlrae.cli;
 
 import com.manolodominguez.openlrae.analysis.LicenseRiskAnalysisEngine;
 import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
-import com.manolodominguez.openlrae.main.MainClass;
 import com.manolodominguez.openlrae.reporting.ReportsFactory;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLicensesOfComponentsTooObsolete;
@@ -38,7 +37,7 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedSpreadings;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedTrends;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCompatibilityFactory;
-import com.manolodominguez.openlrae.resourceslocators.JSONFilesPaths;
+import com.manolodominguez.openlrae.resourceslocators.FilesPaths;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -46,7 +45,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.logging.Level;
 import mjson.Json;
 import org.slf4j.LoggerFactory;
 
@@ -138,7 +136,7 @@ public class CLIHandler {
      */
     public void runExample2() {
         // Define the project. In this case, it is defined from a JSON file.
-        URL projectURL = getClass().getResource(JSONFilesPaths.PROJECT_EXAMPLE.getFilePath());
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
 
         // Define desired risk analysers we want to use for this project
@@ -312,27 +310,28 @@ public class CLIHandler {
      */
     public void showOptions() {
         System.out.println();
-        System.out.println("******************");
-        System.out.println("Open LRAE options.");
-        System.out.println("******************");
+        System.out.println("*************************************************************");
+        System.out.println("Open LRAE " + new VersionLoader().getVersion());
+        System.out.println("*************************************************************");
         System.out.println();
-        System.out.println("OpenLRAE operates as a library. However it is an executable to allow");
-        System.out.println("obtaning some information about the library. See the usage below:");
+        System.out.println("OpenLRAE is a library. However it is also an executable that allow");
+        System.out.println("obtaning some information about the library and doing some basic");
+        System.out.println("anaysis. See the usage below:");
         System.out.println();
         System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -s");
-        System.out.println("\t This will show the OpenLRAE JSON schema for projects definition.");
+        System.out.println("\tThis will show the OpenLRAE JSON schema for projects definition.");
         System.out.println();
         System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -i");
-        System.out.println("\t This will show information about features supported by this version of OpenLRAE.");
+        System.out.println("\tThis will show information about features supported by this version of OpenLRAE.");
         System.out.println();
         System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -e1");
-        System.out.println("\t This will execute a ficticious risk analysis and show you the resulting risk report as a plain text.");
+        System.out.println("\tThis will execute a ficticious risk analysis and show you the resulting risk report as a plain text.");
         System.out.println();
         System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -e2");
-        System.out.println("\t This will execute a ficticious risk analysis and show you the resulting risk report as a JSON string.");
+        System.out.println("\tThis will execute a ficticious risk analysis and show you the resulting risk report as a JSON string.");
         System.out.println();
         System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -a filename");
-        System.out.println("\t This will execute a risk analysis of a project that is defined in \"filename\" in JSON format and show you the resulting risk report as plain text.\n\tSee OpenLRAE JSON schema for projects to know how to write this project definition in JSON format properly.");
+        System.out.println("\tThis will execute a risk analysis of a project that is defined in \"filename\" in JSON format and show you the resulting risk report as plain text.\n\tSee OpenLRAE JSON schema for projects to know how to write this project definition in JSON format properly.");
         System.out.println();
     }
 
@@ -342,7 +341,7 @@ public class CLIHandler {
      * in order to be analysed by OpenLRAE.
      */
     public void showSchema() {
-        InputStream inputStream = getClass().getResourceAsStream(JSONFilesPaths.PROJECT_SCHEMA.getFilePath());
+        InputStream inputStream = getClass().getResourceAsStream(FilesPaths.PROJECT_SCHEMA.getFilePath());
         BufferedReader bufferedReader;
         try {
             bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -351,9 +350,9 @@ public class CLIHandler {
                 System.out.println(string);
             }
         } catch (FileNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainClass.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("The OpenLRAE JSON schema file cannot be found.");
         } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(MainClass.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("The OpenLRAE JSON schema file cannot be read.");
         }
     }
 }
