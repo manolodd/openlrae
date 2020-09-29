@@ -19,7 +19,7 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponen
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistributions;
-import com.manolodominguez.openlrae.resourceslocators.JSONFilesPaths;
+import com.manolodominguez.openlrae.resourceslocators.FilesPaths;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -184,7 +184,7 @@ public class Project {
         }
         Json.Schema schema;
         try {
-            URI schemaURI = getClass().getResource(JSONFilesPaths.PROJECT_SCHEMA.getFilePath()).toURI();
+            URI schemaURI = getClass().getResource(FilesPaths.PROJECT_SCHEMA.getFilePath()).toURI();
             schema = Json.schema(schemaURI);
             Json validationResult = schema.validate(projectDefinition);
             if (validationResult.at("ok").asBoolean()) {
@@ -212,7 +212,7 @@ public class Project {
         }
         Json.Schema schema;
         try {
-            URI schemaURI = getClass().getResource(JSONFilesPaths.PROJECT_SCHEMA.getFilePath()).toURI();
+            URI schemaURI = getClass().getResource(FilesPaths.PROJECT_SCHEMA.getFilePath()).toURI();
             schema = Json.schema(schemaURI);
             return schema.validate(projectDefinition);
         } catch (RuntimeException | URISyntaxException ex) {
