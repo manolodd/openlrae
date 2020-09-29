@@ -327,12 +327,19 @@ public class Project {
     }
 
     /**
-     * This method gets the name of the project followed by its version.
+     * This method gets the name, version and licenses of the project in a
+     * single string.
      *
-     * @return the name of the project concatenated with the project version.
+     * @return the name, version and licesnes of the project.
      */
     public String getFullName() {
-        return name + "-" + version;
+        String fullName = name + "-" + version + " (";
+        for (SupportedLicenses projectLicense: licenses) {
+            fullName+=projectLicense.getSPDXIdentifier()+", ";
+        }
+        fullName = fullName.substring(ZERO, fullName.length()-2);
+        fullName += "), redistributed as "+redistribution;
+        return fullName;
     }
 
     /**
