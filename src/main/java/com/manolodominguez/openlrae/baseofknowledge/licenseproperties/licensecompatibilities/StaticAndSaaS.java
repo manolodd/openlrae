@@ -52,7 +52,7 @@ public final class StaticAndSaaS implements InterfaceLicenseCompatibilitiesSubfa
         // Fake licenses for static linking and every potential project licenses
         for (SupportedLicenses projectLicense : SupportedLicenses.getLicensesForProjects()) {
             this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNDEFINED, projectLicense, SupportedCompatibilities.UNKNOWN, SupportedLinks.STATIC, SupportedRedistributions.SAAS, null));
-            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, projectLicense, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SAAS, null));
+            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, projectLicense, SupportedCompatibilities.FORCED_COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SAAS, null));
             this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNSUPPORTED, projectLicense, SupportedCompatibilities.UNSUPPORTED, SupportedLinks.STATIC, SupportedRedistributions.SAAS, null));
         }
     }

@@ -412,7 +412,7 @@ public final class DinamicAndSofwarePackage implements InterfaceLicenseCompatibi
         // Fake licenses for dinamic linking and every potential project licenses
         for (SupportedLicenses projectLicense : SupportedLicenses.getLicensesForProjects()) {
             this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNDEFINED, projectLicense, SupportedCompatibilities.UNKNOWN, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE, null));
-            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, projectLicense, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE, null));
+            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, projectLicense, SupportedCompatibilities.FORCED_COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE, null));
             this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNSUPPORTED, projectLicense, SupportedCompatibilities.UNSUPPORTED, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE, null));
         }
     }
