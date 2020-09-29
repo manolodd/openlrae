@@ -78,7 +78,6 @@ public class RiskAnalyserLicensesOfComponentsTooObsolete extends AbstractRiskAna
         SupportedObsolescences obsolescence;
         LicensesObsolescencesFactory licensesObsolescences = LicensesObsolescencesFactory.getInstance();
         int totalCases = this.project.getBillOfComponentBindings().size();
-
         for (ComponentBinding componentBinding : this.project.getBillOfComponentBindings()) {
             obsolescence = licensesObsolescences.getObsolescenceOf(componentBinding.getComponent().getLicense());
             switch (obsolescence) {
@@ -86,44 +85,43 @@ public class RiskAnalyserLicensesOfComponentsTooObsolete extends AbstractRiskAna
                     // The analyzed component is using the latest version of its
                     // license. Therefore there is not obsolescence risk in this
                     // case. 
-                    goodThings.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") " + "is already using the latest version of its license.");
+                    goodThings.add(componentBinding.getFullName()+ ", is using the license "+obsolescence.getDescriptionValue());
                     break;
                 case NEAR_UPDATED:
                     // The analyzed component is not using the latest version of
                     // its license, but a license version closer to the latest
                     // one. Therefore there is obsolescence risk in this case. 
-                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") that is " + licensesObsolescences.getObsolescenceOf(componentBinding.getComponent().getLicense()).toString());
-                    tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") by another component released under a newer license.");
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
+                    rootCauses.add(componentBinding.getFullName()+ ", is using the license " + obsolescence.getDescriptionValue());
+                    tips.add("Try to replace " + componentBinding.getFullName()+ ", by another component released under a newer license version.");
                     break;
                 case NEAR_OUTDATED:
                     // The analyzed component is not using the latest version of
                     // its license, but a license version far from the latest
                     // one. Therefore there is obsolescence risk in this case. 
-                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") that is " + licensesObsolescences.getObsolescenceOf(componentBinding.getComponent().getLicense()).toString());
-                    tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") by another component released under a newer license.");
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
+                    rootCauses.add(componentBinding.getFullName()+ " is using the license " + obsolescence.getDescriptionValue());
+                    tips.add("Try to replace " + componentBinding.getFullName()+ ", by another component released under a newer license version.");
                     break;
                 case OUTDATED:
                     // The analyzed component is not using the latest version of
                     // its license, but the first version of it. Therefore there 
                     // is obsolescence risk in this case. 
-                    rootCauses.add(componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " has a license (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") that is " + licensesObsolescences.getObsolescenceOf(componentBinding.getComponent().getLicense()).toString());
-                    tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") by another component released under a newer license.");
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
+                    rootCauses.add(componentBinding.getFullName()+ " is using the license " + obsolescence.getDescriptionValue());
+                    tips.add("Try to replace " + componentBinding.getFullName()+ ", by another component released under a newer license version.");
                     break;
             }
         }
-
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
         if (riskExposure > NO_RISK) {
-            tips.add("When modifying the project set of components to reduce the exposure to this risk, start changing components that are root causes in more cases.");
-            tips.add("When modifying the project set of components to reduce the exposure to this risk, start with those with higher level of contribution to the overall project.");
-            tips.add("If you own all right on a given component involved in rik root causes, try changing its license instead of looking for another component.");
+            tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risk, start changing components that are root causes in more cases.");
+            tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risk, start with those components with higher level of contribution to the overall project.");
+            tips.add("General tip: If you own all right on a given component involved in risk root causes, try changing its license instead of looking for another component.");
         }
     }
     private static final float NO_RISK = 0.0f;
