@@ -98,4 +98,15 @@ public class ComponentBinding {
         return weight;
     }
 
+    /**
+     * This method gets the name, version and license of the component in a
+     * single string.
+     *
+     * @return the name, version and license of the component.
+     */
+    public String getFullName() {
+        return component.getName() + "-" + component.getVersion() + " (" + component.getLicense().getSPDXIdentifier() + "), linked as "+link;
+    }
+
+    
 }
