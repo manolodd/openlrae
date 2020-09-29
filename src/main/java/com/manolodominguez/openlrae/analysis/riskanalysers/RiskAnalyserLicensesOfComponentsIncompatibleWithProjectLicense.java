@@ -220,8 +220,8 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
             tips.add("General tip: Try to use components with permisive licenses as it is more likely to have licensing risks.");
             tips.add("General tip: Try to relase your project under a single license. The more licenses you use for the project, the more licensing constraints you will have.");
             tips.add("General tip: Try not to use components released under an undefined license because from a legal point of view this is the same than the most restrictive license (all right reserved). Not having a defined license is not the same as released to public domain. The latter has to be declared explicitly.");
-            tips.add("General tip: When modifying the project set of components to reduce the exposure to this risks, start changing components that are root causes in more cases.");
-            tips.add("General tip: When modifying the project set of components to reduce the exposure to this risks, start with those with higher level of contribution to the overall project.");
+            tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start changing components that are root causes in more cases.");
+            tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start with those with higher level of contribution to the overall project.");
             tips.add("General tip: If you own all right on a given risky component, try changing its license instead of looking for another component.");
         }
     }
