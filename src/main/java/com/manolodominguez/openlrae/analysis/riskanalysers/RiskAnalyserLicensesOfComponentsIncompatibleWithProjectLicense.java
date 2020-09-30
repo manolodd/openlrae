@@ -150,7 +150,7 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
                         rootCauses.add(componentBinding.getFullName() + ", cannot be included in " + project.getFullName() + ". The license of the component is unknown and, therefore, assumed as incompatible with " + projectLicense.getSPDXIdentifier());
                         warnings.add("Although " + componentBinding.getFullName() + ", is handled as incompatible because its undefined license, it could be compatible once its license is known.");
                         tips.add("Try to replace " + componentBinding.getFullName() + ", by another component known to be compatible with a project released under " + projectLicense.getSPDXIdentifier());
-                        tips.add("Try to ask the copyright holder of " + componentBinding.getFullName() + ", to clarify the license of the component ant whether it is compatible with  a project licensed under " + projectLicense.getSPDXIdentifier() + " or not.");
+                        tips.add("Try to ask the copyright holder of " + componentBinding.getFullName() + ", to clarify the license of the component ant whether it is compatible with a project licensed under " + projectLicense.getSPDXIdentifier() + " or not.");
                         break;
                     case UNSUPPORTED:
                         // The analyzed component could be compatible or 
@@ -161,7 +161,9 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
                         // unknown one cannot assume that the component is 
                         // compatible. On the contrary, OpenLRAE by default
                         // assumes that the license of the component, in this 
-                        // situation is uncompatible.
+                        // situation is uncompatible. This is obviously a 
+                        // weakness of OpenLRAE that will be reduced as the 
+                        // project evolves.
                         riskExposure += componentBinding.getWeight().getWeightValue();
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
                         rootCauses.add(componentBinding.getFullName() + ", cannot be included in " + project.getFullName() + ". OpenLRAE does not support the license of the component yet and, therefore, it is assumed as incompatible with " + projectLicense.getSPDXIdentifier());
@@ -181,7 +183,7 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
                         // overall project, because it is prone to error.
                         riskExposure += componentBinding.getWeight().getWeightValue();
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
-                        rootCauses.add(componentBinding.getFullName() + ", cannot be included in " + project.getFullName() + ", until a deep analysis. Its license is compatible wit a project released under " + projectLicense.getSPDXIdentifier() + " except under certain circumstances.");
+                        rootCauses.add(componentBinding.getFullName() + ", cannot be included in " + project.getFullName() + ", until a deep analysis. Its license is compatible with a project released under " + projectLicense.getSPDXIdentifier() + " except under certain circumstances.");
                         warnings.add("Carry out a deep analysis to be sure that your specific case is not one of the exceptions in wich " + componentBinding.getFullName() + " is incompatible with a project released under " + projectLicense.getSPDXIdentifier() + " before using the component in the project.");
                         tips.add("Try to replace " + componentBinding.getFullName() + ", by another component fully compatible with a project licensed under " + projectLicense.getSPDXIdentifier());
                         break;
