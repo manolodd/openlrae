@@ -67,9 +67,9 @@ public enum SupportedLicenses {
     MPL_1_1("MPL-1.1", "Mozilla Public License 1.1", false),
     // These ones are special licenses, not real ones. They only apply to 
     // component definitions, but not to project definition.
-    UNDEFINED("Undefined", "An unknown license", true),
-    UNSUPPORTED("Unsupported", "License known but not supported by Open LRAE.", true),
-    FORCED_AS_PROJECT_LICENSE("Forced", "Written permission to use the component under the terms of the project licenses.", true);
+    UNDEFINED("Undefined-or-Unknown", "An unknown license", true),
+    UNSUPPORTED("Unsupported-by-OpenLRAE", "License known but not supported by Open LRAE.", true),
+    FORCED_AS_PROJECT_LICENSE("Forced-compatible-with-project-license", "Written permission to use the component under the terms of the project licenses.", true);
 
     private Logger logger = LoggerFactory.getLogger(SupportedLicenses.class);
 
