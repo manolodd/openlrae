@@ -122,6 +122,7 @@ public class RiskAnalyserLicensesOfComponentsTooObsolete extends AbstractRiskAna
             tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risk, start changing components that are root causes in more cases.");
             tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risk, start with those components with higher level of contribution to the overall project.");
             tips.add("General tip: If you own all right on a given component involved in risk root causes, try changing its license instead of looking for another component.");
+            tips.add("General tip: Always try to maintain a bill of components with modern liceses versions as it is less likely to have licensing incompatibilities.");
         }
     }
     private static final float NO_RISK = 0.0f;
