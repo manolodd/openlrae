@@ -21,9 +21,12 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCompatibilityFactory;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -99,62 +102,50 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
         float totalImpact;
         boolean canBeProjectLicense;
         SupportedCompatibilities compatibility;
-        Set<SupportedLicenses> allPotentialProjectLicenses;
-
-        allPotentialProjectLicenses = Collections.synchronizedSet(EnumSet.allOf(SupportedLicenses.class));
-        // These licenses are not real licenses and then are not used as 
-        // potential project licenses to compute the risk exposure level.
-        // FIX: Remove special licenses by using isOnlyForComponents() method of
-        // SupportedLicenses, in a loop, instead of harcoding.
-        allPotentialProjectLicenses.remove(SupportedLicenses.UNDEFINED);
-        allPotentialProjectLicenses.remove(SupportedLicenses.FORCED_AS_PROJECT_LICENSE);
-        allPotentialProjectLicenses.remove(SupportedLicenses.UNSUPPORTED);
+        CopyOnWriteArrayList<SupportedLicenses> allPotentialProjectLicenses;
+        allPotentialProjectLicenses = new CopyOnWriteArrayList<>(Arrays.asList(SupportedLicenses.getLicensesForProjects()));
 
         totalExposure = allPotentialProjectLicenses.size();
         totalImpact = DEFAULT_TOTAL_IMPACT;
-        for (int i = 0; i < totalExposure; i++) {
-            for (ComponentBinding componentBinding : this.project.getBillOfComponentBindings()) {
+        for (int i = ZERO; i < totalExposure; i++) {
+            for (ComponentBinding componentBinding : project.getBillOfComponentBindings()) {
                 totalImpact += componentBinding.getWeight().getWeightValue();
             }
         }
 
         LicensesCompatibilityFactory licensesCompatibilities = LicensesCompatibilityFactory.getInstance();
         for (SupportedLicenses potentialProjectLicense : allPotentialProjectLicenses) {
+            // This will be true at the en of the loop only if all components in
+            // the bill of components are compatible with this potential project 
+            // license. Otherwise, this will be false.
             canBeProjectLicense = CAN_BE_PROJECT_LICENSE;
-            for (ComponentBinding componentBinding : this.project.getBillOfComponentBindings()) {
-                compatibility = licensesCompatibilities.getCompatibilityOf(componentBinding.getComponent().getLicense(), potentialProjectLicense, componentBinding.getLinkType(), this.project.getRedistribution());
+            for (ComponentBinding componentBinding : project.getBillOfComponentBindings()) {
+                compatibility = licensesCompatibilities.getCompatibilityOf(componentBinding.getComponent().getLicense(), potentialProjectLicense, componentBinding.getLinkType(), project.getRedistribution());
                 switch (compatibility) {
                     case COMPATIBLE:
                         // The analyzed component is compatible with the 
-                        // potential project license (taking into account 
-                        // the type of link and the project distribution 
-                        // that has been specified). Therefore, that 
-                        // potential project license can be used a the 
-                        // project license without risk.
+                        // potential project license (taking into account the 
+                        // type of link and the project distribution that has 
+                        // been specified). Therefore, this component will not
+                        // be a problem to use the potential project license
+                        // for the project, altough the rest of components have 
+                        // to be also compatible for this to be true.
                         break;
                     case FORCED_COMPATIBLE:
-                        // The analyzed component is compatible with the project
-                        // license (taking into account the type of link and the 
-                        // project distribution that has been specified). Only 
-                        // because it has ben forced to be compatible. Generally
-                        // this happens when the author of the component give 
-                        // written permission to use the component in a project 
-                        // with a given license. Also, when you are using a 
-                        // commercial component that allo including it in the 
-                        // project.
-                        // However, this is only true if we are testing a 
-                        // component forced to be compatible against the current 
-                        // real project license. In this case we are sure that
-                        // it is compatible. But we cannot assure that this
-                        // compatibility is true if we check against a potential
-                        // project license distinct from the current one; and,
-                        // therefore, we have have to handle it as incompatible. 
-                        if (this.project.getLicenses().get(0) != potentialProjectLicense) {
-                            rootCauses.add(potentialProjectLicense.getSPDXIdentifier() + " could not be used as project license because of " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") that is forced to be compatible with " + this.project.getLicenses().get(0).getSPDXIdentifier() + " but perhaps is not compatible with " + potentialProjectLicense.getSPDXIdentifier() + " via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
-                            tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") by another component compatible also with a project licensed under " + potentialProjectLicense.getSPDXIdentifier() + " via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
-                            riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
-                            canBeProjectLicense = false;
-                        }
+                        // The analyzed component is compatible with the 
+                        // potential project license (taking into account the 
+                        // type of link and the project distribution that has 
+                        // been specified). Only because it has been forced to 
+                        // be compatible (Generally this happens when the author 
+                        // of the component give written permission to use the 
+                        // component in a project with a given license). 
+                        // Therefore, this component will not be a problem to 
+                        // use the potential project license for the project, 
+                        // altough the rest of components have to be also 
+                        // compatible for this to be true.
+                        // Add a warning to indicate the obligation of having
+                        // written permission from the copyright holder.
+                        tips.add("Try to replace " + componentBinding.getFullName() + ", by a component with other license natively compatible with a project licensed under " + potentialProjectLicense.getSPDXIdentifier() + " and redistributed as " +project.getRedistribution().toString());
                         break;
                     case UNCOMPATIBLE:
                         // The analyzed component is incompatible with the 
@@ -162,10 +153,10 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
                         // type of link and the project distribution that has 
                         // been specified). Therefore it cannot be used in the 
                         // project.
-                        rootCauses.add(potentialProjectLicense.getSPDXIdentifier() + " could not be used as project license because of " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") that is uncompatible via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
-                        tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") by another component compatible also with a project licensed under " + potentialProjectLicense.getSPDXIdentifier() + " via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
-                        canBeProjectLicense = false;
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
+                        canBeProjectLicense = false;
+                        rootCauses.add(potentialProjectLicense.getSPDXIdentifier() + " could not be used as project license because of " + componentBinding.getFullName() + ", that is uncompatible with a project under this license redistributed as " + project.getRedistribution().toString());
+                        tips.add("Try to replace " + componentBinding.getFullName() + ", by a component with other license compatible with a project licensed under " + potentialProjectLicense.getSPDXIdentifier() + " and redistributed as " +project.getRedistribution().toString());
                         break;
                     case UNKNOWN:
                         // The analyzed component could be compatible or 
@@ -176,10 +167,10 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
                         // unknown one cannot understand that the component is 
                         // compatible. On the contrary, in this situation the 
                         // component is handled as uncompatible.
-                        rootCauses.add(potentialProjectLicense.getSPDXIdentifier() + " could not be used as project license because of " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") that is not known to be compatible via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
-                        tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") by another component compatible also with a project licensed under " + potentialProjectLicense.getSPDXIdentifier() + " via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
-                        canBeProjectLicense = false;
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
+                        canBeProjectLicense = false;
+                        rootCauses.add(potentialProjectLicense.getSPDXIdentifier() + " could not be used as project license because of " + componentBinding.getFullName() + ", that is not known to be compatible with a project under this license redistributed as " + project.getRedistribution().toString());
+                        tips.add("Try to replace " + componentBinding.getFullName() + ", by a component with other license known to be compatible with a project licensed under " + potentialProjectLicense.getSPDXIdentifier() + " and redistributed as " +project.getRedistribution().toString());
                         break;
                     case UNSUPPORTED:
                         // The analyzed component could be compatible or 
@@ -192,10 +183,10 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
                         // of the component, in this situation the component is 
                         // handled as uncompatible.
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
-                        rootCauses.add(potentialProjectLicense.getSPDXIdentifier() + " could not be used as project license because of " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") that is not supported by OpenLRAE and, therefore, cannot be assured that is compatible via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution. By default it is handled as incompatible.");
-                        warnings.add("Although " + potentialProjectLicense.getSPDXIdentifier() + " could not be used as a project license because " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") is handled as incompatible by default because its license is not supported by OpenLRAE, perhaps it could be used as project license once OpenLRAE knows how to analyse this license. We apologize for the inconvenience.");
-                        tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") by another component with a license supported by OpenLRAE and compatible with " + potentialProjectLicense.getSPDXIdentifier() + " via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
                         canBeProjectLicense = false;
+                        rootCauses.add(potentialProjectLicense.getSPDXIdentifier() + " could not be used as project license because of " + componentBinding.getFullName() + ", whose license is not supported by OpenLRAE and cannot be analysed. Therefore, this is handled as to be incompatible with a project under this license redistributed as " + project.getRedistribution().toString()+". We apologize for the inconvenience.");
+                        warnings.add("Although " + potentialProjectLicense.getSPDXIdentifier() + " could not be used as a project license because " + componentBinding.getFullName() + ", is handled as incompatible by default because its license is not supported by OpenLRAE, perhaps it could be used as project license once OpenLRAE knows how to analyse this license. We apologize for the inconvenience.");
+                        tips.add("Try to replace " + componentBinding.getFullName() + ", by a component with a license supported by OpenLRAE if you whant to analyse the project with OpenLRAE. This way you will be able to know whether it would be compatible with a project licensed under " + potentialProjectLicense.getSPDXIdentifier() + " and redistributed as " +project.getRedistribution().toString()+" or not");
                         break;
                     case MOSTLY_COMPATIBLE:
                         // The analyzed component is compatible with the 
@@ -206,9 +197,10 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
                         // used after verifying the specific case. Anyway, 
                         // components with this kind of compatibilities induce 
                         // a moderated risk in the overall project.
-                        rootCauses.add(potentialProjectLicense.getSPDXIdentifier() + " could be used as project license, but " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") is not completely compatible via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
-                        tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") by another component fully compatible with a project licensed under " + potentialProjectLicense.getSPDXIdentifier() + " via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
+                        rootCauses.add(potentialProjectLicense.getSPDXIdentifier() + " could not be used as project license, at least without a depp analysis because of "+componentBinding.getFullName() + ", whose license is compatible with that project license except under certain circumstances.");
+                        warnings.add("Carry out a deep analysis to be sure that your specific case is not one of the exceptions in wich " + componentBinding.getFullName() + " is incompatible with a project released under " + potentialProjectLicense.getSPDXIdentifier() + " before choosing that license for the project.");
+                        tips.add("Try to replace " + componentBinding.getFullName() + ", by a component with a license fully compatible with a project licensed under " + potentialProjectLicense.getSPDXIdentifier() + " and redistributed as " +project.getRedistribution().toString());
                         break;
                     case MOSTLY_UNCOMPATIBLE:
                         // The analyzed component is incompatible with the 
@@ -219,25 +211,28 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
                         // used after verifying the specific case. Anyway, 
                         // components with this kind of compatibilities induce 
                         // a high risk in the overall project.
-                        rootCauses.add(potentialProjectLicense.getSPDXIdentifier() + " could be used as project license, but " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") is almost incompatible via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
-                        tips.add("Try changing " + componentBinding.getComponent().getName() + "-" + componentBinding.getComponent().getVersion() + " (" + componentBinding.getComponent().getLicense().getSPDXIdentifier() + ") by another component fully compatible with a project licensed under " + potentialProjectLicense.getSPDXIdentifier() + " via a " + componentBinding.getLinkType().toString() + " link and " + this.project.getRedistribution().toString() + " redistribution.");
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
+                        rootCauses.add(potentialProjectLicense.getSPDXIdentifier() + " could not be used as project license, at least without a depp analysis because of "+componentBinding.getFullName() + ", whose license is incompatible with that project license except under certain circumstances.");
+                        warnings.add("Carry out a deep analysis to be sure that your specific case is one of the exceptions in wich " + componentBinding.getFullName() + " is compatible with a project released under " + potentialProjectLicense.getSPDXIdentifier() + " before choosing that license for the project.");
+                        tips.add("Try to replace " + componentBinding.getFullName() + ", by a component with a license fully compatible with a project licensed under " + potentialProjectLicense.getSPDXIdentifier() + " and redistributed as " +project.getRedistribution().toString());
                         break;
                 }
             }
 
             if (canBeProjectLicense) {
-                goodThings.add(potentialProjectLicense.getSPDXIdentifier() + " can be used as project license because all components of the projects (an their respective type of bindings) are compatible with it and with " + this.project.getRedistribution().toString() + " redistribution.");
+                // All components are compatible with the potential project 
+                // licenses being analysed.
+                goodThings.add(potentialProjectLicense.getSPDXIdentifier() + " could be used as project license because all components of the project (and their respective type of bindings) are compatible with it and with " + project.getRedistribution().toString() + " redistribution.");
             } else {
                 // riskExposure is updated here because in order to be used as
                 // a project license, all component bindings of the project have
                 // to be compatible with that license. And this is something 
                 // we know here. We could go out the the nested "for" loop in 
                 // the block, some lines above, but we need to run the loop 
-                // completely in order to compute the riskExposure. It is not 
-                // the same the case a project license that is unfeasible 
-                // because all components are incompatible with it, than other
-                // case where a project license is unfeasible because only one
+                // completely in order to compute the riskImpact. It is not the 
+                // same the case a project license that is unfeasible because 
+                // all components are incompatible with it, than other case 
+                // where a project license is unfeasible because only one
                 // component binding is incompatible. Both are incompatible but
                 // the fist one is a worse case than the second and, therefore,
                 // adds more riskImpact to the computation.
@@ -249,14 +244,16 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
         riskImpact /= totalImpact;
 
         if (riskExposure > NO_RISK) {
-            tips.add("In general, try not to use static linking as it is more probable to have incompatibilities.");
-            tips.add("In general, try to use components with permisive licenses.");
-            tips.add("When modifying the project set of components to reduce the exposure to this risk, start changing components that are root causes in more cases.");
-            tips.add("When modifying the project set of components to reduce the exposure to this risk, start with those with higher level of contribution to the overall project.");
-            tips.add("If you own all right on a given component involved in rik root causes, try changing its license instead of looking for another component.");
-            tips.add("When possible, try to use a set of components whose licenses are compatible with many potential project licenses. This way you could change the project license in the future or release the project under some licenses simultaneously easily.");
+            tips.add("General tip: Try not to link component statically in your project as it is more likely to have incompatibilities.");
+            tips.add("General tip: Try not to include a derivative work of a component under a different license than the original component as it is more likely to have incompatibilities.");
+            tips.add("General tip: Try to use components with permisive licenses as it is more likely to have licensing risks.");
+            tips.add("General tip: Try to relase your project under a single license. The more licenses you use for the project, the more licensing constraints you will have.");
+            tips.add("General tip: Try not to use components released under an undefined license because from a legal point of view this is the same than the most restrictive license (all right reserved). Not having a defined license is not the same as released to public domain. The latter has to be declared explicitly.");
+            tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start changing components that are root causes in more cases.");
+            tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start with those with higher level of contribution to the overall project.");
+            tips.add("General tip: If you own all right on a given risky component, try changing its license instead of looking for another component.");
             if (riskExposure == TOTAL_RISK) {
-                rootCauses.add("There is not an open source license that is compatible with all licenses of the defined set of compenents. At least without a deep analysis of your case.");
+                rootCauses.add("None of the licenses supported by OpenLRAE is compatible with all licenses of the defined bill of components. At least without a deep analysis of your case.");
             }
         }
     }
@@ -266,4 +263,5 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
     private static final float TOTAL_RISK = 1.0f;
     private static final float NO_RISK = 0.0f;
     private static final float DEFAULT_TOTAL_IMPACT = 0.0f;
+    private static final int ZERO = 0;
 }
