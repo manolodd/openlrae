@@ -36,36 +36,66 @@ public class ReportsFactory {
     private Logger logger = LoggerFactory.getLogger(ReportsFactory.class);
 
     private static volatile ReportsFactory instance;
+    private SupportedVerbosityLevel verbosity;
 
     /**
      * This method is the constructor of the class. It creates a new instance of
      * ReportsFactory.
      *
      * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
+     * @param verbosity the verbosity level to wich the instance of
+     * ReportsFactory is configured.
      */
-    private ReportsFactory() {
-        // Do nothing
+    private ReportsFactory(SupportedVerbosityLevel verbosity) {
+        this.verbosity = verbosity;
     }
 
     /**
-     * This method returns an instance of this class. This class implements the
+     * This method sets the verbosity level of the instance to the value
+     * specified as an argument.
+     *
+     * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
+     * @param verbosity the verbosity level to wich the instance is configured.
+     */
+    private void setVerbosity(SupportedVerbosityLevel verbosity) {
+        this.verbosity = verbosity;
+    }
+
+    /**
+     * This method returns an instance of this class.This class implements the
      * singleton pattern. This means that only a single instance of this class
      * can be created. This method creates the first instance or returns it if
      * it is already created.
      *
+     * @param verbosity the verbosity level to wich the instance of
+     * ReportsFactory is configured.
      * @return An instance of ReportsFactory.
      */
-    public static ReportsFactory getInstance() {
+    public static ReportsFactory getInstance(SupportedVerbosityLevel verbosity) {
         ReportsFactory localInstance = ReportsFactory.instance;
         if (localInstance == null) {
             synchronized (ReportsFactory.class) {
                 localInstance = ReportsFactory.instance;
                 if (localInstance == null) {
-                    ReportsFactory.instance = localInstance = new ReportsFactory();
+                    ReportsFactory.instance = localInstance = new ReportsFactory(verbosity);
                 }
             }
         }
+        localInstance.setVerbosity(verbosity);
         return localInstance;
+    }
+
+    /**
+     * This method returns an instance of this class.This class implements the
+     * singleton pattern. This means that only a single instance of this class
+     * can be created. This method creates the first instance or returns it if
+     * it is already created. And configure that instance to default verbosity
+     * level.
+     *
+     * @return An instance of ReportsFactory.
+     */
+    public static ReportsFactory getInstance() {
+        return getInstance(DEFAULT_VERBOSITY_LEVEL);
     }
 
     /**
@@ -131,17 +161,21 @@ public class ReportsFactory {
             analysis.set("riskvalue", riskAnalysisResult.getRiskValue());
             analysis.set("riskexposure", riskAnalysisResult.getRiskExposure());
             analysis.set("riskimpact", riskAnalysisResult.getRiskImpact());
-            for (String rootCause : riskAnalysisResult.getRootCauses()) {
-                rootcauses.add(rootCause);
+            if ((verbosity == SupportedVerbosityLevel.RICH) || (verbosity == SupportedVerbosityLevel.DETAILED)) {
+                for (String rootCause : riskAnalysisResult.getRootCauses()) {
+                    rootcauses.add(rootCause);
+                }
+                for (String warning : riskAnalysisResult.getWarnings()) {
+                    warnings.add(warning);
+                }
+                for (String goodThing : riskAnalysisResult.getGoodThings()) {
+                    goodthings.add(goodThing);
+                }
             }
-            for (String warning : riskAnalysisResult.getWarnings()) {
-                warnings.add(warning);
-            }
-            for (String goodThing : riskAnalysisResult.getGoodThings()) {
-                goodthings.add(goodThing);
-            }
-            for (String tip : riskAnalysisResult.getTips()) {
-                tips.add(tip);
+            if (verbosity == SupportedVerbosityLevel.DETAILED) {
+                for (String tip : riskAnalysisResult.getTips()) {
+                    tips.add(tip);
+                }
             }
             analysis.set("rootcauses", rootcauses);
             analysis.set("warnings", warnings);
@@ -174,38 +208,42 @@ public class ReportsFactory {
         }
         String report = EMPTY_REPORT_AS_PLAIN_TEXT;
         report += "**************************************************\n";
-        report += "\t=> Project name: " + project.getName() + "\n";
-        report += "\t=> Project version: " + project.getVersion() + "\n";
-        report += "\t=> Project's selected licenses: ";
+        report += "Project name: " + project.getName() + "\n";
+        report += "Project version: " + project.getVersion() + "\n";
+        report += "Project's selected licenses: ";
         for (SupportedLicenses projectLicense : project.getLicenses()) {
             report += projectLicense.getSPDXFullName() + " (" + projectLicense.getSPDXIdentifier() + "),";
         }
         report += "\n";
-        report += "\t=> Project redistribution: " + project.getRedistribution().getDescriptionValue() + "\n";
+        report += addTab(1)+"=> Project redistribution: " + project.getRedistribution().getDescriptionValue() + "\n";
         report += "**************************************************\n";
         report += "### Component bindigs:\n";
         for (ComponentBinding spp : project.getBillOfComponentBindings()) {
-            report += "\t=> " + spp.getComponent().getName() + "-" + spp.getComponent().getVersion() + " (" + spp.getComponent().getLicense().getSPDXIdentifier() + ") --> Contribution to the project: " + spp.getWeight().getDescriptionValue() + "\n";
+            report += addTab(1)+"=> " + spp.getComponent().getName() + "-" + spp.getComponent().getVersion() + " (" + spp.getComponent().getLicense().getSPDXIdentifier() + ") --> Contribution to the project: " + spp.getWeight().getDescriptionValue() + "\n";
         }
         report += "### Risk analysis\n";
         for (RiskAnalysisResult riskAnalysisResult : resultSet) {
-            report += "\t=> " + riskAnalysisResult.getRiskType().getDescriptionValue() + "\n";
-            report += "\t\t*** Risk = " + riskAnalysisResult.getRiskValue() + " (Exposure = " + riskAnalysisResult.getRiskExposure() + ", Impact = " + riskAnalysisResult.getRiskImpact() + ")\n";
-            report += "\t\t*** Root causes\n";
-            for (String rootCause : riskAnalysisResult.getRootCauses()) {
-                report += "\t\t\t=> " + rootCause + "\n";
+            report += addTab(1)+"=> " + riskAnalysisResult.getRiskType().getDescriptionValue() + "\n";
+            report += addTab(2)+"*** Risk = " + riskAnalysisResult.getRiskValue() + " (Exposure = " + riskAnalysisResult.getRiskExposure() + ", Impact = " + riskAnalysisResult.getRiskImpact() + ")\n";
+            if ((verbosity == SupportedVerbosityLevel.RICH) || (verbosity == SupportedVerbosityLevel.DETAILED)) {
+                report += addTab(2)+"*** Root causes\n";
+                for (String rootCause : riskAnalysisResult.getRootCauses()) {
+                    report += addTab(3)+"=> " + rootCause + "\n";
+                }
+                report += addTab(2)+"*** Warnings\n";
+                for (String warning : riskAnalysisResult.getWarnings()) {
+                    report += addTab(3)+"=> " + warning + "\n";
+                }
+                report += addTab(2)+"*** Good things\n";
+                for (String goodThing : riskAnalysisResult.getGoodThings()) {
+                    report += addTab(3)+"=> " + goodThing + "\n";
+                }
             }
-            report += "\t\t*** Warnings\n";
-            for (String warning : riskAnalysisResult.getWarnings()) {
-                report += "\t\t\t=> " + warning + "\n";
-            }
-            report += "\t\t*** Good things\n";
-            for (String goodThing : riskAnalysisResult.getGoodThings()) {
-                report += "\t\t\t=> " + goodThing + "\n";
-            }
-            report += "\t\t*** Tips to mitigate the risk\n";
-            for (String tip : riskAnalysisResult.getTips()) {
-                report += "\t\t\t=> " + tip + "\n";
+            if (verbosity == SupportedVerbosityLevel.DETAILED) {
+                report += addTab(2)+"*** Tips to mitigate the risk\n";
+                for (String tip : riskAnalysisResult.getTips()) {
+                    report += addTab(3)+"=> " + tip + "\n";
+                }
             }
         }
         return report;
@@ -299,7 +337,18 @@ public class ReportsFactory {
         }
     }
 
+    private String addTab(int indentLevel) {
+        String auxString = "";
+        for (int indentions = 0; indentions < indentLevel; indentions++) {
+            for (int spaces = 0; spaces < INDENTION_SPACES; spaces++) {
+                auxString+=" ";
+            }
+        }
+        return auxString;
+    }
+
     private static final String EMPTY_REPORT_AS_PLAIN_TEXT = "";
-    private static final int INDENTION_SPACES = 4;
+    private static final int INDENTION_SPACES = 2;
     private static final int MIN_INDENT_LEVEL = 0;
+    private static final SupportedVerbosityLevel DEFAULT_VERBOSITY_LEVEL = SupportedVerbosityLevel.DETAILED;
 }
