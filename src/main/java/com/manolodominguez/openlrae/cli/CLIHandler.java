@@ -37,6 +37,7 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedSpreadings;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedTrends;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCompatibilityFactory;
+import com.manolodominguez.openlrae.reporting.SupportedVerbosityLevel;
 import com.manolodominguez.openlrae.resourceslocators.FilesPaths;
 import java.io.BufferedReader;
 import java.io.File;
@@ -117,7 +118,7 @@ public class CLIHandler {
 
                         // Print analysis report. As a JSON string in this case.
                         System.out.println();
-                        System.out.println(ReportsFactory.getInstance().getReportAsPlainText(project, resultSet));
+                        System.out.println(ReportsFactory.getInstance(SupportedVerbosityLevel.DETAILED).getReportAsPlainText(project, resultSet));
                     } catch (Exception ex) {
                         System.out.println("There was a problem trying to analyse " + fileName + ". Is it a correct JSON file compliant with OpenLRAE JSON schema for projects definition?");
                     }
@@ -182,7 +183,7 @@ public class CLIHandler {
         ComponentBinding componentBinding3 = new ComponentBinding(component3, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
         ComponentBinding componentBinding4 = new ComponentBinding(component4, SupportedLinks.STATIC, SupportedComponentWeights.HIGH);
         // Add the component bindigs to the project
-        Project project = new Project("OpenLRAE", "1.0", SupportedLicenses.APACHE_2_0, SupportedRedistributions.SOFTWARE_PACKAGE, componentBinding1);
+        Project project = new Project("OpenLRAE", "1.0", SupportedLicenses.APACHE_2_0, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, componentBinding1);
         project.addLicense(SupportedLicenses.MIT);
         project.addComponentBinding(componentBinding2);
         project.addComponentBinding(componentBinding3);
