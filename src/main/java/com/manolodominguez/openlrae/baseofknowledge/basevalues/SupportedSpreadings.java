@@ -26,10 +26,10 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedSpreadings {
-    HIGHLY_WIDESPREAD(0.0f, "It is difficult to find out projects, now, that don't use this license."),
-    NEAR_HIGHLY_WIDESPREAD(0.33f, "There are many projects, now, that use this license."),
-    NEAR_LITTLE_WIDESPREAD(0.67f, "There are a few projects, now, that use this license."),
-    LITTLE_WIDESPREAD(1.0f, "It is difficult to find out projects, now, that use this license.");
+    HIGHLY_WIDESPREAD(0.0f, "is highly widespread. Lots of projects use this license."),
+    NEAR_HIGHLY_WIDESPREAD(0.33f, "is near highly widespread. Several projects use this license."),
+    NEAR_LITTLE_WIDESPREAD(0.67f, "is near little widespread. Only a few projects uses this license."),
+    LITTLE_WIDESPREAD(1.0f, "is little widespread. It is difficult to find out project that use that license.");
 
     private Logger logger = LoggerFactory.getLogger(SupportedSpreadings.class);
 
