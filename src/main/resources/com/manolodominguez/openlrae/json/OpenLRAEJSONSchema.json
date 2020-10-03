@@ -50,8 +50,7 @@
         "redistributionsEnum": {
             "enum": [
                 "NONE",
-                "SAAS",
-                "SOFTWARE_PACKAGE"
+                "SOFTWARE_PACKAGE_OR_SAAS"
             ]
         },
         "linksEnum": {
