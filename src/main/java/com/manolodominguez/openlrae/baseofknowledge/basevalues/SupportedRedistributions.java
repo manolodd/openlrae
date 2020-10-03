@@ -26,9 +26,8 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedRedistributions {
-    NONE("The project is not going to be redistributed in any way."),
-    SAAS("The project is going to be redistributed as an online service: SaaS, web application, webservice, RESTful service, etc."),
-    SOFTWARE_PACKAGE("The project is going to be redistributed as a software package (binary or source code)");
+    NONE("is not going to be redistributed in any way"),
+    SOFTWARE_PACKAGE_OR_SAAS("is going to be redistributed as a software package (binary or source code) or as an online service");
 
     private Logger logger = LoggerFactory.getLogger(SupportedRedistributions.class);
     
