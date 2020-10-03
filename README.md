@@ -22,12 +22,13 @@ With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard o
 
 # LICENSE
 
-## Latest release:
+## Latest SNAPSHOT:
  
-- <b>OpenLRAE 0.3</b> is released under the terms of Apache License, Version 2.0.
+- <b>OpenLRAE 0.4-SNAPSHOT</b> is released under the terms of Apache License, Version 2.0.
 
 ## Previous releases:
 
+- <b>OpenLRAE 0.3</b> was released under the terms of Apache License, Version 2.0.
 - <b>OpenLRAE 0.2</b> was released under the terms of Apache License, Version 2.0.
 - <b>OpenLRAE 0.1</b> was released under the terms of Apache License, Version 2.0.
 
