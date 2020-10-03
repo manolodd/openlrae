@@ -26,10 +26,10 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedTrends {
-    UNFASHIONABLE(1.0f, "The license is unfashionable"),
-    NEAR_UNFASHIONABLE(0.67f, "The license is almost unfashionable"),
-    NEAR_TRENDY(0.33f, "The license is almost trendy"),
-    TRENDY(0.0f, "The license is trendy");
+    UNFASHIONABLE(1.0f, "is unfashionable"),
+    NEAR_UNFASHIONABLE(0.67f, "is almost unfashionable"),
+    NEAR_TRENDY(0.33f, "is almost trendy"),
+    TRENDY(0.0f, "is trendy");
 
     private Logger logger = LoggerFactory.getLogger(SupportedTrends.class);
 
