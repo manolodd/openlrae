@@ -207,10 +207,10 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
                 }
             }
             if (jointCompatibilityEvaluator.isFullyCompatible(project)) {
-                goodThings.add(componentBinding.getFullName() + ", can be included in " + this.project.getFullName() + ", because it is natively compatible with project licenses.");
+                goodThings.add(componentBinding.getFullName() + ", is natively compatible and can be included in " + this.project.getFullName());
             }
             if (jointCompatibilityEvaluator.isFullyForcedCompatible(project)) {
-                goodThings.add(componentBinding.getFullName() + ", can be included in " + this.project.getFullName() + ", because it is forced to be fully compatible with project licenses.");
+                goodThings.add(componentBinding.getFullName() + ", is forced to be fully compatible and can be included in " + this.project.getFullName());
             }
         }
         riskExposure /= (float) totalCases;
