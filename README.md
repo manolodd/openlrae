@@ -22,7 +22,7 @@ With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard o
 
 # LICENSE
 
-## This release:
+## Latest release:
  
 - <b>OpenLRAE 0.3</b> is released under the terms of Apache License, Version 2.0.
 
@@ -68,7 +68,7 @@ openlrae-{YourVersion}-with-dependencies.jar
 ```
 If you want openlrae and all its dependencies in a bundle.
 
-You can also run the latter to do some things: to know wich things are supported in the librery, to run a buil-in risk analysis example, etc.
+You can also run the latter to do some things: to know wich things are supported in the librery, to run a built-in risk analysis, etc.
 ```console
 java -jar openlrae-{YourVersion}-with-dependencies.jar
 ```
