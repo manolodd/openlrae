@@ -105,7 +105,7 @@ public class ComponentBinding {
      * @return the name, version and license of the component.
      */
     public String getFullName() {
-        return component.getName() + "-" + component.getVersion() + " (" + component.getLicense().getSPDXIdentifier() + "), linked as " + link;
+        return component.getName() + "-" + component.getVersion() + " (" + component.getLicense().getSPDXIdentifier() + "), " + link.getDescriptionValue();
     }
 
     /**
@@ -115,6 +115,6 @@ public class ComponentBinding {
      * @return the name and license of the component.
      */
     public String getFullNameForFicticiousComponent() {
-        return component.getName() + " (" + component.getLicense().getSPDXIdentifier() + "), linked as " + link;
+        return component.getName() + " (" + component.getLicense().getSPDXIdentifier() + "), " + link.getDescriptionValue();
     }
 }
