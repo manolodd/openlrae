@@ -21,11 +21,9 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistributions;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities.DinamicAndNone;
-import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities.DinamicAndSaaS;
-import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities.DinamicAndSofwarePackage;
+import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities.DinamicAndSofwarePackageOrSaaS;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities.StaticAndNone;
-import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities.StaticAndSaaS;
-import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities.StaticAndSofwarePackage;
+import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities.StaticAndSofwarePackageOrSaaS;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,10 +50,8 @@ public final class LicensesCompatibilityFactory {
         this.licensesCompatibilities = new CopyOnWriteArrayList<>();
         licensesCompatibilities.addAll(StaticAndNone.getInstance().getCompatibilities());
         licensesCompatibilities.addAll(DinamicAndNone.getInstance().getCompatibilities());
-        licensesCompatibilities.addAll(StaticAndSofwarePackage.getInstance().getCompatibilities());
-        licensesCompatibilities.addAll(DinamicAndSofwarePackage.getInstance().getCompatibilities());
-        licensesCompatibilities.addAll(StaticAndSaaS.getInstance().getCompatibilities());
-        licensesCompatibilities.addAll(DinamicAndSaaS.getInstance().getCompatibilities());
+        licensesCompatibilities.addAll(StaticAndSofwarePackageOrSaaS.getInstance().getCompatibilities());
+        licensesCompatibilities.addAll(DinamicAndSofwarePackageOrSaaS.getInstance().getCompatibilities());
     }
 
     /**
