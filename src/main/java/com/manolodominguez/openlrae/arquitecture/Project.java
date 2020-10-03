@@ -338,7 +338,7 @@ public class Project {
             fullName+=projectLicense.getSPDXIdentifier()+", ";
         }
         fullName = fullName.substring(ZERO, fullName.length()-2);
-        fullName += "), redistributed as "+redistribution;
+        fullName += "), that "+redistribution.getDescriptionValue();
         return fullName;
     }
 
