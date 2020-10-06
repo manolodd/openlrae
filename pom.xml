@@ -179,6 +179,7 @@
                 <filtering>true</filtering>            
             </resource>
         </resources>    
+ 
     </build>
 
     <dependencies>
@@ -202,6 +203,12 @@
             <groupId>org.sharegov</groupId>
             <artifactId>mjson</artifactId>
             <version>${mjson.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 </project>
