@@ -15,8 +15,6 @@
  */
 package com.manolodominguez.openlrae.resourceslocators;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +27,8 @@ import org.slf4j.LoggerFactory;
  */
 public enum FilesPaths {
     OPENLRAE_PROPERTIES("/com/manolodominguez/openlrae/cli/openlrae.properties"),
-    PROJECT_SCHEMA("/com/manolodominguez/openlrae/json/OpenLRAEJSONSchema.json"),
+    PROJECT_SCHEMA("/com/manolodominguez/openlrae/json/OpenLRAEJSONSchemaForProjects.json"),
+    REPORT_SCHEMA("/com/manolodominguez/openlrae/json/OpenLRAEJSONSchemaForReports.json"),
     PROJECT_EXAMPLE("/com/manolodominguez/openlrae/json/ExampleProject.json");
 
     private Logger logger = LoggerFactory.getLogger(FilesPaths.class);
