@@ -15,32 +15,65 @@
  */
 package com.manolodominguez.openlrae.analysis.riskanalysers;
 
-import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
-import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import java.util.EnumMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
+ * This class implements a mechanism to evaluate joint compatililbity in some
+ * cases where reverse compatibility is analyzed. This is used by some risk
+ * analysers just to ease the analysis process, as an auxiliary class.
  *
- * @author manolodd
+ * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public class JointCompatibilityEvaluator {
 
-    private ComponentBinding componentBinding;
+    private Logger logger = LoggerFactory.getLogger(JointCompatibilityEvaluator.class);
     private EnumMap<SupportedLicenses, SupportedCompatibilities> compatibilityMap;
 
-    public JointCompatibilityEvaluator(ComponentBinding componentBinding) {
-        this.componentBinding = componentBinding;
+    /**
+     * This is the constructorof the class. It creates a new instance of
+     * JointCompatibilityEvaluator.
+     */
+    public JointCompatibilityEvaluator() {
         compatibilityMap = new EnumMap<>(SupportedLicenses.class);
     }
 
+    /**
+     * This methods adds a new compatibility entry to the counter.
+     *
+     * @param compatibility the compatilibity of a given license (no matter with
+     * one) in relation to a project license.
+     * @param projectLicense the project license the compatilibity refers to.
+     */
     public void addCompatibility(SupportedCompatibilities compatibility, SupportedLicenses projectLicense) {
+        if (compatibility == null) {
+            logger.error("compatibility cannot be null");
+            throw new IllegalArgumentException("compatibility cannot be null");
+        }
+        if (projectLicense == null) {
+            logger.error("projectLicense cannot be null");
+            throw new IllegalArgumentException("projectLicense cannot be null");
+        }
         compatibilityMap.put(projectLicense, compatibility);
     }
 
-    public int getNumberOfCompatibilitiesMatching(SupportedCompatibilities compatibilityValue) {
-        int counter = 0;
+    /**
+     * This method gets the number of times the sepecified compatibility has
+     * been registered.
+     *
+     * @param compatibilityValue a specifica compatiblity type.
+     * @return the number of times the specified compatility has been
+     * registered.
+     */
+    private int getNumberOfCompatibilitiesMatching(SupportedCompatibilities compatibilityValue) {
+        if (compatibilityValue == null) {
+            logger.error("compatibilityValue cannot be null");
+            throw new IllegalArgumentException("compatibilityValue cannot be null");
+        }
+        int counter = ZERO;
         for (SupportedCompatibilities aSingleCompatibility : compatibilityMap.values()) {
             if (aSingleCompatibility == compatibilityValue) {
                 counter++;
@@ -49,15 +82,45 @@ public class JointCompatibilityEvaluator {
         return counter;
     }
 
-    public boolean isFullyCompatible(Project project) {
-        int compatibilitySum = 0;
+    /**
+     * This method check whether a full compatibility has been registered in the
+     * counter. This happens when the number of
+     * SupportedCompatibilities.COMPATIBLE that has been registered are the same
+     * than the number of licenses of the project.
+     *
+     * @param numberOfLicensesOfProject The number of licenses of a project
+     * whose joint evaulation has been carryed out by this class.
+     * @return true, if there is full compatibility. Otherwise, false.
+     */
+    public boolean isFullyCompatible(int numberOfLicensesOfProject) {
+        if ((numberOfLicensesOfProject <= ZERO) || (numberOfLicensesOfProject > SupportedLicenses.getLicensesForProjects().length)) {
+            logger.error("numberOfLicensesOfProject out of range (0-" + SupportedLicenses.getLicensesForProjects().length + "]");
+            throw new IllegalArgumentException("numberOfLicensesOfProject out of range (0-" + SupportedLicenses.getLicensesForProjects().length + "]");
+        }
+        int compatibilitySum = ZERO;
         compatibilitySum += getNumberOfCompatibilitiesMatching(SupportedCompatibilities.COMPATIBLE);
-        return compatibilitySum == project.getLicenses().size();
+        return compatibilitySum == numberOfLicensesOfProject;
     }
 
-    public boolean isFullyForcedCompatible(Project project) {
-        int compatibilitySum = 0;
+    /**
+     * This method check whether a full compatibility has been registered in the
+     * counter. This happens when the number of
+     * SupportedCompatibilities.FORCED_COMPATIBLE that has been registered are
+     * the same than the number of licenses of the project.
+     *
+     * @param numberOfLicensesOfProject The number of licenses of a project
+     * whose joint evaulation has been carryed out by this class.
+     * @return true, if there is full compatibility. Otherwise, false.
+     */
+    public boolean isFullyForcedCompatible(int numberOfLicensesOfProject) {
+        if ((numberOfLicensesOfProject <= ZERO) || (numberOfLicensesOfProject > SupportedLicenses.getLicensesForProjects().length)) {
+            logger.error("numberOfLicensesOfProject out of range (0-" + SupportedLicenses.getLicensesForProjects().length + "]");
+            throw new IllegalArgumentException("numberOfLicensesOfProject out of range (0-" + SupportedLicenses.getLicensesForProjects().length + "]");
+        }
+        int compatibilitySum = ZERO;
         compatibilitySum += getNumberOfCompatibilitiesMatching(SupportedCompatibilities.FORCED_COMPATIBLE);
-        return compatibilitySum == project.getLicenses().size();
+        return compatibilitySum == numberOfLicensesOfProject;
     }
+
+    private static final int ZERO = 0;
 }
