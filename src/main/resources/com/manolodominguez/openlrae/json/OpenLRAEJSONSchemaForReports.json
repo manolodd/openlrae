@@ -1,0 +1,103 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "$id": "https://openlrae.manolodominguez.com/schemas/projectdefinition/v1",
+    "description": "JSON Schema (version 1) used to import validate reports in OpenLRAE",
+    "title": "OpenLRAE JSON Schema for reports (version 1)",
+    "definitions": {
+        "risksEnum": {
+            "enum": [
+                "LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSE",
+                "LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES",
+                "LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES",
+                "COMPONENTS_LICENSES_TOO_OBSOLETE",
+                "COMPONENTS_LICENSES_UNFASHIONABLE",
+                "SCARCE_DEPLOYMENT_OF_COMPONENTS_LICENSES"            
+            ]
+        }
+    },
+    "uniqueItems": true,
+    "minItems": 1,
+    "type": "array",
+    "items": {
+        "type": "object",
+        "uniqueItems": true,
+        "maxProperties": 8,
+        "minProperties": 8,
+        "anyOf": [
+            {
+                "maxProperties": 8,
+                "minProperties": 8,
+                "required": [
+                    "risk",
+                    "riskexposure",
+                    "riskimpact",
+                    "riskvalue",
+                    "goodthings",
+                    "warnings",
+                    "rootcauses",
+                    "tips"
+                ],
+                "properties": {
+                    "risk": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 128,
+                        "$ref": "#/definitions/risksEnum" 
+                    },
+                    "riskexposure": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                    },
+                    "riskimpact": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                    },
+                    "riskvalue": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                    },
+                    "goodthings": {
+                        "type": "array",
+                        "additionalItems": true,
+                        "items": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 2048
+                        }
+                    },
+                    "warnings": {
+                        "type": "array",
+                        "additionalItems": true,
+                        "items": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 2048
+                        }
+                    },
+                    "rootcauses": {
+                        "type": "array",
+                        "additionalItems": true,
+                        "items": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 2048
+                        }
+                    },
+                    "tips": {
+                        "type": "array",
+                        "additionalItems": true,
+                        "items": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 2048
+                        }
+                    }
+                },
+                "additionalProperties": false
+            }
+        ]
+    }
+}
