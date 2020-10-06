@@ -138,18 +138,7 @@ public class ReportsFactory {
             logger.error("resultSet cannot be null");
             throw new IllegalArgumentException("resultSet cannot be null");
         }
-        Json report = object();
-        Json projectinfo = object();
-        Json licenses = array();
-        Json riskanalyses = array();
-
-        for (SupportedLicenses projectLicense : project.getLicenses()) {
-            licenses.add(projectLicense.toString());
-        }
-        projectinfo.set("name", project.getName());
-        projectinfo.set("version", project.getVersion());
-        projectinfo.set("licenses", licenses);
-        projectinfo.set("redistribution", project.getRedistribution().getDescriptionValue());
+        Json report = array();
 
         for (RiskAnalysisResult riskAnalysisResult : resultSet) {
             Json analysis = object();
@@ -157,7 +146,7 @@ public class ReportsFactory {
             Json warnings = array();
             Json goodthings = array();
             Json tips = array();
-            analysis.set("risk", riskAnalysisResult.getRiskType().getDescriptionValue());
+            analysis.set("risk", riskAnalysisResult.getRiskType().toString());
             analysis.set("riskvalue", riskAnalysisResult.getRiskValue());
             analysis.set("riskexposure", riskAnalysisResult.getRiskExposure());
             analysis.set("riskimpact", riskAnalysisResult.getRiskImpact());
@@ -181,11 +170,8 @@ public class ReportsFactory {
             analysis.set("warnings", warnings);
             analysis.set("goodthings", goodthings);
             analysis.set("tips", tips);
-            riskanalyses.add(analysis);
+            report.add(analysis);
         }
-
-        report.set("projectinfo", projectinfo);
-        report.set("riskanalyses", riskanalyses);
         return report;
     }
 
