@@ -103,7 +103,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
             for (SupportedLinks potentialLink : SupportedLinks.values()) {
                 ficticiousComponent = new Component("component with license", "fake version", potentialComponentLicense);
                 ficticiousComponentBinding = new ComponentBinding(ficticiousComponent, potentialLink, SupportedComponentWeights.HIGH);
-                JointCompatibilityEvaluator jointCompatibilityEvaluator = new JointCompatibilityEvaluator(ficticiousComponentBinding);
+                JointCompatibilityEvaluator jointCompatibilityEvaluator = new JointCompatibilityEvaluator();
                 for (SupportedLicenses projectLicense : this.project.getLicenses()) {
                     compatibility = licensesCompatibilities.getCompatibilityOf(potentialComponentLicense, projectLicense, potentialLink, project.getRedistribution());
                     jointCompatibilityEvaluator.addCompatibility(compatibility, projectLicense);
@@ -225,10 +225,10 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                             break;
                     }
                 }
-                if (jointCompatibilityEvaluator.isFullyCompatible(project)) {
+                if (jointCompatibilityEvaluator.isFullyCompatible(project.getLicenses().size())) {
                     goodThings.add("A " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", could be included in " + this.project.getFullName() + ", because it would be natively compatible with project licenses.");
                 }
-                if (jointCompatibilityEvaluator.isFullyForcedCompatible(project)) {
+                if (jointCompatibilityEvaluator.isFullyForcedCompatible(project.getLicenses().size())) {
                     warnings.add("Although a " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", could be used in the project, it could be a source of risk for the evolution of the project in the future because it would not be natively compatible.");
                     goodThings.add("A " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", could be included in " + this.project.getFullName() + ", because it would be forced to be fully compatible with project licenses.");
                 }

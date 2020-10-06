@@ -85,7 +85,7 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
         // components licenses are compatible with all of them.
         int totalCases = this.project.getBillOfComponentBindings().size() * project.getLicenses().size();
         for (ComponentBinding componentBinding : this.project.getBillOfComponentBindings()) {
-            JointCompatibilityEvaluator jointCompatibilityEvaluator = new JointCompatibilityEvaluator(componentBinding);
+            JointCompatibilityEvaluator jointCompatibilityEvaluator = new JointCompatibilityEvaluator();
             for (SupportedLicenses projectLicense : this.project.getLicenses()) {
                 compatibility = licensesCompatibilities.getCompatibilityOf(componentBinding.getComponent().getLicense(), projectLicense, componentBinding.getLinkType(), this.project.getRedistribution());
                 jointCompatibilityEvaluator.addCompatibility(compatibility, projectLicense);
@@ -206,10 +206,10 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
                         break;
                 }
             }
-            if (jointCompatibilityEvaluator.isFullyCompatible(project)) {
+            if (jointCompatibilityEvaluator.isFullyCompatible(project.getLicenses().size())) {
                 goodThings.add(componentBinding.getFullName() + ", is natively compatible and can be included in " + this.project.getFullName());
             }
-            if (jointCompatibilityEvaluator.isFullyForcedCompatible(project)) {
+            if (jointCompatibilityEvaluator.isFullyForcedCompatible(project.getLicenses().size())) {
                 goodThings.add(componentBinding.getFullName() + ", is forced to be fully compatible and can be included in " + this.project.getFullName());
             }
         }
