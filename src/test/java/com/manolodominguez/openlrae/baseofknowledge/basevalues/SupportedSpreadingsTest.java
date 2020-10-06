@@ -26,52 +26,52 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class SupportedObsolescencesTest {
-
-    public SupportedObsolescencesTest() {
+public class SupportedSpreadingsTest {
+    
+    public SupportedSpreadingsTest() {
     }
-
+    
     @BeforeAll
     public static void setUpClass() {
     }
-
+    
     @AfterAll
     public static void tearDownClass() {
     }
-
+    
     @BeforeEach
     public void setUp() {
     }
-
+    
     @AfterEach
     public void tearDown() {
     }
 
     /**
-     * Test of number of items, of class SupportedObsolescences.
+     * Test of number of items, of class SupportedSpreadings.
      */
     @Test
     public void testItemsNumber() {
         System.out.println("items number");
-        // Currently there are 4 obsolescences defined in enum
-        assertEquals(4, SupportedObsolescences.values().length);
+        // Currently there are 4 spreadings defined in enum
+        assertEquals(4, SupportedSpreadings.values().length);
     }
 
     /**
      * Test the existence of these items that should be the only ones defined in
-     * class SupportedObsolescences.
+     * class SupportedSpreadings.
      */
     @Test
     public void testItems() {
         System.out.println("items existence");
-        // Currently these are the obsolescences items defined in enum
+        // Currently these are the spreading items defined in enum
         boolean worksFine = true;
-        for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {
-            switch (obsolescence) {
-                case UPDATED:
-                case NEAR_UPDATED:
-                case NEAR_OUTDATED:
-                case OUTDATED:
+        for (SupportedSpreadings spreading : SupportedSpreadings.values()) {
+            switch (spreading) {
+                case HIGHLY_WIDESPREAD:
+                case NEAR_HIGHLY_WIDESPREAD:
+                case NEAR_LITTLE_WIDESPREAD:
+                case LITTLE_WIDESPREAD:
                     worksFine &= true;
                     break;
                 default:
@@ -83,14 +83,14 @@ public class SupportedObsolescencesTest {
     }
 
     /**
-     * Test of getObsolescenceValue method, of class SupportedObsolescences.
+     * Test of getSpreadingValue method, of class SupportedSpreadings.
      */
     @Test
-    public void testGetObsolescenceValue() {
-        System.out.println("getObsolescenceValue");
+    public void testGetSpreadingValue() {
+        System.out.println("getSpreadingValue");
         boolean worksFine = true;
-        for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {
-            if ((obsolescence.getObsolescenceValue() >= 0.0f) && (obsolescence.getObsolescenceValue() <= 1.0f)) {
+        for (SupportedSpreadings spreading : SupportedSpreadings.values()) {
+            if ((spreading.getSpreadingValue() >= 0.0f) && (spreading.getSpreadingValue() <= 1.0f)) {
                 worksFine &= true;
             } else {
                 worksFine = false;
@@ -100,14 +100,14 @@ public class SupportedObsolescencesTest {
     }
 
     /**
-     * Test of getDescriptionValue method, of class SupportedObsolescences.
+     * Test of getDescriptionValue method, of class SupportedSpreadings.
      */
     @Test
     public void testGetDescriptionValue() {
         System.out.println("getDescriptionValue");
         boolean worksFine = true;
-        for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {
-            if ((obsolescence.getDescriptionValue() != null) && (!obsolescence.getDescriptionValue().isEmpty())) {
+        for (SupportedSpreadings spreading : SupportedSpreadings.values()) {
+            if ((spreading.getDescriptionValue() != null) && (!spreading.getDescriptionValue().isEmpty())) {
                 worksFine &= true;
             } else {
                 worksFine = false;

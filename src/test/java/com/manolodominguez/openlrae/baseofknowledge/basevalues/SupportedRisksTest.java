@@ -26,52 +26,54 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class SupportedObsolescencesTest {
-
-    public SupportedObsolescencesTest() {
+public class SupportedRisksTest {
+    
+    public SupportedRisksTest() {
     }
-
+    
     @BeforeAll
     public static void setUpClass() {
     }
-
+    
     @AfterAll
     public static void tearDownClass() {
     }
-
+    
     @BeforeEach
     public void setUp() {
     }
-
+    
     @AfterEach
     public void tearDown() {
     }
 
     /**
-     * Test of number of items, of class SupportedObsolescences.
+     * Test of number of items, of class SupportedRisks.
      */
     @Test
     public void testItemsNumber() {
         System.out.println("items number");
-        // Currently there are 4 obsolescences defined in enum
-        assertEquals(4, SupportedObsolescences.values().length);
+        // Currently there are 6 risks defined in enum
+        assertEquals(6, SupportedRisks.values().length);
     }
 
     /**
      * Test the existence of these items that should be the only ones defined in
-     * class SupportedObsolescences.
+     * class SupportedRisks.
      */
     @Test
     public void testItems() {
         System.out.println("items existence");
-        // Currently these are the obsolescences items defined in enum
+        // Currently these are the redistribution items defined in enum
         boolean worksFine = true;
-        for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {
-            switch (obsolescence) {
-                case UPDATED:
-                case NEAR_UPDATED:
-                case NEAR_OUTDATED:
-                case OUTDATED:
+        for (SupportedRisks risk : SupportedRisks.values()) {
+            switch (risk) {
+                case LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSE:
+                case LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES:
+                case LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES:
+                case COMPONENTS_LICENSES_TOO_OBSOLETE:
+                case COMPONENTS_LICENSES_UNFASHIONABLE:
+                case SCARCE_DEPLOYMENT_OF_COMPONENTS_LICENSES:
                     worksFine &= true;
                     break;
                 default:
@@ -83,31 +85,14 @@ public class SupportedObsolescencesTest {
     }
 
     /**
-     * Test of getObsolescenceValue method, of class SupportedObsolescences.
-     */
-    @Test
-    public void testGetObsolescenceValue() {
-        System.out.println("getObsolescenceValue");
-        boolean worksFine = true;
-        for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {
-            if ((obsolescence.getObsolescenceValue() >= 0.0f) && (obsolescence.getObsolescenceValue() <= 1.0f)) {
-                worksFine &= true;
-            } else {
-                worksFine = false;
-            }
-        }
-        assertTrue(worksFine);
-    }
-
-    /**
-     * Test of getDescriptionValue method, of class SupportedObsolescences.
+     * Test of getDescriptionValue method, of class SupportedRisks.
      */
     @Test
     public void testGetDescriptionValue() {
         System.out.println("getDescriptionValue");
         boolean worksFine = true;
-        for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {
-            if ((obsolescence.getDescriptionValue() != null) && (!obsolescence.getDescriptionValue().isEmpty())) {
+        for (SupportedRisks risk : SupportedRisks.values()) {
+            if ((risk.getDescriptionValue() != null) && (!risk.getDescriptionValue().isEmpty())) {
                 worksFine &= true;
             } else {
                 worksFine = false;

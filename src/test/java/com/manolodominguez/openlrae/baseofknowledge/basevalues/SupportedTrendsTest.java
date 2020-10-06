@@ -26,52 +26,52 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class SupportedObsolescencesTest {
-
-    public SupportedObsolescencesTest() {
+public class SupportedTrendsTest {
+    
+    public SupportedTrendsTest() {
     }
-
+    
     @BeforeAll
     public static void setUpClass() {
     }
-
+    
     @AfterAll
     public static void tearDownClass() {
     }
-
+    
     @BeforeEach
     public void setUp() {
     }
-
+    
     @AfterEach
     public void tearDown() {
     }
 
     /**
-     * Test of number of items, of class SupportedObsolescences.
+     * Test of number of items, of class SupportedTrends.
      */
     @Test
     public void testItemsNumber() {
         System.out.println("items number");
-        // Currently there are 4 obsolescences defined in enum
-        assertEquals(4, SupportedObsolescences.values().length);
+        // Currently there are 4 trends defined in enum
+        assertEquals(4, SupportedTrends.values().length);
     }
 
     /**
      * Test the existence of these items that should be the only ones defined in
-     * class SupportedObsolescences.
+     * class SupportedTrends.
      */
     @Test
     public void testItems() {
         System.out.println("items existence");
-        // Currently these are the obsolescences items defined in enum
+        // Currently these are the trends items defined in enum
         boolean worksFine = true;
-        for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {
-            switch (obsolescence) {
-                case UPDATED:
-                case NEAR_UPDATED:
-                case NEAR_OUTDATED:
-                case OUTDATED:
+        for (SupportedTrends trend : SupportedTrends.values()) {
+            switch (trend) {
+                case UNFASHIONABLE:
+                case NEAR_UNFASHIONABLE:
+                case NEAR_TRENDY:
+                case TRENDY:
                     worksFine &= true;
                     break;
                 default:
@@ -83,14 +83,14 @@ public class SupportedObsolescencesTest {
     }
 
     /**
-     * Test of getObsolescenceValue method, of class SupportedObsolescences.
+     * Test of getTrendValue method, of class SupportedTrends.
      */
     @Test
-    public void testGetObsolescenceValue() {
-        System.out.println("getObsolescenceValue");
+    public void testGetTrendValue() {
+        System.out.println("getTrendValue");
         boolean worksFine = true;
-        for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {
-            if ((obsolescence.getObsolescenceValue() >= 0.0f) && (obsolescence.getObsolescenceValue() <= 1.0f)) {
+        for (SupportedTrends trend : SupportedTrends.values()) {
+            if ((trend.getTrendValue() >= 0.0f) && (trend.getTrendValue() <= 1.0f)) {
                 worksFine &= true;
             } else {
                 worksFine = false;
@@ -100,14 +100,14 @@ public class SupportedObsolescencesTest {
     }
 
     /**
-     * Test of getDescriptionValue method, of class SupportedObsolescences.
+     * Test of getDescriptionValue method, of class SupportedTrends.
      */
     @Test
     public void testGetDescriptionValue() {
         System.out.println("getDescriptionValue");
         boolean worksFine = true;
-        for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {
-            if ((obsolescence.getDescriptionValue() != null) && (!obsolescence.getDescriptionValue().isEmpty())) {
+        for (SupportedTrends trend : SupportedTrends.values()) {
+            if ((trend.getDescriptionValue() != null) && (!trend.getDescriptionValue().isEmpty())) {
                 worksFine &= true;
             } else {
                 worksFine = false;
