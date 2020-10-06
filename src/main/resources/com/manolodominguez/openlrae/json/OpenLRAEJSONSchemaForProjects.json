@@ -1,0 +1,178 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "$id": "https://openlrae.manolodominguez.com/schemas/projectdefinition/v1",
+    "description": "JSON Schema (version 1) used to import/export project definition in OpenLRAE",
+    "required": [
+        "projectinfo",
+        "componentbindings"
+    ],
+    "title": "OpenLRAE JSON Schema for projects (version 1)",
+    "definitions": {
+        "specialLicensesEnum": {
+            "enum": [
+                "UNDEFINED",
+                "UNSUPPORTED",
+                "FORCED_AS_PROJECT_LICENSE"            
+            ]
+        },
+        "projectsLicensesEnum": {
+            "enum": [
+                "AGPL_3_0_ONLY",
+                "APACHE_1_1",
+                "APACHE_2_0",
+                "ARTISTIC_2_0",
+                "BSD_3_CLAUSE",
+                "BSD_4_CLAUSE",
+                "CDDL_1_0",
+                "CPL_1_0",
+                "EPL_1_0",
+                "EUPL_1_1",
+                "GPL_2_0_ONLY",
+                "GPL_2_0_OR_LATER",
+                "GPL_3_0_ONLY",
+                "LGPL_2_1_ONLY",
+                "LGPL_2_1_OR_LATER",
+                "LGPL_3_0_OR_LATER",
+                "MIT",
+                "MPL_1_1"
+            ]
+        },
+        "componentLicensesEnum": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/projectsLicensesEnum"
+                },
+                {
+                    "$ref": "#/definitions/specialLicensesEnum"
+                }
+            ]
+        },
+        "redistributionsEnum": {
+            "enum": [
+                "NONE",
+                "SOFTWARE_PACKAGE_OR_SAAS"
+            ]
+        },
+        "linksEnum": {
+            "enum": [
+                "STATIC",
+                "DYNAMIC"
+            ]
+        },
+        "weightsEnum": {
+            "enum": [
+                "LOW",
+                "NEAR_LOW",
+                "NEAR_HIGH",
+                "HIGH"
+            ]
+        }
+    },
+    "uniqueItems": true,
+    "maxProperties": 2,
+    "minProperties": 2,
+    "properties": {
+        "projectinfo": {
+            "description": "Information about the project itself.",
+            "required": [
+                "name",
+                "version",
+                "redistribution",
+                "licenses"
+            ],
+            "uniqueItems": true,
+            "maxProperties": 4,
+            "minProperties": 4,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128
+                },
+                "version": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128
+                },
+                "redistribution": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "$ref": "#/definitions/redistributionsEnum" 
+                },
+                "licenses": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "minItems": 1,
+                    "additionalItems": true,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 128,
+                        "uniqueItems": true,
+                        "maxProperties": 1,
+                        "minProperties": 1,
+                        "$ref": "#/definitions/projectsLicensesEnum" 
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "componentbindings": {
+            "description": "Definition of each project's component and the way they are bound into the project.",
+            "uniqueItems": true,
+            "minItems": 1,
+            "additionalItems": true,
+            "items": {
+                "uniqueItems": true,
+                "maxProperties": 5,
+                "minProperties": 5,
+                "anyOf": [
+                    {
+                        "maxProperties": 5,
+                        "minProperties": 5,
+                        "required": [
+                            "component",
+                            "version",
+                            "license",
+                            "weight",
+                            "link"
+                        ],
+                        "properties": {
+                            "component": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 128
+                            },
+                            "version": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 128
+                            },
+                            "license": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 128,
+                                "$ref": "#/definitions/componentLicensesEnum" 
+                            },
+                            "weight": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 128,
+                                "$ref": "#/definitions/weightsEnum" 
+                            },
+                            "link": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 128,
+                                "$ref": "#/definitions/linksEnum" 
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                ]
+            }
+        }
+    },
+    "additionalProperties": false
+}
