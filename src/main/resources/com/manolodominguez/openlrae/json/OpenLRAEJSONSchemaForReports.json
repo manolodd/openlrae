@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema#",
-    "$id": "https://openlrae.manolodominguez.com/schemas/projectdefinition/v1",
+    "$id": "https://openlrae.manolodominguez.com/schemas/reportdefinition/v1",
     "description": "JSON Schema (version 1) used to import validate reports in OpenLRAE",
     "title": "OpenLRAE JSON Schema for reports (version 1)",
     "definitions": {
@@ -13,6 +13,20 @@
                 "COMPONENTS_LICENSES_UNFASHIONABLE",
                 "SCARCE_DEPLOYMENT_OF_COMPONENTS_LICENSES"            
             ]
+        },
+        "knowledge": {
+            "type": "array",
+            "additionalItems": true,
+            "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2048
+            }
+        },
+        "riskNumber": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
         }
     },
     "uniqueItems": true,
@@ -45,55 +59,25 @@
                         "$ref": "#/definitions/risksEnum" 
                     },
                     "riskexposure": {
-                        "type": "number",
-                        "minimum": 0,
-                        "maximum": 1
+                        "$ref": "#/definitions/riskNumber" 
                     },
                     "riskimpact": {
-                        "type": "number",
-                        "minimum": 0,
-                        "maximum": 1
+                        "$ref": "#/definitions/riskNumber" 
                     },
                     "riskvalue": {
-                        "type": "number",
-                        "minimum": 0,
-                        "maximum": 1
+                        "$ref": "#/definitions/riskNumber" 
                     },
                     "goodthings": {
-                        "type": "array",
-                        "additionalItems": true,
-                        "items": {
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 2048
-                        }
+                        "$ref": "#/definitions/knowledge" 
                     },
                     "warnings": {
-                        "type": "array",
-                        "additionalItems": true,
-                        "items": {
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 2048
-                        }
+                        "$ref": "#/definitions/knowledge" 
                     },
                     "rootcauses": {
-                        "type": "array",
-                        "additionalItems": true,
-                        "items": {
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 2048
-                        }
+                        "$ref": "#/definitions/knowledge" 
                     },
                     "tips": {
-                        "type": "array",
-                        "additionalItems": true,
-                        "items": {
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 2048
-                        }
+                        "$ref": "#/definitions/knowledge" 
                     }
                 },
                 "additionalProperties": false
