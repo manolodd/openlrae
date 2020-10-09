@@ -1,5 +1,7 @@
 <div align="center"><img src="https://github.com/manolodd/openlrae/raw/develop/src/main/resources/com/manolodominguez/openlrae/logo/logo_openlrae.png" alt="OpenLRAE logo" width="400"/></div>
 
+[![Maven Central](https://img.shields.io/maven-central/v/com.manolodominguez/openlrae)](https://search.maven.org/artifact/com.manolodominguez/openlrae/0.3/jar)
+
 # PROJECT STATUS (Tested from JDK 9 to 15)
 
 - Master branch [![Build Status](https://img.shields.io/travis/manolodd/openlrae/master.svg)](https://travis-ci.org/manolodd/openlrae?branch=development)
@@ -42,9 +44,21 @@ Please, refer always to the project home page at:
 
  - http://openlrae.manolodominguez.com/
 
+# RELEASE AVAILABILITY
+
+You can download latest compiled stable releases from the releases section of this repository. Also, since release 0.3 OpenLRAE is in Maven Central so you can add it as a dependecy in your Maven project inserting this in your pom.xml:
+```console
+<dependency>
+  <groupId>com.manolodominguez</groupId>
+  <artifactId>openlrae</artifactId>
+  <version>0.3</version>
+</dependency>
+```
+For othe project builder (graddle, buildr...) see the following link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/0.3/jar
+
 # COMPILING FROM SOURCES
 
-The best option is to download latest compiled stable releases from the releases section of this repository. However, if you want to test new features (please, do it and give feedback), you will need to compile the project from sources. Follow these steps:
+If you want to test new features (please, do it and give feedback), you will need to compile the project from sources. Follow these steps:
 
  - Clone the OpenLRAE repo: 
 ```console
