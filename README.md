@@ -54,7 +54,7 @@ You can download latest compiled stable releases from the releases section of th
   <version>0.3</version>
 </dependency>
 ```
-For othe project builder (graddle, buildr...) see the following link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/0.3/jar
+For othe project builders (graddle, buildr...) see the following link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/0.3/jar
 
 # COMPILING FROM SOURCES
 
