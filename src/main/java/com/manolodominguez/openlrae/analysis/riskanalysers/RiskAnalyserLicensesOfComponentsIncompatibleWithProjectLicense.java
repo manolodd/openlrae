@@ -88,7 +88,7 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
             JointCompatibilityEvaluator jointCompatibilityEvaluator = new JointCompatibilityEvaluator();
             for (SupportedLicenses projectLicense : this.project.getLicenses()) {
                 compatibility = licensesCompatibilities.getCompatibilityOf(componentBinding.getComponent().getLicense(), projectLicense, componentBinding.getLinkType(), this.project.getRedistribution());
-                jointCompatibilityEvaluator.addCompatibility(compatibility, projectLicense);
+                jointCompatibilityEvaluator.addCompatibility(compatibility);
                 switch (compatibility) {
                     case COMPATIBLE:
                         // The analyzed component is compatible with the project 

@@ -106,7 +106,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                 JointCompatibilityEvaluator jointCompatibilityEvaluator = new JointCompatibilityEvaluator();
                 for (SupportedLicenses projectLicense : this.project.getLicenses()) {
                     compatibility = licensesCompatibilities.getCompatibilityOf(potentialComponentLicense, projectLicense, potentialLink, project.getRedistribution());
-                    jointCompatibilityEvaluator.addCompatibility(compatibility, projectLicense);
+                    jointCompatibilityEvaluator.addCompatibility(compatibility);
                     switch (compatibility) {
                         case COMPATIBLE:
                             // The analyzed ficticious component is compatible 
