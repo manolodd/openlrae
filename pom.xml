@@ -21,7 +21,7 @@
         <maven.compiler.release>9</maven.compiler.release> 
         <!-- About this version of OpenLRAE -->
         <openlrae.version>0.4-SNAPSHOT</openlrae.version>
-        <openlrae.license>The Apache License, Version 2.0</openlrae.license>
+        <openlrae.license>Apache-2.0</openlrae.license>
     </properties>
     
     <modelVersion>4.0.0</modelVersion>
