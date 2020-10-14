@@ -45,11 +45,8 @@ public class MainClass {
                 case "-s":
                     new CLIHandler().showSchema();
                     break;
-                case "-e1":
-                    new CLIHandler().runExample1();
-                    break;
-                case "-e2":
-                    new CLIHandler().runExample2();
+                case "-e":
+                    new CLIHandler().runExample();
                     break;
                 default:
                     new CLIHandler().showOptions();

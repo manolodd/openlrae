@@ -135,7 +135,7 @@ public class CLIHandler {
      * developer can learn how to read a project definition from JSON, run the
      * analysis and generate a JSON report.
      */
-    public void runExample2() {
+    public void runExample() {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
@@ -161,55 +161,6 @@ public class CLIHandler {
         // Print analysis report. As a JSON string in this case.
         System.out.println();
         System.out.println(ReportsFactory.getInstance().getReportAsBeautifiedJSONString(project, resultSet));
-    }
-
-    /**
-     * This method runs an example risk analysis. It aids to be instructive for
-     * developers that want to know how to use OpenLRAE. It uses a ficticious
-     * project, defined programatically, and generates a plain texto report. So,
-     * reading the code, a developer can learn how to biuld a project definition
-     * programatically, run the analysis and generate a plain text report.
-     */
-    public void runExample1() {
-        // Define the project. In this case, it is defined programatically.
-        // Four components:
-        Component component1 = new Component("a-given-component", "3.7", SupportedLicenses.MIT);
-        Component component2 = new Component("my-favourite-component", "1.7.2", SupportedLicenses.APACHE_1_1);
-        Component component3 = new Component("an-updated-component", "1.0", SupportedLicenses.BSD_4_CLAUSE);
-        Component component4 = new Component("legacy-component", "0.9", SupportedLicenses.LGPL_3_0_OR_LATER);
-        // Component bindings:
-        ComponentBinding componentBinding1 = new ComponentBinding(component1, SupportedLinks.DYNAMIC, SupportedComponentWeights.LOW);
-        ComponentBinding componentBinding2 = new ComponentBinding(component2, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
-        ComponentBinding componentBinding3 = new ComponentBinding(component3, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
-        ComponentBinding componentBinding4 = new ComponentBinding(component4, SupportedLinks.STATIC, SupportedComponentWeights.HIGH);
-        // Add the component bindigs to the project
-        Project project = new Project("OpenLRAE", "1.0", SupportedLicenses.APACHE_2_0, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, componentBinding1);
-        project.addLicense(SupportedLicenses.MIT);
-        project.addComponentBinding(componentBinding2);
-        project.addComponentBinding(componentBinding3);
-        project.addComponentBinding(componentBinding4);
-
-        // Define desired risk analysers we want to use for this project
-        RiskAnalyserLimitedSetOfPotentialProjectLicenses riskAnalyser1 = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
-        RiskAnalyserLicensesOfComponentsTooObsolete riskAnalyser2 = new RiskAnalyserLicensesOfComponentsTooObsolete(project);
-        RiskAnalyserUnfashionableLicensesOfComponents riskAnalyser3 = new RiskAnalyserUnfashionableLicensesOfComponents(project);
-        RiskAnalyserScarceDeploymentOfLicensesOfComponents riskAnalyser4 = new RiskAnalyserScarceDeploymentOfLicensesOfComponents(project);
-        RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense riskAnalyser5 = new RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense(project);
-        RiskAnalyserLimitedSetOfPotentialComponentsLicenses riskAnalyser6 = new RiskAnalyserLimitedSetOfPotentialComponentsLicenses(project);
-        // Define a Risk analysis engine and add these risk analysers
-        LicenseRiskAnalysisEngine riskAnalysisEngine = new LicenseRiskAnalysisEngine(riskAnalyser1);
-        riskAnalysisEngine.addRiskAnalyser(riskAnalyser2);
-        riskAnalysisEngine.addRiskAnalyser(riskAnalyser3);
-        riskAnalysisEngine.addRiskAnalyser(riskAnalyser4);
-        riskAnalysisEngine.addRiskAnalyser(riskAnalyser5);
-        riskAnalysisEngine.addRiskAnalyser(riskAnalyser6);
-
-        // Run the license risks analysis and collect results
-        RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
-
-        // Print analysis report. As a plain text in this case.
-        System.out.println();
-        System.out.println(ReportsFactory.getInstance().getReportAsPlainText(project, resultSet));
     }
 
     /**
@@ -325,10 +276,7 @@ public class CLIHandler {
         System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -i");
         System.out.println("\tThis will show information about features supported by this version of OpenLRAE.");
         System.out.println();
-        System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -e1");
-        System.out.println("\tThis will execute a ficticious risk analysis and show you the resulting risk report as a plain text.");
-        System.out.println();
-        System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -e2");
+        System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -e");
         System.out.println("\tThis will execute a ficticious risk analysis and show you the resulting risk report as a JSON string.");
         System.out.println();
         System.out.println("java -jar [TheSpecificOpenLRAEBinary.jar] -a filename");
