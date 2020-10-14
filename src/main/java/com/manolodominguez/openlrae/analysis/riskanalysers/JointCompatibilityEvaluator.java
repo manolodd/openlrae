@@ -31,14 +31,14 @@ import org.slf4j.LoggerFactory;
 public class JointCompatibilityEvaluator {
 
     private Logger logger = LoggerFactory.getLogger(JointCompatibilityEvaluator.class);
-    private EnumMap<SupportedLicenses, SupportedCompatibilities> compatibilityMap;
+    private EnumMap<SupportedCompatibilities, Integer> compatibilityCounter;
 
     /**
      * This is the constructorof the class. It creates a new instance of
      * JointCompatibilityEvaluator.
      */
     public JointCompatibilityEvaluator() {
-        compatibilityMap = new EnumMap<>(SupportedLicenses.class);
+        compatibilityCounter = new EnumMap<>(SupportedCompatibilities.class);
     }
 
     /**
@@ -47,7 +47,12 @@ public class JointCompatibilityEvaluator {
      * @param compatibility the compatilibity of a given license (no matter with
      * one) in relation to a project license.
      * @param projectLicense the project license the compatilibity refers to.
+     * @deprecated This method should not be used as it requires a project
+     * license that is really not needed. So it has been recoded to be more
+     * efficient. This method is neither maintained not tested. Use the {@link
+     * #addCompatibility(SupportedCompatibilities) addCompatibility} method.
      */
+    @Deprecated(since = "0.4", forRemoval = true)
     public void addCompatibility(SupportedCompatibilities compatibility, SupportedLicenses projectLicense) {
         if (compatibility == null) {
             logger.error("compatibility cannot be null");
@@ -57,29 +62,30 @@ public class JointCompatibilityEvaluator {
             logger.error("projectLicense cannot be null");
             throw new IllegalArgumentException("projectLicense cannot be null");
         }
-        compatibilityMap.put(projectLicense, compatibility);
+        if (compatibilityCounter.containsKey(compatibility)) {
+            compatibilityCounter.put(compatibility, compatibilityCounter.get(compatibility) + ONE);
+        } else {
+            compatibilityCounter.put(compatibility, ONE);
+        }
+        logger.warn("addCompatibility(SupportedCompatibilities, SupportedLicenses) is deprecated. Avoid using it.");
     }
 
     /**
-     * This method gets the number of times the sepecified compatibility has
-     * been registered.
+     * This methods adds a new compatibility entry to the counter.
      *
-     * @param compatibilityValue a specifica compatiblity type.
-     * @return the number of times the specified compatility has been
-     * registered.
+     * @param compatibility the compatilibity of a given license (no matter with
+     * one) in relation to a project license.
      */
-    private int getNumberOfCompatibilitiesMatching(SupportedCompatibilities compatibilityValue) {
-        if (compatibilityValue == null) {
-            logger.error("compatibilityValue cannot be null");
-            throw new IllegalArgumentException("compatibilityValue cannot be null");
+    public void addCompatibility(SupportedCompatibilities compatibility) {
+        if (compatibility == null) {
+            logger.error("compatibility cannot be null");
+            throw new IllegalArgumentException("compatibility cannot be null");
         }
-        int counter = ZERO;
-        for (SupportedCompatibilities aSingleCompatibility : compatibilityMap.values()) {
-            if (aSingleCompatibility == compatibilityValue) {
-                counter++;
-            }
+        if (compatibilityCounter.containsKey(compatibility)) {
+            compatibilityCounter.put(compatibility, compatibilityCounter.get(compatibility) + ONE);
+        } else {
+            compatibilityCounter.put(compatibility, ONE);
         }
-        return counter;
     }
 
     /**
@@ -97,9 +103,12 @@ public class JointCompatibilityEvaluator {
             logger.error("numberOfLicensesOfProject out of range (0-" + SupportedLicenses.getLicensesForProjects().length + "]");
             throw new IllegalArgumentException("numberOfLicensesOfProject out of range (0-" + SupportedLicenses.getLicensesForProjects().length + "]");
         }
-        int compatibilitySum = ZERO;
-        compatibilitySum += getNumberOfCompatibilitiesMatching(SupportedCompatibilities.COMPATIBLE);
-        return compatibilitySum == numberOfLicensesOfProject;
+        if (compatibilityCounter.containsKey(SupportedCompatibilities.COMPATIBLE)) {
+            if (compatibilityCounter.get(SupportedCompatibilities.COMPATIBLE) == numberOfLicensesOfProject) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -117,10 +126,14 @@ public class JointCompatibilityEvaluator {
             logger.error("numberOfLicensesOfProject out of range (0-" + SupportedLicenses.getLicensesForProjects().length + "]");
             throw new IllegalArgumentException("numberOfLicensesOfProject out of range (0-" + SupportedLicenses.getLicensesForProjects().length + "]");
         }
-        int compatibilitySum = ZERO;
-        compatibilitySum += getNumberOfCompatibilitiesMatching(SupportedCompatibilities.FORCED_COMPATIBLE);
-        return compatibilitySum == numberOfLicensesOfProject;
+        if (compatibilityCounter.containsKey(SupportedCompatibilities.FORCED_COMPATIBLE)) {
+            if (compatibilityCounter.get(SupportedCompatibilities.FORCED_COMPATIBLE) == numberOfLicensesOfProject) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static final int ZERO = 0;
+    private static final int ONE = 1;
 }
