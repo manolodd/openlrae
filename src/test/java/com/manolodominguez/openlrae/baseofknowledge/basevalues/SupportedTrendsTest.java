@@ -52,7 +52,7 @@ public class SupportedTrendsTest {
      */
     @Test
     public void testItemsNumber() {
-        System.out.println("items number");
+        System.console().writer().println("items number");
         // Currently there are 4 trends defined in enum
         assertEquals(4, SupportedTrends.values().length);
     }
@@ -63,7 +63,7 @@ public class SupportedTrendsTest {
      */
     @Test
     public void testItems() {
-        System.out.println("items existence");
+        System.console().writer().println("items existence");
         // Currently these are the trends items defined in enum
         boolean worksFine = true;
         for (SupportedTrends trend : SupportedTrends.values()) {
@@ -87,7 +87,7 @@ public class SupportedTrendsTest {
      */
     @Test
     public void testGetTrendValue() {
-        System.out.println("getTrendValue");
+        System.console().writer().println("getTrendValue");
         boolean worksFine = true;
         for (SupportedTrends trend : SupportedTrends.values()) {
             if ((trend.getTrendValue() >= 0.0f) && (trend.getTrendValue() <= 1.0f)) {
@@ -104,7 +104,7 @@ public class SupportedTrendsTest {
      */
     @Test
     public void testGetDescriptionValue() {
-        System.out.println("getDescriptionValue");
+        System.console().writer().println("getDescriptionValue");
         boolean worksFine = true;
         for (SupportedTrends trend : SupportedTrends.values()) {
             if ((trend.getDescriptionValue() != null) && (!trend.getDescriptionValue().isEmpty())) {

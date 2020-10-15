@@ -53,7 +53,7 @@ public class SupportedCompatibilitiesTest {
      */
     @Test
     public void testItemsNumber() {
-        System.out.println("items number");
+        System.console().writer().println("items number");
         // Currently there are 7 compatibilities defined in enum
         assertEquals(7, SupportedCompatibilities.values().length);
     }
@@ -64,7 +64,7 @@ public class SupportedCompatibilitiesTest {
      */
     @Test
     public void testItems() {
-        System.out.println("items existence");
+        System.console().writer().println("items existence");
         // Currently these are the compatibilities items defined in enum
         boolean worksFine = true;
         for (SupportedCompatibilities compatibility : SupportedCompatibilities.values()) {
@@ -91,7 +91,7 @@ public class SupportedCompatibilitiesTest {
      */
     @Test
     public void testGetCompatibilityValue() {
-        System.out.println("getCompatibilityValue");
+        System.console().writer().println("getCompatibilityValue");
         boolean worksFine = true;
         for (SupportedCompatibilities compatibility : SupportedCompatibilities.values()) {
             if ((compatibility.getCompatibilityValue() >= 0.0f) && (compatibility.getCompatibilityValue() <= 1.0f)) {
@@ -108,7 +108,7 @@ public class SupportedCompatibilitiesTest {
      */
     @Test
     public void testGetDescriptionValue() {
-        System.out.println("getDescriptionValue");
+        System.console().writer().println("getDescriptionValue");
         boolean worksFine = true;
         for (SupportedCompatibilities compatibility : SupportedCompatibilities.values()) {
             if ((compatibility.getDescriptionValue() != null) && (!compatibility.getDescriptionValue().isEmpty())) {

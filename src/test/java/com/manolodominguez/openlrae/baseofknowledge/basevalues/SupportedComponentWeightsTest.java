@@ -52,7 +52,7 @@ public class SupportedComponentWeightsTest {
      */
     @Test
     public void testItemsNumber() {
-        System.out.println("items number");
+        System.console().writer().println("items number");
         // Currently there are 4 wights defined in enum
         assertEquals(4, SupportedComponentWeights.values().length);
     }
@@ -63,7 +63,7 @@ public class SupportedComponentWeightsTest {
      */
     @Test
     public void testItems() {
-        System.out.println("items existence");
+        System.console().writer().println("items existence");
         // Currently these are the weights items defined in enum
         boolean worksFine = true;
         for (SupportedComponentWeights weight : SupportedComponentWeights.values()) {
@@ -87,7 +87,7 @@ public class SupportedComponentWeightsTest {
      */
     @Test
     public void testGetWeightValue() {
-        System.out.println("getWeightValue");
+        System.console().writer().println("getWeightValue");
         boolean worksFine = true;
         for (SupportedComponentWeights weight : SupportedComponentWeights.values()) {
             if ((weight.getWeightValue() >= 0.0f) && (weight.getWeightValue() <= 1.0f)) {
@@ -104,7 +104,7 @@ public class SupportedComponentWeightsTest {
      */
     @Test
     public void testGetDescriptionValue() {
-        System.out.println("getDescriptionValue");
+        System.console().writer().println("getDescriptionValue");
         boolean worksFine = true;
         for (SupportedComponentWeights weight : SupportedComponentWeights.values()) {
             if ((weight.getDescriptionValue() != null) && (!weight.getDescriptionValue().isEmpty())) {

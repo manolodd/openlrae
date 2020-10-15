@@ -52,7 +52,7 @@ public class SupportedObsolescencesTest {
      */
     @Test
     public void testItemsNumber() {
-        System.out.println("items number");
+        System.console().writer().println("items number");
         // Currently there are 4 obsolescences defined in enum
         assertEquals(4, SupportedObsolescences.values().length);
     }
@@ -63,7 +63,7 @@ public class SupportedObsolescencesTest {
      */
     @Test
     public void testItems() {
-        System.out.println("items existence");
+        System.console().writer().println("items existence");
         // Currently these are the obsolescences items defined in enum
         boolean worksFine = true;
         for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {
@@ -87,7 +87,7 @@ public class SupportedObsolescencesTest {
      */
     @Test
     public void testGetObsolescenceValue() {
-        System.out.println("getObsolescenceValue");
+        System.console().writer().println("getObsolescenceValue");
         boolean worksFine = true;
         for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {
             if ((obsolescence.getObsolescenceValue() >= 0.0f) && (obsolescence.getObsolescenceValue() <= 1.0f)) {
@@ -104,7 +104,7 @@ public class SupportedObsolescencesTest {
      */
     @Test
     public void testGetDescriptionValue() {
-        System.out.println("getDescriptionValue");
+        System.console().writer().println("getDescriptionValue");
         boolean worksFine = true;
         for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {
             if ((obsolescence.getDescriptionValue() != null) && (!obsolescence.getDescriptionValue().isEmpty())) {

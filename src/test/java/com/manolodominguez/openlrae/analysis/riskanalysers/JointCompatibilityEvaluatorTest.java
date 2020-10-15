@@ -54,7 +54,7 @@ public class JointCompatibilityEvaluatorTest {
      */
     @Test
     public void testConstructor() {
-        System.out.println("testConstructor");
+        System.console().writer().println("testConstructor");
         JointCompatibilityEvaluator instance = new JointCompatibilityEvaluator();
         assertFalse(instance.isFullyCompatible(1));
         assertFalse(instance.isFullyForcedCompatible(1));
@@ -65,7 +65,7 @@ public class JointCompatibilityEvaluatorTest {
      */
     @Test
     public void testAddCompatibilityWhenCompatibilityIsNull() {
-        System.out.println("addCompatibility");
+        System.console().writer().println("addCompatibility");
         SupportedCompatibilities compatibility = null;
         JointCompatibilityEvaluator instance = new JointCompatibilityEvaluator();
         // Should throw an exception because compatibility is null
@@ -79,7 +79,7 @@ public class JointCompatibilityEvaluatorTest {
      */
     @Test
     public void testAddCompatibilityWhenFullyCompatible() {
-        System.out.println("addCompatibility");
+        System.console().writer().println("addCompatibility");
         SupportedCompatibilities compatibility = SupportedCompatibilities.COMPATIBLE;
         SupportedLicenses projectLicense = SupportedLicenses.AGPL_3_0_ONLY;
         JointCompatibilityEvaluator instance = new JointCompatibilityEvaluator();
@@ -92,7 +92,7 @@ public class JointCompatibilityEvaluatorTest {
      */
     @Test
     public void testAddCompatibilityWhenFullyForcedCompatible() {
-        System.out.println("addCompatibility");
+        System.console().writer().println("addCompatibility");
         SupportedCompatibilities compatibility = SupportedCompatibilities.FORCED_COMPATIBLE;
         JointCompatibilityEvaluator instance = new JointCompatibilityEvaluator();
         instance.addCompatibility(compatibility);
@@ -104,7 +104,7 @@ public class JointCompatibilityEvaluatorTest {
      */
     @Test
     public void testIsFullyCompatibleWhenItIs() {
-        System.out.println("isFullyCompatible");
+        System.console().writer().println("isFullyCompatible");
         SupportedCompatibilities compatibility1 = SupportedCompatibilities.COMPATIBLE;
         SupportedCompatibilities compatibility2 = SupportedCompatibilities.COMPATIBLE;
         SupportedCompatibilities compatibility3 = SupportedCompatibilities.COMPATIBLE;
@@ -120,7 +120,7 @@ public class JointCompatibilityEvaluatorTest {
      */
     @Test
     public void testIsFullyCompatibleWhenItIsNot() {
-        System.out.println("isFullyCompatible");
+        System.console().writer().println("isFullyCompatible");
         SupportedCompatibilities compatibility1 = SupportedCompatibilities.MOSTLY_COMPATIBLE;
         SupportedCompatibilities compatibility2 = SupportedCompatibilities.COMPATIBLE;
         SupportedCompatibilities compatibility3 = SupportedCompatibilities.COMPATIBLE;
@@ -136,7 +136,7 @@ public class JointCompatibilityEvaluatorTest {
      */
     @Test
     public void testIsFullyCompatibleWhenOutOfRange1() {
-        System.out.println("isFullyCompatible");
+        System.console().writer().println("isFullyCompatible");
         JointCompatibilityEvaluator instance = new JointCompatibilityEvaluator();
         // Should throw an exception because it is <= 0
         assertThrows(IllegalArgumentException.class, () -> {
@@ -149,7 +149,7 @@ public class JointCompatibilityEvaluatorTest {
      */
     @Test
     public void testIsFullyCompatibleWhenOutOfRange2() {
-        System.out.println("isFullyCompatible");
+        System.console().writer().println("isFullyCompatible");
         JointCompatibilityEvaluator instance = new JointCompatibilityEvaluator();
         // Should throw an exception because it is greater than the number of
         // supported licenses.
@@ -164,7 +164,7 @@ public class JointCompatibilityEvaluatorTest {
      */
     @Test
     public void testIsFullyForcedCompatibleWhenItIs() {
-        System.out.println("isFullyForcedCompatible");
+        System.console().writer().println("isFullyForcedCompatible");
         SupportedCompatibilities compatibility1 = SupportedCompatibilities.FORCED_COMPATIBLE;
         SupportedCompatibilities compatibility2 = SupportedCompatibilities.FORCED_COMPATIBLE;
         SupportedCompatibilities compatibility3 = SupportedCompatibilities.FORCED_COMPATIBLE;
@@ -181,7 +181,7 @@ public class JointCompatibilityEvaluatorTest {
      */
     @Test
     public void testIsFullyForcedCompatibleWhenItIsNot() {
-        System.out.println("isFullyForcedCompatible");
+        System.console().writer().println("isFullyForcedCompatible");
         SupportedCompatibilities compatibility1 = SupportedCompatibilities.MOSTLY_UNCOMPATIBLE;
         SupportedCompatibilities compatibility2 = SupportedCompatibilities.FORCED_COMPATIBLE;
         SupportedCompatibilities compatibility3 = SupportedCompatibilities.FORCED_COMPATIBLE;
@@ -198,7 +198,7 @@ public class JointCompatibilityEvaluatorTest {
      */
     @Test
     public void testIsFullyForcedCompatibleWhenOutOfRange1() {
-        System.out.println("isFullyForcedCompatible");
+        System.console().writer().println("isFullyForcedCompatible");
         JointCompatibilityEvaluator instance = new JointCompatibilityEvaluator();
         // Should throw an exception because it is <= 0
         assertThrows(IllegalArgumentException.class, () -> {
@@ -212,7 +212,7 @@ public class JointCompatibilityEvaluatorTest {
      */
     @Test
     public void testIsFullyForcedCompatibleWhenOutOfRange2() {
-        System.out.println("isFullyForcedCompatible");
+        System.console().writer().println("isFullyForcedCompatible");
         JointCompatibilityEvaluator instance = new JointCompatibilityEvaluator();
         // Should throw an exception because it is greater than the number of
         // supported licenses.

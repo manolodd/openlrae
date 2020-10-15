@@ -52,7 +52,7 @@ public class SupportedVerbosityLevelTest {
      */
     @Test
     public void testItemsNumber() {
-        System.out.println("items number");
+        System.console().writer().println("items number");
         // Currently there are 3 verbosity levels defined in enum
         assertEquals(3, SupportedVerbosityLevel.values().length);
     }
@@ -63,7 +63,7 @@ public class SupportedVerbosityLevelTest {
      */
     @Test
     public void testItems() {
-        System.out.println("items existence");
+        System.console().writer().println("items existence");
         // Currently these are the verbosity level items defined in enum
         boolean worksFine = true;
         for (SupportedVerbosityLevel verbosity : SupportedVerbosityLevel.values()) {
@@ -86,7 +86,7 @@ public class SupportedVerbosityLevelTest {
      */
     @Test
     public void testGetDescriptionValue() {
-        System.out.println("getDescriptionValue");
+        System.console().writer().println("getDescriptionValue");
         boolean worksFine = true;
         for (SupportedVerbosityLevel verbosity : SupportedVerbosityLevel.values()) {
             if ((verbosity.getDescriptionValue() != null) && (!verbosity.getDescriptionValue().isEmpty())) {

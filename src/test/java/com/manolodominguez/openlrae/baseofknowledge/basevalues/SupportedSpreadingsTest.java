@@ -52,7 +52,7 @@ public class SupportedSpreadingsTest {
      */
     @Test
     public void testItemsNumber() {
-        System.out.println("items number");
+        System.console().writer().println("items number");
         // Currently there are 4 spreadings defined in enum
         assertEquals(4, SupportedSpreadings.values().length);
     }
@@ -63,7 +63,7 @@ public class SupportedSpreadingsTest {
      */
     @Test
     public void testItems() {
-        System.out.println("items existence");
+        System.console().writer().println("items existence");
         // Currently these are the spreading items defined in enum
         boolean worksFine = true;
         for (SupportedSpreadings spreading : SupportedSpreadings.values()) {
@@ -87,7 +87,7 @@ public class SupportedSpreadingsTest {
      */
     @Test
     public void testGetSpreadingValue() {
-        System.out.println("getSpreadingValue");
+        System.console().writer().println("getSpreadingValue");
         boolean worksFine = true;
         for (SupportedSpreadings spreading : SupportedSpreadings.values()) {
             if ((spreading.getSpreadingValue() >= 0.0f) && (spreading.getSpreadingValue() <= 1.0f)) {
@@ -104,7 +104,7 @@ public class SupportedSpreadingsTest {
      */
     @Test
     public void testGetDescriptionValue() {
-        System.out.println("getDescriptionValue");
+        System.console().writer().println("getDescriptionValue");
         boolean worksFine = true;
         for (SupportedSpreadings spreading : SupportedSpreadings.values()) {
             if ((spreading.getDescriptionValue() != null) && (!spreading.getDescriptionValue().isEmpty())) {

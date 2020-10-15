@@ -52,7 +52,7 @@ public class SupportedLinksTest {
      */
     @Test
     public void testItemsNumber() {
-        System.out.println("items number");
+        System.console().writer().println("items number");
         // Currently there are 2 links defined in enum
         assertEquals(2, SupportedLinks.values().length);
     }
@@ -63,7 +63,7 @@ public class SupportedLinksTest {
      */
     @Test
     public void testItems() {
-        System.out.println("items existence");
+        System.console().writer().println("items existence");
         // Currently these are the links items defined in enum
         boolean worksFine = true;
         for (SupportedLinks link : SupportedLinks.values()) {
@@ -85,7 +85,7 @@ public class SupportedLinksTest {
      */
     @Test
     public void testGetDescriptionValue() {
-        System.out.println("getDescriptionValue");
+        System.console().writer().println("getDescriptionValue");
         boolean worksFine = true;
         for (SupportedLinks link : SupportedLinks.values()) {
             if ((link.getDescriptionValue() != null) && (!link.getDescriptionValue().isEmpty())) {

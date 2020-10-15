@@ -52,7 +52,7 @@ public class SupportedLicensesTest {
      */
     @Test
     public void testItemsNumber() {
-        System.out.println("items number");
+        System.console().writer().println("items number");
         // Currently there are 21 licenses defined in enum
         assertEquals(21, SupportedLicenses.values().length);
     }
@@ -63,7 +63,7 @@ public class SupportedLicensesTest {
      */
     @Test
     public void testItems() {
-        System.out.println("items existence");
+        System.console().writer().println("items existence");
         // Currently these are the licenses items defined in enum
         boolean worksFine = true;
         for (SupportedLicenses license : SupportedLicenses.values()) {
@@ -104,7 +104,7 @@ public class SupportedLicensesTest {
      */
     @Test
     public void testGetDescriptionValue() {
-        System.out.println("getDescriptionValue");
+        System.console().writer().println("getDescriptionValue");
         boolean worksFine = true;
         for (SupportedComponentWeights weight : SupportedComponentWeights.values()) {
             if ((weight.getDescriptionValue() != null) && (!weight.getDescriptionValue().isEmpty())) {
@@ -121,7 +121,7 @@ public class SupportedLicensesTest {
      */
     @Test
     public void testGetSPDXIdentifier() {
-        System.out.println("getSPDXIdentifier");
+        System.console().writer().println("getSPDXIdentifier");
         boolean worksFine = true;
         for (SupportedLicenses license : SupportedLicenses.values()) {
             if ((license.getSPDXIdentifier() != null) && (!license.getSPDXIdentifier().isEmpty())) {
@@ -138,7 +138,7 @@ public class SupportedLicensesTest {
      */
     @Test
     public void testGetSPDXFullName() {
-        System.out.println("getSPDXFullName");
+        System.console().writer().println("getSPDXFullName");
         boolean worksFine = true;
         for (SupportedLicenses license : SupportedLicenses.values()) {
             if ((license.getSPDXFullName()!= null) && (!license.getSPDXFullName().isEmpty())) {
@@ -155,7 +155,7 @@ public class SupportedLicensesTest {
      */
     @Test
     public void testGetLicensesForProjects() {
-        System.out.println("getLicensesForProjects");
+        System.console().writer().println("getLicensesForProjects");
         // Currently there are 18 licenses for projects defined in enum
         assertEquals(18, SupportedLicenses.getLicensesForProjects().length);
     }
@@ -165,7 +165,7 @@ public class SupportedLicensesTest {
      */
     @Test
     public void testGetLicensesForComponents() {
-        System.out.println("getLicensesForComponents");
+        System.console().writer().println("getLicensesForComponents");
         // Currently there are 21 licenses for components defined in enum
         assertEquals(21, SupportedLicenses.getLicensesForComponents().length);
     }
@@ -175,7 +175,7 @@ public class SupportedLicensesTest {
      */
     @Test
     public void testGetFicticiousLicenses() {
-        System.out.println("getFicticiousLicenses");
+        System.console().writer().println("getFicticiousLicenses");
         // Currently there are 3 ficticious licenses defined in enum
         assertEquals(3, SupportedLicenses.getFicticiousLicenses().length);
     }
@@ -185,7 +185,7 @@ public class SupportedLicensesTest {
      */
     @Test
     public void testGetNotFicticiousLicenses() {
-        System.out.println("getNotFicticiousLicenses");
+        System.console().writer().println("getNotFicticiousLicenses");
         // Currently there are 18 not ficticious licenses defined in enum
         assertEquals(18, SupportedLicenses.getNotFicticiousLicenses().length);
     }
