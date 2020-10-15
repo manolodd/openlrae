@@ -85,13 +85,13 @@ public class CLIHandler {
         }
         File file = new File(fileName);
         if (!file.exists()) {
-            System.console().writer().println("File " + fileName + " cannot be found");
+            writeToConsole("File " + fileName + " cannot be found");
         } else {
             if (!file.isFile()) {
-                System.console().writer().println(fileName + " is not a file");
+                writeToConsole(fileName + " is not a file");
             } else {
                 if (!file.canRead()) {
-                    System.console().writer().println("File " + fileName + " cannot be read");
+                    writeToConsole("File " + fileName + " cannot be read");
                 } else {
                     try {
 
@@ -115,10 +115,10 @@ public class CLIHandler {
                         RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
 
                         // Print analysis report. As a JSON string in this case.
-                        System.console().writer().println();
-                        System.console().writer().println(ReportsFactory.getInstance(SupportedVerbosityLevel.DETAILED).getReportAsPlainText(project, resultSet));
+                        writeToConsole("");
+                        writeToConsole(ReportsFactory.getInstance(SupportedVerbosityLevel.DETAILED).getReportAsPlainText(project, resultSet));
                     } catch (Exception ex) {
-                        System.console().writer().println("There was a problem trying to analyse " + fileName + ". Is it a correct JSON file compliant with OpenLRAE JSON schema for projects definition?");
+                        writeToConsole("There was a problem trying to analyse " + fileName + ". Is it a correct JSON file compliant with OpenLRAE JSON schema for projects definition?");
                     }
                 }
             }
@@ -157,71 +157,71 @@ public class CLIHandler {
         RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
 
         // Print analysis report. As a JSON string in this case.
-        writeInConsole("");
-        writeInConsole(ReportsFactory.getInstance().getReportAsBeautifiedJSONString(project, resultSet));
+        writeToConsole("");
+        writeToConsole(ReportsFactory.getInstance().getReportAsBeautifiedJSONString(project, resultSet));
     }
 
     /**
      * This show all features supported by this version of OpenLRAE.
      */
     public void showInfo() {
-        writeInConsole("");
-        writeInConsole("****************************");
-        writeInConsole("Open LRAE supported features");
-        writeInConsole("****************************");
-        writeInConsole("");
-        writeInConsole("=== Supported risks analysis");
+        writeToConsole("");
+        writeToConsole("****************************");
+        writeToConsole("Open LRAE supported features");
+        writeToConsole("****************************");
+        writeToConsole("");
+        writeToConsole("=== Supported risks analysis");
         for (SupportedRisks risk : SupportedRisks.values()) {
-            writeInConsole("\t- " + risk.getDescriptionValue());
+            writeToConsole("\t- " + risk.getDescriptionValue());
         }
-        writeInConsole("");
-        writeInConsole("=== Supported licenses for components");
+        writeToConsole("");
+        writeToConsole("=== Supported licenses for components");
         for (SupportedLicenses license : SupportedLicenses.getLicensesForComponents()) {
-            writeInConsole("\t- " + license.getSPDXIdentifier());
+            writeToConsole("\t- " + license.getSPDXIdentifier());
         }
-        writeInConsole("");
-        writeInConsole("=== Supported licenses for projects");
+        writeToConsole("");
+        writeToConsole("=== Supported licenses for projects");
         for (SupportedLicenses license : SupportedLicenses.getLicensesForProjects()) {
-            writeInConsole("\t- " + license.getSPDXIdentifier());
+            writeToConsole("\t- " + license.getSPDXIdentifier());
         }
-        writeInConsole("");
-        writeInConsole("=== Supported types of links (of components linked to a project)");
+        writeToConsole("");
+        writeToConsole("=== Supported types of links (of components linked to a project)");
         for (SupportedLinks link : SupportedLinks.values()) {
-            writeInConsole("\t- " + link.getDescriptionValue());
+            writeToConsole("\t- " + link.getDescriptionValue());
         }
-        writeInConsole("");
-        writeInConsole("=== Supported types of project redistributions");
+        writeToConsole("");
+        writeToConsole("=== Supported types of project redistributions");
         for (SupportedRedistributions redistribution : SupportedRedistributions.values()) {
-            writeInConsole("\t- " + redistribution.getDescriptionValue());
+            writeToConsole("\t- " + redistribution.getDescriptionValue());
         }
-        writeInConsole("");
-        writeInConsole("=== Supported types of license compatibility (of components added to a project)");
+        writeToConsole("");
+        writeToConsole("=== Supported types of license compatibility (of components added to a project)");
         for (SupportedCompatibilities compatibility : SupportedCompatibilities.values()) {
-            writeInConsole("\t- " + compatibility.getDescriptionValue());
+            writeToConsole("\t- " + compatibility.getDescriptionValue());
         }
-        writeInConsole("");
-        writeInConsole("=== Supported components weight (real use of the component in the project)");
+        writeToConsole("");
+        writeToConsole("=== Supported components weight (real use of the component in the project)");
         for (SupportedComponentWeights weight : SupportedComponentWeights.values()) {
-            writeInConsole("\t- " + weight.getDescriptionValue());
+            writeToConsole("\t- " + weight.getDescriptionValue());
         }
-        writeInConsole("");
-        writeInConsole("=== Supported licenses obsolescence (measures how old is the license version)");
+        writeToConsole("");
+        writeToConsole("=== Supported licenses obsolescence (measures how old is the license version)");
         for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {
-            writeInConsole("\t- " + obsolescence.getDescriptionValue());
+            writeToConsole("\t- " + obsolescence.getDescriptionValue());
         }
-        writeInConsole("");
-        writeInConsole("=== Supported licenses spreading (measures how many third party project use the same license NOW)");
+        writeToConsole("");
+        writeToConsole("=== Supported licenses spreading (measures how many third party project use the same license NOW)");
         for (SupportedSpreadings spreading : SupportedSpreadings.values()) {
-            writeInConsole("\t- " + spreading.getDescriptionValue());
+            writeToConsole("\t- " + spreading.getDescriptionValue());
         }
-        writeInConsole("");
-        writeInConsole("=== Supported licenses trend (measures whether the use of the license is growing NOW or declining)");
+        writeToConsole("");
+        writeToConsole("=== Supported licenses trend (measures whether the use of the license is growing NOW or declining)");
         for (SupportedTrends trend : SupportedTrends.values()) {
-            writeInConsole("\t- " + trend.getDescriptionValue());
+            writeToConsole("\t- " + trend.getDescriptionValue());
         }
-        writeInConsole("");
-        writeInConsole("=== Supported license compatibilities combination (can be analysed by OpenLRAE right now)");
-        writeInConsole("=== COMPONENT_LICENSE (LINK_TYPE) --> PROJECT_LICENSE (REDISTRIBUTION_TYPE)");
+        writeToConsole("");
+        writeToConsole("=== Supported license compatibilities combination (can be analysed by OpenLRAE right now)");
+        writeToConsole("=== COMPONENT_LICENSE (LINK_TYPE) --> PROJECT_LICENSE (REDISTRIBUTION_TYPE)");
         LicensesCompatibilityFactory compatibilities = LicensesCompatibilityFactory.getInstance();
         int i = 0;
         for (SupportedRedistributions redistribution : SupportedRedistributions.values()) {
@@ -230,15 +230,15 @@ public class CLIHandler {
                     for (SupportedLicenses componentLicense : SupportedLicenses.getLicensesForComponents()) {
                         if (compatibilities.getCompatibilityOf(componentLicense, projectLicense, link, redistribution) != SupportedCompatibilities.UNSUPPORTED) {
                             i++;
-                            writeInConsole(i + "- Component: " + componentLicense.getSPDXIdentifier() + " (" + link + ") --> Project: " + projectLicense.getSPDXIdentifier() + " (" + redistribution + ")");
+                            writeToConsole(i + "- Component: " + componentLicense.getSPDXIdentifier() + " (" + link + ") --> Project: " + projectLicense.getSPDXIdentifier() + " (" + redistribution + ")");
                         }
                     }
                 }
             }
         }
-        writeInConsole("");
-        writeInConsole("=== Still unsupported license compatibilities combination (cannot be analysed by OpenLRAE right now)");
-        writeInConsole("=== COMPONENT_LICENSE (LINK_TYPE) --> PROJECT_LICENSE (REDISTRIBUTION_TYPE)");
+        writeToConsole("");
+        writeToConsole("=== Still unsupported license compatibilities combination (cannot be analysed by OpenLRAE right now)");
+        writeToConsole("=== COMPONENT_LICENSE (LINK_TYPE) --> PROJECT_LICENSE (REDISTRIBUTION_TYPE)");
         int j = 0;
         for (SupportedRedistributions redistribution : SupportedRedistributions.values()) {
             for (SupportedLinks link : SupportedLinks.values()) {
@@ -246,40 +246,40 @@ public class CLIHandler {
                     for (SupportedLicenses componentLicense : SupportedLicenses.values()) {
                         if (compatibilities.getCompatibilityOf(componentLicense, projectLicense, link, redistribution) == SupportedCompatibilities.UNSUPPORTED) {
                             j++;
-                            writeInConsole(j + "- Component: " + componentLicense.getSPDXIdentifier() + " (" + link + ") --> Project: " + projectLicense.getSPDXIdentifier() + " (" + redistribution + ")");
+                            writeToConsole(j + "- Component: " + componentLicense.getSPDXIdentifier() + " (" + link + ") --> Project: " + projectLicense.getSPDXIdentifier() + " (" + redistribution + ")");
                         }
                     }
                 }
             }
         }
-        writeInConsole("");
+        writeToConsole("");
     }
 
     /**
      * This print in console the set of options that can be used by the user.
      */
     public void showOptions() {
-        writeInConsole("");
-        writeInConsole("*************************************************************");
-        writeInConsole("Open LRAE " + new VersionLoader().getVersion());
-        writeInConsole("*************************************************************");
-        writeInConsole("");
-        writeInConsole("OpenLRAE is a library. However it is also an executable that allow");
-        writeInConsole("obtaning some information about the library and doing some basic");
-        writeInConsole("anaysis. See the usage below:");
-        writeInConsole("");
-        writeInConsole("java -jar [TheSpecificOpenLRAEBinary.jar] -s");
-        writeInConsole("\tThis will show the OpenLRAE JSON schema for projects definition.");
-        writeInConsole("");
-        writeInConsole("java -jar [TheSpecificOpenLRAEBinary.jar] -i");
-        writeInConsole("\tThis will show information about features supported by this version of OpenLRAE.");
-        writeInConsole("");
-        writeInConsole("java -jar [TheSpecificOpenLRAEBinary.jar] -e");
-        writeInConsole("\tThis will execute a ficticious risk analysis and show you the resulting risk report as a JSON string.");
-        writeInConsole("");
-        writeInConsole("java -jar [TheSpecificOpenLRAEBinary.jar] -a filename");
-        writeInConsole("\tThis will execute a risk analysis of a project that is defined in \"filename\" in JSON format and show you the resulting risk report as plain text.\n\tSee OpenLRAE JSON schema for projects to know how to write this project definition in JSON format properly.");
-        writeInConsole("");
+        writeToConsole("");
+        writeToConsole("*************************************************************");
+        writeToConsole("Open LRAE " + new VersionLoader().getVersion());
+        writeToConsole("*************************************************************");
+        writeToConsole("");
+        writeToConsole("OpenLRAE is a library. However it is also an executable that allow");
+        writeToConsole("obtaning some information about the library and doing some basic");
+        writeToConsole("anaysis. See the usage below:");
+        writeToConsole("");
+        writeToConsole("java -jar [TheSpecificOpenLRAEBinary.jar] -s");
+        writeToConsole("\tThis will show the OpenLRAE JSON schema for projects definition.");
+        writeToConsole("");
+        writeToConsole("java -jar [TheSpecificOpenLRAEBinary.jar] -i");
+        writeToConsole("\tThis will show information about features supported by this version of OpenLRAE.");
+        writeToConsole("");
+        writeToConsole("java -jar [TheSpecificOpenLRAEBinary.jar] -e");
+        writeToConsole("\tThis will execute a risk analysis using a built-in project example and will show you the resulting risk report as a JSON string.");
+        writeToConsole("");
+        writeToConsole("java -jar [TheSpecificOpenLRAEBinary.jar] -a filename");
+        writeToConsole("\tThis will execute a risk analysis of a project that is defined in \"filename\" in JSON format and show you the resulting risk report as plain text.\n\tSee OpenLRAE JSON schema for projects to know how to write this project definition in JSON format properly.");
+        writeToConsole("");
     }
 
     /**
@@ -294,12 +294,12 @@ public class CLIHandler {
             bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String string;
             while ((string = bufferedReader.readLine()) != null) {
-                writeInConsole(string);
+                writeToConsole(string);
             }
         } catch (FileNotFoundException ex) {
-            writeInConsole("The OpenLRAE JSON schema file cannot be found.");
+            writeToConsole("The OpenLRAE JSON schema file cannot be found.");
         } catch (IOException ex) {
-            writeInConsole("The OpenLRAE JSON schema file cannot be read.");
+            writeToConsole("The OpenLRAE JSON schema file cannot be read.");
         }
     }
 
@@ -310,7 +310,7 @@ public class CLIHandler {
      *
      * @param string The texto to be printed in console.
      */
-    private void writeInConsole(String string) {
+    private void writeToConsole(String string) {
         if (System.console() != null) {
             System.console().writer().println(string);
         } else {
