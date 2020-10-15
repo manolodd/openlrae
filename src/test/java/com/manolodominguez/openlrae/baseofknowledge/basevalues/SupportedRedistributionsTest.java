@@ -52,7 +52,7 @@ public class SupportedRedistributionsTest {
      */
     @Test
     public void testItemsNumber() {
-        System.console().writer().println("items number");
+        System.out.println("items number");
         // Currently there are 2 redistributions defined in enum
         assertEquals(2, SupportedRedistributions.values().length);
     }
@@ -63,7 +63,7 @@ public class SupportedRedistributionsTest {
      */
     @Test
     public void testItems() {
-        System.console().writer().println("items existence");
+        System.out.println("items existence");
         // Currently these are the redistribution items defined in enum
         boolean worksFine = true;
         for (SupportedRedistributions redistribution : SupportedRedistributions.values()) {
@@ -85,7 +85,7 @@ public class SupportedRedistributionsTest {
      */
     @Test
     public void testGetDescriptionValue() {
-        System.console().writer().println("getDescriptionValue");
+        System.out.println("getDescriptionValue");
         boolean worksFine = true;
         for (SupportedRedistributions redistribution : SupportedRedistributions.values()) {
             if ((redistribution.getDescriptionValue() != null) && (!redistribution.getDescriptionValue().isEmpty())) {

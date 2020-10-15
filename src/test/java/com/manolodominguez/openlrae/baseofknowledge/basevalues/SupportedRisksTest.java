@@ -52,7 +52,7 @@ public class SupportedRisksTest {
      */
     @Test
     public void testItemsNumber() {
-        System.console().writer().println("items number");
+        System.out.println("items number");
         // Currently there are 6 risks defined in enum
         assertEquals(6, SupportedRisks.values().length);
     }
@@ -63,7 +63,7 @@ public class SupportedRisksTest {
      */
     @Test
     public void testItems() {
-        System.console().writer().println("items existence");
+        System.out.println("items existence");
         // Currently these are the redistribution items defined in enum
         boolean worksFine = true;
         for (SupportedRisks risk : SupportedRisks.values()) {
@@ -89,7 +89,7 @@ public class SupportedRisksTest {
      */
     @Test
     public void testGetDescriptionValue() {
-        System.console().writer().println("getDescriptionValue");
+        System.out.println("getDescriptionValue");
         boolean worksFine = true;
         for (SupportedRisks risk : SupportedRisks.values()) {
             if ((risk.getDescriptionValue() != null) && (!risk.getDescriptionValue().isEmpty())) {

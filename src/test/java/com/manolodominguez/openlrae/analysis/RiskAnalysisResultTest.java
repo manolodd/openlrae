@@ -54,7 +54,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testConstructorWhenRiskTypeNull() {
-        System.console().writer().println("Constructor");
+        System.out.println("Constructor");
         SupportedRisks riskType = null;
         float riskExposure = 0.0f;
         float riskImpact = 0.0f;
@@ -73,7 +73,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testConstructorWhenRiskExposureOutOfRange1() {
-        System.console().writer().println("Constructor");
+        System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
         float riskExposure = -0.1f;
         float riskImpact = 0.0f;
@@ -92,7 +92,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testConstructorWhenRiskExposureOutOfRange2() {
-        System.console().writer().println("Constructor");
+        System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
         float riskExposure = 1.1f;
         float riskImpact = 0.0f;
@@ -111,7 +111,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testConstructorWhenRiskImpactOutOfRange1() {
-        System.console().writer().println("Constructor");
+        System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
         float riskExposure = 0.0f;
         float riskImpact = -0.1f;
@@ -130,7 +130,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testConstructorWhenRiskImpactOutOfRange2() {
-        System.console().writer().println("Constructor");
+        System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
         float riskExposure = 0.0f;
         float riskImpact = 1.1f;
@@ -149,7 +149,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testConstructorWhenRootCausesIsNull() {
-        System.console().writer().println("Constructor");
+        System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
         float riskExposure = 0.0f;
         float riskImpact = 0.0f;
@@ -168,7 +168,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testConstructorWhenWarningsIsNull() {
-        System.console().writer().println("Constructor");
+        System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
         float riskExposure = 0.0f;
         float riskImpact = 0.0f;
@@ -187,7 +187,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testConstructorWhenGoodThingsIsNull() {
-        System.console().writer().println("Constructor");
+        System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
         float riskExposure = 0.0f;
         float riskImpact = 0.0f;
@@ -206,7 +206,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testConstructorWhenTipsIsNull() {
-        System.console().writer().println("Constructor");
+        System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
         float riskExposure = 0.0f;
         float riskImpact = 0.0f;
@@ -225,7 +225,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testConstructor() {
-        System.console().writer().println("Constructor");
+        System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;
@@ -265,7 +265,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testGetRiskExposure() {
-        System.console().writer().println("getRiskExposure");
+        System.out.println("getRiskExposure");
         SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;
@@ -282,7 +282,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testGetRiskImpact() {
-        System.console().writer().println("getRiskImpact");
+        System.out.println("getRiskImpact");
         SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;
@@ -299,7 +299,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testGetRiskValue() {
-        System.console().writer().println("getRiskValue");
+        System.out.println("getRiskValue");
         SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;
@@ -316,7 +316,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testGetRootCauses() {
-        System.console().writer().println("getRootCauses");
+        System.out.println("getRootCauses");
         SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;
@@ -333,7 +333,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testGetWarnings() {
-        System.console().writer().println("getWarnings");
+        System.out.println("getWarnings");
         SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;
@@ -350,7 +350,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testGetGoodThings() {
-        System.console().writer().println("getGoodThings");
+        System.out.println("getGoodThings");
         SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;
@@ -367,7 +367,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testGetTips() {
-        System.console().writer().println("getTips");
+        System.out.println("getTips");
         SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;

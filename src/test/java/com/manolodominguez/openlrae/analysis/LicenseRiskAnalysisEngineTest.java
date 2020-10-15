@@ -65,7 +65,7 @@ public class LicenseRiskAnalysisEngineTest {
      */
     @Test
     public void testConstructor() {
-        System.console().writer().println("constructor");
+        System.out.println("constructor");
         assertThrows(IllegalArgumentException.class, () -> {
             new LicenseRiskAnalysisEngine(null); // Should throw an exception
         });
@@ -76,7 +76,7 @@ public class LicenseRiskAnalysisEngineTest {
      */
     @Test
     public void testAddRiskAnalyserNull() {
-        System.console().writer().println("addRiskAnalyser");
+        System.out.println("addRiskAnalyser");
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
@@ -95,7 +95,7 @@ public class LicenseRiskAnalysisEngineTest {
      */
     @Test
     public void testAnalyse() {
-        System.console().writer().println("analyse");
+        System.out.println("analyse");
         boolean worksFine = true;
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());

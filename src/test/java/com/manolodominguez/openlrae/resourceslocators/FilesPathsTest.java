@@ -53,7 +53,7 @@ public class FilesPathsTest {
      */
     @Test
     public void testItemsNumber() {
-        System.console().writer().println("items number");
+        System.out.println("items number");
         // Currently there are 4 file paths defined in enum
         assertEquals(4, FilesPaths.values().length);
     }
@@ -64,7 +64,7 @@ public class FilesPathsTest {
      */
     @Test
     public void testItems() {
-        System.console().writer().println("items existence");
+        System.out.println("items existence");
         // Currently these are the file path items defined in enum
         boolean worksFine = true;
         for (FilesPaths filePath : FilesPaths.values()) {
@@ -88,7 +88,7 @@ public class FilesPathsTest {
      */
     @Test
     public void testGetFilePath() {
-        System.console().writer().println("getFilePath");
+        System.out.println("getFilePath");
         boolean worksFine = true;
         for (FilesPaths filePath : FilesPaths.values()) {
             if ((filePath.getFilePath() != null) && (!filePath.getFilePath().isEmpty())) {
@@ -105,7 +105,7 @@ public class FilesPathsTest {
      */
     @Test
     public void testFilesExistence() {
-        System.console().writer().println("Test file existence");
+        System.out.println("Test file existence");
         boolean worksFine = true;
         for (FilesPaths filePath : FilesPaths.values()) {
             if ((filePath.getFilePath() != null) && (!filePath.getFilePath().isEmpty())) {
