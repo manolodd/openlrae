@@ -134,6 +134,25 @@ public class CLIHandler {
      * analysis and generate a JSON report.
      */
     public void runExample() {
+
+        InputStream inputStream = getClass().getResourceAsStream(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        BufferedReader bufferedReader;
+        try {
+            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            String string;
+            writeToConsole("");
+            writeToConsole("===============================");
+            writeToConsole("EXAMPLE PROJECT JSON DEFINITION");
+            writeToConsole("===============================");
+            writeToConsole("");
+            while ((string = bufferedReader.readLine()) != null) {
+                writeToConsole(string);
+            }
+        } catch (FileNotFoundException ex) {
+            writeToConsole("The file of the example project cannot be found.");
+        } catch (IOException ex) {
+            writeToConsole("The file of the example project cannot be read.");
+        }
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
@@ -157,6 +176,10 @@ public class CLIHandler {
         RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
 
         // Print analysis report. As a JSON string in this case.
+        writeToConsole("");
+        writeToConsole("=====================================");
+        writeToConsole("RISKS ANALYSIS OF THE EXAMPLE PROJECT");
+        writeToConsole("=====================================");
         writeToConsole("");
         writeToConsole(ReportsFactory.getInstance().getReportAsBeautifiedJSONString(project, resultSet));
     }
