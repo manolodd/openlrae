@@ -74,10 +74,10 @@ public abstract class AbstractRiskAnalyser {
     private void reset() {
         riskExposure = AbstractRiskAnalyser.DEFAULT_EXPOSURE_LEVEL;
         riskImpact = AbstractRiskAnalyser.DEFAULT_IMPACT_LEVEL;
-        rootCauses.clear();
-        warnings.clear();
-        goodThings.clear();
-        tips.clear();
+        rootCauses = new CopyOnWriteArrayList<>();
+        warnings = new CopyOnWriteArrayList<>();
+        goodThings = new CopyOnWriteArrayList<>();
+        tips = new CopyOnWriteArrayList<>();
     }
 
     /**
