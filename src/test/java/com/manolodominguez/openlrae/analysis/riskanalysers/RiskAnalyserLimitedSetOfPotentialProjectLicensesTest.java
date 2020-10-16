@@ -32,9 +32,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class RiskAnalyserLimitedSetOfPotentialComponentsLicensesTest {
+public class RiskAnalyserLimitedSetOfPotentialProjectLicensesTest {
     
-    public RiskAnalyserLimitedSetOfPotentialComponentsLicensesTest() {
+    public RiskAnalyserLimitedSetOfPotentialProjectLicensesTest() {
     }
     
     @BeforeAll
@@ -54,7 +54,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicensesTest {
     }
 
     /**
-     * Test of constructor, of class RiskAnalyserLimitedSetOfPotentialComponentsLicenses.
+     * Test of constructor, of class RiskAnalyserLimitedSetOfPotentialProjectLicenses.
      */
     @Test
     public void testConstructorWhenProjectIsNull() {
@@ -62,12 +62,12 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicensesTest {
         Project project = null;
         // Should throw an exception because project is null
         assertThrows(IllegalArgumentException.class, () -> {
-            new RiskAnalyserLimitedSetOfPotentialComponentsLicenses(project);
+            new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
         });
     }
     
     /**
-     * Test of getHandledRiskType method, of class RiskAnalyserLimitedSetOfPotentialComponentsLicenses.
+     * Test of getHandledRiskType method, of class RiskAnalyserLimitedSetOfPotentialProjectLicenses.
      */
     @Test
     public void testGetHandledRiskType() {
@@ -75,12 +75,12 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicensesTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserLimitedSetOfPotentialComponentsLicenses instance = new RiskAnalyserLimitedSetOfPotentialComponentsLicenses(project);
-        assertEquals(SupportedRisks.LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES, instance.handledRiskType);
+        RiskAnalyserLimitedSetOfPotentialProjectLicenses instance = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
+        assertEquals(SupportedRisks.LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES, instance.handledRiskType);
     }
     
     /**
-     * Test of getRiskAnalisysResult method, of class RiskAnalyserLimitedSetOfPotentialComponentsLicenses.
+     * Test of getRiskAnalisysResult method, of class RiskAnalyserLimitedSetOfPotentialProjectLicenses.
      */
     @Test
     public void testGetRiskAnalisysResultr() {
@@ -88,7 +88,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicensesTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserLimitedSetOfPotentialComponentsLicenses instance = new RiskAnalyserLimitedSetOfPotentialComponentsLicenses(project);
+        RiskAnalyserLimitedSetOfPotentialProjectLicenses instance = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result1 = instance.getRiskAnalisysResult();
         RiskAnalysisResult result2 = instance.getRiskAnalisysResult();
@@ -99,7 +99,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicensesTest {
     }
     
     /**
-     * Test of runAnalyser method, of class RiskAnalyserLimitedSetOfPotentialComponentsLicenses.
+     * Test of runAnalyser method, of class RiskAnalyserLimitedSetOfPotentialProjectLicenses.
      */
     @Test
     public void testRunAnalyser() {
@@ -107,7 +107,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicensesTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserLimitedSetOfPotentialComponentsLicenses instance = new RiskAnalyserLimitedSetOfPotentialComponentsLicenses(project);
+        RiskAnalyserLimitedSetOfPotentialProjectLicenses instance = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result = instance.getRiskAnalisysResult();
         assertNotNull(result);
@@ -122,12 +122,12 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicensesTest {
         assertTrue(!result.getTips().isEmpty());
         assertTrue(result.getRiskExposure() >= 0.0f);
         assertTrue(result.getRiskExposure() <= 1.0f);
-        assertEquals(0.5238f, result.getRiskExposure());
+        assertEquals(0.9444f, result.getRiskExposure());
         assertTrue(result.getRiskImpact() >= 0.0f);
         assertTrue(result.getRiskImpact() <= 1.0f);
-        assertEquals(0.5238f, result.getRiskImpact());
+        assertEquals(0.3212f, result.getRiskImpact());
         assertTrue(result.getRiskValue() >= 0.0f);
         assertTrue(result.getRiskValue() <= 1.0f);
-        assertEquals(0.2744f, result.getRiskValue());
+        assertEquals(0.3033f, result.getRiskValue());
     }
 }
