@@ -237,7 +237,6 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
 
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
-
         if (riskExposure > NO_RISK) {
             tips.add("General tip: Try not to link component statically in your project as it is more likely to have incompatibilities.");
             tips.add("General tip: Try not to include a derivative work of a component under a different license than the original component as it is more likely to have incompatibilities.");
