@@ -328,8 +328,8 @@ public class CLIHandler {
 
     /**
      * This methods print in console a given text, avoiding the use of
-     * System.out.println(). If no console is available, the a logger is used at
-     * level INFO.
+     * System.out.println(). If no console is available, System.out.println is
+     * used instead.
      *
      * @param string The texto to be printed in console.
      */
@@ -337,7 +337,7 @@ public class CLIHandler {
         if (System.console() != null) {
             System.console().writer().println(string);
         } else {
-            logger.info(string);
+            System.out.println(string);
         }
 
     }
