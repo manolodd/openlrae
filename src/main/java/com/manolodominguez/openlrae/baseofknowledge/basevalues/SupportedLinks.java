@@ -26,8 +26,8 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedLinks {
-    STATIC("linked dynamically"),
-    DYNAMIC("linked statically");
+    STATIC("linked statically"),
+    DYNAMIC("linked dynamically");
 
     private Logger logger = LoggerFactory.getLogger(SupportedLinks.class);
 
