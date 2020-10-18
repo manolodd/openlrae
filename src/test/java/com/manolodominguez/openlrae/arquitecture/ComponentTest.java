@@ -15,7 +15,6 @@
  */
 package com.manolodominguez.openlrae.arquitecture;
 
-import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
