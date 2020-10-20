@@ -55,7 +55,7 @@ public class FilesPathsTest {
     public void testItemsNumber() {
         System.out.println("items number");
         // Currently there are 4 file paths defined in enum
-        assertEquals(4, FilesPaths.values().length);
+        assertEquals(5, FilesPaths.values().length);
     }
 
     /**
@@ -73,6 +73,7 @@ public class FilesPathsTest {
                 case PROJECT_SCHEMA:
                 case REPORT_SCHEMA:
                 case PROJECT_EXAMPLE:
+                case INVALID_PROJECT_EXAMPLE:
                     worksFine &= true;
                     break;
                 default:

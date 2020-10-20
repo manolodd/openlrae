@@ -140,8 +140,8 @@ public class Project {
                 throw new IllegalArgumentException(getValidationReport(projectDefinition).toString());
             }
         } catch (RuntimeException e) {
-            logger.error("projectDefinitionAsJSONString is not a JSON File");
-            throw new IllegalArgumentException("projectDefinitionAsJSONString is not a JSON File");
+            logger.error("projectDefinitionAsJSONString is not a JSON String");
+            throw new IllegalArgumentException("projectDefinitionAsJSONString is not a JSON string");
         }
     }
 

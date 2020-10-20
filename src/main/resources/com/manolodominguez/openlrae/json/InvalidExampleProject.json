@@ -1,0 +1,38 @@
+{
+    "projectinfo": {
+        "name": "MyProject",
+        "version": "1.0",
+        "redistribution": "SOFTWARE_PACKAGE_OR_SAAS",
+        "licenses": ["APACHE_2_0", "MIT"]
+    },
+    "componentbindings": [
+        {
+            "component": "my-favourite-component",
+            "version": "1.7.2",
+            "license": "UNKNOWN",
+            "weight": "LOW",
+            "link": "DYNAMIC"
+        },
+        {
+            "component": "a-given-component",
+            "version": "3.7",
+            "license": "MIT",
+            "weight": "HIGH",
+            "link": "DYNAMIC"
+        },
+        {
+            "component": "an-updated-component",
+            "version": "1.0",
+            "license": "BSD_4_CLAUSE",
+            "weight": "HIGH",
+            "link": "DYNAMIC"
+        },
+        {
+            "component": "legacy-component",
+            "version": "0.9",
+            "license": "LGPL_3_0_OR_LATER",
+            "weight": "HIGH",
+            "link": "STATIC"
+        }
+    ]
+}

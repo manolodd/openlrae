@@ -54,21 +54,6 @@ public class ComponentBindingTest {
      * Test constructor of class ComponentBinding.
      */
     @Test
-    public void testConstructorWhenLinkIsNull() {
-        System.out.println("getComponent");
-        Component component = new Component("ComponentName", "ComponentVersion", SupportedLicenses.ARTISTIC_2_0);
-        SupportedLinks link = null;
-        SupportedComponentWeights weight = SupportedComponentWeights.HIGH;
-        assertThrows(IllegalArgumentException.class, () -> {
-            // Should throw an exception because link is null
-            new ComponentBinding(component, link, weight);
-        });
-    }
-
-    /**
-     * Test constructor of class ComponentBinding.
-     */
-    @Test
     public void testConstructor() {
         System.out.println("getComponent");
         Component component = new Component("ComponentName", "ComponentVersion", SupportedLicenses.ARTISTIC_2_0);
@@ -80,6 +65,21 @@ public class ComponentBindingTest {
         assertEquals(weight, instance.getWeight());
         assertEquals("ComponentName-ComponentVersion (Artistic-2.0), linked dynamically", instance.getFullName());
         assertEquals("ComponentName (Artistic-2.0), linked dynamically", instance.getFullNameForFicticiousComponent());
+    }
+
+    /**
+     * Test constructor of class ComponentBinding.
+     */
+    @Test
+    public void testConstructorWhenLinkIsNull() {
+        System.out.println("getComponent");
+        Component component = new Component("ComponentName", "ComponentVersion", SupportedLicenses.ARTISTIC_2_0);
+        SupportedLinks link = null;
+        SupportedComponentWeights weight = SupportedComponentWeights.HIGH;
+        assertThrows(IllegalArgumentException.class, () -> {
+            // Should throw an exception because link is null
+            new ComponentBinding(component, link, weight);
+        });
     }
 
     /**

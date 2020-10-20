@@ -29,7 +29,8 @@ public enum FilesPaths {
     OPENLRAE_PROPERTIES("/com/manolodominguez/openlrae/cli/openlrae.properties"),
     PROJECT_SCHEMA("/com/manolodominguez/openlrae/json/OpenLRAEJSONSchemaForProjects.json"),
     REPORT_SCHEMA("/com/manolodominguez/openlrae/json/OpenLRAEJSONSchemaForReports.json"),
-    PROJECT_EXAMPLE("/com/manolodominguez/openlrae/json/ExampleProject.json");
+    PROJECT_EXAMPLE("/com/manolodominguez/openlrae/json/ExampleProject.json"),
+    INVALID_PROJECT_EXAMPLE("/com/manolodominguez/openlrae/json/InvalidExampleProject.json");
 
     private Logger logger = LoggerFactory.getLogger(FilesPaths.class);
 
