@@ -47,7 +47,7 @@ public final class LicensesCompatibilityFactory {
      *
      */
     private LicensesCompatibilityFactory() {
-        this.licensesCompatibilities = new CopyOnWriteArrayList<>();
+        licensesCompatibilities = new CopyOnWriteArrayList<>();
         licensesCompatibilities.addAll(StaticAndNone.getInstance().getCompatibilities());
         licensesCompatibilities.addAll(DinamicAndNone.getInstance().getCompatibilities());
         licensesCompatibilities.addAll(StaticAndSofwarePackageOrSaaS.getInstance().getCompatibilities());
