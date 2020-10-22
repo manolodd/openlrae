@@ -15,6 +15,7 @@
  */
 package com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities;
 
+import java.util.concurrent.CopyOnWriteArrayList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,9 +27,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class DinamicAndNoneTest {
+public class StaticAndNoneTest {
     
-    public DinamicAndNoneTest() {
+    public StaticAndNoneTest() {
     }
     
     @BeforeAll
@@ -47,24 +48,25 @@ public class DinamicAndNoneTest {
     public void tearDown() {
     }
 
+
     /**
-     * Test of getInstance method, of class DinamicAndNone.
+     * Test of getInstance method, of class StaticAndNone.
      */
     @Test
     public void testGetInstance() {
         System.out.println("getInstance");
-        DinamicAndNone instance1 = DinamicAndNone.getInstance();
-        DinamicAndNone instance2 = DinamicAndNone.getInstance();
+        StaticAndNone instance1 = StaticAndNone.getInstance();
+        StaticAndNone instance2 = StaticAndNone.getInstance();
         assertTrue(instance1 == instance2); // We're comparing object references here
     }
 
     /**
-     * Test of getCompatibilities method, of class DinamicAndNone.
+     * Test of getCompatibilities method, of class StaticAndNone.
      */
     @Test
     public void testGetCompatibilities() {
         System.out.println("getCompatibilities");
-        DinamicAndNone instance = DinamicAndNone.getInstance();
+        StaticAndNone instance = StaticAndNone.getInstance();
         assertNotNull(instance.getCompatibilities());
         // At least it has to contain a compatibility entry
         assertTrue(1 < instance.getCompatibilities().size());
