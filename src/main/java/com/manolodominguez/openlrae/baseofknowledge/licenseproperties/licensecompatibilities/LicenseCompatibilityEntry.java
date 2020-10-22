@@ -76,6 +76,16 @@ public class LicenseCompatibilityEntry {
             logger.error("projectLicense cannot be null");
             throw new IllegalArgumentException("projectLicense cannot be null");
         }
+        boolean validProjectLicense = false;
+        for (SupportedLicenses licenseForProject : SupportedLicenses.getLicensesForProjects()) {
+            if (projectLicense == licenseForProject) {
+                validProjectLicense = true;
+            }
+        }
+        if (!validProjectLicense) {
+            logger.error("A project cannot use the speciefied firstLicense");
+            throw new IllegalArgumentException("A project cannot use the speciefied firstLicense");
+        }
         if (compatibility == null) {
             logger.error("compatibility cannot be null");
             throw new IllegalArgumentException("compatibility cannot be null");
