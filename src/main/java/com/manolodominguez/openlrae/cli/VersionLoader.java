@@ -61,14 +61,14 @@ public class VersionLoader {
     public String getVersion() {
         String version = properties.getProperty(OPENLRAE_VERSION);
         String license = properties.getProperty(OPENLRAE_LICENSE);
-        if ((version == null) && (license == null)) {
-            return "";
-        } else if ((version != null) && (license == null)) {
-            return "- released under " + properties.getProperty(OPENLRAE_LICENSE);
-        } else if ((version == null) && (license != null)) {
-            return properties.getProperty(OPENLRAE_VERSION);
+        String versionPlusLicense = "";
+        if (version != null) {
+            versionPlusLicense += version;
+            if (license != null) {
+                versionPlusLicense += " - released under " + license;
+            }
         }
-        return properties.getProperty(OPENLRAE_VERSION) + "- released under " + properties.getProperty(OPENLRAE_LICENSE);
+        return versionPlusLicense;
     }
 
     public static final String OPENLRAE_VERSION = "com.manolodominguez.openlrae.version";

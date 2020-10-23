@@ -47,6 +47,10 @@ public class ReportsFactory {
      * ReportsFactory is configured.
      */
     private ReportsFactory(SupportedVerbosityLevel verbosity) {
+        if (verbosity == null) {
+            logger.error("verbosity cannot be null");
+            throw new IllegalArgumentException("verbosity cannot be null");
+        }
         this.verbosity = verbosity;
     }
 
@@ -58,6 +62,10 @@ public class ReportsFactory {
      * @param verbosity the verbosity level to wich the instance is configured.
      */
     private void setVerbosity(SupportedVerbosityLevel verbosity) {
+        if (verbosity == null) {
+            logger.error("verbosity cannot be null");
+            throw new IllegalArgumentException("verbosity cannot be null");
+        }
         this.verbosity = verbosity;
     }
 
@@ -72,6 +80,9 @@ public class ReportsFactory {
      * @return An instance of ReportsFactory.
      */
     public static ReportsFactory getInstance(SupportedVerbosityLevel verbosity) {
+        if (verbosity == null) {
+            throw new IllegalArgumentException("verbosity cannot be null");
+        }
         ReportsFactory localInstance = ReportsFactory.instance;
         if (localInstance == null) {
             synchronized (ReportsFactory.class) {
@@ -201,34 +212,34 @@ public class ReportsFactory {
             report += projectLicense.getSPDXFullName() + " (" + projectLicense.getSPDXIdentifier() + "),";
         }
         report += "\n";
-        report += addTab(1)+"=> Project redistribution: " + project.getRedistribution().getDescriptionValue() + "\n";
+        report += addTab(1) + "=> Project redistribution: " + project.getRedistribution().getDescriptionValue() + "\n";
         report += "**************************************************\n";
         report += "### Component bindigs:\n";
         for (ComponentBinding spp : project.getBillOfComponentBindings()) {
-            report += addTab(1)+"=> " + spp.getComponent().getName() + "-" + spp.getComponent().getVersion() + " (" + spp.getComponent().getLicense().getSPDXIdentifier() + ") --> Contribution to the project: " + spp.getWeight().getDescriptionValue() + "\n";
+            report += addTab(1) + "=> " + spp.getComponent().getName() + "-" + spp.getComponent().getVersion() + " (" + spp.getComponent().getLicense().getSPDXIdentifier() + ") --> Contribution to the project: " + spp.getWeight().getDescriptionValue() + "\n";
         }
         report += "### Risk analysis\n";
         for (RiskAnalysisResult riskAnalysisResult : resultSet) {
-            report += addTab(1)+"=> " + riskAnalysisResult.getRiskType().getDescriptionValue() + "\n";
-            report += addTab(2)+"*** Risk = " + riskAnalysisResult.getRiskValue() + " (Exposure = " + riskAnalysisResult.getRiskExposure() + ", Impact = " + riskAnalysisResult.getRiskImpact() + ")\n";
+            report += addTab(1) + "=> " + riskAnalysisResult.getRiskType().getDescriptionValue() + "\n";
+            report += addTab(2) + "*** Risk = " + riskAnalysisResult.getRiskValue() + " (Exposure = " + riskAnalysisResult.getRiskExposure() + ", Impact = " + riskAnalysisResult.getRiskImpact() + ")\n";
             if ((verbosity == SupportedVerbosityLevel.RICH) || (verbosity == SupportedVerbosityLevel.DETAILED)) {
-                report += addTab(2)+"*** Root causes\n";
+                report += addTab(2) + "*** Root causes\n";
                 for (String rootCause : riskAnalysisResult.getRootCauses()) {
-                    report += addTab(3)+"=> " + rootCause + "\n";
+                    report += addTab(3) + "=> " + rootCause + "\n";
                 }
-                report += addTab(2)+"*** Warnings\n";
+                report += addTab(2) + "*** Warnings\n";
                 for (String warning : riskAnalysisResult.getWarnings()) {
-                    report += addTab(3)+"=> " + warning + "\n";
+                    report += addTab(3) + "=> " + warning + "\n";
                 }
-                report += addTab(2)+"*** Good things\n";
+                report += addTab(2) + "*** Good things\n";
                 for (String goodThing : riskAnalysisResult.getGoodThings()) {
-                    report += addTab(3)+"=> " + goodThing + "\n";
+                    report += addTab(3) + "=> " + goodThing + "\n";
                 }
             }
             if (verbosity == SupportedVerbosityLevel.DETAILED) {
-                report += addTab(2)+"*** Tips to mitigate the risk\n";
+                report += addTab(2) + "*** Tips to mitigate the risk\n";
                 for (String tip : riskAnalysisResult.getTips()) {
-                    report += addTab(3)+"=> " + tip + "\n";
+                    report += addTab(3) + "=> " + tip + "\n";
                 }
             }
         }
@@ -327,7 +338,7 @@ public class ReportsFactory {
         String auxString = "";
         for (int indentions = 0; indentions < indentLevel; indentions++) {
             for (int spaces = 0; spaces < INDENTION_SPACES; spaces++) {
-                auxString+=" ";
+                auxString += " ";
             }
         }
         return auxString;
