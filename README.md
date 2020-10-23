@@ -10,7 +10,7 @@
 
 # THE PROJECT
 
-<b>OpenLRAE</b> is a Licensing Risks Analysis Engine, multiplatform and mutilanguage. It's a java library that allow knowing the risk induced by the bill of components you have included in your project, the way they are bound, the kind of distribution you're going to do of your project, and so on.
+<b>OpenLRAE</b> is a multiplatform Licensing Risks Analysis Engine. It's a java library that allow knowing the risk induced by the bill of components you have included in your project, the way they are bound, the kind of distribution you're going to do of your project, and so on.
 
 After decades working in public and private and academic sector, assesing hundreds of platforms from an Opensource perspective I realized that most of the existing tools try to detect the components that have been included in a project and, then, they try to infer their licenses. Only after that (that brings a lots of false positives and a lot of false negatives) a license analysis is done.
 
@@ -18,7 +18,7 @@ This approach part from the point of view that a development team doesn't know a
 
 Also, there are lots of potential risks derived from licensing; not only licensing incompatibilities but maintenance risks, risks in bussiness terms, etc.
 
-OpenLRAE approach is that developement teams have to know the bill of components they're using, their versions, their licenses and all kind of things related to the use of third parties components in their own projects.
+OpenLRAE approach is different in the sense that developement teams have to know the bill of components they're using, their versions, their licenses and all kind of things related to the use of third parties components in their own projects.
 
 With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard of licensing risks that can help them in decission making.
 
@@ -26,13 +26,14 @@ With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard o
 
 ## Latest SNAPSHOT:
  
-- <b>OpenLRAE 0.4-SNAPSHOT</b> is released under the terms of Apache License, Version 2.0.
+- <b>OpenLRAE 0.5-SNAPSHOT</b> (development branch) - Apache-2.0.
 
-## Previous releases:
+## Releases:
 
-- <b>OpenLRAE 0.3</b> was released under the terms of Apache License, Version 2.0.
-- <b>OpenLRAE 0.2</b> was released under the terms of Apache License, Version 2.0.
-- <b>OpenLRAE 0.1</b> was released under the terms of Apache License, Version 2.0.
+- <b>OpenLRAE 0.4</b> (current master branch) - Apache-2.0.
+- <b>OpenLRAE 0.3</b> - Apache-2.0.
+- <b>OpenLRAE 0.2</b> - Apache-2.0.
+- <b>OpenLRAE 0.1</b> - Apache-2.0.
 
 # PEOPLE BEHIND OPENLRAE
 
@@ -51,10 +52,10 @@ You can download latest compiled stable releases from the releases section of th
 <dependency>
   <groupId>com.manolodominguez</groupId>
   <artifactId>openlrae</artifactId>
-  <version>0.3</version>
+  <version>0.4</version>
 </dependency>
 ```
-For othe project builders (graddle, buildr...) see the following link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/0.3/jar
+For othe project builders (graddle, buildr...) see the following link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/0.4/jar
 
 # COMPILING FROM SOURCES
 
