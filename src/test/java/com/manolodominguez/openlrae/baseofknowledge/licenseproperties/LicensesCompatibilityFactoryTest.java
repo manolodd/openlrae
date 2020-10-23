@@ -20,9 +20,7 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistributions;
 import java.util.Collections;
-import static java.util.Collections.enumeration;
 import java.util.EnumSet;
-import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -116,7 +114,7 @@ public class LicensesCompatibilityFactoryTest {
         // the 80% of the potential cases taking into account the supported
         // licenses, the supported redistribution types and the supported types
         // of links.
-        assertTrue(instance.getLicensesCoverage() >= 0.8f);
+        assertTrue(instance.getLicensesCoverage() >= 0.8f, "Not enough coverage. Before releasing OpenLRAE, be sure that at least 80% of compatibility coverage is reached.");
     }
     
 }
