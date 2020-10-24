@@ -141,7 +141,8 @@ System.out.println("This is the analysis report:\n\n"+JSONReport);
 
 ## Supported license analysis
 
-
+<div align="center"><img src="https://raw.githubusercontent.com/manolodd/openlrae/develop/src/main/resources/com/manolodominguez/openlrae/supportedanalysis/dynamic.jpg" alt="Supported analysis for dynamic linking" width="100%"/></div>
+<div align="center"><img src="https://raw.githubusercontent.com/manolodd/openlrae/develop/src/main/resources/com/manolodominguez/openlrae/supportedanalysis/static.jpg" alt="Supported analysis for static linking" width="100%"/></div>
 
 ## Supported risks
 
