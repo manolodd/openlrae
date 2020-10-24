@@ -24,6 +24,8 @@ import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSe
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSetOfPotentialProjectLicenses;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserScarceDeploymentOfLicensesOfComponents;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserUnfashionableLicensesOfComponents;
+import com.manolodominguez.openlrae.arquitecture.Component;
+import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponentWeights;
@@ -277,7 +279,7 @@ public class CLIHandler {
         }
         writeToConsole("");
     }
-
+    
     /**
      * This print in console the set of options that can be used by the user.
      */

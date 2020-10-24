@@ -89,6 +89,54 @@ You can also run the latter to do some things: to know wich things are supported
 java -jar openlrae-{YourVersion}-with-dependencies.jar
 ```
 
+# HOW TO USE THE LIBRARY
+
+OpenLRAE is quite simple to use. Its API is very reduced.
+
+First, define some component that wil be included into your project as dependencies. Specify their names, versions and license. This example has two, but you could add the number you want.
+```console
+Component component1 = new Component("Component 1 name", "Component 1 version", SupportedLicenses.APACHE_2_0);
+Component component2 = new Component("Component 2 name", "Component 2 version", SupportedLicenses.GPL_2_0_OR_LATER);
+```
+Second, create a component binding for each component. This is used to know whether the component is linked statically or dynamically in the project and also to know if the project uses the component a lot or only a little.
+```console
+ComponentBinding componentBinding1 = new ComponentBinding(component1, SupportedLinks.DYNAMIC, SupportedComponentWeights.LOW);
+ComponentBinding componentBinding2 = new ComponentBinding(component2, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
+ComponentBinding componentBinding3 = new ComponentBinding(component3, SupportedLinks.STATIC, SupportedComponentWeights.NEAR_LOW);
+```
+Third, create the project. You have to specify a project name and version, the license (or licenses) you want to use for the project and the kind od redistribution you are going to do of the project. Also, add the first component bindings to it. In this example only a project license is specified, but if you want to dual license the project (or even more), there is a Project method to add more.
+```console
+Project project = new Project("Project name", "project version", SupportedLicenses.GPL_2_0_OR_LATER, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, componentBinding1);
+```
+Then, add the other component bindings to the project.
+```console
+project.addComponentBinding(componentBinding2);
+```
+At this point, you have a project well defined. You also could do the same using only two lines of code if you provide a JSON specification of the project. There is a Project constructor for that. 
+
+Once the project is defined, what risks would you to measure? OpenLRAE supports several risks related to licensing. Create one risk analyser for each risk you want to evaluate. In this example we use two (their name are self-explainatory).
+```console
+RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense riskAnalyser1 = new RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense(project);
+RiskAnalyserLimitedSetOfPotentialComponentsLicenses riskAnalyser2 = new RiskAnalyserLimitedSetOfPotentialComponentsLicenses(project);
+```
+And you will need a license riks analysis engine that will do the job. So create it and add the risk analysers you have defined above.
+```console
+LicenseRiskAnalysisEngine engine = new LicenseRiskAnalysisEngine(riskAnalyser1);
+engine.addRiskAnalyser(riskAnalyser2);
+```
+And... that's all. Whenever you want, run the analysis and collect the result.
+```console
+RiskAnalysisResult[] resultSet = engine.analyse();
+```
+You could also transform the result into a JSON String anlysis (there are other options). A ReportsFactory is created to help you with this task.
+```console
+String JSONReport = ReportsFactory.getInstance().getReportAsBeautifiedJSONString(project, resultSet);
+```
+Now, print the report, send over a REST service, store it in a file or whatever you want.
+```console
+System.out.println("This is the analysis report:\n\n"+JSONReport);
+```
+
 # THIRD-PARTY COMPONENTS
 
 OpenLRAE uses third-party components each one of them having its own OSS license. License compatibility has been taken into account to allow OpenLRAE be released under its current OSS licence. They are:
