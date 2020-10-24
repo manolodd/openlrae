@@ -137,6 +137,16 @@ Now, print the report, send over a REST service, store it in a file or whatever 
 System.out.println("This is the analysis report:\n\n"+JSONReport);
 ```
 
+# Current features
+
+## Supported license analysis
+
+
+
+## Supported risks
+
+
+
 # THIRD-PARTY COMPONENTS
 
 OpenLRAE uses third-party components each one of them having its own OSS license. License compatibility has been taken into account to allow OpenLRAE be released under its current OSS licence. They are:
@@ -147,25 +157,6 @@ OpenLRAE uses third-party components each one of them having its own OSS license
 - junit-jupiter-engine 5.7.0 - EPL-2.0 - https://junit.org/junit5
 
 Thanks folks!
-
-# HOW TO CONTRIBUTE
-
-OpenLRAE is opensource software. I encourage you to modify it as much as possible; but I would like you to send this modifications back and, hence, became an OpenLRAE contributor. In this way, all the people will benefit from them as you are doing downloading and using OpenLRAE now.
-
-If you want to contribute to OpenLRAE project, follow these instructions:
-
- - Log in to your GitHub account.
- - Look for OpenLRAE project.
- - Select the <b>development branch</b> of OpenLRAE and create a fork in your own GitHub repository.
- - Clone <b>your</b> OpenLRAE repository to your PC or laptop.
- - Do all modifications in local, file additions or deletions, modifications, commits...
- - Push your modifications to <b>your</b> remote github OpenLRAE repository.
- - Go again to yout GitHub account, choose your OpenLRAE repository and click on the tab "Pull requests".
- - Then, click on the green button at the right "New pull request". This will guide you to make a pull request (send your modifications on your own OpenLRAE repository to OpenLRAE main repository from where you did your fork at the beginning). 
- - Choose the development branch of manolodd/OpenLRAE as base branch to merge to. Then "Create pull request" (give a title and a description, please).
- - That's all; I will have your contribution and I will try to merge it into the development branch of OpenLRAE. Please, comment your contribution as much as possible; I have to be able to understand your contribution.
-
-REMEMBER!!!! all your contributions have to be compatible with Apache License, Version 2.0 and you have to own all rights on them. And no source code contributions has to be compatible to Creative Commons - By.
 
 # WHAT CAN YOU CONTRIBUTE?
 
