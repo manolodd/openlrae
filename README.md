@@ -12,7 +12,7 @@
 
 <b>OpenLRAE</b> is a multiplatform Licensing Risks Analysis Engine. It's a java library that allow knowing the risk induced by the bill of components you have included in your project, the way they are bound, the kind of distribution you're going to do of your project, and so on.
 
-After decades working in public and private and academic sector, assesing hundreds of platforms from an Opensource perspective I realized that most of the existing tools try to detect the components that have been included in a project and, then, they try to infer their licenses. Only after that (that brings a lots of false positives and a lot of false negatives) a license analysis is done.
+After decades working in public, private and academic sector, assesing hundreds of platforms from an opensource perspective, I realized that most of the existing tools try to detect the components that have been included in a project and, then, they try to infer their licenses. Only after that (that brings a lots of false positives and negatives) a license analysis is done.
 
 This approach part from the point of view that a development team doesn't know and control the bill of components of their projects, and are not beware of the licensing risks their use imply.
 
@@ -24,13 +24,13 @@ With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard o
 
 # LICENSE
 
-## Latest SNAPSHOT:
+## Latest snapshot version being developed:
  
 - <b>OpenLRAE 0.5-SNAPSHOT</b> (development branch) - Apache-2.0.
 
-## Releases:
+## Binary releases:
 
-- <b>OpenLRAE 0.4</b> (current master branch) - Apache-2.0.
+- <b>OpenLRAE 0.4</b> (current, master branch) - Apache-2.0.
 - <b>OpenLRAE 0.3</b> - Apache-2.0.
 - <b>OpenLRAE 0.2</b> - Apache-2.0.
 - <b>OpenLRAE 0.1</b> - Apache-2.0.
@@ -47,7 +47,7 @@ Please, refer always to the project home page at:
 
 # RELEASE AVAILABILITY
 
-You can download latest compiled stable releases from the releases section of this repository. Also, since release 0.3 OpenLRAE is in Maven Central so you can add it as a dependecy in your Maven project inserting this in your pom.xml:
+You can download latest compiled stable releases from the releases section of this repository. Also, since release 0.3 OpenLRAE is in Maven Central so you can add it as a dependecy in your Maven project inserting the following in your pom.xml:
 ```console
 <dependency>
   <groupId>com.manolodominguez</groupId>
@@ -55,36 +55,37 @@ You can download latest compiled stable releases from the releases section of th
   <version>0.4</version>
 </dependency>
 ```
-For othe project builders (graddle, buildr...) see the following link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/0.4/jar
+For othe project builders (graddle, buildr...) see the next link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/0.4/jar
 
 # COMPILING FROM SOURCES
 
-If you want to test new features (please, do it and give feedback), you will need to compile the project from sources. Follow these steps:
+If you want to test new features (please, do it and give feedback), you will need to compile the project from the current snapshot being developed. Follow these steps:
 
  - Clone the OpenLRAE repo: 
 ```console
 git clone https://github.com/manolodd/openlrae.git
 ```
- - Compile the code and obtain a binary jar including all you need (you will need to install Maven before):
+ - Choose the "development" branch, compile the code and obtain a binary jar including all you need (you will need to install Maven before):
 ```console
 cd openlrae
+git checkout development
 mvn package
 ```
  - The jar file will be located in "target" directory.
 ```console
 cd target
 ```
-- Now, pick te artifact you need:
+- Now, pick te artifact you need. It could be:
 ```console
 openlrae-{YourVersion}.jar
 ```
-if you are going to use a project builder in your project (maven, graddle) that will supply dependencies at compile time, or
+if you are going to use a project builder in your project (maven, graddle) that retrieves dependencies at compile time, or
 ```console
 openlrae-{YourVersion}-with-dependencies.jar
 ```
-If you want openlrae and all its dependencies in a bundle.
+if you want openlrae and all its dependencies in a bundle.
 
-You can also run the latter to do some things: to know wich things are supported in the librery, to run a built-in risk analysis, etc.
+You can also run the latter to do some things: to know wich things are supported in the library, to run a console based analysis, etc.
 ```console
 java -jar openlrae-{YourVersion}-with-dependencies.jar
 ```
@@ -93,7 +94,7 @@ java -jar openlrae-{YourVersion}-with-dependencies.jar
 
 OpenLRAE is quite simple to use. Its API is very reduced.
 
-First, define some component that wil be included into your project as dependencies. Specify their names, versions and license. This example has two, but you could add the number you want.
+First, define some component that wil be included into your project as dependencies. Specify their names, versions and licenses. This example has two components, but you could add the number you want.
 ```console
 Component component1 = new Component("Component 1 name", "Component 1 version", SupportedLicenses.APACHE_2_0);
 Component component2 = new Component("Component 2 name", "Component 2 version", SupportedLicenses.GPL_2_0_OR_LATER);
@@ -104,7 +105,7 @@ ComponentBinding componentBinding1 = new ComponentBinding(component1, SupportedL
 ComponentBinding componentBinding2 = new ComponentBinding(component2, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
 ComponentBinding componentBinding3 = new ComponentBinding(component3, SupportedLinks.STATIC, SupportedComponentWeights.NEAR_LOW);
 ```
-Third, create the project. You have to specify a project name and version, the license (or licenses) you want to use for the project and the kind od redistribution you are going to do of the project. Also, add the first component bindings to it. In this example only a project license is specified, but if you want to dual license the project (or even more), there is a Project method to add more.
+Third, create the project. You have to specify a project name and version, the license (or licenses) you want to use for the project and the kind of redistribution you are going to do of the project. Also, add the first component bindings to it. In this example only a project license is specified, but if you want to dual license the project (or even more), there is a Project method to add more.
 ```console
 Project project = new Project("Project name", "project version", SupportedLicenses.GPL_2_0_OR_LATER, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, componentBinding1);
 ```
@@ -112,7 +113,7 @@ Then, add the other component bindings to the project.
 ```console
 project.addComponentBinding(componentBinding2);
 ```
-At this point, you have a project well defined. You also could do the same using only two lines of code if you provide a JSON specification of the project. There is a Project constructor for that. 
+At this point, you have a well-defined project. You could also do the same using only two lines of code if you provide a JSON specification of the project. There is a Project constructor for that. 
 
 Once the project is defined, what risks would you to measure? OpenLRAE supports several risks related to licensing. Create one risk analyser for each risk you want to evaluate. In this example we use two (their name are self-explainatory).
 ```console
@@ -128,7 +129,7 @@ And... that's all. Whenever you want, run the analysis and collect the result.
 ```console
 RiskAnalysisResult[] resultSet = engine.analyse();
 ```
-You could also transform the result into a JSON String anlysis (there are other options). A ReportsFactory is created to help you with this task.
+You could also transform the result into a JSON String report (there are other options). There is a reports factory to help you with this task.
 ```console
 String JSONReport = ReportsFactory.getInstance().getReportAsBeautifiedJSONString(project, resultSet);
 ```
@@ -139,14 +140,16 @@ System.out.println("This is the analysis report:\n\n"+JSONReport);
 
 # Current features
 
+## Supported risks
+
+OpenLRAE is about licensing risks. But not only license compatibility risks. There are some other risks related to the license of projects and components that are important and could be considered. These are the risk OpenLRAE support at the moment: 
+
 ## Supported license analysis
+
+There are some aspects associated to a license that are used by OpenLRAE to compute some risks. They are easy to understand. But in order to do a deep licensing risks assesment where license compatiblities are needed, OpenLRAE has a base of knowledge that grows exponentially and that defines how, where and under what conditions a given component (released under a given license) can be included in a project (released also under one, two or more licenses). The following matrixes shows a summary of wich kind of situations OpenLRAE is able to handle.
 
 <div align="center"><img src="https://raw.githubusercontent.com/manolodd/openlrae/develop/src/main/resources/com/manolodominguez/openlrae/supportedanalysis/dynamic.jpg" alt="Supported analysis for dynamic linking" width="100%"/></div>
 <div align="center"><img src="https://raw.githubusercontent.com/manolodd/openlrae/develop/src/main/resources/com/manolodominguez/openlrae/supportedanalysis/static.jpg" alt="Supported analysis for static linking" width="100%"/></div>
-
-## Supported risks
-
-
 
 # THIRD-PARTY COMPONENTS
 
