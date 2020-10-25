@@ -142,23 +142,27 @@ System.out.println("This is the analysis report:\n\n"+JSONReport);
 
 ## Supported risks
 
-OpenLRAE is about licensing risks. But not only license compatibility risks. There are some other risks related to the license of projects and components that are important and could be considered. The following paragraphs show you the risk OpenLRAE support at the moment. And, for all of them, OpenLRAE is able to analyse your current project and give you the risk exposure level (if more than 0%, you are in legal troubles you have to solve right now), and also the risk impact related to this type of risk, in terms of "the effort needed to reduce the risk exposure to 0%".
+OpenLRAE is about licensing risks. But not only license compatibility risks. There are some other risks related to the license of projects and components that are important and could be considered. The following paragraphs show you the risks OpenLRAE support at the moment. And, for all of them, OpenLRAE is able to analyse your current project and give you the risk exposure level, and also the risk impact related to this type of risk, in terms of "the effort needed to reduce the risk exposure to 0%".
 
 #### Having uncompatibilities between the components licenses and the project licenses
 
-Sometimes we include a component in a project thinking in the functionality of this component but without being aware of the legal problems that it could lead to. Specially when we are realeasing our own project under a specific license and the components you have included are not compatible with it. 
+Sometimes we include a component in a project thinking in the functionality of this component but without being aware of the legal problems that it could lead to. Specially when we are realeasing our own project under a specific license and the components you have included are not compatible with it. If your project has a risks exposure greater than 0%, you are in legal troubles you have to solve right now. You have to keep this risk at 0%.
 
 #### Having a limited set of potential project licenses to choose because of the components licenses
 
-It is sometimes important to keep the possibility of changing our project license in the future. Perhaps because it is needed in order to include our project in a bigger one, perhaps to support a change in the bussines model surrounding the project, etc. So, keep in mind that the licenses of the components you are using will determine the licenses you can use in the future for the project. 
+It is sometimes important to keep the possibility of changing our project license in the future. Perhaps because it is needed in order to include our project in a bigger one, perhaps to support a change in the bussines model surrounding the project, etc. So, keep in mind that the licenses of the components you are using will determine the licenses you can use in the future for the project. Keep this risk low if you want to have the opportunity to change your project license among a wide variety.
 
 #### Having a limited set of potential component licenses to choose because of the project license
 
-This is similar to the previous risk. If you want to fix your project license, this license will will determine the components licenses you can use as dependencies now and in the future. You are not going to develop a project from scratch. You are going to use components, probably opensource components, to build your project. It is a typical mistake to establish a project license and later realize that most of the components that we would like to use are incompatible with it. 
+This is similar to the previous risk. If you want to fix your project license, this license will determine the components licenses you can use as dependencies now and in the future. You are not going to develop a project from scratch. You are going to use components, probably opensource components, to build your project. It is a typical mistake to establish a project license and later realize that most of the components that we would like to use are incompatible with it. Keep this risk low if you want to have the opportunity to include third parties components in your project with wide variety of licenses.
 
 #### Having an obsolete set of components licenses
 
 New versions of licenses usually appear to cover new situations or correct situations that were not taken into account when they were designed and have appeared over time. Keeping a set of components in your project with licenses in very old versions can make your project not adapt well to these new situations.
+
+#### Having an unfasionable set of component licenses
+
+A trendy license is a license whose use is growing up. It does not means necessarily that a wide set of components use this license right now, but it points to this will happen in the mid-term. So, if you are starting a new project right now it seems a better choice to chose trendy licenses (but not very spreaded now) than unfashionable licenses (that can be used by a lot of components right now, but will be lesser spreaded in the future). Keep this risk low if your project is starting or if you want to do a deep refactor of it.
 
 ## Supported license analysis
 
