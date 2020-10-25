@@ -45,7 +45,7 @@ Please, refer always to the project home page at:
 
  - http://openlrae.manolodominguez.com/
 
-# RELEASE AVAILABILITY
+# ARTIFACTS AVAILABILITY
 
 You can download latest compiled stable releases from the releases section of this repository. Also, since release 0.3 OpenLRAE is in Maven Central so you can add it as a dependecy in your Maven project inserting the following in your pom.xml:
 ```console
@@ -85,7 +85,7 @@ openlrae-{YourVersion}-with-dependencies.jar
 ```
 if you want openlrae and all its dependencies in a bundle.
 
-You can also run the latter to do some things: to know wich things are supported in the library, to run a console based analysis, etc.
+You can also run the latter to do some things: to know which things are supported in the library, to run a console based analysis, etc.
 ```console
 java -jar openlrae-{YourVersion}-with-dependencies.jar
 ```
@@ -144,9 +144,13 @@ System.out.println("This is the analysis report:\n\n"+JSONReport);
 
 OpenLRAE is about licensing risks. But not only license compatibility risks. There are some other risks related to the license of projects and components that are important and could be considered. These are the risk OpenLRAE support at the moment: 
 
+### Licenses of componentes are icompatible with project licenses
+
+Sometimes we include a component in a project thinking in the functionality of this component but without being aware of the legal problems that it could lead to. OpenLRAE is able to analyse this situations and give you the risk exposure level (if more than 0%, you are in legal troubles), and also the risk impact related to this type of risk, in terms of "the effort needed to reduce the risk exposure to 0%".
+
 ## Supported license analysis
 
-There are some aspects associated to a license that are used by OpenLRAE to compute some risks. They are easy to understand. But in order to do a deep licensing risks assesment where license compatiblities are needed, OpenLRAE has a base of knowledge that grows exponentially and that defines how, where and under what conditions a given component (released under a given license) can be included in a project (released also under one, two or more licenses). The following matrixes shows a summary of wich kind of situations OpenLRAE is able to handle.
+There are some aspects associated to a license that are used by OpenLRAE to compute some risks. They are easy to understand. But in order to do a deep risks assesment where license compatiblities are involved, OpenLRAE has a base of knowledge (which grows exponentially) that defines how, where and under what conditions a given component (released under a given license) can be included in a project (released also under one, two or more licenses). The following matrixes shows a summary of which kind of situations OpenLRAE is able to analyse.
 
 <div align="center"><img src="https://raw.githubusercontent.com/manolodd/openlrae/develop/src/main/resources/com/manolodominguez/openlrae/supportedanalysis/dynamic.jpg" alt="Supported analysis for dynamic linking" width="100%"/></div>
 <div align="center"><img src="https://raw.githubusercontent.com/manolodd/openlrae/develop/src/main/resources/com/manolodominguez/openlrae/supportedanalysis/static.jpg" alt="Supported analysis for static linking" width="100%"/></div>
