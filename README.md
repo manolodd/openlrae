@@ -144,9 +144,17 @@ System.out.println("This is the analysis report:\n\n"+JSONReport);
 
 OpenLRAE is about licensing risks. But not only license compatibility risks. There are some other risks related to the license of projects and components that are important and could be considered. These are the risk OpenLRAE support at the moment: 
 
-#### Licenses of components are uncompatible with project licenses
+#### Having uncompatibilities between the components licenses and the project licenses
 
-Sometimes we include a component in a project thinking in the functionality of this component but without being aware of the legal problems that it could lead to. Specially when we have chosen to release our own project under a specific license. OpenLRAE is able to analyse this situations and give you the risk exposure level (if more than 0%, you are in legal troubles), and also the risk impact related to this type of risk, in terms of "the effort needed to reduce the risk exposure to 0%".
+Sometimes we include a component in a project thinking in the functionality of this component but without being aware of the legal problems that it could lead to. Specially when we are realeasing our own project under a specific license and the components you have included are not compatible with it. OpenLRAE is able to analyse this situations and give you the risk exposure level (if more than 0%, you are in legal troubles you have to solve right now), and also the risk impact related to this type of risk, in terms of "the effort needed to reduce the risk exposure to 0%".
+
+#### Having a limited set of potential project licenses because of the components licenses
+
+It is sometimes important to keep the possibility of changing our project license in the future. Perhaps because it is needed in order to include our project in a bigger one, perhaps to support a change in the bussines model surrounding the project, etc. So, keep in mind that the licenses of the components you are using will determine the licenses you can use in the future for the project. OpenLRAE is able to analyse this situations and give you the risk exposure level, and also the risk impact related to this type of risk, in terms of "the effort needed to reduce the risk exposure to 0%".
+
+#### Having a limited set of potential component licenses because of the project license
+
+This is similar to the previous risk. If you want to fix your project license, this license will will determine the components licenses you can use as dependencies now and in the future. You are not going to develop a project from scratch. You are going to use components, probably opensource components, to build your project. It is a typical mistake to establish a project license and later realize that most of the components that we would like to use are incompatible with it. OpenLRAE is able to analyse this situations and give you the risk exposure level, and also the risk impact related to this type of risk, in terms of "the effort needed to reduce the risk exposure to 0%".
 
 ## Supported license analysis
 
