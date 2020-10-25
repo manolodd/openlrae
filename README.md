@@ -144,7 +144,7 @@ System.out.println("This is the analysis report:\n\n"+JSONReport);
 
 OpenLRAE is about licensing risks. But not only license compatibility risks. There are some other risks related to the license of projects and components that are important and could be considered. These are the risk OpenLRAE support at the moment: 
 
-### Licenses of componentes are icompatible with project licenses
+### Licenses of components are uncompatible with project licenses
 
 Sometimes we include a component in a project thinking in the functionality of this component but without being aware of the legal problems that it could lead to. OpenLRAE is able to analyse this situations and give you the risk exposure level (if more than 0%, you are in legal troubles), and also the risk impact related to this type of risk, in terms of "the effort needed to reduce the risk exposure to 0%".
 
