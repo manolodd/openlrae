@@ -154,15 +154,19 @@ It is sometimes important to keep the possibility of changing our project licens
 
 #### Having a limited set of potential component licenses to choose because of the project license
 
-This is similar to the previous risk. If you want to fix your project license, this license will determine the components licenses you can use as dependencies now and in the future. You are not going to develop a project from scratch. You are going to use components, probably opensource components, to build your project. It is a typical mistake to establish a project license and later realize that most of the components that we would like to use are incompatible with it. Keep this risk low if you want to have the opportunity to include third parties components in your project with wide variety of licenses.
+This is similar to the previous risk. If you want to fix your project license, this license will determine the components licenses you can use as dependencies now and in the future. You are not going to develop a project from scratch. You are going to use components, probably opensource components, to build your project. It is a typical mistake to establish a project license and later realize that most of the components that we would like to use are incompatible with it. Keep this risk low if you want to have the opportunity to include third parties components in your project with a wide variety of licenses.
 
 #### Having an obsolete set of components licenses
 
-New versions of licenses usually appear to cover new situations or correct situations that were not taken into account when they were designed and have appeared over time. Keeping a set of components in your project with licenses in very old versions can make your project not adapt well to these new situations.
+New versions of licenses usually appear to cover new situations or correct situations that were not taken into account when they were designed and have appeared over time. Keeping a set of components in your project with licenses in very old versions can make your project not adapt well to these new situations. Mantenga este riesgo bajo si quiere estar alineado con las leyes modernas e internacionales y quiere tener la posibilidad de incluir componentes con licencias modernas en su proyecto.
 
 #### Having an unfasionable set of component licenses
 
 A trendy license is a license whose use is growing up. It does not means necessarily that a wide set of components use this license right now, but it points to this will happen in the mid-term. So, if you are starting a new project right now it seems a better choice to chose trendy licenses (but not very spreaded now) than unfashionable licenses (that can be used by a lot of components right now, but will be lesser spreaded in the future). Keep this risk low if your project is starting or if you want to do a deep refactor of it.
+
+#### Having a set of component whose licenses are scarcely used
+
+One always want to have lots of third parties components to include in a project. There are rare licenses or licenses not used by many components. And this often means that there are problems with these licenses: nobody is behind them taking care of evolving them,   there are well-known problems on them, they are licenses intendend only for a very specific niche, they are legacy or even they are abandoned. Unless you really know what you are doing, try to keep components using these licenses out of your project. Apart from the fact that they could lead to legal issues, they usually cause incompatibility problems  to include more modern and standardized components in your project. Instead, try to use components with licenses very spreaded and commonly used by many third parties components. Keep this risk low if your project is mature and you want to have the possibility of continuing using a wide variety of updated components.
 
 ## Supported license analysis
 
