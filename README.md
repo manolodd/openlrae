@@ -146,7 +146,7 @@ OpenLRAE is about licensing risks. But not only license compatibility risks. The
 
 ### Licenses of components are uncompatible with project licenses
 
-Sometimes we include a component in a project thinking in the functionality of this component but without being aware of the legal problems that it could lead to. OpenLRAE is able to analyse this situations and give you the risk exposure level (if more than 0%, you are in legal troubles), and also the risk impact related to this type of risk, in terms of "the effort needed to reduce the risk exposure to 0%".
+Sometimes we include a component in a project thinking in the functionality of this component but without being aware of the legal problems that it could lead to. Specially when we have choose to release our own project under a specific license. OpenLRAE is able to analyse this situations and give you the risk exposure level (if more than 0%, you are in legal troubles), and also the risk impact related to this type of risk, in terms of "the effort needed to reduce the risk exposure to 0%".
 
 ## Supported license analysis
 
