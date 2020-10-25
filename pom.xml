@@ -23,7 +23,7 @@
         <openlrae.version>0.5-SNAPSHOT</openlrae.version>
         <openlrae.license>Apache-2.0</openlrae.license>
     </properties>
-    
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.manolodominguez</groupId>
     <artifactId>openlrae</artifactId>
