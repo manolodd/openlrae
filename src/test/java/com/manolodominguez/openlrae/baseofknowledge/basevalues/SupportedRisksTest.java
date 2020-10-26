@@ -68,7 +68,7 @@ public class SupportedRisksTest {
         boolean worksFine = true;
         for (SupportedRisks risk : SupportedRisks.values()) {
             switch (risk) {
-                case LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSE:
+                case LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSES:
                 case LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES:
                 case LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES:
                 case COMPONENTS_LICENSES_TOO_OBSOLETE:

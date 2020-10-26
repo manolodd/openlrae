@@ -76,7 +76,7 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicenseTest 
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
         RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense instance = new RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense(project);
-        assertEquals(SupportedRisks.LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSE, instance.handledRiskType);
+        assertEquals(SupportedRisks.LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSES, instance.handledRiskType);
     }
     
     /**

@@ -22,10 +22,9 @@ import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLicensesO
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLicensesOfComponentsTooObsolete;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSetOfPotentialComponentsLicenses;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSetOfPotentialProjectLicenses;
+import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserProjectLicensesTooObsolete;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserScarceDeploymentOfLicensesOfComponents;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserUnfashionableLicensesOfComponents;
-import com.manolodominguez.openlrae.arquitecture.Component;
-import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponentWeights;
@@ -105,6 +104,7 @@ public class CLIHandler {
                         RiskAnalyserScarceDeploymentOfLicensesOfComponents riskAnalyser4 = new RiskAnalyserScarceDeploymentOfLicensesOfComponents(project);
                         RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense riskAnalyser5 = new RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense(project);
                         RiskAnalyserLimitedSetOfPotentialComponentsLicenses riskAnalyser6 = new RiskAnalyserLimitedSetOfPotentialComponentsLicenses(project);
+                        RiskAnalyserProjectLicensesTooObsolete riskAnalyser7 = new RiskAnalyserProjectLicensesTooObsolete(project);
                         // Define a Risk analysis engine and add these risk analysers
                         LicenseRiskAnalysisEngine riskAnalysisEngine = new LicenseRiskAnalysisEngine(riskAnalyser1);
                         riskAnalysisEngine.addRiskAnalyser(riskAnalyser2);
@@ -112,6 +112,7 @@ public class CLIHandler {
                         riskAnalysisEngine.addRiskAnalyser(riskAnalyser4);
                         riskAnalysisEngine.addRiskAnalyser(riskAnalyser5);
                         riskAnalysisEngine.addRiskAnalyser(riskAnalyser6);
+                        riskAnalysisEngine.addRiskAnalyser(riskAnalyser7);
 
                         // Run the license risks analysis and collect results
                         RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
@@ -166,6 +167,7 @@ public class CLIHandler {
         RiskAnalyserScarceDeploymentOfLicensesOfComponents riskAnalyser4 = new RiskAnalyserScarceDeploymentOfLicensesOfComponents(project);
         RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense riskAnalyser5 = new RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense(project);
         RiskAnalyserLimitedSetOfPotentialComponentsLicenses riskAnalyser6 = new RiskAnalyserLimitedSetOfPotentialComponentsLicenses(project);
+        RiskAnalyserProjectLicensesTooObsolete riskAnalyser7 = new RiskAnalyserProjectLicensesTooObsolete(project);
         // Define a Risk analysis engine and add these risk analysers
         LicenseRiskAnalysisEngine riskAnalysisEngine = new LicenseRiskAnalysisEngine(riskAnalyser1);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser2);
@@ -173,6 +175,7 @@ public class CLIHandler {
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser4);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser5);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser6);
+        riskAnalysisEngine.addRiskAnalyser(riskAnalyser7);
 
         // Run the license risks analysis and collect results
         RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
@@ -279,7 +282,7 @@ public class CLIHandler {
         }
         writeToConsole("");
     }
-    
+
     /**
      * This print in console the set of options that can be used by the user.
      */

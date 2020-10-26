@@ -62,7 +62,7 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
      */
     public RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense(Project project) {
         // Project is checked at superclass
-        super(project, SupportedRisks.LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSE);
+        super(project, SupportedRisks.LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.class);
     }
 
