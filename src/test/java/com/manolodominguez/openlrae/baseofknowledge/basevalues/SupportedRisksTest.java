@@ -53,8 +53,8 @@ public class SupportedRisksTest {
     @Test
     public void testItemsNumber() {
         System.out.println("items number");
-        // Currently there are 6 risks defined in enum
-        assertEquals(6, SupportedRisks.values().length);
+        // Currently there are 7 risks defined in enum
+        assertEquals(7, SupportedRisks.values().length);
     }
 
     /**
@@ -72,6 +72,7 @@ public class SupportedRisksTest {
                 case LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES:
                 case LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES:
                 case COMPONENTS_LICENSES_TOO_OBSOLETE:
+                case PROJECT_LICENSES_TOO_OBSOLETE:
                 case COMPONENTS_LICENSES_UNFASHIONABLE:
                 case SCARCE_DEPLOYMENT_OF_COMPONENTS_LICENSES:
                     worksFine &= true;

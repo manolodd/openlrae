@@ -6,10 +6,11 @@
     "definitions": {
         "risksEnum": {
             "enum": [
-                "LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSE",
+                "LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSES",
                 "LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES",
                 "LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES",
                 "COMPONENTS_LICENSES_TOO_OBSOLETE",
+                "PROJECT_LICENSES_TOO_OBSOLETE",
                 "COMPONENTS_LICENSES_UNFASHIONABLE",
                 "SCARCE_DEPLOYMENT_OF_COMPONENTS_LICENSES"            
             ]
