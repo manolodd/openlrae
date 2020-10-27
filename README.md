@@ -26,12 +26,12 @@ With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard o
 
 ## Latest snapshot version being developed:
  
-- <b>OpenLRAE 0.5-SNAPSHOT</b> (development branch) - Apache-2.0.
+- <b>OpenLRAE 0.6-SNAPSHOT</b> (development branch) - Apache-2.0.
 
 ## Binary releases:
 
-- <b>OpenLRAE 0.4</b> (current, master branch) - Apache-2.0.
-- <b>OpenLRAE from 0.1 to 0.3</b> - Apache-2.0.
+- <b>OpenLRAE 0.5</b> (current, master branch) - Apache-2.0.
+- <b>OpenLRAE from 0.1 to 0.4</b> - Apache-2.0.
 
 # PEOPLE BEHIND OPENLRAE
 
@@ -50,10 +50,10 @@ You can download latest compiled stable releases from the releases section of th
 <dependency>
   <groupId>com.manolodominguez</groupId>
   <artifactId>openlrae</artifactId>
-  <version>0.4</version>
+  <version>0.5</version>
 </dependency>
 ```
-For othe project builders (graddle, buildr...) see the next link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/0.4/jar
+For othe project builders (graddle, buildr...) see the next link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/0.5/jar
 
 # COMPILING FROM SOURCES
 
@@ -156,7 +156,11 @@ This is similar to the previous risk. If you want to fix your project license, t
 
 #### Having an obsolete set of components licenses
 
-New versions of licenses usually appear to cover new situations or correct situations that were not taken into account when they were designed and have appeared over time. Keeping a set of components in your project with licenses in very old versions can make your project not adapt well to these new situations. Mantenga este riesgo bajo si quiere estar alineado con las leyes modernas e internacionales y quiere tener la posibilidad de incluir componentes con licencias modernas en su proyecto.
+New versions of licenses usually appear to cover new situations or correct situations that were not taken into account when they were designed and have appeared over time. Keeping a set of components in your project with licenses in very old versions can make your project not adapt well to these new situations. Keep this risk low if you want to be aligned with modern and international laws and want the ability to include modern licensed components in your project.
+
+#### Having an obsolete set of project licenses
+
+New versions of licenses usually appear to cover new situations or correct situations that were not taken into account when they were designed and have appeared over time. Keeping your project released under modern licenses versions will make easier for others to reuse your project. Keep this risk low if you want to be aligned with modern and international laws and also want to foster the integration of your project in third parties' projects.
 
 #### Having an unfasionable set of component licenses
 
