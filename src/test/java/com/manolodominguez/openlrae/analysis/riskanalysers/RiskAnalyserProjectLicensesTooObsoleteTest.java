@@ -75,7 +75,7 @@ public class RiskAnalyserProjectLicensesTooObsoleteTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserScarceDeploymentOfLicensesOfComponents instance = new RiskAnalyserScarceDeploymentOfLicensesOfComponents(project);
+        RiskAnalyserProjectLicensesTooObsolete instance = new RiskAnalyserProjectLicensesTooObsolete(project);
         assertEquals(SupportedRisks.PROJECT_LICENSES_TOO_OBSOLETE, instance.handledRiskType);
     }
     

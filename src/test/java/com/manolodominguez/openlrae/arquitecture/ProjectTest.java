@@ -71,7 +71,7 @@ public class ProjectTest {
         assertEquals("MyProject", project.getName());
         assertEquals("1.0", project.getVersion());
         assertEquals(2, project.getLicenses().size());
-        assertEquals(SupportedLicenses.APACHE_2_0, project.getLicenses().get(0));
+        assertEquals(SupportedLicenses.APACHE_1_1, project.getLicenses().get(0));
         assertEquals(SupportedLicenses.MIT, project.getLicenses().get(1));
         assertEquals(SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, project.getRedistribution());
         assertEquals(4, project.getBillOfComponentBindings().size());
@@ -132,7 +132,7 @@ public class ProjectTest {
         assertEquals("MyProject", project.getName());
         assertEquals("1.0", project.getVersion());
         assertEquals(2, project.getLicenses().size());
-        assertEquals(SupportedLicenses.APACHE_2_0, project.getLicenses().get(0));
+        assertEquals(SupportedLicenses.APACHE_1_1, project.getLicenses().get(0));
         assertEquals(SupportedLicenses.MIT, project.getLicenses().get(1));
         assertEquals(SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, project.getRedistribution());
         assertEquals(4, project.getBillOfComponentBindings().size());
