@@ -62,7 +62,7 @@ public class RiskAnalyserProjectLicensesTooObsoleteTest {
         Project project = null;
         // Should throw an exception because project is null
         assertThrows(IllegalArgumentException.class, () -> {
-            new RiskAnalyserProjectLicensesTooObsolete(project);
+            new RiskAnalyserObsoleteProjectLicenses(project);
         });
     }
 
@@ -75,8 +75,8 @@ public class RiskAnalyserProjectLicensesTooObsoleteTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserProjectLicensesTooObsolete instance = new RiskAnalyserProjectLicensesTooObsolete(project);
-        assertEquals(SupportedRisks.PROJECT_LICENSES_TOO_OBSOLETE, instance.handledRiskType);
+        RiskAnalyserObsoleteProjectLicenses instance = new RiskAnalyserObsoleteProjectLicenses(project);
+        assertEquals(SupportedRisks.HAVING_OBSOLETE_PROJECT_LICENSES, instance.handledRiskType);
     }
     
     /**
@@ -88,7 +88,7 @@ public class RiskAnalyserProjectLicensesTooObsoleteTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserProjectLicensesTooObsolete instance = new RiskAnalyserProjectLicensesTooObsolete(project);
+        RiskAnalyserObsoleteProjectLicenses instance = new RiskAnalyserObsoleteProjectLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result1 = instance.getRiskAnalisysResult();
         RiskAnalysisResult result2 = instance.getRiskAnalisysResult();
@@ -107,7 +107,7 @@ public class RiskAnalyserProjectLicensesTooObsoleteTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserProjectLicensesTooObsolete instance = new RiskAnalyserProjectLicensesTooObsolete(project);
+        RiskAnalyserObsoleteProjectLicenses instance = new RiskAnalyserObsoleteProjectLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result = instance.getRiskAnalisysResult();
         assertNotNull(result);

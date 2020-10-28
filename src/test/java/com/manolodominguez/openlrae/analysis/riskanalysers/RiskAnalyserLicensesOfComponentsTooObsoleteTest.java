@@ -62,7 +62,7 @@ public class RiskAnalyserLicensesOfComponentsTooObsoleteTest {
         Project project = null;
         // Should throw an exception because project is null
         assertThrows(IllegalArgumentException.class, () -> {
-            new RiskAnalyserLicensesOfComponentsTooObsolete(project);
+            new RiskAnalyserObsoleteComponentsLicenses(project);
         });
     }
     
@@ -75,8 +75,8 @@ public class RiskAnalyserLicensesOfComponentsTooObsoleteTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserLicensesOfComponentsTooObsolete instance = new RiskAnalyserLicensesOfComponentsTooObsolete(project);
-        assertEquals(SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE, instance.handledRiskType);
+        RiskAnalyserObsoleteComponentsLicenses instance = new RiskAnalyserObsoleteComponentsLicenses(project);
+        assertEquals(SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES, instance.handledRiskType);
     }
     
     /**
@@ -88,7 +88,7 @@ public class RiskAnalyserLicensesOfComponentsTooObsoleteTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserLicensesOfComponentsTooObsolete instance = new RiskAnalyserLicensesOfComponentsTooObsolete(project);
+        RiskAnalyserObsoleteComponentsLicenses instance = new RiskAnalyserObsoleteComponentsLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result1 = instance.getRiskAnalisysResult();
         RiskAnalysisResult result2 = instance.getRiskAnalisysResult();
@@ -107,7 +107,7 @@ public class RiskAnalyserLicensesOfComponentsTooObsoleteTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserLicensesOfComponentsTooObsolete instance = new RiskAnalyserLicensesOfComponentsTooObsolete(project);
+        RiskAnalyserObsoleteComponentsLicenses instance = new RiskAnalyserObsoleteComponentsLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result = instance.getRiskAnalisysResult();
         assertNotNull(result);

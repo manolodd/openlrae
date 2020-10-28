@@ -76,7 +76,7 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
      */
     public RiskAnalyserLimitedSetOfPotentialProjectLicenses(Project project) {
         // Project is ckecked at superclass
-        super(project, SupportedRisks.LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES);
+        super(project, SupportedRisks.HAVING_A_LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserLimitedSetOfPotentialProjectLicenses.class);
     }
 

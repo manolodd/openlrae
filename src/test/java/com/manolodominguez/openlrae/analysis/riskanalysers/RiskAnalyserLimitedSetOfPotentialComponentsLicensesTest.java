@@ -76,7 +76,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicensesTest {
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
         RiskAnalyserLimitedSetOfPotentialComponentsLicenses instance = new RiskAnalyserLimitedSetOfPotentialComponentsLicenses(project);
-        assertEquals(SupportedRisks.LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES, instance.handledRiskType);
+        assertEquals(SupportedRisks.HAVING_A_LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES, instance.handledRiskType);
     }
     
     /**

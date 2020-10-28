@@ -52,7 +52,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
-public class RiskAnalyserScarceDeploymentOfLicensesOfComponents extends AbstractRiskAnalyser {
+public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAnalyser {
 
     /**
      * This is the constructor of the class. It creates a new instance of
@@ -60,10 +60,10 @@ public class RiskAnalyserScarceDeploymentOfLicensesOfComponents extends Abstract
      *
      * @param project. The software project to be analised.
      */
-    public RiskAnalyserScarceDeploymentOfLicensesOfComponents(Project project) {
+    public RiskAnalyserScarcelySpreadComponentsLicenses(Project project) {
         // Project is ckecked at superclass
-        super(project, SupportedRisks.SCARCE_DEPLOYMENT_OF_COMPONENTS_LICENSES);
-        logger = LoggerFactory.getLogger(RiskAnalyserScarceDeploymentOfLicensesOfComponents.class);
+        super(project, SupportedRisks.HAVING_SCARCELY_SPREAD_COMPONENTS_LICENSES);
+        logger = LoggerFactory.getLogger(RiskAnalyserScarcelySpreadComponentsLicenses.class);
     }
 
     /**

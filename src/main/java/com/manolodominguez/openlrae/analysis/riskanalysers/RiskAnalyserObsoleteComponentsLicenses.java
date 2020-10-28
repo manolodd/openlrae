@@ -51,7 +51,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
-public class RiskAnalyserLicensesOfComponentsTooObsolete extends AbstractRiskAnalyser {
+public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser {
 
     /**
      * This is the constructor of the class. It creates a new instance of
@@ -59,10 +59,10 @@ public class RiskAnalyserLicensesOfComponentsTooObsolete extends AbstractRiskAna
      *
      * @param project. The software project to be analised.
      */
-    public RiskAnalyserLicensesOfComponentsTooObsolete(Project project) {
+    public RiskAnalyserObsoleteComponentsLicenses(Project project) {
         // Project is ckecked at superclass
-        super(project, SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE);
-        logger = LoggerFactory.getLogger(RiskAnalyserLicensesOfComponentsTooObsolete.class);
+        super(project, SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES);
+        logger = LoggerFactory.getLogger(RiskAnalyserObsoleteComponentsLicenses.class);
     }
 
     /**

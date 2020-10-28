@@ -62,7 +62,7 @@ public class RiskAnalyserScarceDeploymentOfLicensesOfComponentsTest {
         Project project = null;
         // Should throw an exception because project is null
         assertThrows(IllegalArgumentException.class, () -> {
-            new RiskAnalyserScarceDeploymentOfLicensesOfComponents(project);
+            new RiskAnalyserScarcelySpreadComponentsLicenses(project);
         });
     }
     
@@ -75,8 +75,8 @@ public class RiskAnalyserScarceDeploymentOfLicensesOfComponentsTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserScarceDeploymentOfLicensesOfComponents instance = new RiskAnalyserScarceDeploymentOfLicensesOfComponents(project);
-        assertEquals(SupportedRisks.SCARCE_DEPLOYMENT_OF_COMPONENTS_LICENSES, instance.handledRiskType);
+        RiskAnalyserScarcelySpreadComponentsLicenses instance = new RiskAnalyserScarcelySpreadComponentsLicenses(project);
+        assertEquals(SupportedRisks.HAVING_SCARCELY_SPREAD_COMPONENTS_LICENSES, instance.handledRiskType);
     }
     
     /**
@@ -88,7 +88,7 @@ public class RiskAnalyserScarceDeploymentOfLicensesOfComponentsTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserScarceDeploymentOfLicensesOfComponents instance = new RiskAnalyserScarceDeploymentOfLicensesOfComponents(project);
+        RiskAnalyserScarcelySpreadComponentsLicenses instance = new RiskAnalyserScarcelySpreadComponentsLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result1 = instance.getRiskAnalisysResult();
         RiskAnalysisResult result2 = instance.getRiskAnalisysResult();
@@ -107,7 +107,7 @@ public class RiskAnalyserScarceDeploymentOfLicensesOfComponentsTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserScarceDeploymentOfLicensesOfComponents instance = new RiskAnalyserScarceDeploymentOfLicensesOfComponents(project);
+        RiskAnalyserScarcelySpreadComponentsLicenses instance = new RiskAnalyserScarcelySpreadComponentsLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result = instance.getRiskAnalisysResult();
         assertNotNull(result);

@@ -53,8 +53,8 @@ public class SupportedRisksTest {
     @Test
     public void testItemsNumber() {
         System.out.println("items number");
-        // Currently there are 7 risks defined in enum
-        assertEquals(7, SupportedRisks.values().length);
+        // Currently there are 8 risks defined in enum
+        assertEquals(8, SupportedRisks.values().length);
     }
 
     /**
@@ -64,17 +64,18 @@ public class SupportedRisksTest {
     @Test
     public void testItems() {
         System.out.println("items existence");
-        // Currently these are the redistribution items defined in enum
+        // Currently these are the risks items defined in enum
         boolean worksFine = true;
         for (SupportedRisks risk : SupportedRisks.values()) {
             switch (risk) {
-                case LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSES:
-                case LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES:
-                case LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES:
-                case COMPONENTS_LICENSES_TOO_OBSOLETE:
-                case PROJECT_LICENSES_TOO_OBSOLETE:
-                case COMPONENTS_LICENSES_UNFASHIONABLE:
-                case SCARCE_DEPLOYMENT_OF_COMPONENTS_LICENSES:
+                case HAVING_COMPONENTS_LICENSES_INCOMPATIBLE_WITH_PROJECT_LICENSES:
+                case HAVING_A_LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES:
+                case HAVING_A_LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES:
+                case HAVING_OBSOLETE_COMPONENTS_LICENSES:
+                case HAVING_OBSOLETE_PROJECT_LICENSES:
+                case HAVING_UNFASHIONABLE_COMPONENTS_LICENSES:
+                case HAVING_UNFASHIONABLE_PROJECT_LICENSES:
+                case HAVING_SCARCELY_SPREAD_COMPONENTS_LICENSES:
                     worksFine &= true;
                     break;
                 default:

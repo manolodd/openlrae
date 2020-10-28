@@ -69,7 +69,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
      */
     public RiskAnalyserLimitedSetOfPotentialComponentsLicenses(Project project) {
         // Project is ckecked at superclass
-        super(project, SupportedRisks.LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES);
+        super(project, SupportedRisks.HAVING_A_LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserLimitedSetOfPotentialComponentsLicenses.class);
     }
 

@@ -26,17 +26,17 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedRisks {
-    LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSES("Risk of having a set of components whose licenses are not compatible with the project license."),
-    LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES("Risk of having a reduced set of project licenses to choose because of the license of its components."),
-    LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES("Risk of having a reduced set of components licenses to choose because of the license of the project."),
-    PROJECT_LICENSES_TOO_OBSOLETE("Risk of having a project with old license version."),
-    COMPONENTS_LICENSES_TOO_OBSOLETE("Risk of having a set of components with old license versions"),
-    //PROJECT_LICENSE_UNFASHIONABLE("Risk of having a project license that is not trendy"),
-    COMPONENTS_LICENSES_UNFASHIONABLE("Risk of having a set of components with licenses that are not trendy"),
-    //COMPONENT_LICENSES_TOO_HETEROGENEOUS("Risk of having a set of components with licenses very heterogeneous"),
-    //COMPONENT_LICENSES_TOO_DIFFERENT_THAN_PROJECT_LICENSE("Risk of having a set of components with licenses different than the project license"),
-    //SCARCE_DEPLOYMENT_OF_PROJECT_LICENSE("Risk of having a project license not used by many OSS projects now"),
-    SCARCE_DEPLOYMENT_OF_COMPONENTS_LICENSES("Risk of having components with licenses not used by many OSS projects now");
+    HAVING_COMPONENTS_LICENSES_INCOMPATIBLE_WITH_PROJECT_LICENSES("Risk of having a set of components whose licenses are not compatible with the project license."),
+    HAVING_A_LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES("Risk of having a reduced set of project licenses to choose because of the license of its components."),
+    HAVING_A_LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES("Risk of having a reduced set of components licenses to choose because of the license of the project."),
+    HAVING_OBSOLETE_PROJECT_LICENSES("Risk of having a project with old license version."),
+    HAVING_OBSOLETE_COMPONENTS_LICENSES("Risk of having a set of components with old license versions"),
+    HAVING_UNFASHIONABLE_PROJECT_LICENSES("Risk of having a project license that is not trendy"),
+    HAVING_UNFASHIONABLE_COMPONENTS_LICENSES("Risk of having a set of components with licenses that are not trendy"),
+    //HAVING_HETEROGENEOUS_COMPONENT_LICENSES("Risk of having a set of components with licenses very heterogeneous"),
+    //HAVING_COMPONENT_LICENSES_DISALIGNED_TO_PROJECT_LICENSES("Risk of having a set of components with licenses different than the project licenses"),
+    //HAVING_SCARCELY_SPREAD_PROJECT_LICENSES("Risk of having a project license not used by many OSS projects now"),
+    HAVING_SCARCELY_SPREAD_COMPONENTS_LICENSES("Risk of having components with licenses not used by many OSS projects now");
 
     private Logger logger = LoggerFactory.getLogger(SupportedRisks.class);
 

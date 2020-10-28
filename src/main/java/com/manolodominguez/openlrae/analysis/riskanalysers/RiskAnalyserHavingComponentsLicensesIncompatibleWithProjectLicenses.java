@@ -52,7 +52,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
-public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense extends AbstractRiskAnalyser {
+public class RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses extends AbstractRiskAnalyser {
 
     /**
      * This is the constructor of the class. It creates a new instance of
@@ -60,10 +60,10 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense exte
      *
      * @param project. The software project to be analised.
      */
-    public RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense(Project project) {
+    public RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses(Project project) {
         // Project is checked at superclass
-        super(project, SupportedRisks.LICENSES_OF_COMPONENTS_INCOMPATIBLE_WITH_PROJECT_LICENSES);
-        logger = LoggerFactory.getLogger(RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.class);
+        super(project, SupportedRisks.HAVING_COMPONENTS_LICENSES_INCOMPATIBLE_WITH_PROJECT_LICENSES);
+        logger = LoggerFactory.getLogger(RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses.class);
     }
 
     /**

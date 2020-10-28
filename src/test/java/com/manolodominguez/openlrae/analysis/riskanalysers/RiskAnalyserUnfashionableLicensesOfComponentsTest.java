@@ -62,7 +62,7 @@ public class RiskAnalyserUnfashionableLicensesOfComponentsTest {
         Project project = null;
         // Should throw an exception because project is null
         assertThrows(IllegalArgumentException.class, () -> {
-            new RiskAnalyserUnfashionableLicensesOfComponents(project);
+            new RiskAnalyserUnfashionableComponentsLicenses(project);
         });
     }
     
@@ -75,8 +75,8 @@ public class RiskAnalyserUnfashionableLicensesOfComponentsTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserUnfashionableLicensesOfComponents instance = new RiskAnalyserUnfashionableLicensesOfComponents(project);
-        assertEquals(SupportedRisks.COMPONENTS_LICENSES_UNFASHIONABLE, instance.handledRiskType);
+        RiskAnalyserUnfashionableComponentsLicenses instance = new RiskAnalyserUnfashionableComponentsLicenses(project);
+        assertEquals(SupportedRisks.HAVING_UNFASHIONABLE_COMPONENTS_LICENSES, instance.handledRiskType);
     }
     
     /**
@@ -88,7 +88,7 @@ public class RiskAnalyserUnfashionableLicensesOfComponentsTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserUnfashionableLicensesOfComponents instance = new RiskAnalyserUnfashionableLicensesOfComponents(project);
+        RiskAnalyserUnfashionableComponentsLicenses instance = new RiskAnalyserUnfashionableComponentsLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result1 = instance.getRiskAnalisysResult();
         RiskAnalysisResult result2 = instance.getRiskAnalisysResult();
@@ -107,7 +107,7 @@ public class RiskAnalyserUnfashionableLicensesOfComponentsTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserUnfashionableLicensesOfComponents instance = new RiskAnalyserUnfashionableLicensesOfComponents(project);
+        RiskAnalyserUnfashionableComponentsLicenses instance = new RiskAnalyserUnfashionableComponentsLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result = instance.getRiskAnalisysResult();
         assertNotNull(result);

@@ -74,7 +74,7 @@ public class RiskAnalysisResultTest {
     @Test
     public void testConstructorWhenRiskExposureOutOfRange1() {
         System.out.println("Constructor");
-        SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
+        SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = -0.1f;
         float riskImpact = 0.0f;
         CopyOnWriteArrayList<String> rootCauses = new CopyOnWriteArrayList<>();
@@ -93,7 +93,7 @@ public class RiskAnalysisResultTest {
     @Test
     public void testConstructorWhenRiskExposureOutOfRange2() {
         System.out.println("Constructor");
-        SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
+        SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 1.1f;
         float riskImpact = 0.0f;
         CopyOnWriteArrayList<String> rootCauses = new CopyOnWriteArrayList<>();
@@ -112,7 +112,7 @@ public class RiskAnalysisResultTest {
     @Test
     public void testConstructorWhenRiskImpactOutOfRange1() {
         System.out.println("Constructor");
-        SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
+        SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.0f;
         float riskImpact = -0.1f;
         CopyOnWriteArrayList<String> rootCauses = new CopyOnWriteArrayList<>();
@@ -131,7 +131,7 @@ public class RiskAnalysisResultTest {
     @Test
     public void testConstructorWhenRiskImpactOutOfRange2() {
         System.out.println("Constructor");
-        SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
+        SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.0f;
         float riskImpact = 1.1f;
         CopyOnWriteArrayList<String> rootCauses = new CopyOnWriteArrayList<>();
@@ -150,7 +150,7 @@ public class RiskAnalysisResultTest {
     @Test
     public void testConstructorWhenRootCausesIsNull() {
         System.out.println("Constructor");
-        SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
+        SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.0f;
         float riskImpact = 0.0f;
         CopyOnWriteArrayList<String> rootCauses = null;
@@ -169,7 +169,7 @@ public class RiskAnalysisResultTest {
     @Test
     public void testConstructorWhenWarningsIsNull() {
         System.out.println("Constructor");
-        SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
+        SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.0f;
         float riskImpact = 0.0f;
         CopyOnWriteArrayList<String> rootCauses = new CopyOnWriteArrayList<>();
@@ -188,7 +188,7 @@ public class RiskAnalysisResultTest {
     @Test
     public void testConstructorWhenGoodThingsIsNull() {
         System.out.println("Constructor");
-        SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
+        SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.0f;
         float riskImpact = 0.0f;
         CopyOnWriteArrayList<String> rootCauses = new CopyOnWriteArrayList<>();
@@ -207,7 +207,7 @@ public class RiskAnalysisResultTest {
     @Test
     public void testConstructorWhenTipsIsNull() {
         System.out.println("Constructor");
-        SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
+        SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.0f;
         float riskImpact = 0.0f;
         CopyOnWriteArrayList<String> rootCauses = new CopyOnWriteArrayList<>();
@@ -226,7 +226,7 @@ public class RiskAnalysisResultTest {
     @Test
     public void testConstructor() {
         System.out.println("Constructor");
-        SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
+        SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;
         CopyOnWriteArrayList<String> rootCauses = new CopyOnWriteArrayList<>();
@@ -234,7 +234,7 @@ public class RiskAnalysisResultTest {
         CopyOnWriteArrayList<String> goodThings = new CopyOnWriteArrayList<>();
         CopyOnWriteArrayList<String> tips = new CopyOnWriteArrayList<>();
         RiskAnalysisResult analysisResult = new RiskAnalysisResult(riskType, riskExposure, riskImpact, rootCauses, warnings, goodThings, tips);
-        assertEquals(SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE, analysisResult.getRiskType());
+        assertEquals(SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES, analysisResult.getRiskType());
         assertEquals(0.1235f, analysisResult.getRiskExposure());
         assertEquals(0.2346f, analysisResult.getRiskImpact());
         assertEquals(0.029f, analysisResult.getRiskValue());
@@ -249,7 +249,7 @@ public class RiskAnalysisResultTest {
      */
     @Test
     public void testGetRiskType() {
-        SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
+        SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;
         CopyOnWriteArrayList<String> rootCauses = new CopyOnWriteArrayList<>();
@@ -257,7 +257,7 @@ public class RiskAnalysisResultTest {
         CopyOnWriteArrayList<String> goodThings = new CopyOnWriteArrayList<>();
         CopyOnWriteArrayList<String> tips = new CopyOnWriteArrayList<>();
         RiskAnalysisResult analysisResult = new RiskAnalysisResult(riskType, riskExposure, riskImpact, rootCauses, warnings, goodThings, tips);
-        assertEquals(SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE, analysisResult.getRiskType());
+        assertEquals(SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES, analysisResult.getRiskType());
     }
 
     /**
@@ -266,7 +266,7 @@ public class RiskAnalysisResultTest {
     @Test
     public void testGetRiskExposure() {
         System.out.println("getRiskExposure");
-        SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
+        SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;
         CopyOnWriteArrayList<String> rootCauses = new CopyOnWriteArrayList<>();
@@ -283,7 +283,7 @@ public class RiskAnalysisResultTest {
     @Test
     public void testGetRiskImpact() {
         System.out.println("getRiskImpact");
-        SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
+        SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;
         CopyOnWriteArrayList<String> rootCauses = new CopyOnWriteArrayList<>();
@@ -300,7 +300,7 @@ public class RiskAnalysisResultTest {
     @Test
     public void testGetRiskValue() {
         System.out.println("getRiskValue");
-        SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
+        SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;
         CopyOnWriteArrayList<String> rootCauses = new CopyOnWriteArrayList<>();
@@ -317,7 +317,7 @@ public class RiskAnalysisResultTest {
     @Test
     public void testGetRootCauses() {
         System.out.println("getRootCauses");
-        SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
+        SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;
         CopyOnWriteArrayList<String> rootCauses = new CopyOnWriteArrayList<>();
@@ -334,7 +334,7 @@ public class RiskAnalysisResultTest {
     @Test
     public void testGetWarnings() {
         System.out.println("getWarnings");
-        SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
+        SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;
         CopyOnWriteArrayList<String> rootCauses = new CopyOnWriteArrayList<>();
@@ -351,7 +351,7 @@ public class RiskAnalysisResultTest {
     @Test
     public void testGetGoodThings() {
         System.out.println("getGoodThings");
-        SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
+        SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;
         CopyOnWriteArrayList<String> rootCauses = new CopyOnWriteArrayList<>();
@@ -368,7 +368,7 @@ public class RiskAnalysisResultTest {
     @Test
     public void testGetTips() {
         System.out.println("getTips");
-        SupportedRisks riskType = SupportedRisks.COMPONENTS_LICENSES_TOO_OBSOLETE;
+        SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;
         CopyOnWriteArrayList<String> rootCauses = new CopyOnWriteArrayList<>();
