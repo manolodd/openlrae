@@ -15,20 +15,19 @@
  */
 package com.manolodominguez.openlrae.analysis.riskanalysers;
 
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedObsolescences;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
-import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesObsolescencesFactory;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
+import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedTrends;
+import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesTrendFactory;
 import org.slf4j.LoggerFactory;
 
 /**
  * This class implements a risk analyser whose mission is to detect identify
- * risk derived from the use of obsolete licenses for the project. Projects that
- * uses modern licenses are more easy to be put toguether with others components
- * in a bigger project. And also they are often adequated to new national and
- * international legislation. Unless all project licenses are in their latest
- * version there are certain level of risk.
+ * risk derived from the use of unfashionable licenses for the project. Projects 
+ * that uses unfashionable licenses are in risk of not be selected as dependency
+ * of modern licenses. And also they are often poorly adequated to new national 
+ * and international legislation. 
  *
  * We will use the totalCases as the reference point to compute risk exposure
  * and risk impact. totalCases is the number licenses under wich the project is
@@ -74,53 +73,52 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
      */
     @Override
     public void runAnalyser() {
-        SupportedObsolescences obsolescence;
-        LicensesObsolescencesFactory licensesObsolescences = LicensesObsolescencesFactory.getInstance();
+        SupportedTrends trend;
+        LicensesTrendFactory licensesTrends = LicensesTrendFactory.getInstance();
         int totalCases = this.project.getLicenses().size();
         for (SupportedLicenses projectLicense : this.project.getLicenses()) {
-            obsolescence = licensesObsolescences.getObsolescenceOf(projectLicense);
-            switch (obsolescence) {
-                case UPDATED:
-                    // This project licenses is in its latest version. Therefore 
-                    // there is not obsolescence risk in this case. 
-                    goodThings.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that is " + obsolescence.getDescriptionValue());
+            trend = licensesTrends.getTrendOf(projectLicense);
+            switch (trend) {
+                case TRENDY:
+                    // This project licenses is trendy. Therefore there is not 
+                    // risk of being unfashionable in this case. 
+                    goodThings.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that " + trend.getDescriptionValue());
                     break;
-                case NEAR_UPDATED:
-                    // The analyzed license is not in its latest version but in
-                    // a version closer to the latest one. Therefore there is 
-                    // obsolescence risk in this case. 
-                    riskImpact += obsolescence.getObsolescenceValue();
+                case NEAR_TRENDY:
+                    // The analyzed license is not completely trendy but is 
+                    // closer to trendy that to unfashionable. Therefore there 
+                    // is risk of being unfashioable in this case. 
+                    riskImpact += trend.getTrendValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that is " + obsolescence.getDescriptionValue());
-                    tips.add("Try to replace the project license " + projectLicense.getSPDXIdentifier() + ", by a newer license version, if possible.");
+                    rootCauses.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that " + trend.getDescriptionValue());
+                    tips.add("Try to replace the project license " + projectLicense.getSPDXIdentifier() + ", by a trendier license, if possible.");
                     break;
-                case NEAR_OUTDATED:
-                    // The analyzed license is not in its latest version but in
-                    // a version far to the latest one. Therefore there is 
-                    // obsolescence risk in this case. 
-                    riskImpact += obsolescence.getObsolescenceValue();
+                case NEAR_UNFASHIONABLE:
+                    // The analyzed license is not completely trendy but is 
+                    // closer to unfashionable that to trendy. Therefore there 
+                    // is risk of being unfashioable in this case. 
+                    riskImpact += trend.getTrendValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that is " + obsolescence.getDescriptionValue());
-                    tips.add("Try to replace the project license " + projectLicense.getSPDXIdentifier() + ", by a newer license version, if possible.");
+                    rootCauses.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that " + trend.getDescriptionValue());
+                    tips.add("Try to replace the project license " + projectLicense.getSPDXIdentifier() + ", by a trendier license, if possible.");
                     break;
-                case OUTDATED:
-                    // The analyzed license is not in its latest version but in
-                    // the first version of it. Therefore there is obsolescence 
-                    // risk in this case. 
-                    riskImpact += obsolescence.getObsolescenceValue();
+                case UNFASHIONABLE:
+                    // This project licenses is trendy. Therefore there is risk 
+                    // of being unfashionable in this case. 
+                    riskImpact += trend.getTrendValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that is " + obsolescence.getDescriptionValue());
-                    tips.add("Try to replace the project license " + projectLicense.getSPDXIdentifier() + ", by a newer license version, if possible.");
+                    rootCauses.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that " + trend.getDescriptionValue());
+                    tips.add("Try to replace the project license " + projectLicense.getSPDXIdentifier() + ", by a trendier license, if possible.");
                     break;
             }
         }
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
         if (riskExposure > NO_RISK) {
-            tips.add("General tip: When replacing a project license version by a newer one, do not forget to check whether the componets of the project are still compatible with it or not.");
-            tips.add("General tip: When modifying the set of project licenses to reduce the exposure to this risk, start with those licenses whose obsolescence value is greater.");
-            tips.add("General tip: Apart from using a newer version of the same license, you could use another modern (but different) licenses also compatible with your bill of components.");
-            tips.add("General tip: Always try to maintain a set of project licenses in their latest versions as it is less likely to have licensing incompatibilities and maintenance troubles.");
+            tips.add("General tip: When replacing a project license by a trendier one, do not forget to check whether the componets of the project are still compatible with it or not.");
+            tips.add("General tip: When modifying the set of project licenses to reduce the exposure to this risk, start with those licenses whose risk contribution, in trend terms, is greater.");
+            tips.add("General tip: Sometimes, using the same license but in a different version is also trendier; perhaps it is not necessasry to change to a very different license.");
+            tips.add("General tip: Always try to maintain a trendy set of project licenses as it is easier keep the project on trend.");
         }
     }
     private static final float NO_RISK = 0.0f;
