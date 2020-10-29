@@ -32,9 +32,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicenseTest {
+public class RiskAnalyserScarcelySpreadComponentsLicensesTest {
     
-    public RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicenseTest() {
+    public RiskAnalyserScarcelySpreadComponentsLicensesTest() {
     }
     
     @BeforeAll
@@ -54,7 +54,7 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicenseTest 
     }
 
     /**
-     * Test of constructor, of class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.
+     * Test of constructor, of class RiskAnalyserScarceDeploymentOfLicensesOfComponents.
      */
     @Test
     public void testConstructorWhenProjectIsNull() {
@@ -62,12 +62,12 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicenseTest 
         Project project = null;
         // Should throw an exception because project is null
         assertThrows(IllegalArgumentException.class, () -> {
-            new RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses(project);
+            new RiskAnalyserScarcelySpreadComponentsLicenses(project);
         });
     }
     
     /**
-     * Test of getHandledRiskType method, of class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.
+     * Test of getHandledRiskType method, of class RiskAnalyserScarceDeploymentOfLicensesOfComponents.
      */
     @Test
     public void testGetHandledRiskType() {
@@ -75,12 +75,12 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicenseTest 
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses instance = new RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses(project);
-        assertEquals(SupportedRisks.HAVING_COMPONENTS_LICENSES_INCOMPATIBLE_WITH_PROJECT_LICENSES, instance.handledRiskType);
+        RiskAnalyserScarcelySpreadComponentsLicenses instance = new RiskAnalyserScarcelySpreadComponentsLicenses(project);
+        assertEquals(SupportedRisks.HAVING_SCARCELY_SPREAD_COMPONENTS_LICENSES, instance.handledRiskType);
     }
     
     /**
-     * Test of getRiskAnalisysResult method, of class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.
+     * Test of getRiskAnalisysResult method, of class RiskAnalyserScarceDeploymentOfLicensesOfComponents.
      */
     @Test
     public void testGetRiskAnalisysResultr() {
@@ -88,7 +88,7 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicenseTest 
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses instance = new RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses(project);
+        RiskAnalyserScarcelySpreadComponentsLicenses instance = new RiskAnalyserScarcelySpreadComponentsLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result1 = instance.getRiskAnalisysResult();
         RiskAnalysisResult result2 = instance.getRiskAnalisysResult();
@@ -99,7 +99,7 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicenseTest 
     }
     
     /**
-     * Test of runAnalyser method, of class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.
+     * Test of runAnalyser method, of class RiskAnalyserScarceDeploymentOfLicensesOfComponents.
      */
     @Test
     public void testRunAnalyser() {
@@ -107,7 +107,7 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicenseTest 
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses instance = new RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses(project);
+        RiskAnalyserScarcelySpreadComponentsLicenses instance = new RiskAnalyserScarcelySpreadComponentsLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result = instance.getRiskAnalisysResult();
         assertNotNull(result);
@@ -117,17 +117,17 @@ public class RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicenseTest 
         assertNotNull(result.getRootCauses());
         assertTrue(!result.getRootCauses().isEmpty());
         assertNotNull(result.getWarnings());
-        assertTrue(!result.getWarnings().isEmpty());
+        assertTrue(result.getWarnings().isEmpty());
         assertNotNull(result.getTips());
         assertTrue(!result.getTips().isEmpty());
         assertTrue(result.getRiskExposure() >= 0.0f);
         assertTrue(result.getRiskExposure() <= 1.0f);
-        assertEquals(0.2500f, result.getRiskExposure());
+        assertEquals(0.5025f, result.getRiskExposure());
         assertTrue(result.getRiskImpact() >= 0.0f);
         assertTrue(result.getRiskImpact() <= 1.0f);
-        assertEquals(0.2500f, result.getRiskImpact());
+        assertEquals(0.5017f, result.getRiskImpact());
         assertTrue(result.getRiskValue() >= 0.0f);
         assertTrue(result.getRiskValue() <= 1.0f);
-        assertEquals(0.0625f, result.getRiskValue());
+        assertEquals(0.2521f, result.getRiskValue());
     }
 }

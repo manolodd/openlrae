@@ -32,9 +32,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class RiskAnalyserProjectLicensesTooObsoleteTest {
+public class RiskAnalyserObsoleteProjectLicensesTest {
     
-    public RiskAnalyserProjectLicensesTooObsoleteTest() {
+    public RiskAnalyserObsoleteProjectLicensesTest() {
     }
     
     @BeforeAll
