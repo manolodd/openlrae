@@ -15,6 +15,12 @@
  */
 package com.manolodominguez.openlrae.analysis.riskanalysers;
 
+import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
+import com.manolodominguez.openlrae.arquitecture.Project;
+import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
+import com.manolodominguez.openlrae.resourceslocators.FilesPaths;
+import java.net.URL;
+import mjson.Json;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,15 +54,81 @@ public class RiskAnalyserUnfashionableProjectLicensesTest {
     }
 
     /**
+     * Test of constructor, of class RiskAnalyserUnfashionableProjectLicenses.
+     */
+    @Test
+    public void testConstructorWhenProjectIsNull() {
+        System.out.println("constructor");
+        Project project = null;
+        // Should throw an exception because project is null
+        assertThrows(IllegalArgumentException.class, () -> {
+            new RiskAnalyserUnfashionableProjectLicenses(project);
+        });
+    }
+
+    /**
+     * Test of getHandledRiskType method, of class RiskAnalyserUnfashionableProjectLicenses.
+     */
+    @Test
+    public void testGetHandledRiskType() {
+        System.out.println("getHandledRiskType");
+        // Define the project. In this case, it is defined from a JSON file.
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        Project project = new Project(Json.read(projectURL));
+        RiskAnalyserUnfashionableProjectLicenses instance = new RiskAnalyserUnfashionableProjectLicenses(project);
+        assertEquals(SupportedRisks.HAVING_UNFASHIONABLE_PROJECT_LICENSES, instance.handledRiskType);
+    }
+    
+    /**
+     * Test of getRiskAnalisysResult method, of class RiskAnalyserUnfashionableProjectLicenses.
+     */
+    @Test
+    public void testGetRiskAnalisysResultr() {
+        System.out.println("getRiskAnalisysResult");
+        // Define the project. In this case, it is defined from a JSON file.
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        Project project = new Project(Json.read(projectURL));
+        RiskAnalyserUnfashionableProjectLicenses instance = new RiskAnalyserUnfashionableProjectLicenses(project);
+        // This calls runAnalyser method of instance
+        RiskAnalysisResult result1 = instance.getRiskAnalisysResult();
+        RiskAnalysisResult result2 = instance.getRiskAnalisysResult();
+        assertNotNull(result1);
+        assertNotNull(result2);
+        // Result should be different objects in diferent calls to the method
+        assertTrue(result1 != result2); // We're comparing references here
+    }
+    
+    /**
      * Test of runAnalyser method, of class RiskAnalyserUnfashionableProjectLicenses.
      */
     @Test
     public void testRunAnalyser() {
         System.out.println("runAnalyser");
-        RiskAnalyserUnfashionableProjectLicenses instance = null;
-        instance.runAnalyser();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // Define the project. In this case, it is defined from a JSON file.
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        Project project = new Project(Json.read(projectURL));
+        RiskAnalyserUnfashionableProjectLicenses instance = new RiskAnalyserUnfashionableProjectLicenses(project);
+        // This calls runAnalyser method of instance
+        RiskAnalysisResult result = instance.getRiskAnalisysResult();
+        assertNotNull(result);
+        // We already know risk values for the selected project
+        assertNotNull(result.getGoodThings());
+        assertTrue(!result.getGoodThings().isEmpty());
+        assertNotNull(result.getRootCauses());
+        assertTrue(!result.getRootCauses().isEmpty());
+        assertNotNull(result.getWarnings());
+        assertTrue(result.getWarnings().isEmpty());
+        assertNotNull(result.getTips());
+        assertTrue(!result.getTips().isEmpty());
+        assertTrue(result.getRiskExposure() >= 0.0f);
+        assertTrue(result.getRiskExposure() <= 1.0f);
+        assertEquals(0.5f, result.getRiskExposure());
+        assertTrue(result.getRiskImpact() >= 0.0f);
+        assertTrue(result.getRiskImpact() <= 1.0f);
+        assertEquals(0.5f, result.getRiskImpact());
+        assertTrue(result.getRiskValue() >= 0.0f);
+        assertTrue(result.getRiskValue() <= 1.0f);
+        assertEquals(0.25f, result.getRiskValue());
     }
     
 }
