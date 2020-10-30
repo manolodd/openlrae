@@ -32,9 +32,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class RiskAnalyserUnfashionableProjectLicensesTest {
+public class RiskAnalyserScarcelySpreadProjectLicensesTest {
     
-    public RiskAnalyserUnfashionableProjectLicensesTest() {
+    public RiskAnalyserScarcelySpreadProjectLicensesTest() {
     }
     
     @BeforeAll
@@ -54,7 +54,7 @@ public class RiskAnalyserUnfashionableProjectLicensesTest {
     }
 
     /**
-     * Test of constructor, of class RiskAnalyserUnfashionableProjectLicenses.
+     * Test of constructor, of class RiskAnalyserScarcelySpreadProjectLicenses.
      */
     @Test
     public void testConstructorWhenProjectIsNull() {
@@ -62,12 +62,12 @@ public class RiskAnalyserUnfashionableProjectLicensesTest {
         Project project = null;
         // Should throw an exception because project is null
         assertThrows(IllegalArgumentException.class, () -> {
-            new RiskAnalyserUnfashionableProjectLicenses(project);
+            new RiskAnalyserScarcelySpreadProjectLicenses(project);
         });
     }
 
     /**
-     * Test of getHandledRiskType method, of class RiskAnalyserUnfashionableProjectLicenses.
+     * Test of getHandledRiskType method, of class RiskAnalyserScarcelySpreadProjectLicenses.
      */
     @Test
     public void testGetHandledRiskType() {
@@ -75,12 +75,12 @@ public class RiskAnalyserUnfashionableProjectLicensesTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserUnfashionableProjectLicenses instance = new RiskAnalyserUnfashionableProjectLicenses(project);
-        assertEquals(SupportedRisks.HAVING_UNFASHIONABLE_PROJECT_LICENSES, instance.handledRiskType);
+        RiskAnalyserScarcelySpreadProjectLicenses instance = new RiskAnalyserScarcelySpreadProjectLicenses(project);
+        assertEquals(SupportedRisks.HAVING_SCARCELY_SPREAD_PROJECT_LICENSES, instance.handledRiskType);
     }
     
     /**
-     * Test of getRiskAnalisysResult method, of class RiskAnalyserUnfashionableProjectLicenses.
+     * Test of getRiskAnalisysResult method, of class RiskAnalyserScarcelySpreadProjectLicenses.
      */
     @Test
     public void testGetRiskAnalisysResult() {
@@ -88,7 +88,7 @@ public class RiskAnalyserUnfashionableProjectLicensesTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserUnfashionableProjectLicenses instance = new RiskAnalyserUnfashionableProjectLicenses(project);
+        RiskAnalyserScarcelySpreadProjectLicenses instance = new RiskAnalyserScarcelySpreadProjectLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result1 = instance.getRiskAnalisysResult();
         RiskAnalysisResult result2 = instance.getRiskAnalisysResult();
@@ -99,7 +99,7 @@ public class RiskAnalyserUnfashionableProjectLicensesTest {
     }
     
     /**
-     * Test of runAnalyser method, of class RiskAnalyserUnfashionableProjectLicenses.
+     * Test of runAnalyser method, of class RiskAnalyserScarcelySpreadProjectLicenses.
      */
     @Test
     public void testRunAnalyser() {
@@ -107,7 +107,7 @@ public class RiskAnalyserUnfashionableProjectLicensesTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserUnfashionableProjectLicenses instance = new RiskAnalyserUnfashionableProjectLicenses(project);
+        RiskAnalyserScarcelySpreadProjectLicenses instance = new RiskAnalyserScarcelySpreadProjectLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result = instance.getRiskAnalisysResult();
         assertNotNull(result);
@@ -125,10 +125,10 @@ public class RiskAnalyserUnfashionableProjectLicensesTest {
         assertEquals(0.5f, result.getRiskExposure());
         assertTrue(result.getRiskImpact() >= 0.0f);
         assertTrue(result.getRiskImpact() <= 1.0f);
-        assertEquals(0.5f, result.getRiskImpact());
+        assertEquals(0.335f, result.getRiskImpact());
         assertTrue(result.getRiskValue() >= 0.0f);
         assertTrue(result.getRiskValue() <= 1.0f);
-        assertEquals(0.25f, result.getRiskValue());
+        assertEquals(0.1675f, result.getRiskValue());
     }
     
 }
