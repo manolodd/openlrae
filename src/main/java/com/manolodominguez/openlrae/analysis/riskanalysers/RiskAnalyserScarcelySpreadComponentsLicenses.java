@@ -24,13 +24,13 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This class implements a risk analyser whose mission is to detect those
- * elements whose licenses are not used by many opensource projects. It is
+ * components whose licenses are not used by many opensource projects. It is
  * desiderable that all components used in a project uses a license that is also
  * used in lot of projects. This way if you need to change a component by
- * another one that provide a given functionality should find out a component
- * that provides that functionality, with the same license, easily. Unless all
- * components of the bill of components are using a wide spreaded license, there
- * are certain level of risk.
+ * another one that provide a given functionality you should find out a
+ * component that provides that functionality, with the same license, easily.
+ * Unless all components of the bill of components are using a wide spread
+ * license, there are certain level of risk.
  *
  * We will use the totalCases as the reference point to compute risk exposure
  * and risk impact. totalCases is the number of component bindings that composes
@@ -38,17 +38,17 @@ import org.slf4j.LoggerFactory;
  *
  * The important is computed this way:
  *
- * riskExposure = average of number of components in the project whose license
- * are wide spreaded, multiplied, each one of them, by its relative weight in
- * the overall project.
+ * riskExposure = number of components whose license are not highly spread,
+ * multiplied, each one of them, by its relative weight in the overall project.
+ * And in relation to the totalCases.
  *
- * riskImpact = average of the spreading value of each components in the project
- * whose license are not wide spreaded, multiplied, each one of them by its
- * relative weight in the overall project.
+ * riskImpact = spreading value of each components in the project whose license
+ * are not highly spread, multiplied, each one of them by its relative weight in
+ * the overall project. And in relation to the totalCases.
  *
- * riskExposure should be undestood as the portion of the project that is
+ * riskExposure should be undestood as the portion of projects license that is
  * affected by the risk. riskImpact should be undestood as the effort needed to
- * reduce the risk exposure (think in riskImpact in cost terms).
+ * reduce the risk exposure.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -56,7 +56,7 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
 
     /**
      * This is the constructor of the class. It creates a new instance of
-     * RiskAnalyserScarceDeploymentOfLicensesOfComponents.
+     * RiskAnalyserScarcelySpreadComponentsLicenses.
      *
      * @param project. The software project to be analised.
      */
@@ -67,15 +67,8 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
     }
 
     /**
-     * This method analyse the project and its components looking for risk of
-     * using components whose license are nos used by many third party
-     * projects.It is better to use components whose license is used by lots of
-     * projects in order to have the possibility to choose third party
-     * components, easily, without licensing risks.
-     *
-     * The overall bill of components of the project is analyzed and a global
-     * risk is computed.
-     *
+     * This method analyses the complete bill of components looking for risk of
+     * using scarcely spread component licenses.
      */
     @Override
     public void runAnalyser() {
@@ -99,7 +92,7 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
                     riskImpact += (spreading.getSpreadingValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
                     rootCauses.add(componentBinding.getFullName() + ", uses a license that " + spreading.getDescriptionValue());
-                    tips.add("Try changing " + componentBinding.getFullName() + ", by another component released under a license more spreaded.");
+                    tips.add("Try changing " + componentBinding.getFullName() + ", by another component released under a license more spread.");
                     break;
                 case NEAR_LITTLE_WIDESPREAD:
                     // The analyzed component is using a license that is not 
@@ -108,7 +101,7 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
                     riskImpact += (spreading.getSpreadingValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
                     rootCauses.add(componentBinding.getFullName() + ", uses a license that " + spreading.getDescriptionValue());
-                    tips.add("Try changing " + componentBinding.getFullName() + ", by another component released under a license more spreaded.");
+                    tips.add("Try changing " + componentBinding.getFullName() + ", by another component released under a license more spread.");
                     break;
                 case LITTLE_WIDESPREAD:
                     // The analyzed component is using a license that is used  
@@ -117,7 +110,7 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
                     riskImpact += (spreading.getSpreadingValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
                     rootCauses.add(componentBinding.getFullName() + ", uses a license that " + spreading.getDescriptionValue());
-                    tips.add("Try changing " + componentBinding.getFullName() + ", by another component released under a license more spreaded.");
+                    tips.add("Try changing " + componentBinding.getFullName() + ", by another component released under a license more spread.");
                     break;
             }
         }
@@ -125,7 +118,7 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
         if (riskExposure > NO_RISK) {
-            tips.add("General tip: Try to use components with spreaded licenses as it is less likely to have licensing risks.");
+            tips.add("General tip: Try to use components with spread licenses as it is less likely to have licensing risks.");
             tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start changing components that are root causes in more cases.");
             tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start with those with higher level of contribution to the overall project.");
             tips.add("General tip: If you own all right on a given risky component, try changing its license instead of looking for another component.");

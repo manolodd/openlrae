@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This class implements a risk analyser whose mission is to detect those
- * elements whose licenses are obsolete. It is desiderable that all components
+ * components whose licenses are obsolete. It is desiderable that all components
  * used in a project uses a modern license, because modern licenses are more
  * easy to be put toguether with others and also because they are often
  * adequated to new national and international legislation. Unless all
@@ -37,17 +37,17 @@ import org.slf4j.LoggerFactory;
  *
  * The important is computed this way:
  *
- * riskExposure = average of number of components in the project whose license
- * are obsolete in a given grade, multiplied, each one of them, by its relative
- * weight in the overall project.
+ * riskExposure = number of components whose license are obsolete, multiplied,
+ * each one of them, by its relative weight in the overall project. And in
+ * relation to the totalCases.
  *
- * riskImpact = average of the obsolescence value of each components in the
- * project whose license are obsolete, multiplied, each one of them by its
- * relative weight in the overall project.
+ * riskImpact = obsolescence value of each components in the project whose
+ * license is obsolete, multiplied, each one of them by its relative weight in
+ * the overall project. And in relation to the totalCases.
  *
- * riskExposure should be undestood as the portion of the project that is
+ * riskExposure should be undestood as the portion of projects license that is
  * affected by the risk. riskImpact should be undestood as the effort needed to
- * reduce the risk exposure (think in riskImpact in cost terms).
+ * reduce the risk exposure.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -55,7 +55,7 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
 
     /**
      * This is the constructor of the class. It creates a new instance of
-     * RiskAnalyserLicensesOfComponentsTooObsolete.
+     * RiskAnalyserObsoleteComponentsLicenses.
      *
      * @param project. The software project to be analised.
      */
@@ -66,12 +66,8 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
     }
 
     /**
-     * This method analyse the project and its components looking for risk of
-     * using components whose license are obsolete.
-     *
-     * A component that uses obsolete licenses includes certain grade of risk in
-     * the project. The overall bill of components of the project is analyzed
-     * and a global risk is computed.
+     * This method analyses the complete bill of components looking for risk of
+     * using obsolete component licenses.
      */
     @Override
     public void runAnalyser() {
@@ -85,7 +81,7 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // The analyzed component is using the latest version of its
                     // license. Therefore there is not obsolescence risk in this
                     // case. 
-                    goodThings.add(componentBinding.getFullName()+ ", is using the license "+obsolescence.getDescriptionValue());
+                    goodThings.add(componentBinding.getFullName() + ", is using the license " + obsolescence.getDescriptionValue());
                     break;
                 case NEAR_UPDATED:
                     // The analyzed component is not using the latest version of
@@ -93,8 +89,8 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // one. Therefore there is obsolescence risk in this case. 
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName()+ ", is using the license " + obsolescence.getDescriptionValue());
-                    tips.add("Try to replace " + componentBinding.getFullName()+ ", by another component released under a newer license version.");
+                    rootCauses.add(componentBinding.getFullName() + ", is using the license " + obsolescence.getDescriptionValue());
+                    tips.add("Try to replace " + componentBinding.getFullName() + ", by another component released under a newer license version.");
                     break;
                 case NEAR_OUTDATED:
                     // The analyzed component is not using the latest version of
@@ -102,8 +98,8 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // one. Therefore there is obsolescence risk in this case. 
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName()+ " is using the license " + obsolescence.getDescriptionValue());
-                    tips.add("Try to replace " + componentBinding.getFullName()+ ", by another component released under a newer license version.");
+                    rootCauses.add(componentBinding.getFullName() + " is using the license " + obsolescence.getDescriptionValue());
+                    tips.add("Try to replace " + componentBinding.getFullName() + ", by another component released under a newer license version.");
                     break;
                 case OUTDATED:
                     // The analyzed component is not using the latest version of
@@ -111,8 +107,8 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // is obsolescence risk in this case. 
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName()+ " is using the license " + obsolescence.getDescriptionValue());
-                    tips.add("Try to replace " + componentBinding.getFullName()+ ", by another component released under a newer license version.");
+                    rootCauses.add(componentBinding.getFullName() + " is using the license " + obsolescence.getDescriptionValue());
+                    tips.add("Try to replace " + componentBinding.getFullName() + ", by another component released under a newer license version.");
                     break;
             }
         }

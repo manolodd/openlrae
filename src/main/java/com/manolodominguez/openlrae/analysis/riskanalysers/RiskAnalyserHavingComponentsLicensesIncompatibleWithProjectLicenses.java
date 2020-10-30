@@ -24,12 +24,11 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses
 import org.slf4j.LoggerFactory;
 
 /**
- * This class implements a risk analyser whose mission is to detect those
- * components whose licenses make impossible or, at least, risky, their use in
- * the project because of project licenses, the type of link the component uses
- * and the type of distribution specified for the project. It is desiderable
- * that all components of the bill of components are fully compatible with
- * project licenses; on the contrary, there are certain level of risk.
+ * This class implements a risk analyser whose mission is to identify risk
+ * derived from having a set of component in the project that is not compatible
+ * with the project licenses. It is desiderable that all components of the bill
+ * of components are fully compatible with project licenses; on the contrary,
+ * there are certain level of risk.
  *
  * We will use the totalCases as the reference point to compute risk exposure
  * and risk impact. totalCases is the number of component bindings that composes
@@ -38,17 +37,18 @@ import org.slf4j.LoggerFactory;
  *
  * The important is computed this way:
  *
- * riskExposure = average of number of components in the project whose license
- * is not fully compatible with the project license, multiplied, each one of
- * them by its relative weight in the overall project.
+ * riskExposure = the number of component licenses that are not fully compatible
+ * with all project licenses, multiplied, each one of them by its relative
+ * weight in the overall project and in relation to the totalCases.
  *
- * riskImpact = average of the compatibility value of each components in the
- * project whose license is not fully compatible with the project license,
- * multiplied, each one of them by its relative weight in the overall project.
+ * riskImpact = the compatibility value of each components in the project whose
+ * license is not fully compatible with all project licenses, multiplied, each
+ * one of them by its relative weight in the overall project and in relation to
+ * the totalCases.
  *
- * riskExposure should be undestood as the portion of the project that is
+ * riskExposure should be undestood as the portion of projects license that is
  * affected by the risk. riskImpact should be undestood as the effort needed to
- * reduce the risk exposure (think in riskImpact in cost terms).
+ * reduce the risk exposure.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -67,14 +67,8 @@ public class RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses
     }
 
     /**
-     * This method analyse the project and its components looking for risk of
-     * incompatibilities with the project licenses (taking into account the link
-     * type of each component and the selected distribution type).
-     *
-     * A component cannot be included in a given project unless it is compatible
-     * with all the project licenses for a given kind of distribution and a
-     * given type of linking. The overall bill of components of the project is
-     * analyzed and a global risk is computed.
+     * This method analyses the complete bill of components looking for risk of
+     * using component licenses that are not compatible with project licenses.
      */
     @Override
     public void runAnalyser() {

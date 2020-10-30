@@ -30,32 +30,32 @@ import java.util.Set;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class implements a risk analyser whose mission is to detect those
- * potential components licenses that cannot be used in the project because they
- * are incompatible with project licenses, the type of link that component will
- * use and the type of distribution specified for the project. It is desiderable
- * that any component can be included in the project without incompatibilities
- * independently of its license. This way we can choose among a wide variety of
- * components all components that provide the functionality we need. On the
- * contrary, there are certain level of risk.
+ * This class implements a risk analyser whose mission is to identify risk of
+ * having a reduced set of component licenses to choose as a project dependency
+ * because the license of the project. It is desiderable that any component can
+ * be included in the project without incompatibilities independently of its
+ * license. This way we can choose among a wide variety of components all
+ * components that provide the functionality we need. On the contrary, there are
+ * certain level of risk.
  *
  * We will use the totalCases as the reference point to compute risk exposure
- * and risk impact. totalCases is the number of potential combinations of
- * component licenses/bindings that OpenLRAE supports.
+ * and risk impact. totalCases is the number of potential component licenses
+ * multiplied by the number of linking types and multiplied also by the number
+ * of licenses the project is released under; they are the total number of
+ * potential combinations.
  *
  * The important is computed this way:
  *
- * riskExposure = average of number of potential combination of component
- * licenses and component bindings whose license is not fully compatible with
- * the project license.
+ * riskExposure = the number of potential combination that are incompatible with
+ * at least one project licenses, in relation to the totalCases.
  *
- * riskImpact = average of the compatibility value of each potential combination
- * of components licenses and component bindings whose license is not fully
- * compatible with the project license.
+ * riskImpact = the compatibility value of each potential combination that is
+ * incompatible with at least one project licenses, in relation to the
+ * totalCases.
  *
- * riskExposure should be undestood as the portion of the project that is
+ * riskExposure should be undestood as the portion of projects license that is
  * affected by the risk. riskImpact should be undestood as the effort needed to
- * reduce the risk exposure (think in riskImpact in cost terms).
+ * reduce the risk exposure.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -74,17 +74,11 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
     }
 
     /**
-     * This method analyse the compatibility between all potential component
-     * licenses and bindings and project licenses (taking into account selected
-     * redistribution type) looking for risk of incompatibilities .A component
-     * cannot be included in a given project unless its license is compatible
-     * with all project licenses for its kind of distribution and a given type
-     * of linking.
-     *
-     * The overall supported component licenses and bindings are analyzed
-     * toguether with the project license and distribution and a global risk is
-     * computed.
-     *
+     * This method analyses al potential combination that can be formed from the
+     * potential component licenses (those Supported by OpenLRAE), the potential
+     * linking type (those Supported by OpenLRAE, also) and the set of project
+     * licenses, looking for risk of having a reduced set of potential component
+     * licenses to choose.
      */
     @Override
     public void runAnalyser() {
@@ -182,7 +176,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                             // evolves.
                             rootCauses.add("A " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", could not be included in " + project.getFullName() + ". OpenLRAE does not support the license of the component yet and, therefore, it would be assumed as incompatible with " + projectLicense.getSPDXIdentifier());
                             warnings.add("Although a " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", whould be handled as incompatible because OpenLRAE does not support its license, it could be really compatible with a project licensed under " + projectLicense.getSPDXIdentifier() + ". We apologize for the inconvenience.");
-                            tips.add("Whenever you plan to include a " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", try to use a component with a license supported by OpenLRAE instead if you whant to analyse the project with OpenLRAE.");
+                            tips.add("Whenever you plan to include a " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", try to use a component with a license supported by OpenLRAE instead if you want to analyse the project with OpenLRAE.");
                             riskExposure++;
                             riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
                             break;

@@ -13,6 +13,7 @@
                 "HAVING_OBSOLETE_COMPONENTS_LICENSES",
                 "HAVING_UNFASHIONABLE_PROJECT_LICENSES",
                 "HAVING_UNFASHIONABLE_COMPONENTS_LICENSES",
+                "HAVING_SCARCELY_SPREAD_PROJECT_LICENSES",                
                 "HAVING_SCARCELY_SPREAD_COMPONENTS_LICENSES"            
             ]
         },

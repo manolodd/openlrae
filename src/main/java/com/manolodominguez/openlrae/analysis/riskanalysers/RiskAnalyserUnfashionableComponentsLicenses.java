@@ -24,12 +24,12 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This class implements a risk analyser whose mission is to detect those
- * elements whose licenses are not trendy (its use is growing). It is
- * desiderable that all components used in a project uses a license that is
- * trendy. This way if you need to adda a component with the same license in the
- * future, to get a new functionality, you can do it easily. Unless all
- * components of the bill of components are using a trendy license, there are
- * certain level of risk.
+ * components whose licenses are not trendy. Depending on the case, it could be
+ * desiderable that all components used in a project uses a trendy license; this
+ * way if you need to add a component with the same license in the future, to
+ * get a new functionality, you can do it easily. Unless all components of the
+ * bill of components are using a trendy license, there are certain level of
+ * risk.
  *
  * We will use the totalCases as the reference point to compute risk exposure
  * and risk impact. totalCases is the number of component bindings that composes
@@ -37,17 +37,17 @@ import org.slf4j.LoggerFactory;
  *
  * The important is computed this way:
  *
- * riskExposure = average of number of components in the project whose license
- * are not trendy, multiplied, each one of them, by its relative weight in the
- * overall project.
+ * riskExposure = number of components whose license are not trendy, multiplied,
+ * each one of them, by its relative weight in the overall project. And in
+ * relation to the totalCases.
  *
- * riskImpact = average of the trend value of each components in the project
- * whose license are not trendy, multiplied, each one of them by its relative
- * weight in the overall project.
+ * riskImpact = trend value of each components in the project whose license are
+ * not trendy, multiplied, each one of them by its relative weight in the
+ * overall project. And in relation to the totalCases.
  *
- * riskExposure should be undestood as the portion of the project that is
+ * riskExposure should be undestood as the portion of projects license that is
  * affected by the risk. riskImpact should be undestood as the effort needed to
- * reduce the risk exposure (think in riskImpact in cost terms).
+ * reduce the risk exposure.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -55,7 +55,7 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
 
     /**
      * This is the constructor of the class. It creates a new instance of
-     * RiskAnalyserUnfashionableLicensesOfComponents.
+     * RiskAnalyserUnfashionableComponentsLicenses.
      *
      * @param project. The software project to be analised.
      */
@@ -66,15 +66,8 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
     }
 
     /**
-     * This method analyse the project and its components looking for risk of
-     * using components whose license are not trendy.It is better to use
-     * components whose license is trendy (is being used more and more in third
-     * party projects) in order to have the possibility to choose third party
-     * components in teh future, easily, without licensing risks.
-     *
-     * The overall bill of components of the project is analyzed and a global
-     * risk is computed.
-     *
+     * This method analyses the bill of components looking for risk of using
+     * components with unfashionable licenses.
      */
     @Override
     public void runAnalyser() {

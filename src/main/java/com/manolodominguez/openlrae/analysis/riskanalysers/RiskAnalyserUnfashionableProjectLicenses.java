@@ -24,10 +24,10 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This class implements a risk analyser whose mission is to detect identify
- * risk derived from the use of unfashionable licenses for the project. Projects 
- * that uses unfashionable licenses are in risk of not be selected as dependency
- * of modern licenses. And also they are often poorly adequated to new national 
- * and international legislation. 
+ * risk derived from the use of unfashionable project licenses. Projects that
+ * uses unfashionable licenses are in risk of not be selected as dependency of
+ * projects released under modern licenses or new projects. And also they are
+ * often poorly adequated to new national and international legislation.
  *
  * We will use the totalCases as the reference point to compute risk exposure
  * and risk impact. totalCases is the number licenses under wich the project is
@@ -35,17 +35,15 @@ import org.slf4j.LoggerFactory;
  *
  * The important is computed this way:
  *
- * riskExposure = average of number of obsolete licenses of the project in
- * relation to the totalCases.
+ * riskExposure = number of unfashionable project licenses in relation to the
+ * totalCases.
  *
- * riskImpact = average of the obsolescence value of each obsolete license in
- * relation to the totalCases.
+ * riskImpact = trend value of each unfashionable project license in relation
+ * to the totalCases.
  *
- * riskExposure should be undestood as the portion of the number of projects
- * license that is affected by the risk. riskImpact should be undestood as the
- * effort needed to reduce the risk exposure taking into account that more
- * modern project licenses will be easier to change than more obsolete project
- * licenses (think in riskImpact in cost terms).
+ * riskExposure should be undestood as the portion of project licenses that is
+ * affected by the risk. riskImpact should be undestood as the effort needed to
+ * reduce the risk exposure.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -53,7 +51,7 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
 
     /**
      * This is the constructor of the class. It creates a new instance of
-     * RiskAnalyserLicensesOfComponentsTooObsolete.
+     * RiskAnalyserUnfashionableProjectLicenses.
      *
      * @param project. The software project to be analised.
      */
@@ -64,12 +62,8 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
     }
 
     /**
-     * This method analyse the project and its components looking for risk of
-     * using components whose license are obsolete.
-     *
-     * A component that uses obsolete licenses includes certain grade of risk in
-     * the project. The overall bill of components of the project is analyzed
-     * and a global risk is computed.
+     * This method analyse the project licenses looking for risk of using
+     * unfashionable project licenses.
      */
     @Override
     public void runAnalyser() {
@@ -86,7 +80,7 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
                     break;
                 case NEAR_TRENDY:
                     // The analyzed license is not completely trendy but is 
-                    // closer to trendy that to unfashionable. Therefore there 
+                    // closer to trendy than to unfashionable. Therefore there 
                     // is risk of being unfashioable in this case. 
                     riskImpact += trend.getTrendValue();
                     riskExposure++;
@@ -95,7 +89,7 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
                     break;
                 case NEAR_UNFASHIONABLE:
                     // The analyzed license is not completely trendy but is 
-                    // closer to unfashionable that to trendy. Therefore there 
+                    // closer to unfashionable than to trendy. Therefore there 
                     // is risk of being unfashioable in this case. 
                     riskImpact += trend.getTrendValue();
                     riskExposure++;
@@ -103,7 +97,7 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
                     tips.add("Try to replace the project license " + projectLicense.getSPDXIdentifier() + ", by a trendier license, if possible.");
                     break;
                 case UNFASHIONABLE:
-                    // This project licenses is trendy. Therefore there is risk 
+                    // This project license is trendy. Therefore there is risk 
                     // of being unfashionable in this case. 
                     riskImpact += trend.getTrendValue();
                     riskExposure++;

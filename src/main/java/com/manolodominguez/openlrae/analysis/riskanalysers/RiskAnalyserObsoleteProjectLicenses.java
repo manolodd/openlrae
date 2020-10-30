@@ -23,12 +23,12 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses
 import org.slf4j.LoggerFactory;
 
 /**
- * This class implements a risk analyser whose mission is to detect identify
- * risk derived from the use of obsolete licenses for the project. Projects that
- * uses modern licenses are more easy to be put toguether with others components
- * in a bigger project. And also they are often adequated to new national and
- * international legislation. Unless all project licenses are in their latest
- * version there are certain level of risk.
+ * This class implements a risk analyser whose mission is to identify risk
+ * derived from the use of obsolete project licenses. Projects that uses modern
+ * licenses are more easy to be put toguether with other components in a bigger
+ * project. And also they are often adequated to new national and international
+ * legislation. Unless all project licenses are in their latest version there
+ * are certain level of risk.
  *
  * We will use the totalCases as the reference point to compute risk exposure
  * and risk impact. totalCases is the number licenses under wich the project is
@@ -36,17 +36,15 @@ import org.slf4j.LoggerFactory;
  *
  * The important is computed this way:
  *
- * riskExposure = average of number of obsolete licenses of the project in
- * relation to the totalCases.
+ * riskExposure = number of obsolete project licenses in relation to the
+ * totalCases.
  *
- * riskImpact = average of the obsolescence value of each obsolete license in
- * relation to the totalCases.
+ * riskImpact = obsolescence value of each obsolete project license in relation
+ * to the totalCases.
  *
- * riskExposure should be undestood as the portion of the number of projects
- * license that is affected by the risk. riskImpact should be undestood as the
- * effort needed to reduce the risk exposure taking into account that more
- * modern project licenses will be easier to change than more obsolete project
- * licenses (think in riskImpact in cost terms).
+ * riskExposure should be undestood as the portion of project licenses that is
+ * affected by the risk. riskImpact should be undestood as the effort needed to
+ * reduce the risk exposure.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -54,7 +52,7 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
 
     /**
      * This is the constructor of the class. It creates a new instance of
-     * RiskAnalyserLicensesOfComponentsTooObsolete.
+     * RiskAnalyserObsoleteProjectLicenses.
      *
      * @param project. The software project to be analised.
      */
@@ -65,12 +63,8 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
     }
 
     /**
-     * This method analyse the project and its components looking for risk of
-     * using components whose license are obsolete.
-     *
-     * A component that uses obsolete licenses includes certain grade of risk in
-     * the project. The overall bill of components of the project is analyzed
-     * and a global risk is computed.
+     * This method analyses the project licenses looking for risk of using
+     * obsolete project licenses.
      */
     @Override
     public void runAnalyser() {
