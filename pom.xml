@@ -20,14 +20,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>9</maven.compiler.release> 
         <!-- About this version of OpenLRAE -->
-        <openlrae.version>0.7-SNAPSHOT</openlrae.version>
+        <openlrae.version>0.6</openlrae.version>
         <openlrae.license>Apache-2.0</openlrae.license>
     </properties>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.manolodominguez</groupId>
     <artifactId>openlrae</artifactId>
-    <version>0.7-SNAPSHOT</version>
+    <version>0.6</version>
     <packaging>jar</packaging>
     <name>Open Licensing Risks Analysis Engine</name>
     <description>Open LRAE is a licensing risk analysis engine in the form of Java library that allow the detection of risks related to licensing from the set of components (and their respective licenses) you are using in a given project. </description>
