@@ -240,9 +240,13 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
             tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start changing components that are root causes in more cases.");
             tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start with those with higher level of contribution to the overall project.");
             tips.add("General tip: If you own all right on a given risky component, try changing its license instead of looking for another component.");
+            if (project.getLicenses().size() > ONE) {
+                tips.add("General tip: Try not to use more than a license for the project unless completely necessary. It makes very difficult to include new components in the project as their licenses have to be compatible with all project licenses simultaneously.");
+            }
         }
     }
 
     private static final float TOTAL_COMPATIBILITY = 1.0f;
     private static final float NO_RISK = 0.0f;
+    private static final int ONE = 1;
 }

@@ -122,8 +122,12 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
             tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start changing components that are root causes in more cases.");
             tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start with those with higher level of contribution to the overall project.");
             tips.add("General tip: If you own all right on a given risky component, try changing its license instead of looking for another component.");
+            if (project.getLicenses().size() > ONE) {
+                tips.add("General tip: Try not to use more than a license for the project unless completely necessary. It makes very difficult to all compents licenses widely spread because each component license has to be compatible with all project licenses. If project licenses are not widely spread it is more difficult to have componentes with licenses widely spread.");
+            }
         }
     }
 
     private static final float NO_RISK = 0.0f;
+    private static final int ONE = 1;
 }

@@ -115,8 +115,11 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
             tips.add("General tip: When modifying the set of project licenses to reduce the exposure to this risk, start with those licenses whose obsolescence value is greater.");
             tips.add("General tip: Apart from using a newer version of the same license, you could use another modern (but different) licenses also compatible with your bill of components.");
             tips.add("General tip: Always try to maintain a set of project licenses in their latest versions as it is less likely to have licensing incompatibilities and maintenance troubles.");
+            if (project.getLicenses().size() > ONE) {
+                tips.add("General tip: Try not to use more than a license for the project unless completely necessary. It makes very difficult to maintain all them in their latest version.");
+            }
         }
     }
     private static final float NO_RISK = 0.0f;
-
+    private static final int ONE = 1;
 }

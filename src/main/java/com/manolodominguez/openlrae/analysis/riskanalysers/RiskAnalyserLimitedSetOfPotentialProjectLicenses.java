@@ -229,6 +229,9 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
             tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start changing components that are root causes in more cases.");
             tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start with those with higher level of contribution to the overall project.");
             tips.add("General tip: If you own all right on a given risky component, try changing its license instead of looking for another component.");
+            if (project.getLicenses().size() > ONE) {
+                tips.add("General tip: Try not to use more than a license for the project unless completely necessary. It makes very difficult to include new components in the project as their licenses have to be compatible with all project licenses simultaneously. It is good to have the possibility of choosing among a great variety of project licenses, but not to use several of them simultaneously.");
+            }
             if (riskExposure == TOTAL_RISK) {
                 rootCauses.add("None of the licenses supported by OpenLRAE is compatible with all licenses of the defined bill of components. At least without a deep analysis of your case.");
             }
@@ -241,4 +244,5 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
     private static final float NO_RISK = 0.0f;
     private static final float DEFAULT_TOTAL_IMPACT = 0.0f;
     private static final int ZERO = 0;
+    private static final int ONE = 1;
 }

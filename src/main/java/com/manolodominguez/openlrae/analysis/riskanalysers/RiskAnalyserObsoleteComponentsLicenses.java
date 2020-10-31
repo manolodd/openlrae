@@ -119,8 +119,11 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
             tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risk, start with those components with higher level of contribution to the overall project.");
             tips.add("General tip: If you own all right on a given component involved in risk root causes, try changing its license instead of looking for another component.");
             tips.add("General tip: Always try to maintain a bill of components with modern liceses versions as it is less likely to have licensing incompatibilities.");
+            if (project.getLicenses().size() > ONE) {
+                tips.add("General tip: Try not to use more than a license for the project unless completely necessary. It makes very difficult to all components trendy because each component license has to be compatible with all project licenses. If project licenses are obsolete it is more difficult to have componentes with licenses in their latest version.");
+            }
         }
     }
     private static final float NO_RISK = 0.0f;
-
+    private static final int ONE = 1;
 }

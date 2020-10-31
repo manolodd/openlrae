@@ -114,8 +114,11 @@ public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnaly
             tips.add("General tip: When modifying the set of project licenses to reduce the exposure to this risk, start with those licenses whose risk contribution, in trend spreading, is greater.");
             tips.add("General tip: Sometimes, using the same license but in a different version is also more spread; perhaps it is not necessasry to change to a very different license.");
             tips.add("General tip: Always try to maintain a spread set of project licenses as it is easier keep the project on trend.");
+            if (project.getLicenses().size() > ONE) {
+                tips.add("General tip: Try not to use more than a license for the project unless completely necessary. It makes more difficult that all them are widely spread.");
+            }
         }
     }
     private static final float NO_RISK = 0.0f;
-
+    private static final int ONE = 1;
 }
