@@ -95,9 +95,9 @@ public class RiskAnalysisResult {
             throw new IllegalArgumentException("tips cannot be null");
         }
         this.riskType = riskType;
-        this.riskExposure = Math.round(riskExposure * RISK_COMPUTATION_PRECISSION) / RISK_COMPUTATION_PRECISSION;
-        this.riskImpact = Math.round(riskImpact * RISK_COMPUTATION_PRECISSION) / RISK_COMPUTATION_PRECISSION;
-        this.riskValue = Math.round(riskImpact * riskExposure * RISK_COMPUTATION_PRECISSION) / RISK_COMPUTATION_PRECISSION;
+        this.riskExposure = (float) Math.round(riskExposure * RISK_COMPUTATION_PRECISSION) / RISK_COMPUTATION_PRECISSION;
+        this.riskImpact = (float) Math.round(riskImpact * RISK_COMPUTATION_PRECISSION) / RISK_COMPUTATION_PRECISSION;
+        this.riskValue = (float) Math.round((riskImpact * riskExposure) * RISK_COMPUTATION_PRECISSION) / RISK_COMPUTATION_PRECISSION;
         this.rootCauses = rootCauses;
         this.warnings = warnings;
         this.goodThings = goodThings;

@@ -27,22 +27,22 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author manolodd
  */
 public class SupportedRisksTest {
-    
+
     public SupportedRisksTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
@@ -53,8 +53,8 @@ public class SupportedRisksTest {
     @Test
     public void testItemsNumber() {
         System.out.println("items number");
-        // Currently there are 9 risks defined in enum
-        assertEquals(9, SupportedRisks.values().length);
+        // Currently there are 10 risks defined in enum
+        assertEquals(10, SupportedRisks.values().length);
     }
 
     /**
@@ -77,6 +77,7 @@ public class SupportedRisksTest {
                 case HAVING_UNFASHIONABLE_PROJECT_LICENSES:
                 case HAVING_SCARCELY_SPREAD_COMPONENTS_LICENSES:
                 case HAVING_SCARCELY_SPREAD_PROJECT_LICENSES:
+                case HAVING_COMPONENT_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES:
                     worksFine &= true;
                     break;
                 default:
