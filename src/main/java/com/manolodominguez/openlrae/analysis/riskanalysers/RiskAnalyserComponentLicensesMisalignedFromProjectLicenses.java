@@ -82,8 +82,8 @@ public class RiskAnalyserComponentLicensesMisalignedFromProjectLicenses extends 
                 } else {
                     riskImpact += componentBinding.getWeight().getWeightValue();
                     riskExposure++;
-                    rootCauses.add(componentBinding.getFullName() + ", uses a license that is different than " + project.getFullName());
-                    tips.add("Try to replace " + componentBinding.getFullName() + ", by another component with the same license than " + project.getFullName());
+                    rootCauses.add(componentBinding.getFullName() + ", uses a license that is different than " + projectLicense.getSPDXIdentifier() + ", used by " + project.getFullName());
+                    tips.add("Try to replace " + componentBinding.getFullName() + ", by another component released under " + projectLicense.getSPDXIdentifier() + ", that is used by " + project.getFullName());
                 }
             }
         }
@@ -95,7 +95,11 @@ public class RiskAnalyserComponentLicensesMisalignedFromProjectLicenses extends 
             tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start changing components that are root causes in more cases.");
             tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start with those with higher level of contribution to the overall project.");
             tips.add("General tip: If you own all right on a given risky component, try changing its license instead of looking for another component.");
+            if (project.getLicenses().size() > ONE) {
+                tips.add("General tip: Try not to use more than a license for the project unless completely necessary. It makes very difficult to evolve the project without making mistakes when including a new component.");
+            }
         }
     }
     private static final float NO_RISK = 0.0f;
+    private static final int ONE = 1;
 }

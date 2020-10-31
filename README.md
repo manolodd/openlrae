@@ -180,7 +180,7 @@ One always want to have lots of third parties components to include in a project
 
 #### Having component licenses misaligned from project licenses
 
-It is usual to try to use components with the same licenses of your project in order to handle the terms of your project in an easier way. From a legal point of view, it is not consistent to use a license for the project and use components that do not follow this same license, although they may be compatible with it. Unless all components of the bill of components are using the same licenses as the project, there are certain level of risk. Keep this risk low if you want to manage your licenses stack easily avoiding mistakes that could lead to legal problems.
+It is usual to try to use components with the same licenses of your project in order to handle the terms of your project in an easier way. From a legal point of view, it is not consistent to use a license for the project and use components that do not follow this same license, although they may be compatible with it. Unless all components of the bill of components are using the same licenses as the project, there are certain level of risk. Keep this risk low if you want to manage your component licenses stack easily avoiding mistakes that could lead to legal problems when including new components.
 
 ## Supported license analysis
 
