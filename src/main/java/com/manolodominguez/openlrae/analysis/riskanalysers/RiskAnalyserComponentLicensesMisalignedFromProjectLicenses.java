@@ -72,7 +72,7 @@ public class RiskAnalyserComponentLicensesMisalignedFromProjectLicenses extends 
     @Override
     public void runAnalyser() {
         int totalCases = project.getBillOfComponentBindings().size() * project.getLicenses().size();
-        float maxImpact = 0.0f;
+        float maxImpact = INITIAL_MAXIMPACT;
 
         for (ComponentBinding componentBinding : project.getBillOfComponentBindings()) {
             for (SupportedLicenses projectLicense : project.getLicenses()) {
@@ -101,5 +101,6 @@ public class RiskAnalyserComponentLicensesMisalignedFromProjectLicenses extends 
         }
     }
     private static final float NO_RISK = 0.0f;
+    private static final float INITIAL_MAXIMPACT = 0.0f;
     private static final int ONE = 1;
 }
