@@ -182,6 +182,10 @@ One always want to have lots of third parties components to include in a project
 
 It is usual to try to use components with the same licenses of your project in order to handle the terms of your project in an easier way. From a legal point of view, it is not consistent to use a license for the project and use components that do not follow this same license, although they may be compatible with it. Unless all components of the bill of components are using the same licenses as the project, there are certain level of risk. Keep this risk low if you want to manage your component licenses stack easily avoiding mistakes that could lead to legal problems when including new components.
 
+#### Having heterogenous components licenses
+
+Although it is possible to include components in a project as far as they are compatible with the project licenses and distribution, it is usually problematic because it makes difficult to include new components in the project. For each component to be included, you need to be aware of all license terms to stay at legal compliance. Unless all components of the bill of components are using the same license, there are certain level of risk. Keep this risk low if you want to ease the inclusion of new components and, in general, if you want to deal with your project license management easily.
+
 ## Supported license analysis
 
 There are some aspects associated to a license that are used by OpenLRAE to compute some risks. They are easy to understand. But in order to do a deep risks assesment where license compatiblities are involved, OpenLRAE has a base of knowledge (which grows exponentially) that defines how, where and under what conditions a given component (released under a given license) can be included in a project (released also under one, two or more licenses). The following matrixes shows a summary of which kind of situations OpenLRAE is able to analyse.
