@@ -73,7 +73,7 @@ public class RiskAnalyserHeterogeneousComponentsLicenses extends AbstractRiskAna
      */
     public RiskAnalyserHeterogeneousComponentsLicenses(Project project) {
         // Project is ckecked at superclass
-        super(project, SupportedRisks.HAVING_HETEROGENEOUS_COMPONENT_LICENSES);
+        super(project, SupportedRisks.HAVING_HETEROGENEOUS_COMPONENTS_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserHeterogeneousComponentsLicenses.class);
         licensesByFrequency = new EnumMap<>(SupportedLicenses.class);
         licensesByWeight = new EnumMap<>(SupportedLicenses.class);

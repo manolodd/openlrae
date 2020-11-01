@@ -32,9 +32,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class RiskAnalyserComponentLicensesMisalignedFromProjectLicensesTest {
+public class RiskAnalyserComponentsLicensesMisalignedFromProjectLicensesTest {
     
-    public RiskAnalyserComponentLicensesMisalignedFromProjectLicensesTest() {
+    public RiskAnalyserComponentsLicensesMisalignedFromProjectLicensesTest() {
     }
     
     @BeforeAll
@@ -62,7 +62,7 @@ public class RiskAnalyserComponentLicensesMisalignedFromProjectLicensesTest {
         Project project = null;
         // Should throw an exception because project is null
         assertThrows(IllegalArgumentException.class, () -> {
-            new RiskAnalyserComponentLicensesMisalignedFromProjectLicenses(project);
+            new RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses(project);
         });
     }
 
@@ -75,8 +75,8 @@ public class RiskAnalyserComponentLicensesMisalignedFromProjectLicensesTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserComponentLicensesMisalignedFromProjectLicenses instance = new RiskAnalyserComponentLicensesMisalignedFromProjectLicenses(project);
-        assertEquals(SupportedRisks.HAVING_COMPONENT_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES, instance.handledRiskType);
+        RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses instance = new RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses(project);
+        assertEquals(SupportedRisks.HAVING_COMPONENTS_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES, instance.handledRiskType);
     }
     
     /**
@@ -88,7 +88,7 @@ public class RiskAnalyserComponentLicensesMisalignedFromProjectLicensesTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserComponentLicensesMisalignedFromProjectLicenses instance = new RiskAnalyserComponentLicensesMisalignedFromProjectLicenses(project);
+        RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses instance = new RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result1 = instance.getRiskAnalisysResult();
         RiskAnalysisResult result2 = instance.getRiskAnalisysResult();
@@ -107,7 +107,7 @@ public class RiskAnalyserComponentLicensesMisalignedFromProjectLicensesTest {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserComponentLicensesMisalignedFromProjectLicenses instance = new RiskAnalyserComponentLicensesMisalignedFromProjectLicenses(project);
+        RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses instance = new RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result = instance.getRiskAnalisysResult();
         assertNotNull(result);

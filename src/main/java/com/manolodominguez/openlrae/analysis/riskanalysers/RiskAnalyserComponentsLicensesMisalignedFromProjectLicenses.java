@@ -51,7 +51,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
-public class RiskAnalyserComponentLicensesMisalignedFromProjectLicenses extends AbstractRiskAnalyser {
+public class RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses extends AbstractRiskAnalyser {
 
     /**
      * This is the constructor of the class. It creates a new instance of
@@ -59,10 +59,10 @@ public class RiskAnalyserComponentLicensesMisalignedFromProjectLicenses extends 
      *
      * @param project. The software project to be analised.
      */
-    public RiskAnalyserComponentLicensesMisalignedFromProjectLicenses(Project project) {
+    public RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses(Project project) {
         // Project is ckecked at superclass
-        super(project, SupportedRisks.HAVING_COMPONENT_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES);
-        logger = LoggerFactory.getLogger(RiskAnalyserComponentLicensesMisalignedFromProjectLicenses.class);
+        super(project, SupportedRisks.HAVING_COMPONENTS_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES);
+        logger = LoggerFactory.getLogger(RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses.class);
     }
 
     /**

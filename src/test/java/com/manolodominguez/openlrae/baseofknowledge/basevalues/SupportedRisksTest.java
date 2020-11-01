@@ -77,8 +77,8 @@ public class SupportedRisksTest {
                 case HAVING_UNFASHIONABLE_PROJECT_LICENSES:
                 case HAVING_SCARCELY_SPREAD_COMPONENTS_LICENSES:
                 case HAVING_SCARCELY_SPREAD_PROJECT_LICENSES:
-                case HAVING_COMPONENT_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES:
-                case HAVING_HETEROGENEOUS_COMPONENT_LICENSES:
+                case HAVING_COMPONENTS_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES:
+                case HAVING_HETEROGENEOUS_COMPONENTS_LICENSES:
                     worksFine &= true;
                     break;
                 default:

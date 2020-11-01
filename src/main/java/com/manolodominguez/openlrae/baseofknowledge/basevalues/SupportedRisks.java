@@ -35,8 +35,8 @@ public enum SupportedRisks {
     HAVING_UNFASHIONABLE_COMPONENTS_LICENSES("Risk of having a set of components with licenses that are not trendy"),
     HAVING_SCARCELY_SPREAD_PROJECT_LICENSES("Risk of having a project license not used by many OSS projects now"),
     HAVING_SCARCELY_SPREAD_COMPONENTS_LICENSES("Risk of having components with licenses not used by many OSS projects now"),
-    HAVING_HETEROGENEOUS_COMPONENT_LICENSES("Risk of having a set of components with licenses very heterogeneous"),
-    HAVING_COMPONENT_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES("Risk of having a set of components with licenses different than the project licenses");
+    HAVING_HETEROGENEOUS_COMPONENTS_LICENSES("Risk of having a set of components with licenses very heterogeneous"),
+    HAVING_COMPONENTS_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES("Risk of having a set of components with licenses different than the project licenses");
 
     private Logger logger = LoggerFactory.getLogger(SupportedRisks.class);
 

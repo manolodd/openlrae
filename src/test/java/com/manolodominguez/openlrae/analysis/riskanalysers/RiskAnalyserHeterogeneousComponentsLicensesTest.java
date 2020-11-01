@@ -76,7 +76,7 @@ public class RiskAnalyserHeterogeneousComponentsLicensesTest {
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
         RiskAnalyserHeterogeneousComponentsLicenses instance = new RiskAnalyserHeterogeneousComponentsLicenses(project);
-        assertEquals(SupportedRisks.HAVING_HETEROGENEOUS_COMPONENT_LICENSES, instance.handledRiskType);
+        assertEquals(SupportedRisks.HAVING_HETEROGENEOUS_COMPONENTS_LICENSES, instance.handledRiskType);
     }
     
     /**
