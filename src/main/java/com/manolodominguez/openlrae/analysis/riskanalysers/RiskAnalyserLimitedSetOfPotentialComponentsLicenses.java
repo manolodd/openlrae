@@ -25,6 +25,7 @@ import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponentWeights;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.Set;
 import org.slf4j.LoggerFactory;
@@ -61,6 +62,8 @@ import org.slf4j.LoggerFactory;
  */
 public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends AbstractRiskAnalyser {
 
+    private EnumMap<SupportedCompatibilities, Integer> compatibilityCounter;
+
     /**
      * This is the constructor of the class. It creates a new instance of
      * RiskAnalyserLimitedSetOfPotentialComponentsLicenses.
@@ -71,6 +74,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
         // Project is ckecked at superclass
         super(project, SupportedRisks.HAVING_A_LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserLimitedSetOfPotentialComponentsLicenses.class);
+        compatibilityCounter = new EnumMap<>(SupportedCompatibilities.class);
     }
 
     /**
@@ -82,6 +86,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
      */
     @Override
     public void runAnalyser() {
+        compatibilityCounter.clear();
         SupportedCompatibilities compatibility;
         Set<SupportedLicenses> allPotentialComponentsLicenses;
         Component ficticiousComponent;
@@ -97,10 +102,13 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
             for (SupportedLinks potentialLink : SupportedLinks.values()) {
                 ficticiousComponent = new Component("component with license", "fake version", potentialComponentLicense);
                 ficticiousComponentBinding = new ComponentBinding(ficticiousComponent, potentialLink, SupportedComponentWeights.HIGH);
-                JointCompatibilityEvaluator jointCompatibilityEvaluator = new JointCompatibilityEvaluator();
                 for (SupportedLicenses projectLicense : this.project.getLicenses()) {
                     compatibility = licensesCompatibilities.getCompatibilityOf(potentialComponentLicense, projectLicense, potentialLink, project.getRedistribution());
-                    jointCompatibilityEvaluator.addCompatibility(compatibility);
+                    if (compatibilityCounter.containsKey(compatibility)) {
+                        compatibilityCounter.put(compatibility, compatibilityCounter.get(compatibility) + ONE);
+                    } else {
+                        compatibilityCounter.put(compatibility, ONE);
+                    }
                     switch (compatibility) {
                         case COMPATIBLE:
                             // The analyzed ficticious component is compatible 
@@ -219,12 +227,16 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                             break;
                     }
                 }
-                if (jointCompatibilityEvaluator.isFullyCompatible(project.getLicenses().size())) {
-                    goodThings.add("A " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", could be included in " + this.project.getFullName() + ", because it would be natively compatible with project licenses.");
+                if (compatibilityCounter.containsKey(SupportedCompatibilities.COMPATIBLE)) {
+                    if (compatibilityCounter.get(SupportedCompatibilities.COMPATIBLE) == project.getLicenses().size()) {
+                        goodThings.add("A " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", could be included in " + this.project.getFullName() + ", because it would be natively compatible with project licenses.");
+                    }
                 }
-                if (jointCompatibilityEvaluator.isFullyForcedCompatible(project.getLicenses().size())) {
-                    warnings.add("Although a " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", could be used in the project, it could be a source of risk for the evolution of the project in the future because it would not be natively compatible.");
-                    goodThings.add("A " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", could be included in " + this.project.getFullName() + ", because it would be forced to be fully compatible with project licenses.");
+                if (compatibilityCounter.containsKey(SupportedCompatibilities.FORCED_COMPATIBLE)) {
+                    if (compatibilityCounter.get(SupportedCompatibilities.FORCED_COMPATIBLE) == project.getLicenses().size()) {
+                        warnings.add("Although a " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", could be used in the project, it could be a source of risk for the evolution of the project in the future because it would not be natively compatible.");
+                        goodThings.add("A " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", could be included in " + this.project.getFullName() + ", because it would be forced to be fully compatible with project licenses.");
+                    }
                 }
             }
         }
