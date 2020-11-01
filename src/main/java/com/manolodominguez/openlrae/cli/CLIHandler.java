@@ -17,7 +17,6 @@ package com.manolodominguez.openlrae.cli;
 
 import com.manolodominguez.openlrae.analysis.LicenseRiskAnalysisEngine;
 import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
-import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserComponentLicensesMisalignedFromProjectLicenses;
 import com.manolodominguez.openlrae.reporting.ReportsFactory;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserObsoleteComponentsLicenses;
@@ -28,6 +27,8 @@ import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserScarcelyS
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserScarcelySpreadProjectLicenses;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserUnfashionableComponentsLicenses;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserUnfashionableProjectLicenses;
+import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserComponentLicensesMisalignedFromProjectLicenses;
+import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserHeterogeneousComponentsLicenses;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponentWeights;
@@ -111,6 +112,7 @@ public class CLIHandler {
                         RiskAnalyserUnfashionableProjectLicenses riskAnalyser8 = new RiskAnalyserUnfashionableProjectLicenses(project);
                         RiskAnalyserScarcelySpreadProjectLicenses riskAnalyser9 = new RiskAnalyserScarcelySpreadProjectLicenses(project);
                         RiskAnalyserComponentLicensesMisalignedFromProjectLicenses riskAnalyser10 = new RiskAnalyserComponentLicensesMisalignedFromProjectLicenses(project);
+                        RiskAnalyserHeterogeneousComponentsLicenses riskAnalyser11 = new RiskAnalyserHeterogeneousComponentsLicenses(project);
                         // Define a Risk analysis engine and add these risk analysers
                         LicenseRiskAnalysisEngine riskAnalysisEngine = new LicenseRiskAnalysisEngine(riskAnalyser1);
                         riskAnalysisEngine.addRiskAnalyser(riskAnalyser2);
@@ -122,6 +124,7 @@ public class CLIHandler {
                         riskAnalysisEngine.addRiskAnalyser(riskAnalyser8);
                         riskAnalysisEngine.addRiskAnalyser(riskAnalyser9);
                         riskAnalysisEngine.addRiskAnalyser(riskAnalyser10);
+                        riskAnalysisEngine.addRiskAnalyser(riskAnalyser11);
 
                         // Run the license risks analysis and collect results
                         RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
@@ -180,6 +183,7 @@ public class CLIHandler {
         RiskAnalyserUnfashionableProjectLicenses riskAnalyser8 = new RiskAnalyserUnfashionableProjectLicenses(project);
         RiskAnalyserScarcelySpreadProjectLicenses riskAnalyser9 = new RiskAnalyserScarcelySpreadProjectLicenses(project);
         RiskAnalyserComponentLicensesMisalignedFromProjectLicenses riskAnalyser10 = new RiskAnalyserComponentLicensesMisalignedFromProjectLicenses(project);
+        RiskAnalyserHeterogeneousComponentsLicenses riskAnalyser11 = new RiskAnalyserHeterogeneousComponentsLicenses(project);
         // Define a Risk analysis engine and add these risk analysers
         LicenseRiskAnalysisEngine riskAnalysisEngine = new LicenseRiskAnalysisEngine(riskAnalyser1);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser2);
@@ -191,6 +195,7 @@ public class CLIHandler {
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser8);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser9);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser10);
+        riskAnalysisEngine.addRiskAnalyser(riskAnalyser11);
 
         // Run the license risks analysis and collect results
         RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
