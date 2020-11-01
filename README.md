@@ -1,6 +1,6 @@
 <div align="center"><img src="https://github.com/manolodd/openlrae/raw/develop/src/main/resources/com/manolodominguez/openlrae/logo/logo_openlrae.png" alt="OpenLRAE logo" width="400"/></div>
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.manolodominguez/openlrae)](https://search.maven.org/artifact/com.manolodominguez/openlrae/0.6/jar)
+[![Maven Central](https://img.shields.io/maven-central/v/com.manolodominguez/openlrae)](https://search.maven.org/artifact/com.manolodominguez/openlrae/0.7/jar)
 
 # PROJECT STATUS (Tested from JDK 9 to 15)
 
@@ -26,12 +26,12 @@ With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard o
 
 ## Latest snapshot version being developed:
  
-- <b>OpenLRAE 0.7-SNAPSHOT</b> (development branch) - Apache-2.0.
+- <b>OpenLRAE 0.8-SNAPSHOT</b> (development branch) - Apache-2.0.
 
 ## Binary releases:
 
-- <b>OpenLRAE 0.6</b> (current, master branch) - Apache-2.0.
-- <b>OpenLRAE from 0.1 to 0.5</b> - Apache-2.0.
+- <b>OpenLRAE 0.7</b> (current, master branch) - Apache-2.0.
+- <b>OpenLRAE from 0.1 to 0.6</b> - Apache-2.0.
 
 # PEOPLE BEHIND OPENLRAE
 
@@ -50,10 +50,10 @@ You can download latest compiled stable releases from the releases section of th
 <dependency>
   <groupId>com.manolodominguez</groupId>
   <artifactId>openlrae</artifactId>
-  <version>0.6</version>
+  <version>0.7</version>
 </dependency>
 ```
-For othe project builders (graddle, buildr...) see the next link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/0.6/jar
+For othe project builders (graddle, buildr...) see the next link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/0.7/jar
 
 # COMPILING FROM SOURCES
 
