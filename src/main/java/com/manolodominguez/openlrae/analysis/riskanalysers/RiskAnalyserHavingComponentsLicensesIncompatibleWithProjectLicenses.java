@@ -84,7 +84,6 @@ public class RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses
         // components licenses are compatible with all of them.
         int totalCases = this.project.getBillOfComponentBindings().size() * project.getLicenses().size();
         for (ComponentBinding componentBinding : this.project.getBillOfComponentBindings()) {
-            JointCompatibilityEvaluator jointCompatibilityEvaluator = new JointCompatibilityEvaluator();
             for (SupportedLicenses projectLicense : this.project.getLicenses()) {
                 compatibility = licensesCompatibilities.getCompatibilityOf(componentBinding.getComponent().getLicense(), projectLicense, componentBinding.getLinkType(), this.project.getRedistribution());
                 if (compatibilityCounter.containsKey(compatibility)) {
