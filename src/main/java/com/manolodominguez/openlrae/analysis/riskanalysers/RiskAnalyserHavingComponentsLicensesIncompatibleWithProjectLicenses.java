@@ -21,6 +21,7 @@ import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCo
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
+import java.util.EnumMap;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -54,6 +55,8 @@ import org.slf4j.LoggerFactory;
  */
 public class RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses extends AbstractRiskAnalyser {
 
+    private EnumMap<SupportedCompatibilities, Integer> compatibilityCounter;
+
     /**
      * This is the constructor of the class. It creates a new instance of
      * RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.
@@ -64,6 +67,7 @@ public class RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses
         // Project is checked at superclass
         super(project, SupportedRisks.HAVING_COMPONENTS_LICENSES_INCOMPATIBLE_WITH_PROJECT_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses.class);
+        compatibilityCounter = new EnumMap<>(SupportedCompatibilities.class);
     }
 
     /**
@@ -72,6 +76,7 @@ public class RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses
      */
     @Override
     public void runAnalyser() {
+        compatibilityCounter.clear();
         SupportedCompatibilities compatibility;
         LicensesCompatibilityFactory licensesCompatibilities = LicensesCompatibilityFactory.getInstance();
         // Each component bindings has to be checked against all project 
@@ -82,7 +87,11 @@ public class RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses
             JointCompatibilityEvaluator jointCompatibilityEvaluator = new JointCompatibilityEvaluator();
             for (SupportedLicenses projectLicense : this.project.getLicenses()) {
                 compatibility = licensesCompatibilities.getCompatibilityOf(componentBinding.getComponent().getLicense(), projectLicense, componentBinding.getLinkType(), this.project.getRedistribution());
-                jointCompatibilityEvaluator.addCompatibility(compatibility);
+                if (compatibilityCounter.containsKey(compatibility)) {
+                    compatibilityCounter.put(compatibility, compatibilityCounter.get(compatibility) + ONE);
+                } else {
+                    compatibilityCounter.put(compatibility, ONE);
+                }
                 switch (compatibility) {
                     case COMPATIBLE:
                         // The analyzed component is compatible with the project 
@@ -200,11 +209,15 @@ public class RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses
                         break;
                 }
             }
-            if (jointCompatibilityEvaluator.isFullyCompatible(project.getLicenses().size())) {
-                goodThings.add(componentBinding.getFullName() + ", is natively compatible and can be included in " + this.project.getFullName());
+            if (compatibilityCounter.containsKey(SupportedCompatibilities.COMPATIBLE)) {
+                if (compatibilityCounter.get(SupportedCompatibilities.COMPATIBLE) == project.getLicenses().size()) {
+                    goodThings.add(componentBinding.getFullName() + ", is natively compatible and can be included in " + this.project.getFullName());
+                }
             }
-            if (jointCompatibilityEvaluator.isFullyForcedCompatible(project.getLicenses().size())) {
-                goodThings.add(componentBinding.getFullName() + ", is forced to be fully compatible and can be included in " + this.project.getFullName());
+            if (compatibilityCounter.containsKey(SupportedCompatibilities.FORCED_COMPATIBLE)) {
+                if (compatibilityCounter.get(SupportedCompatibilities.FORCED_COMPATIBLE) == project.getLicenses().size()) {
+                    goodThings.add(componentBinding.getFullName() + ", is forced to be fully compatible and can be included in " + this.project.getFullName());
+                }
             }
         }
         riskExposure /= (float) totalCases;
