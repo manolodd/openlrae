@@ -21,7 +21,6 @@ import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
 import com.manolodominguez.openlrae.i18n.LanguageConfig;
 import com.manolodominguez.openlrae.i18n.SupportedLanguages;
 import java.util.Locale;
-import java.util.ResourceBundle;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +38,6 @@ public class LicenseRiskAnalysisEngine implements ILanguageChangeEventEmitter {
     private CopyOnWriteArrayList<AbstractRiskAnalyser> risksAnalysers;
     private CopyOnWriteArrayList<RiskAnalysisResult> riskAnalysisResultSet;
     private LanguageConfig languageConfig;
-    protected ResourceBundle ownI18N;
 
     /**
      * This is the constructor of the class.It creates a new instance of
