@@ -15,12 +15,23 @@
  */
 package com.manolodominguez.openlrae.arquitecture;
 
+import com.manolodominguez.openlrae.analysis.LicenseRiskAnalysisEngine;
+import com.manolodominguez.openlrae.analysis.riskanalysers.AbstractRiskAnalyser;
+import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses;
+import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSetOfPotentialComponentsLicenses;
+import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSetOfPotentialProjectLicenses;
+import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserObsoleteComponentsLicenses;
+import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserScarcelySpreadComponentsLicenses;
+import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserUnfashionableComponentsLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponentWeights;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistributions;
+import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
+import com.manolodominguez.openlrae.i18n.SupportedLanguages;
 import com.manolodominguez.openlrae.resourceslocators.FilesPaths;
 import java.net.URL;
+import java.util.Locale;
 import mjson.Json;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -553,4 +564,78 @@ public class ProjectTest {
         assertNotNull(project.getBillOfComponentBindings());
     }
 
+    /**
+     * Test of getLanguage method, of class Project.
+     */
+    @Test
+    public void testGetLanguage() {
+        System.out.println("getLanguage");
+        Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
+        Component secondComponent = new Component("ComponentName1", "ComponentVersion2", SupportedLicenses.MIT);
+        ComponentBinding firstComponentBinding = new ComponentBinding(firstComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
+        ComponentBinding secondComponentBinding = new ComponentBinding(secondComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.NEAR_HIGH);
+        String projectName = "MyProject";
+        String projectVersion = "MyProjectVersion";
+        SupportedLicenses firstProjectLicense = SupportedLicenses.ARTISTIC_2_0;
+        SupportedRedistributions projectRedistribution = SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS;
+        Project project = new Project(projectName, projectVersion, firstProjectLicense, projectRedistribution, firstComponentBinding);
+        assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, project.getLanguage());
+    }
+
+    /**
+     * Test of fireLanguageChangeEvent method, of class Project.
+     */
+    @Test
+    public void testFireLanguageChangeEvent() {
+        System.out.println("fireLanguageChangeEvent");
+        // Define the project. In this case, it is defined from a JSON file.
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        Project project = new Project(Json.read(projectURL));
+
+        assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, project.getLanguage());
+        for (ComponentBinding componentBinding : project.getBillOfComponentBindings()) {
+            assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, componentBinding.getLanguage());
+        }
+        project.onLanguageChange(new LanguageChangeEvent(project, SupportedLanguages.SPANISH));
+        assertEquals(SupportedLanguages.SPANISH, project.getLanguage());
+        for (ComponentBinding componentBinding : project.getBillOfComponentBindings()) {
+            assertEquals(SupportedLanguages.SPANISH, componentBinding.getLanguage());
+        }
+    }
+
+    /**
+     * Test of onLanguageChange method, of class Project.
+     */
+    @Test
+    public void testOnLanguageChange() {
+        System.out.println("onLanguageChange");
+        // Define the project. In this case, it is defined from a JSON file.
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        Project project = new Project(Json.read(projectURL));
+
+        RiskAnalyserLimitedSetOfPotentialProjectLicenses riskAnalyser1 = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
+        // Define a Risk analysis engine and add these risk analysers
+        LicenseRiskAnalysisEngine instance = new LicenseRiskAnalysisEngine(riskAnalyser1);
+
+        assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, project.getLanguage());
+        instance.setLanguage(new Locale("es"));
+        assertEquals(SupportedLanguages.SPANISH, project.getLanguage());
+    }
+
+    /**
+     * Test of onLanguageChange method, of class Project.
+     */
+    @Test
+    public void testOnLanguageChangeWhenEventisNull() {
+        System.out.println("onLanguageChange");
+        // Define the project. In this case, it is defined from a JSON file.
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        Project project = new Project(Json.read(projectURL));
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            // Should throw an exception because the argument is null
+            project.onLanguageChange(null);
+        });
+    }
+    
 }
