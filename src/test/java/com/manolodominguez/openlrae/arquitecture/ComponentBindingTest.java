@@ -18,6 +18,11 @@ package com.manolodominguez.openlrae.arquitecture;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponentWeights;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
+import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
+import com.manolodominguez.openlrae.i18n.SupportedLanguages;
+import com.manolodominguez.openlrae.resourceslocators.FilesPaths;
+import java.net.URL;
+import mjson.Json;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -166,6 +171,46 @@ public class ComponentBindingTest {
         Component component = new Component("ComponentName", "ComponentVersion", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding instance = new ComponentBinding(component, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
         assertEquals("ComponentName (Artistic-2.0), linked dynamically", instance.getFullNameForFicticiousComponent());
+    }
+
+    /**
+     * Test of getLanguage method, of class ComponentBinding.
+     */
+    @Test
+    public void testGetLanguage() {
+        System.out.println("getLanguage");
+        // Define the project. In this case, it is defined from a JSON file.
+        // but could be come in by a call to a rest service or other methods. 
+        // See /com/manolodominguez/openlrae/json/ExampleProject.json to know
+        // the content of that project.
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        String projectDefinitionAsJSONString = Json.read(projectURL).toString();
+        // Here we have the definition of a project as JSON string 
+        Project project = new Project(projectDefinitionAsJSONString);
+        ComponentBinding firstComponentBinding = project.getBillOfComponentBindings().get(0);
+        assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, firstComponentBinding.getLanguage());
+        firstComponentBinding.onLanguageChange(new LanguageChangeEvent(project, SupportedLanguages.SPANISH));
+        assertEquals(SupportedLanguages.SPANISH, firstComponentBinding.getLanguage());
+    }
+
+    /**
+     * Test of onLanguageChange method, of class ComponentBinding.
+     */
+    @Test
+    public void testOnLanguageChange() {
+        System.out.println("onLanguageChange");
+        // Define the project. In this case, it is defined from a JSON file.
+        // but could be come in by a call to a rest service or other methods. 
+        // See /com/manolodominguez/openlrae/json/ExampleProject.json to know
+        // the content of that project.
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        String projectDefinitionAsJSONString = Json.read(projectURL).toString();
+        // Here we have the definition of a project as JSON string 
+        Project project = new Project(projectDefinitionAsJSONString);
+        ComponentBinding firstComponentBinding = project.getBillOfComponentBindings().get(0);
+        assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, firstComponentBinding.getLanguage());
+        firstComponentBinding.onLanguageChange(new LanguageChangeEvent(project, SupportedLanguages.SPANISH));
+        assertEquals(SupportedLanguages.SPANISH, firstComponentBinding.getLanguage());
     }
 
 }
