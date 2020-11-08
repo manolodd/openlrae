@@ -16,8 +16,6 @@
 package com.manolodominguez.openlrae.main;
 
 import com.manolodominguez.openlrae.cli.CLIHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * This class implements a set of options that can be called from CLI by an
@@ -26,8 +24,6 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public class MainClass {
-
-    private static final Logger logger = LoggerFactory.getLogger(MainClass.class);
 
     /**
      * This is the main method, that converts OpenLRAE in an executable
