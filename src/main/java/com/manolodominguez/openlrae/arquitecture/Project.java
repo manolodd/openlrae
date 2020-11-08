@@ -19,10 +19,17 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponen
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistributions;
+import com.manolodominguez.openlrae.i18n.ILanguageChangeEventEmitter;
+import com.manolodominguez.openlrae.i18n.ILanguageChangeListener;
+import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
 import com.manolodominguez.openlrae.resourceslocators.FilesPaths;
+import com.manolodominguez.openlrae.i18n.LanguageConfig;
+import com.manolodominguez.openlrae.i18n.SupportedLanguages;
+import com.manolodominguez.openlrae.i18n.Translations;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.concurrent.CopyOnWriteArrayList;
 import mjson.Json;
 import org.slf4j.Logger;
@@ -36,7 +43,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
-public class Project {
+public class Project implements ILanguageChangeEventEmitter, ILanguageChangeListener {
 
     private Logger logger = LoggerFactory.getLogger(Project.class);
 
@@ -45,6 +52,8 @@ public class Project {
     private CopyOnWriteArrayList<SupportedLicenses> licenses;
     private SupportedRedistributions redistribution;
     private CopyOnWriteArrayList<ComponentBinding> billOfComponentBindings;
+    private LanguageConfig languageConfig;
+    protected ResourceBundle ownI18N;
 
     /**
      * This is the constuctor of the class.It creates a new instance of Project.
@@ -114,6 +123,8 @@ public class Project {
         this.redistribution = redistribution;
         billOfComponentBindings = new CopyOnWriteArrayList<>();
         billOfComponentBindings.add(firstComponentBinding);
+        languageConfig = new LanguageConfig();
+        ownI18N = Translations.PROJECT.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -143,6 +154,8 @@ public class Project {
             logger.error("projectDefinitionAsJSONString is not a JSON String");
             throw new IllegalArgumentException("projectDefinitionAsJSONString is not a JSON string");
         }
+        languageConfig = new LanguageConfig();
+        ownI18N = Translations.PROJECT.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -166,6 +179,8 @@ public class Project {
             logger.error("projectDefinition is not a JSON File");
             throw new IllegalArgumentException("projectDefinition is not a JSON File");
         }
+        languageConfig = new LanguageConfig();
+        ownI18N = Translations.PROJECT.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -315,6 +330,7 @@ public class Project {
             throw new IllegalArgumentException("componentBinding cannot be null");
         }
         billOfComponentBindings.add(componentBinding);
+        componentBinding.onLanguageChange(new LanguageChangeEvent(this, languageConfig.getLanguage()));
     }
 
     /**
@@ -334,11 +350,11 @@ public class Project {
      */
     public String getFullName() {
         String fullName = name + "-" + version + " (";
-        for (SupportedLicenses projectLicense: licenses) {
-            fullName+=projectLicense.getSPDXIdentifier()+", ";
+        for (SupportedLicenses projectLicense : licenses) {
+            fullName += projectLicense.getSPDXIdentifier() + ", ";
         }
-        fullName = fullName.substring(ZERO, fullName.length()-2);
-        fullName += "), that "+redistribution.getDescriptionValue();
+        fullName = fullName.substring(ZERO, fullName.length() - 2);
+        fullName += "), " + ownI18N.getString("THAT") + " " + redistribution.getDescriptionValue();
         return fullName;
     }
 
@@ -386,6 +402,15 @@ public class Project {
     }
 
     /**
+     * This method gets the language currently configured.
+     *
+     * @return the language currently configured.
+     */
+    public SupportedLanguages getLanguage() {
+        return languageConfig.getLanguage();
+    }
+
+    /**
      * This method gets the complete bill of components bindigs of the project.
      *
      * @return the complete bill of components bindigs of the project.
@@ -394,6 +419,26 @@ public class Project {
         return billOfComponentBindings;
     }
 
+    @Override
+    public void fireLanguageChangeEvent() {
+        for (ComponentBinding componentBinding : billOfComponentBindings) {
+            componentBinding.onLanguageChange(new LanguageChangeEvent(this, languageConfig.getLanguage()));
+        }
+    }
+
+    @Override
+    public void onLanguageChange(LanguageChangeEvent languageChangeEvent) {
+        if (languageChangeEvent == null) {
+            logger.error("languajeEvent cannot be null");
+            throw new IllegalArgumentException("languajeEvent cannot be null");
+        }
+        languageConfig.setLanguage(languageChangeEvent.getLanguage());
+        // reload resource bundles
+        ownI18N = Translations.PROJECT.getResourceBundle(languageConfig.getLanguage().getLocale());
+        fireLanguageChangeEvent();
+    }
+
     private static final String DEFAULT_INVALID_PROJECT_VALIDATION_REPORT = "{\"ok\":false, errors:[\"Open LRAE JSON Schema cannot be loaded.\"]}";
     private static final int ZERO = 0;
+
 }
