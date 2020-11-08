@@ -432,7 +432,7 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
             logger.error("languajeEvent cannot be null");
             throw new IllegalArgumentException("languajeEvent cannot be null");
         }
-        languageConfig.setLanguage(languageChangeEvent.getLanguage());
+        languageConfig.setLanguage(languageChangeEvent.getNewLanguage());
         // reload resource bundles
         ownI18N = Translations.PROJECT.getResourceBundle(languageConfig.getLanguage().getLocale());
         fireLanguageChangeEvent();

@@ -139,7 +139,7 @@ public class ComponentBinding implements ILanguageChangeListener {
             logger.error("languajeEvent cannot be null");
             throw new IllegalArgumentException("languajeEvent cannot be null");
         }
-        languageConfig.setLanguage(languageChangeEvent.getLanguage());
+        languageConfig.setLanguage(languageChangeEvent.getNewLanguage());
         // Reload resource bundles
     }
 }
