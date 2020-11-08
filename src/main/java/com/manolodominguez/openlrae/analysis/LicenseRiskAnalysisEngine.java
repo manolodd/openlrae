@@ -16,6 +16,11 @@
 package com.manolodominguez.openlrae.analysis;
 
 import com.manolodominguez.openlrae.analysis.riskanalysers.AbstractRiskAnalyser;
+import com.manolodominguez.openlrae.i18n.ILanguageChangeEventEmitter;
+import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
+import com.manolodominguez.openlrae.i18n.LanguageConfig;
+import com.manolodominguez.openlrae.i18n.SupportedLanguages;
+import java.util.Locale;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,11 +32,12 @@ import org.slf4j.LoggerFactory;
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
-public class LicenseRiskAnalysisEngine {
+public class LicenseRiskAnalysisEngine implements ILanguageChangeEventEmitter {
 
     private Logger logger = LoggerFactory.getLogger(LicenseRiskAnalysisEngine.class);
     private CopyOnWriteArrayList<AbstractRiskAnalyser> risksAnalysers;
     private CopyOnWriteArrayList<RiskAnalysisResult> riskAnalysisResultSet;
+    private LanguageConfig languageConfig;
 
     /**
      * This is the constructor of the class.It creates a new instance of
@@ -48,6 +54,7 @@ public class LicenseRiskAnalysisEngine {
         this.risksAnalysers = new CopyOnWriteArrayList<>();
         this.risksAnalysers.add(firstRiskAnalyser);
         this.riskAnalysisResultSet = new CopyOnWriteArrayList<>();
+        this.languageConfig = new LanguageConfig();
     }
 
     /**
@@ -63,6 +70,7 @@ public class LicenseRiskAnalysisEngine {
             throw new IllegalArgumentException("riskAnalyser cannot be null");
         }
         this.risksAnalysers.add(riskAnalyser);
+        riskAnalyser.onLanguageChange(new LanguageChangeEvent(this, languageConfig.getLanguage()));
     }
 
     /**
@@ -76,5 +84,42 @@ public class LicenseRiskAnalysisEngine {
             this.riskAnalysisResultSet.add(riskAnaliser.getRiskAnalisysResult());
         });
         return this.riskAnalysisResultSet.toArray(new RiskAnalysisResult[0]);
+    }
+
+    /**
+     * This is the constructor of the class.It creates a new instance of
+     * LicenseRiskAnalysisEngine, adding the first risk analyser.
+     *
+     * @param locale the locale specifying the language that should be used to
+     * generate the risk analysis result.
+     */
+    public void setLanguage(Locale locale) {
+        if (locale == null) {
+            logger.error("locale cannot be null");
+            throw new IllegalArgumentException("locale cannot be null");
+        }
+        // FIX: be sure the parameter is not null
+        SupportedLanguages newLanguage = SupportedLanguages.getLanguageFor(locale);
+        languageConfig.setLanguage(newLanguage);
+        // reload resource bundles
+        System.out.println("firing language change event");
+        fireLanguageChangeEvent();
+    }
+
+    /**
+     * This is the constructor of the class.It creates a new instance of
+     * LicenseRiskAnalysisEngine, adding the first risk analyser.
+     */
+    public void setDefaultLanguage() {
+        languageConfig.setDefaultLanguage();
+        // reload resource bundles
+        fireLanguageChangeEvent();
+    }
+
+    @Override
+    public void fireLanguageChangeEvent() {
+        for (AbstractRiskAnalyser riskAnalyser : risksAnalysers) {
+            riskAnalyser.onLanguageChange(new LanguageChangeEvent(this, languageConfig.getLanguage()));
+        }
     }
 }
