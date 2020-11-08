@@ -17,6 +17,10 @@ package com.manolodominguez.openlrae.arquitecture;
 
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponentWeights;
+import com.manolodominguez.openlrae.i18n.ILanguageChangeListener;
+import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
+import com.manolodominguez.openlrae.i18n.LanguageConfig;
+import com.manolodominguez.openlrae.i18n.SupportedLanguages;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,13 +35,14 @@ import org.slf4j.LoggerFactory;
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
-public class ComponentBinding {
+public class ComponentBinding implements ILanguageChangeListener {
 
     private Logger logger = LoggerFactory.getLogger(ComponentBinding.class);
 
     private Component component;
     private SupportedComponentWeights weight;
     private SupportedLinks link;
+    private LanguageConfig languageConfig;
 
     /**
      * This is the constuctor of the class. It creates a new instance of
@@ -66,6 +71,7 @@ public class ComponentBinding {
         this.component = component;
         this.link = link;
         this.weight = weight;
+        languageConfig = new LanguageConfig();
     }
 
     /**
@@ -116,5 +122,24 @@ public class ComponentBinding {
      */
     public String getFullNameForFicticiousComponent() {
         return component.getName() + " (" + component.getLicense().getSPDXIdentifier() + "), " + link.getDescriptionValue();
+    }
+
+    /**
+     * This method gets the language currently configured.
+     *
+     * @return the language currently configured.
+     */
+    public SupportedLanguages getLanguage() {
+        return languageConfig.getLanguage();
+    }
+    
+    @Override
+    public void onLanguageChange(LanguageChangeEvent languageChangeEvent) {
+        if (languageChangeEvent == null) {
+            logger.error("languajeEvent cannot be null");
+            throw new IllegalArgumentException("languajeEvent cannot be null");
+        }
+        languageConfig.setLanguage(languageChangeEvent.getLanguage());
+        // Reload resource bundles
     }
 }
