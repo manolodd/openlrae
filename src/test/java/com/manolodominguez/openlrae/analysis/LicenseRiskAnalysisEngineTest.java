@@ -15,18 +15,22 @@
  */
 package com.manolodominguez.openlrae.analysis;
 
+import com.manolodominguez.openlrae.analysis.riskanalysers.AbstractRiskAnalyser;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserObsoleteComponentsLicenses;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSetOfPotentialComponentsLicenses;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSetOfPotentialProjectLicenses;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserScarcelySpreadComponentsLicenses;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserUnfashionableComponentsLicenses;
+import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.arquitecture.Project;
+import com.manolodominguez.openlrae.i18n.SupportedLanguages;
 import com.manolodominguez.openlrae.reporting.ReportsFactory;
 import com.manolodominguez.openlrae.resourceslocators.FilesPaths;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Locale;
 import mjson.Json;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -134,6 +138,181 @@ public class LicenseRiskAnalysisEngineTest {
             worksFine = false;
         }
         assertTrue(worksFine);
+    }
+
+    /**
+     * Test of addRiskAnalyser method, of class LicenseRiskAnalysisEngine.
+     */
+    @Test
+    public void testAddRiskAnalyser() {
+        System.out.println("addRiskAnalyser");
+        // Define the project. In this case, it is defined from a JSON file.
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        Project project = new Project(Json.read(projectURL));
+
+        RiskAnalyserLimitedSetOfPotentialProjectLicenses riskAnalyser1 = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
+        RiskAnalyserObsoleteComponentsLicenses riskAnalyser2 = new RiskAnalyserObsoleteComponentsLicenses(project);
+        RiskAnalyserUnfashionableComponentsLicenses riskAnalyser3 = new RiskAnalyserUnfashionableComponentsLicenses(project);
+        RiskAnalyserScarcelySpreadComponentsLicenses riskAnalyser4 = new RiskAnalyserScarcelySpreadComponentsLicenses(project);
+        RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses riskAnalyser5 = new RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses(project);
+        RiskAnalyserLimitedSetOfPotentialComponentsLicenses riskAnalyser6 = new RiskAnalyserLimitedSetOfPotentialComponentsLicenses(project);
+        // Define a Risk analysis engine and add these risk analysers
+        LicenseRiskAnalysisEngine instance = new LicenseRiskAnalysisEngine(riskAnalyser1);
+        assertEquals(1, instance.getRisksAnalysers().size());
+        instance.addRiskAnalyser(riskAnalyser2);
+        assertEquals(2, instance.getRisksAnalysers().size());
+        instance.addRiskAnalyser(riskAnalyser3);
+        assertEquals(3, instance.getRisksAnalysers().size());
+        instance.addRiskAnalyser(riskAnalyser4);
+        assertEquals(4, instance.getRisksAnalysers().size());
+        instance.addRiskAnalyser(riskAnalyser5);
+        assertEquals(5, instance.getRisksAnalysers().size());
+        instance.addRiskAnalyser(riskAnalyser6);
+        assertEquals(6, instance.getRisksAnalysers().size());
+    }
+
+    /**
+     * Test of setLanguage method, of class LicenseRiskAnalysisEngine.
+     */
+    @Test
+    public void testSetLanguage() {
+        System.out.println("setLanguage");
+        // Define the project. In this case, it is defined from a JSON file.
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        Project project = new Project(Json.read(projectURL));
+
+        RiskAnalyserLimitedSetOfPotentialProjectLicenses riskAnalyser1 = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
+        RiskAnalyserObsoleteComponentsLicenses riskAnalyser2 = new RiskAnalyserObsoleteComponentsLicenses(project);
+        RiskAnalyserUnfashionableComponentsLicenses riskAnalyser3 = new RiskAnalyserUnfashionableComponentsLicenses(project);
+        RiskAnalyserScarcelySpreadComponentsLicenses riskAnalyser4 = new RiskAnalyserScarcelySpreadComponentsLicenses(project);
+        RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses riskAnalyser5 = new RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses(project);
+        RiskAnalyserLimitedSetOfPotentialComponentsLicenses riskAnalyser6 = new RiskAnalyserLimitedSetOfPotentialComponentsLicenses(project);
+        // Define a Risk analysis engine and add these risk analysers
+        LicenseRiskAnalysisEngine instance = new LicenseRiskAnalysisEngine(riskAnalyser1);
+        instance.addRiskAnalyser(riskAnalyser2);
+        instance.addRiskAnalyser(riskAnalyser3);
+        instance.addRiskAnalyser(riskAnalyser4);
+        instance.addRiskAnalyser(riskAnalyser5);
+        instance.addRiskAnalyser(riskAnalyser6);
+        assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, instance.getLanguage());
+        for (AbstractRiskAnalyser riskAnalyser : instance.getRisksAnalysers()) {
+            assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, riskAnalyser.getLanguage());
+            assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, riskAnalyser.getProject().getLanguage());
+            for (ComponentBinding componentBinding: riskAnalyser.getProject().getBillOfComponentBindings()) {
+                assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, componentBinding.getLanguage());
+            }
+        }
+        instance.setLanguage(new Locale("es"));
+        assertEquals(SupportedLanguages.SPANISH, instance.getLanguage());
+        for (AbstractRiskAnalyser riskAnalyser : instance.getRisksAnalysers()) {
+            assertEquals(SupportedLanguages.SPANISH, riskAnalyser.getLanguage());
+            assertEquals(SupportedLanguages.SPANISH, riskAnalyser.getProject().getLanguage());
+            for (ComponentBinding componentBinding: riskAnalyser.getProject().getBillOfComponentBindings()) {
+                assertEquals(SupportedLanguages.SPANISH, componentBinding.getLanguage());
+            }
+        }
+    }
+
+    /**
+     * Test of setDefaultLanguage method, of class LicenseRiskAnalysisEngine.
+     */
+    @Test
+    public void testSetDefaultLanguage() {
+        System.out.println("setDefaultLanguage");
+        // Define the project. In this case, it is defined from a JSON file.
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        Project project = new Project(Json.read(projectURL));
+
+        RiskAnalyserLimitedSetOfPotentialProjectLicenses riskAnalyser1 = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
+        RiskAnalyserObsoleteComponentsLicenses riskAnalyser2 = new RiskAnalyserObsoleteComponentsLicenses(project);
+        RiskAnalyserUnfashionableComponentsLicenses riskAnalyser3 = new RiskAnalyserUnfashionableComponentsLicenses(project);
+        RiskAnalyserScarcelySpreadComponentsLicenses riskAnalyser4 = new RiskAnalyserScarcelySpreadComponentsLicenses(project);
+        RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses riskAnalyser5 = new RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses(project);
+        RiskAnalyserLimitedSetOfPotentialComponentsLicenses riskAnalyser6 = new RiskAnalyserLimitedSetOfPotentialComponentsLicenses(project);
+        // Define a Risk analysis engine and add these risk analysers
+        LicenseRiskAnalysisEngine instance = new LicenseRiskAnalysisEngine(riskAnalyser1);
+        instance.addRiskAnalyser(riskAnalyser2);
+        instance.addRiskAnalyser(riskAnalyser3);
+        instance.addRiskAnalyser(riskAnalyser4);
+        instance.addRiskAnalyser(riskAnalyser5);
+        instance.addRiskAnalyser(riskAnalyser6);
+        assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, instance.getLanguage());
+        for (AbstractRiskAnalyser riskAnalyser : instance.getRisksAnalysers()) {
+            assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, riskAnalyser.getLanguage());
+            assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, riskAnalyser.getProject().getLanguage());
+            for (ComponentBinding componentBinding: riskAnalyser.getProject().getBillOfComponentBindings()) {
+                assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, componentBinding.getLanguage());
+            }
+        }
+        instance.setLanguage(new Locale("es"));
+        assertEquals(SupportedLanguages.SPANISH, instance.getLanguage());
+        for (AbstractRiskAnalyser riskAnalyser : instance.getRisksAnalysers()) {
+            assertEquals(SupportedLanguages.SPANISH, riskAnalyser.getLanguage());
+            assertEquals(SupportedLanguages.SPANISH, riskAnalyser.getProject().getLanguage());
+            for (ComponentBinding componentBinding: riskAnalyser.getProject().getBillOfComponentBindings()) {
+                assertEquals(SupportedLanguages.SPANISH, componentBinding.getLanguage());
+            }
+        }
+        instance.setDefaultLanguage();
+        assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, instance.getLanguage());
+        for (AbstractRiskAnalyser riskAnalyser : instance.getRisksAnalysers()) {
+            assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, riskAnalyser.getLanguage());
+            assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, riskAnalyser.getProject().getLanguage());
+            for (ComponentBinding componentBinding: riskAnalyser.getProject().getBillOfComponentBindings()) {
+                assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, componentBinding.getLanguage());
+            }
+        }
+    }
+
+    /**
+     * Test of fireLanguageChangeEvent method, of class LicenseRiskAnalysisEngine.
+     */
+    @Test
+    public void testFireLanguageChangeEvent() {
+        System.out.println("fireLanguageChangeEvent");
+        // Define the project. In this case, it is defined from a JSON file.
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        Project project = new Project(Json.read(projectURL));
+
+        RiskAnalyserLimitedSetOfPotentialProjectLicenses riskAnalyser1 = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
+        RiskAnalyserObsoleteComponentsLicenses riskAnalyser2 = new RiskAnalyserObsoleteComponentsLicenses(project);
+        RiskAnalyserUnfashionableComponentsLicenses riskAnalyser3 = new RiskAnalyserUnfashionableComponentsLicenses(project);
+        RiskAnalyserScarcelySpreadComponentsLicenses riskAnalyser4 = new RiskAnalyserScarcelySpreadComponentsLicenses(project);
+        RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses riskAnalyser5 = new RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses(project);
+        RiskAnalyserLimitedSetOfPotentialComponentsLicenses riskAnalyser6 = new RiskAnalyserLimitedSetOfPotentialComponentsLicenses(project);
+        // Define a Risk analysis engine and add these risk analysers
+        LicenseRiskAnalysisEngine instance = new LicenseRiskAnalysisEngine(riskAnalyser1);
+        instance.addRiskAnalyser(riskAnalyser2);
+        instance.addRiskAnalyser(riskAnalyser3);
+        instance.addRiskAnalyser(riskAnalyser4);
+        instance.addRiskAnalyser(riskAnalyser5);
+        instance.addRiskAnalyser(riskAnalyser6);
+        assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, instance.getLanguage());
+        for (AbstractRiskAnalyser riskAnalyser : instance.getRisksAnalysers()) {
+            assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, riskAnalyser.getLanguage());
+            assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, riskAnalyser.getProject().getLanguage());
+            for (ComponentBinding componentBinding: riskAnalyser.getProject().getBillOfComponentBindings()) {
+                assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, componentBinding.getLanguage());
+            }
+        }
+        instance.setLanguage(new Locale("es"));
+        assertEquals(SupportedLanguages.SPANISH, instance.getLanguage());
+        for (AbstractRiskAnalyser riskAnalyser : instance.getRisksAnalysers()) {
+            assertEquals(SupportedLanguages.SPANISH, riskAnalyser.getLanguage());
+            assertEquals(SupportedLanguages.SPANISH, riskAnalyser.getProject().getLanguage());
+            for (ComponentBinding componentBinding: riskAnalyser.getProject().getBillOfComponentBindings()) {
+                assertEquals(SupportedLanguages.SPANISH, componentBinding.getLanguage());
+            }
+        }
+        instance.setDefaultLanguage();
+        assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, instance.getLanguage());
+        for (AbstractRiskAnalyser riskAnalyser : instance.getRisksAnalysers()) {
+            assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, riskAnalyser.getLanguage());
+            assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, riskAnalyser.getProject().getLanguage());
+            for (ComponentBinding componentBinding: riskAnalyser.getProject().getBillOfComponentBindings()) {
+                assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, componentBinding.getLanguage());
+            }
+        }
     }
 
 }

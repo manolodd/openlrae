@@ -87,6 +87,15 @@ public class LicenseRiskAnalysisEngine implements ILanguageChangeEventEmitter {
     }
 
     /**
+     * This method gets the language currently configured.
+     *
+     * @return the language currently configured.
+     */
+    public SupportedLanguages getLanguage() {
+        return languageConfig.getLanguage();
+    }
+    
+    /**
      * This method sets the language. This change propagates to the rest of
      * components involvend in the risk analysis to provide you with a result in
      * the desired language. If the specified locale is not supported by
