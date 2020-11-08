@@ -124,6 +124,17 @@ public class LicenseRiskAnalysisEngine implements ILanguageChangeEventEmitter {
     }
 
     /**
+     * This method gets the list of risk analysers that have been added to the
+     * license risk analysis engine.
+     *
+     * @return the list of risk analysers that have been added to the license
+     * risk analysis engine.
+     */
+    public CopyOnWriteArrayList<AbstractRiskAnalyser> getRisksAnalysers() {
+        return risksAnalysers;
+    }
+
+    /**
      * This method sends an event to all risk analysers to inform that a new
      * language has been configured, in order for them to be updated.
      */
