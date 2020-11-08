@@ -21,6 +21,7 @@ import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
 import com.manolodominguez.openlrae.i18n.LanguageConfig;
 import com.manolodominguez.openlrae.i18n.SupportedLanguages;
 import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,7 @@ public class LicenseRiskAnalysisEngine implements ILanguageChangeEventEmitter {
     private CopyOnWriteArrayList<AbstractRiskAnalyser> risksAnalysers;
     private CopyOnWriteArrayList<RiskAnalysisResult> riskAnalysisResultSet;
     private LanguageConfig languageConfig;
+    protected ResourceBundle ownI18N;
 
     /**
      * This is the constructor of the class.It creates a new instance of
@@ -87,8 +89,14 @@ public class LicenseRiskAnalysisEngine implements ILanguageChangeEventEmitter {
     }
 
     /**
-     * This is the constructor of the class.It creates a new instance of
-     * LicenseRiskAnalysisEngine, adding the first risk analyser.
+     * This method sets the language. This change propagates to the rest of
+     * components involvend in the risk analysis to provide you with a result in
+     * the desired language. If the specified locale is not supported by
+     * OpenLRAE right now, the most nearest one in the hierarchy is used
+     * instead. As a fallback mechanism, the default language is used if no
+     * other option is possible.
+     *
+     * Supported languages in this version: "en" (default), "es"
      *
      * @param locale the locale specifying the language that should be used to
      * generate the risk analysis result.
@@ -98,24 +106,29 @@ public class LicenseRiskAnalysisEngine implements ILanguageChangeEventEmitter {
             logger.error("locale cannot be null");
             throw new IllegalArgumentException("locale cannot be null");
         }
-        // FIX: be sure the parameter is not null
         SupportedLanguages newLanguage = SupportedLanguages.getLanguageFor(locale);
         languageConfig.setLanguage(newLanguage);
-        // reload resource bundles
-        System.out.println("firing language change event");
+        // Reloading resource bundles is not needed because this class does not
+        // print any string other than logs. If needed, reload it here.
         fireLanguageChangeEvent();
     }
 
     /**
-     * This is the constructor of the class.It creates a new instance of
-     * LicenseRiskAnalysisEngine, adding the first risk analyser.
+     * This method sets the language to the default one. This change propagates
+     * to the rest of components involvend in the risk analysis to provide you
+     * with a result in the default language.
      */
     public void setDefaultLanguage() {
         languageConfig.setDefaultLanguage();
-        // reload resource bundles
+        // Reloading resource bundles is not needed because this class does not
+        // print any string other than logs. If needed, reload it here.
         fireLanguageChangeEvent();
     }
 
+    /**
+     * This method sends an event to all risk analysers to inform that a new
+     * language has been configured, in order for them to be updated.
+     */
     @Override
     public void fireLanguageChangeEvent() {
         for (AbstractRiskAnalyser riskAnalyser : risksAnalysers) {
