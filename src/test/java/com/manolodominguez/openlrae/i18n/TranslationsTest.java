@@ -89,13 +89,16 @@ public class TranslationsTest {
     public void testGetResourceBundle() {
         System.out.println("getResourceBundle");
         ResourceBundle resourceBundle;
+        LanguageConfig languageConfig = new LanguageConfig();
+        languageConfig.setLanguage(Locale.CHINESE);
+        
         for (Translations translation: Translations.values()) {
             // This language is supported
             resourceBundle = translation.getResourceBundle(SupportedLanguages.SPANISH.getLocale());
             assertEquals(SupportedLanguages.SPANISH.getLocale().toString(), resourceBundle.getLocale().toString());
             // This language is not supported. Fallback to default OpenLRAE (not 
             // the system one) locale.
-            resourceBundle = translation.getResourceBundle(SupportedLanguages.getLanguageFor(Locale.CHINESE).getLocale());
+            resourceBundle = translation.getResourceBundle(languageConfig.getLanguage().getLocale());
             // The string representation of a locale when a fallback happens is 
             // an empty string.
             assertEquals("", resourceBundle.getLocale().toString());
