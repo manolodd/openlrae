@@ -54,6 +54,7 @@ import org.slf4j.LoggerFactory;
 public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
 
     private ResourceBundle spdxIdI18N;
+    private ResourceBundle obsolescencesI18N;
     
     /**
      * This is the constructor of the class. It creates a new instance of
@@ -66,6 +67,7 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
         super(project, SupportedRisks.HAVING_OBSOLETE_PROJECT_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserObsoleteProjectLicenses.class);
         spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
+        obsolescencesI18N = Translations.SUPPORTED_OBSOLESCENCES.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -83,7 +85,7 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
                 case UPDATED:
                     // This project licenses is in its latest version. Therefore 
                     // there is not obsolescence risk in this case. 
-                    goodThings.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that is " + obsolescence.getDescriptionValue());
+                    goodThings.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that is " + obsolescencesI18N.getString(obsolescence.toString()));
                     break;
                 case NEAR_UPDATED:
                     // The analyzed license is not in its latest version but in
@@ -91,7 +93,7 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
                     // obsolescence risk in this case. 
                     riskImpact += obsolescence.getObsolescenceValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that is " + obsolescence.getDescriptionValue());
+                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that is " + obsolescencesI18N.getString(obsolescence.toString()));
                     tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a newer license version, if possible.");
                     break;
                 case NEAR_OUTDATED:
@@ -100,7 +102,7 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
                     // obsolescence risk in this case. 
                     riskImpact += obsolescence.getObsolescenceValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that is " + obsolescence.getDescriptionValue());
+                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that is " + obsolescencesI18N.getString(obsolescence.toString()));
                     tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a newer license version, if possible.");
                     break;
                 case OUTDATED:
@@ -109,7 +111,7 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
                     // risk in this case. 
                     riskImpact += obsolescence.getObsolescenceValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that is " + obsolescence.getDescriptionValue());
+                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that is " + obsolescencesI18N.getString(obsolescence.toString()));
                     tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a newer license version, if possible.");
                     break;
             }
@@ -136,6 +138,7 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
         languageConfig.setLanguage(languageChangeEvent.getNewLanguage());
         // reload resource bundles
         spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
+        obsolescencesI18N = Translations.SUPPORTED_OBSOLESCENCES.getResourceBundle(languageConfig.getLanguage().getLocale());
         fireLanguageChangeEvent();
     }
 

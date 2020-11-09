@@ -21,6 +21,8 @@ import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesOb
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
+import com.manolodominguez.openlrae.i18n.Translations;
+import java.util.ResourceBundle;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -54,6 +56,8 @@ import org.slf4j.LoggerFactory;
  */
 public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser {
 
+    private ResourceBundle obsolescencesI18N;
+    
     /**
      * This is the constructor of the class. It creates a new instance of
      * RiskAnalyserObsoleteComponentsLicenses.
@@ -64,6 +68,7 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
         // Project is ckecked at superclass
         super(project, SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserObsoleteComponentsLicenses.class);
+        obsolescencesI18N = Translations.SUPPORTED_OBSOLESCENCES.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -82,7 +87,7 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // The analyzed component is using the latest version of its
                     // license. Therefore there is not obsolescence risk in this
                     // case. 
-                    goodThings.add(componentBinding.getFullName() + ", is using the license " + obsolescence.getDescriptionValue());
+                    goodThings.add(componentBinding.getFullName() + ", is using the license " + obsolescencesI18N.getString(obsolescence.toString()));
                     break;
                 case NEAR_UPDATED:
                     // The analyzed component is not using the latest version of
@@ -90,7 +95,7 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // one. Therefore there is obsolescence risk in this case. 
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", is using the license " + obsolescence.getDescriptionValue());
+                    rootCauses.add(componentBinding.getFullName() + ", is using the license " + obsolescencesI18N.getString(obsolescence.toString()));
                     tips.add("Try to replace " + componentBinding.getFullName() + ", by another component released under a newer license version.");
                     break;
                 case NEAR_OUTDATED:
@@ -99,7 +104,7 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // one. Therefore there is obsolescence risk in this case. 
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + " is using the license " + obsolescence.getDescriptionValue());
+                    rootCauses.add(componentBinding.getFullName() + " is using the license " + obsolescencesI18N.getString(obsolescence.toString()));
                     tips.add("Try to replace " + componentBinding.getFullName() + ", by another component released under a newer license version.");
                     break;
                 case OUTDATED:
@@ -108,7 +113,7 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // is obsolescence risk in this case. 
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + " is using the license " + obsolescence.getDescriptionValue());
+                    rootCauses.add(componentBinding.getFullName() + " is using the license " + obsolescencesI18N.getString(obsolescence.toString()));
                     tips.add("Try to replace " + componentBinding.getFullName() + ", by another component released under a newer license version.");
                     break;
             }
@@ -134,6 +139,7 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
         }
         languageConfig.setLanguage(languageChangeEvent.getNewLanguage());
         // reload resource bundles
+        obsolescencesI18N = Translations.SUPPORTED_OBSOLESCENCES.getResourceBundle(languageConfig.getLanguage().getLocale());
         fireLanguageChangeEvent();
     }
 
