@@ -18,6 +18,12 @@ package com.manolodominguez.openlrae.analysis.riskanalysers;
 import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.arquitecture.Project;
+import com.manolodominguez.openlrae.i18n.ILanguageChangeEventEmitter;
+import com.manolodominguez.openlrae.i18n.ILanguageChangeListener;
+import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
+import com.manolodominguez.openlrae.i18n.LanguageConfig;
+import com.manolodominguez.openlrae.i18n.SupportedLanguages;
+import java.util.ResourceBundle;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +35,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
-public abstract class AbstractRiskAnalyser {
+public abstract class AbstractRiskAnalyser implements ILanguageChangeEventEmitter, ILanguageChangeListener {
 
     protected Logger logger;
     protected Project project = null;
@@ -40,6 +46,8 @@ public abstract class AbstractRiskAnalyser {
     protected CopyOnWriteArrayList<String> warnings;
     protected CopyOnWriteArrayList<String> goodThings;
     protected CopyOnWriteArrayList<String> tips;
+    protected ResourceBundle ownI18N;
+    protected LanguageConfig languageConfig;
 
     /**
      * This is the constructor of the class.It has to be called from within the
@@ -66,6 +74,7 @@ public abstract class AbstractRiskAnalyser {
         warnings = new CopyOnWriteArrayList<>();
         goodThings = new CopyOnWriteArrayList<>();
         tips = new CopyOnWriteArrayList<>();
+        languageConfig = new LanguageConfig();
     }
 
     /**
@@ -78,8 +87,28 @@ public abstract class AbstractRiskAnalyser {
         warnings = new CopyOnWriteArrayList<>();
         goodThings = new CopyOnWriteArrayList<>();
         tips = new CopyOnWriteArrayList<>();
+        languageConfig.setDefaultLanguage();
     }
 
+    /**
+     * This method gets the project on wich the risk analysis is going to be
+     * done.
+     *
+     * @return the project on wich the risk analysis is going to be done.
+     */
+    public Project getProject() {
+        return project;
+    }
+
+    /**
+     * This method gets the language currently configured.
+     *
+     * @return the language currently configured.
+     */
+    public SupportedLanguages getLanguage() {
+        return languageConfig.getLanguage();
+    }
+    
     /**
      * This method resets the instace, run the analysis and return the
      * corresponding risk analysis result.
@@ -99,6 +128,11 @@ public abstract class AbstractRiskAnalyser {
      */
     public SupportedRisks getHandledRiskType() {
         return handledRiskType;
+    }
+
+    @Override
+    public void fireLanguageChangeEvent() {
+        project.onLanguageChange(new LanguageChangeEvent(this, languageConfig.getLanguage()));
     }
 
     /**
@@ -138,4 +172,5 @@ public abstract class AbstractRiskAnalyser {
 
     private static final float DEFAULT_EXPOSURE_LEVEL = 0.0f;
     private static final float DEFAULT_IMPACT_LEVEL = 0.0f;
+
 }
