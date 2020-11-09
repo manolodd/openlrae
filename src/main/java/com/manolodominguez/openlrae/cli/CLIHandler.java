@@ -68,6 +68,7 @@ public class CLIHandler {
     private ResourceBundle compatibilityI18N = Translations.SUPPORTED_COMPATIBILITIES.getResourceBundle(languageConfig.getLanguage().getLocale());
     private ResourceBundle weightsI18N = Translations.SUPPORTED_COMPONENTS_WEIGHTS.getResourceBundle(languageConfig.getLanguage().getLocale());
     private ResourceBundle spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
+    private ResourceBundle linksI18N = Translations.SUPPORTED_LINKS.getResourceBundle(languageConfig.getLanguage().getLocale());
 
     /**
      * This method is the constructor of the class. It creates a new instance of
@@ -247,7 +248,7 @@ public class CLIHandler {
         writeToConsole("");
         writeToConsole("=== Supported types of links (of components linked to a project)");
         for (SupportedLinks link : SupportedLinks.values()) {
-            writeToConsole("\t- " + link.getDescriptionValue());
+            writeToConsole("\t- " + linksI18N.getString(link.toString()));
         }
         writeToConsole("");
         writeToConsole("=== Supported types of project redistributions");
