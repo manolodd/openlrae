@@ -20,6 +20,7 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedSpreadin
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesSpreadingFactory;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
+import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -128,6 +129,18 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
         }
     }
 
+    @Override
+    public void onLanguageChange(LanguageChangeEvent languageChangeEvent) {
+        if (languageChangeEvent == null) {
+            logger.error("languajeEvent cannot be null");
+            throw new IllegalArgumentException("languajeEvent cannot be null");
+        }
+        languageConfig.setLanguage(languageChangeEvent.getNewLanguage());
+        // reload resource bundles
+        fireLanguageChangeEvent();
+    }
+
     private static final float NO_RISK = 0.0f;
     private static final int ONE = 1;
+
 }

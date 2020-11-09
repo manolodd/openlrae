@@ -20,6 +20,9 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesObsolescencesFactory;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
+import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
+import com.manolodominguez.openlrae.i18n.Translations;
+import java.util.ResourceBundle;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -50,6 +53,8 @@ import org.slf4j.LoggerFactory;
  */
 public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
 
+    private ResourceBundle spdxIdI18N;
+    
     /**
      * This is the constructor of the class. It creates a new instance of
      * RiskAnalyserObsoleteProjectLicenses.
@@ -60,6 +65,7 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
         // Project is ckecked at superclass
         super(project, SupportedRisks.HAVING_OBSOLETE_PROJECT_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserObsoleteProjectLicenses.class);
+        spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -77,7 +83,7 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
                 case UPDATED:
                     // This project licenses is in its latest version. Therefore 
                     // there is not obsolescence risk in this case. 
-                    goodThings.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that is " + obsolescence.getDescriptionValue());
+                    goodThings.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that is " + obsolescence.getDescriptionValue());
                     break;
                 case NEAR_UPDATED:
                     // The analyzed license is not in its latest version but in
@@ -85,8 +91,8 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
                     // obsolescence risk in this case. 
                     riskImpact += obsolescence.getObsolescenceValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that is " + obsolescence.getDescriptionValue());
-                    tips.add("Try to replace the project license " + projectLicense.getSPDXIdentifier() + ", by a newer license version, if possible.");
+                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that is " + obsolescence.getDescriptionValue());
+                    tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a newer license version, if possible.");
                     break;
                 case NEAR_OUTDATED:
                     // The analyzed license is not in its latest version but in
@@ -94,8 +100,8 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
                     // obsolescence risk in this case. 
                     riskImpact += obsolescence.getObsolescenceValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that is " + obsolescence.getDescriptionValue());
-                    tips.add("Try to replace the project license " + projectLicense.getSPDXIdentifier() + ", by a newer license version, if possible.");
+                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that is " + obsolescence.getDescriptionValue());
+                    tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a newer license version, if possible.");
                     break;
                 case OUTDATED:
                     // The analyzed license is not in its latest version but in
@@ -103,8 +109,8 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
                     // risk in this case. 
                     riskImpact += obsolescence.getObsolescenceValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that is " + obsolescence.getDescriptionValue());
-                    tips.add("Try to replace the project license " + projectLicense.getSPDXIdentifier() + ", by a newer license version, if possible.");
+                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that is " + obsolescence.getDescriptionValue());
+                    tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a newer license version, if possible.");
                     break;
             }
         }
@@ -120,6 +126,20 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
             }
         }
     }
+
+    @Override
+    public void onLanguageChange(LanguageChangeEvent languageChangeEvent) {
+        if (languageChangeEvent == null) {
+            logger.error("languajeEvent cannot be null");
+            throw new IllegalArgumentException("languajeEvent cannot be null");
+        }
+        languageConfig.setLanguage(languageChangeEvent.getNewLanguage());
+        // reload resource bundles
+        spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
+        fireLanguageChangeEvent();
+    }
+
     private static final float NO_RISK = 0.0f;
     private static final int ONE = 1;
+
 }
