@@ -19,6 +19,9 @@ import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
+import com.manolodominguez.openlrae.i18n.LanguageConfig;
+import com.manolodominguez.openlrae.i18n.Translations;
+import java.util.ResourceBundle;
 import mjson.Json;
 import static mjson.Json.array;
 import static mjson.Json.object;
@@ -203,6 +206,9 @@ public class ReportsFactory {
             logger.error("resultSet cannot be null");
             throw new IllegalArgumentException("resultSet cannot be null");
         }
+        LanguageConfig languageConfig = new LanguageConfig(); 
+        languageConfig.setLanguage(project.getLanguage());
+        ResourceBundle weightsI18N = Translations.SUPPORTED_COMPONENTS_WEIGHTS.getResourceBundle(languageConfig.getLanguage().getLocale());
         String report = EMPTY_REPORT_AS_PLAIN_TEXT;
         report += "**************************************************\n";
         report += "Project name: " + project.getName() + "\n";
@@ -216,7 +222,7 @@ public class ReportsFactory {
         report += "**************************************************\n";
         report += "### Component bindigs:\n";
         for (ComponentBinding spp : project.getBillOfComponentBindings()) {
-            report += addTab(1) + "=> " + spp.getComponent().getName() + "-" + spp.getComponent().getVersion() + " (" + spp.getComponent().getLicense().getSPDXIdentifier() + ") --> Contribution to the project: " + spp.getWeight().getDescriptionValue() + "\n";
+            report += addTab(1) + "=> " + spp.getComponent().getName() + "-" + spp.getComponent().getVersion() + " (" + spp.getComponent().getLicense().getSPDXIdentifier() + ") --> Contribution to the project: " + weightsI18N.getString(spp.getWeight().toString()) + "\n";
         }
         report += "### Risk analysis\n";
         for (RiskAnalysisResult riskAnalysisResult : resultSet) {
