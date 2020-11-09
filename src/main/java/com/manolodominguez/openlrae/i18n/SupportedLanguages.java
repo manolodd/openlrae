@@ -20,8 +20,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class implements an enum to define all type some versbosity levels to be
- * used when generating a report.
+ * This class implements an enum to define all languages supported by OpenLRAE.
+ * That is, languages for wich a translation is available.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
@@ -29,12 +29,12 @@ public enum SupportedLanguages {
     SPANISH(new Locale("es")),
     DEFAULT_LANGUAGE(new Locale("en"));
 
-    private  Logger logger = LoggerFactory.getLogger(SupportedLanguages.class);
+    private Logger logger = LoggerFactory.getLogger(SupportedLanguages.class);
 
     private final Locale locale;
 
     /**
-     * This is the constructor of the class. It defines SupportedLinks enum.
+     * This is the constructor of the class. It defines SupportedLanguages enum.
      *
      * @param locale the Locale correponding to the enum item.
      */
@@ -45,6 +45,7 @@ public enum SupportedLanguages {
         }
         this.locale = locale;
     }
+
     /**
      * This method get the locale of the enum item.
      *
