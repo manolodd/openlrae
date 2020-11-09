@@ -99,20 +99,4 @@ public class SupportedObsolescencesTest {
         assertTrue(worksFine);
     }
 
-    /**
-     * Test of getDescriptionValue method, of class SupportedObsolescences.
-     */
-    @Test
-    public void testGetDescriptionValue() {
-        System.out.println("getDescriptionValue");
-        boolean worksFine = true;
-        for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {
-            if ((obsolescence.getDescriptionValue() != null) && (!obsolescence.getDescriptionValue().isEmpty())) {
-                worksFine &= true;
-            } else {
-                worksFine = false;
-            }
-        }
-        assertTrue(worksFine);
-    }
 }
