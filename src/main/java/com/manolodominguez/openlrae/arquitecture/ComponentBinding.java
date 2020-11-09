@@ -21,6 +21,8 @@ import com.manolodominguez.openlrae.i18n.ILanguageChangeListener;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
 import com.manolodominguez.openlrae.i18n.LanguageConfig;
 import com.manolodominguez.openlrae.i18n.SupportedLanguages;
+import com.manolodominguez.openlrae.i18n.Translations;
+import java.util.ResourceBundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,6 +45,7 @@ public class ComponentBinding implements ILanguageChangeListener {
     private SupportedComponentWeights weight;
     private SupportedLinks link;
     private LanguageConfig languageConfig;
+    private ResourceBundle spdxIdI18N;
 
     /**
      * This is the constuctor of the class. It creates a new instance of
@@ -72,6 +75,7 @@ public class ComponentBinding implements ILanguageChangeListener {
         this.link = link;
         this.weight = weight;
         languageConfig = new LanguageConfig();
+        spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -111,7 +115,7 @@ public class ComponentBinding implements ILanguageChangeListener {
      * @return the name, version and license of the component.
      */
     public String getFullName() {
-        return component.getName() + "-" + component.getVersion() + " (" + component.getLicense().getSPDXIdentifier() + "), " + link.getDescriptionValue();
+        return component.getName() + "-" + component.getVersion() + " (" + spdxIdI18N.getString(component.getLicense().toString()) + "), " + link.getDescriptionValue();
     }
 
     /**
@@ -121,7 +125,7 @@ public class ComponentBinding implements ILanguageChangeListener {
      * @return the name and license of the component.
      */
     public String getFullNameForFicticiousComponent() {
-        return component.getName() + " (" + component.getLicense().getSPDXIdentifier() + "), " + link.getDescriptionValue();
+        return component.getName() + " (" + spdxIdI18N.getString(component.getLicense().toString()) + "), " + link.getDescriptionValue();
     }
 
     /**
@@ -132,7 +136,7 @@ public class ComponentBinding implements ILanguageChangeListener {
     public SupportedLanguages getLanguage() {
         return languageConfig.getLanguage();
     }
-    
+
     @Override
     public void onLanguageChange(LanguageChangeEvent languageChangeEvent) {
         if (languageChangeEvent == null) {
@@ -141,5 +145,6 @@ public class ComponentBinding implements ILanguageChangeListener {
         }
         languageConfig.setLanguage(languageChangeEvent.getNewLanguage());
         // Reload resource bundles
+        spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 }
