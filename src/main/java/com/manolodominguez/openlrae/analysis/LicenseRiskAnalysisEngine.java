@@ -105,16 +105,15 @@ public class LicenseRiskAnalysisEngine implements ILanguageChangeEventEmitter {
      *
      * Supported languages in this version: "en" (default), "es"
      *
-     * @param locale the locale specifying the language that should be used to
+     * @param newLocale the locale specifying the language that should be used to
      * generate the risk analysis result.
      */
-    public void setLanguage(Locale locale) {
-        if (locale == null) {
+    public void setLanguage(Locale newLocale) {
+        if (newLocale == null) {
             logger.error("locale cannot be null");
             throw new IllegalArgumentException("locale cannot be null");
         }
-        SupportedLanguages newLanguage = SupportedLanguages.getLanguageFor(locale);
-        languageConfig.setLanguage(newLanguage);
+        languageConfig.setLanguage(newLocale);
         // Reloading resource bundles is not needed because this class does not
         // print any string other than logs. If needed, reload it here.
         fireLanguageChangeEvent();
