@@ -27,15 +27,14 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedComponentWeights {
-    LOW(0.01f, "The component is almost unused in the project"),
-    NEAR_LOW(0.33f, "The component is used in the project in some isolated clases"),
-    NEAR_HIGH(0.67f, "The component is used in the project in lot of clases"),
-    HIGH(1.0f, "The component is used in the project everywhere");
+    LOW(0.01f),
+    NEAR_LOW(0.33f),
+    NEAR_HIGH(0.67f),
+    HIGH(1.0f);
 
     private Logger logger = LoggerFactory.getLogger(SupportedComponentWeights.class);
 
     private final float weightValue;
-    private final String descriptionValue;
 
     /**
      * This is the constructor of the class. It defines
@@ -51,21 +50,12 @@ public enum SupportedComponentWeights {
      * the project.
      * @param descriptionValue A text describing the meaning of the enum item.
      */
-    private SupportedComponentWeights(float weightValue, String descriptionValue) {
+    private SupportedComponentWeights(float weightValue) {
         if ((weightValue < MIN_RATIO) || (weightValue > MAX_RATIO)) {
             logger.error("weightValue has to be a float between 0.0f and 1.0");
             throw new IllegalArgumentException("weightValue has to be a float between 0.0f and 1.0");
         }
-        if (descriptionValue == null) {
-            logger.error("descriptionValue cannot be null");
-            throw new IllegalArgumentException("descriptionValue cannot be null");
-        }
-        if (descriptionValue.isEmpty()) {
-            logger.error("descriptionValue cannot be blank");
-            throw new IllegalArgumentException("descriptionValue cannot be blank");
-        }
         this.weightValue = weightValue;
-        this.descriptionValue = descriptionValue;
     }
 
     /**
@@ -75,15 +65,6 @@ public enum SupportedComponentWeights {
      */
     public float getWeightValue() {
         return weightValue;
-    }
-
-    /**
-     * This method get the description of the enum item.
-     *
-     * @return the description of the enum item.
-     */
-    public String getDescriptionValue() {
-        return descriptionValue;
     }
     
     private static final float MIN_RATIO = 0.0f;
