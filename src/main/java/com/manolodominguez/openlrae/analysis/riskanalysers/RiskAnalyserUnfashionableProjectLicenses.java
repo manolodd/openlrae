@@ -20,6 +20,9 @@ import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedTrends;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesTrendFactory;
+import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
+import com.manolodominguez.openlrae.i18n.Translations;
+import java.util.ResourceBundle;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -38,8 +41,8 @@ import org.slf4j.LoggerFactory;
  * riskExposure = number of unfashionable project licenses in relation to the
  * totalCases.
  *
- * riskImpact = trend value of each unfashionable project license in relation
- * to the totalCases.
+ * riskImpact = trend value of each unfashionable project license in relation to
+ * the totalCases.
  *
  * riskExposure should be undestood as the portion of project licenses that is
  * affected by the risk. riskImpact should be undestood as the effort needed to
@@ -48,6 +51,8 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalyser {
+
+    private ResourceBundle spdxIdI18N;
 
     /**
      * This is the constructor of the class. It creates a new instance of
@@ -59,6 +64,7 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
         // Project is ckecked at superclass
         super(project, SupportedRisks.HAVING_UNFASHIONABLE_PROJECT_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserUnfashionableProjectLicenses.class);
+        spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -76,7 +82,7 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
                 case TRENDY:
                     // This project licenses is trendy. Therefore there is not 
                     // risk of being unfashionable in this case. 
-                    goodThings.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that " + trend.getDescriptionValue());
+                    goodThings.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that " + trend.getDescriptionValue());
                     break;
                 case NEAR_TRENDY:
                     // The analyzed license is not completely trendy but is 
@@ -84,8 +90,8 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
                     // is risk of being unfashioable in this case. 
                     riskImpact += trend.getTrendValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that " + trend.getDescriptionValue());
-                    tips.add("Try to replace the project license " + projectLicense.getSPDXIdentifier() + ", by a trendier license, if possible.");
+                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that " + trend.getDescriptionValue());
+                    tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a trendier license, if possible.");
                     break;
                 case NEAR_UNFASHIONABLE:
                     // The analyzed license is not completely trendy but is 
@@ -93,16 +99,16 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
                     // is risk of being unfashioable in this case. 
                     riskImpact += trend.getTrendValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that " + trend.getDescriptionValue());
-                    tips.add("Try to replace the project license " + projectLicense.getSPDXIdentifier() + ", by a trendier license, if possible.");
+                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that " + trend.getDescriptionValue());
+                    tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a trendier license, if possible.");
                     break;
                 case UNFASHIONABLE:
                     // This project license is trendy. Therefore there is risk 
                     // of being unfashionable in this case. 
                     riskImpact += trend.getTrendValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that " + trend.getDescriptionValue());
-                    tips.add("Try to replace the project license " + projectLicense.getSPDXIdentifier() + ", by a trendier license, if possible.");
+                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that " + trend.getDescriptionValue());
+                    tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a trendier license, if possible.");
                     break;
             }
         }
@@ -118,6 +124,19 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
             }
         }
     }
+
+    @Override
+    public void onLanguageChange(LanguageChangeEvent languageChangeEvent) {
+        if (languageChangeEvent == null) {
+            logger.error("languajeEvent cannot be null");
+            throw new IllegalArgumentException("languajeEvent cannot be null");
+        }
+        languageConfig.setLanguage(languageChangeEvent.getNewLanguage());
+        // reload resource bundles
+        spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
+        fireLanguageChangeEvent();
+    }
+
     private static final float NO_RISK = 0.0f;
     private static final int ONE = 1;
 
