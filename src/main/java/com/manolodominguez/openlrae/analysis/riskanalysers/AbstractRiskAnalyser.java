@@ -87,7 +87,6 @@ public abstract class AbstractRiskAnalyser implements ILanguageChangeEventEmitte
         warnings = new CopyOnWriteArrayList<>();
         goodThings = new CopyOnWriteArrayList<>();
         tips = new CopyOnWriteArrayList<>();
-        languageConfig.setDefaultLanguage();
     }
 
     /**
