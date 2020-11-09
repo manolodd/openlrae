@@ -47,34 +47,32 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedLicenses {
-    AGPL_3_0_ONLY("AGPL-3.0-only", "GNU Affero General Public License v3.0 only", false),
-    APACHE_1_1("Apache-1.1", "Apache License 1.1", false),
-    APACHE_2_0("Apache-2.0", "Apache License 2.0", false),
-    ARTISTIC_2_0("Artistic-2.0", "Artistic License 2.0", false),
-    BSD_3_CLAUSE("BSD-3-clause", "BSD 3-Clause \"New\" or \"Revised\" License", false),
-    BSD_4_CLAUSE("BSD-4-clause", "BSD 4-Clause \"Original\" or \"Old\" License", false),
-    CDDL_1_0("CDDL-1.0", "Common Development and Distribution License 1.0", false),
-    CPL_1_0("CPL-1.0", "Common Public License 1.0", false),
-    EPL_1_0("EPL-1.0", "Eclipse Public License 1.0", false),
-    EUPL_1_1("EUPL-1.1", "European Union Public License 1.1", false),
-    GPL_2_0_ONLY("GPL-2.0-only", "GNU General Public License v2.0 only", false),
-    GPL_2_0_OR_LATER("GPL-2.0-or-later", "GNU General Public License v2.0 or later", false),
-    GPL_3_0_ONLY("GPL-3.0-only", "GNU General Public License v3.0 only", false),
-    LGPL_2_1_ONLY("LGPL-2.1-only", "GNU Lesser General Public License v2.1 only", false),
-    LGPL_2_1_OR_LATER("LGPL-2.1-or-later", "GNU Lesser General Public License v2.1 or later", false),
-    LGPL_3_0_OR_LATER("LGPL-3.0-or-later", "GNU Lesser General Public License v3.0 or later", false),
-    MIT("MIT", "MIT License", false),
-    MPL_1_1("MPL-1.1", "Mozilla Public License 1.1", false),
+    AGPL_3_0_ONLY(false),
+    APACHE_1_1(false),
+    APACHE_2_0(false),
+    ARTISTIC_2_0(false),
+    BSD_3_CLAUSE(false),
+    BSD_4_CLAUSE(false),
+    CDDL_1_0(false),
+    CPL_1_0(false),
+    EPL_1_0(false),
+    EUPL_1_1(false),
+    GPL_2_0_ONLY(false),
+    GPL_2_0_OR_LATER(false),
+    GPL_3_0_ONLY(false),
+    LGPL_2_1_ONLY(false),
+    LGPL_2_1_OR_LATER(false),
+    LGPL_3_0_OR_LATER(false),
+    MIT(false),
+    MPL_1_1(false),
     // These ones are special licenses, not real ones. They only apply to 
     // component definitions, but not to project definition.
-    UNDEFINED("Undefined-or-Unknown", "An unknown license", true),
-    UNSUPPORTED("Unsupported-by-OpenLRAE", "License known but not supported by Open LRAE.", true),
-    FORCED_AS_PROJECT_LICENSE("Forced-compatible-with-project-license", "Written permission to use the component under the terms of the project licenses.", true);
+    UNDEFINED(true),
+    UNSUPPORTED(true),
+    FORCED_AS_PROJECT_LICENSE(true);
 
     private Logger logger = LoggerFactory.getLogger(SupportedLicenses.class);
 
-    private final String spdxIdentifier;
-    private final String spdxFullName;
     private final boolean onlyForComponents;
 
     /**
@@ -94,44 +92,8 @@ public enum SupportedLicenses {
      * @param spdxFullName A full name of the license, more descriptive, as
      * stated in by SPDX.
      */
-    private SupportedLicenses(String spdxIdentifier, String spdxFullName, boolean onlyForComponents) {
-        if (spdxIdentifier == null) {
-            logger.error("spdxIdentifier cannot be null");
-            throw new IllegalArgumentException("spdxIdentifier cannot be null");
-        }
-        if (spdxIdentifier.isEmpty()) {
-            logger.error("spdxIdentifier cannot be blank");
-            throw new IllegalArgumentException("spdxIdentifier cannot be blank");
-        }
-        if (spdxFullName == null) {
-            logger.error("spdxFullName cannot be null");
-            throw new IllegalArgumentException("spdxFullName cannot be null");
-        }
-        if (spdxFullName.isEmpty()) {
-            logger.error("spdxFullName cannot be blank");
-            throw new IllegalArgumentException("spdxFullName cannot be blank");
-        }
-        this.spdxIdentifier = spdxIdentifier;
-        this.spdxFullName = spdxFullName;
+    private SupportedLicenses(boolean onlyForComponents) {
         this.onlyForComponents = onlyForComponents;
-    }
-
-    /**
-     * This method gets the SPDX identifier for the enum item.
-     *
-     * @return the SPDX identifier for the enum item.
-     */
-    public String getSPDXIdentifier() {
-        return spdxIdentifier;
-    }
-
-    /**
-     * This method gets the SPDX full name for the enum item.
-     *
-     * @return the SPDX full name for the enum item.
-     */
-    public String getSPDXFullName() {
-        return spdxFullName;
     }
 
     /**
