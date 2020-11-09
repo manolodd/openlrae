@@ -209,20 +209,22 @@ public class ReportsFactory {
         LanguageConfig languageConfig = new LanguageConfig(); 
         languageConfig.setLanguage(project.getLanguage());
         ResourceBundle weightsI18N = Translations.SUPPORTED_COMPONENTS_WEIGHTS.getResourceBundle(languageConfig.getLanguage().getLocale());
+        ResourceBundle spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
+        ResourceBundle spdxFullI18N = Translations.SUPPORTED_LICENSES_SPDX_FULL.getResourceBundle(languageConfig.getLanguage().getLocale());
         String report = EMPTY_REPORT_AS_PLAIN_TEXT;
         report += "**************************************************\n";
         report += "Project name: " + project.getName() + "\n";
         report += "Project version: " + project.getVersion() + "\n";
         report += "Project's selected licenses: ";
         for (SupportedLicenses projectLicense : project.getLicenses()) {
-            report += projectLicense.getSPDXFullName() + " (" + projectLicense.getSPDXIdentifier() + "),";
+            report += spdxFullI18N.getString(projectLicense.toString()) + " (" + spdxIdI18N.getString(projectLicense.toString()) + "),";
         }
         report += "\n";
         report += addTab(1) + "=> Project redistribution: " + project.getRedistribution().getDescriptionValue() + "\n";
         report += "**************************************************\n";
         report += "### Component bindigs:\n";
         for (ComponentBinding spp : project.getBillOfComponentBindings()) {
-            report += addTab(1) + "=> " + spp.getComponent().getName() + "-" + spp.getComponent().getVersion() + " (" + spp.getComponent().getLicense().getSPDXIdentifier() + ") --> Contribution to the project: " + weightsI18N.getString(spp.getWeight().toString()) + "\n";
+            report += addTab(1) + "=> " + spp.getComponent().getName() + "-" + spp.getComponent().getVersion() + " (" + spdxIdI18N.getString(spp.getComponent().getLicense().toString()) + ") --> Contribution to the project: " + weightsI18N.getString(spp.getWeight().toString()) + "\n";
         }
         report += "### Risk analysis\n";
         for (RiskAnalysisResult riskAnalysisResult : resultSet) {
