@@ -65,7 +65,8 @@ public class CLIHandler {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(CLIHandler.class);
     private LanguageConfig languageConfig = new LanguageConfig(); 
-    ResourceBundle compatibilityI18N = Translations.SUPPORTED_COMPATIBILITIES.getResourceBundle(languageConfig.getLanguage().getLocale());
+    private ResourceBundle compatibilityI18N = Translations.SUPPORTED_COMPATIBILITIES.getResourceBundle(languageConfig.getLanguage().getLocale());
+    private ResourceBundle weightsI18N = Translations.SUPPORTED_COMPONENTS_WEIGHTS.getResourceBundle(languageConfig.getLanguage().getLocale());
             
     /**
      * This method is the constructor of the class. It creates a new instance of
@@ -260,7 +261,7 @@ public class CLIHandler {
         writeToConsole("");
         writeToConsole("=== Supported components weight (real use of the component in the project)");
         for (SupportedComponentWeights weight : SupportedComponentWeights.values()) {
-            writeToConsole("\t- " + weight.getDescriptionValue());
+            writeToConsole("\t- " + weightsI18N.getString(weight.toString()));
         }
         writeToConsole("");
         writeToConsole("=== Supported licenses obsolescence (measures how old is the license version)");
