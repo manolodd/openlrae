@@ -20,6 +20,9 @@ import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedSpreadings;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesSpreadingFactory;
+import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
+import com.manolodominguez.openlrae.i18n.Translations;
+import java.util.ResourceBundle;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -50,6 +53,8 @@ import org.slf4j.LoggerFactory;
  */
 public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnalyser {
 
+    private ResourceBundle spdxIdI18N;
+
     /**
      * This is the constructor of the class. It creates a new instance of
      * RiskAnalyserScarcelySpreadProjectLicenses.
@@ -60,6 +65,7 @@ public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnaly
         // Project is ckecked at superclass
         super(project, SupportedRisks.HAVING_SCARCELY_SPREAD_PROJECT_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserScarcelySpreadProjectLicenses.class);
+        spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -77,7 +83,7 @@ public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnaly
                 case HIGHLY_WIDESPREAD:
                     // This project licenses is highly spread. Therefore there 
                     // is not risk of being scarcely spread in this case. 
-                    goodThings.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that " + spreading.getDescriptionValue());
+                    goodThings.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that " + spreading.getDescriptionValue());
                     break;
                 case NEAR_HIGHLY_WIDESPREAD:
                     // The analyzed license is not highly spread but is 
@@ -85,8 +91,8 @@ public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnaly
                     // there is risk of being scarcely spread in this case. 
                     riskImpact += spreading.getSpreadingValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that " + spreading.getDescriptionValue());
-                    tips.add("Try to replace the project license " + projectLicense.getSPDXIdentifier() + ", by a more spreadlicense, if possible.");
+                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that " + spreading.getDescriptionValue());
+                    tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a more spreadlicense, if possible.");
                     break;
                 case NEAR_LITTLE_WIDESPREAD:
                     // The analyzed license is not highly spread but is 
@@ -94,16 +100,16 @@ public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnaly
                     // there is risk of being scarcely spread in this case. 
                     riskImpact += spreading.getSpreadingValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that " + spreading.getDescriptionValue());
-                    tips.add("Try to replace the project license " + projectLicense.getSPDXIdentifier() + ", by a more spreadlicense, if possible.");
+                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that " + spdxIdI18N.getString(projectLicense.toString()));
+                    tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a more spreadlicense, if possible.");
                     break;
                 case LITTLE_WIDESPREAD:
                     // This project license is poorly spread. Therefore there 
                     // is risk of being scarcely spread in this case. 
                     riskImpact += spreading.getSpreadingValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + projectLicense.getSPDXIdentifier() + " that " + spreading.getDescriptionValue());
-                    tips.add("Try to replace the project license " + projectLicense.getSPDXIdentifier() + ", by a more spreadlicense, if possible.");
+                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that " + spreading.getDescriptionValue());
+                    tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a more spreadlicense, if possible.");
                     break;
             }
         }
@@ -119,6 +125,20 @@ public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnaly
             }
         }
     }
+
+    @Override
+    public void onLanguageChange(LanguageChangeEvent languageChangeEvent) {
+        if (languageChangeEvent == null) {
+            logger.error("languajeEvent cannot be null");
+            throw new IllegalArgumentException("languajeEvent cannot be null");
+        }
+        languageConfig.setLanguage(languageChangeEvent.getNewLanguage());
+        // reload resource bundles
+        spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
+        fireLanguageChangeEvent();
+    }
+
     private static final float NO_RISK = 0.0f;
     private static final int ONE = 1;
+
 }
