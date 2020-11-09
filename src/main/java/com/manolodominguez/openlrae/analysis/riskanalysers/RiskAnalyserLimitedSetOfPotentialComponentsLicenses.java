@@ -95,8 +95,8 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
         compatibilityCounter.clear();
         SupportedCompatibilities compatibility;
         Set<SupportedLicenses> allPotentialComponentsLicenses;
-        Component ficticiousComponent;
-        ComponentBinding ficticiousComponentBinding;
+        Component dummyComponent;
+        ComponentBinding dummyComponentBinding;
         allPotentialComponentsLicenses = Collections.synchronizedSet(EnumSet.allOf(SupportedLicenses.class));
         // Each potential component licenses has to be checked against all
         // project licenses and linking types. Having more than one project 
@@ -106,8 +106,9 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
         LicensesCompatibilityFactory licensesCompatibilities = LicensesCompatibilityFactory.getInstance();
         for (SupportedLicenses potentialComponentLicense : allPotentialComponentsLicenses) {
             for (SupportedLinks potentialLink : SupportedLinks.values()) {
-                ficticiousComponent = new Component("component with license", "fake version", potentialComponentLicense);
-                ficticiousComponentBinding = new ComponentBinding(ficticiousComponent, potentialLink, SupportedComponentWeights.HIGH);
+                dummyComponent = new Component("component with license", "fake version", potentialComponentLicense);
+                dummyComponentBinding = new ComponentBinding(dummyComponent, potentialLink, SupportedComponentWeights.HIGH);
+                dummyComponentBinding.onLanguageChange(new LanguageChangeEvent(project, languageConfig.getLanguage()));
                 for (SupportedLicenses projectLicense : this.project.getLicenses()) {
                     compatibility = licensesCompatibilities.getCompatibilityOf(potentialComponentLicense, projectLicense, potentialLink, project.getRedistribution());
                     if (compatibilityCounter.containsKey(compatibility)) {
@@ -146,7 +147,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                             // at the exit of this loop to avoid repeating the 
                             // same tips, warnings, root causes... for each 
                             // project license.
-                            warnings.add("Although a " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", could be used in " + project.getFullName() + ", be sure you have written permission from the copyright holder to use it in a project licensed under " + spdxIdI18N.getString(projectLicense.toString()));
+                            warnings.add("Although a " + dummyComponentBinding.getFullNameForDummyComponent() + ", could be used in " + project.getFullName() + ", be sure you have written permission from the copyright holder to use it in a project licensed under " + spdxIdI18N.getString(projectLicense.toString()));
                             break;
                         case UNCOMPATIBLE:
                             // The analyzed ficticious component is incompatible with the 
@@ -155,8 +156,8 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                             // has been specified). Therefore, it cannot be used in 
                             // the project independently on whether it is compatible
                             // with other licenses of the project or not.
-                            rootCauses.add("A " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", cannot not be included in " + project.getFullName() + " because it is incompatible with " + spdxIdI18N.getString(projectLicense.toString()));
-                            tips.add("Try to use a project license different from " + spdxIdI18N.getString(projectLicense.toString()) + ", that allow a " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", to be included in the project.");
+                            rootCauses.add("A " + dummyComponentBinding.getFullNameForDummyComponent() + ", cannot not be included in " + project.getFullName() + " because it is incompatible with " + spdxIdI18N.getString(projectLicense.toString()));
+                            tips.add("Try to use a project license different from " + spdxIdI18N.getString(projectLicense.toString()) + ", that allow a " + dummyComponentBinding.getFullNameForDummyComponent() + ", to be included in the project.");
                             riskExposure++;
                             riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
                             break;
@@ -170,8 +171,8 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                             // compatible. On the contrary, in this situation the 
                             //component is handled as uncompatible. Therefore, it 
                             // cannot be used in the project. 
-                            rootCauses.add("A " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", cannot not be included in " + project.getFullName() + " because it is not known to be compatible with " + spdxIdI18N.getString(projectLicense.toString()) + ", and therefore, it is handled as incompatible.");
-                            tips.add("Whenever you plan to include a " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", ask the author of that component to clarify the license of the component and know whether it is compatible with a project licensed under " + spdxIdI18N.getString(projectLicense.toString()) + " or not.");
+                            rootCauses.add("A " + dummyComponentBinding.getFullNameForDummyComponent() + ", cannot not be included in " + project.getFullName() + " because it is not known to be compatible with " + spdxIdI18N.getString(projectLicense.toString()) + ", and therefore, it is handled as incompatible.");
+                            tips.add("Whenever you plan to include a " + dummyComponentBinding.getFullNameForDummyComponent() + ", ask the author of that component to clarify the license of the component and know whether it is compatible with a project licensed under " + spdxIdI18N.getString(projectLicense.toString()) + " or not.");
                             riskExposure++;
                             riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
                             break;
@@ -188,9 +189,9 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                             // is uncompatible. This is obviously a weakness of 
                             // OpenLRAE that will be reduced as the project 
                             // evolves.
-                            rootCauses.add("A " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", could not be included in " + project.getFullName() + ". OpenLRAE does not support the license of the component yet and, therefore, it would be assumed as incompatible with " + spdxIdI18N.getString(projectLicense.toString()));
-                            warnings.add("Although a " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", whould be handled as incompatible because OpenLRAE does not support its license, it could be really compatible with a project licensed under " + spdxIdI18N.getString(projectLicense.toString()) + ". We apologize for the inconvenience.");
-                            tips.add("Whenever you plan to include a " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", try to use a component with a license supported by OpenLRAE instead if you want to analyse the project with OpenLRAE.");
+                            rootCauses.add("A " + dummyComponentBinding.getFullNameForDummyComponent() + ", could not be included in " + project.getFullName() + ". OpenLRAE does not support the license of the component yet and, therefore, it would be assumed as incompatible with " + spdxIdI18N.getString(projectLicense.toString()));
+                            warnings.add("Although a " + dummyComponentBinding.getFullNameForDummyComponent() + ", whould be handled as incompatible because OpenLRAE does not support its license, it could be really compatible with a project licensed under " + spdxIdI18N.getString(projectLicense.toString()) + ". We apologize for the inconvenience.");
+                            tips.add("Whenever you plan to include a " + dummyComponentBinding.getFullNameForDummyComponent() + ", try to use a component with a license supported by OpenLRAE instead if you want to analyse the project with OpenLRAE.");
                             riskExposure++;
                             riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
                             break;
@@ -209,9 +210,9 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                             // error.
                             riskExposure++;
                             riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
-                            rootCauses.add("A " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", could not be included in " + project.getFullName() + ", until a deep analysis. Its license would be compatible with a project released under " + spdxIdI18N.getString(projectLicense.toString()) + " except under certain circumstances.");
-                            warnings.add("Before including in the project a " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", carry out a deep analysis to be sure that your specific case would not be one of the exceptions in wich " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + " is incompatible with a project released under " + spdxIdI18N.getString(projectLicense.toString()) + " before using the component in the project.");
-                            tips.add("Instead of a " + ficticiousComponentBinding.getFullName() + ", try to choose another component fully compatible with a project licensed under " + spdxIdI18N.getString(projectLicense.toString()));
+                            rootCauses.add("A " + dummyComponentBinding.getFullNameForDummyComponent() + ", could not be included in " + project.getFullName() + ", until a deep analysis. Its license would be compatible with a project released under " + spdxIdI18N.getString(projectLicense.toString()) + " except under certain circumstances.");
+                            warnings.add("Before including in the project a " + dummyComponentBinding.getFullNameForDummyComponent() + ", carry out a deep analysis to be sure that your specific case would not be one of the exceptions in wich " + dummyComponentBinding.getFullNameForDummyComponent() + " is incompatible with a project released under " + spdxIdI18N.getString(projectLicense.toString()) + " before using the component in the project.");
+                            tips.add("Instead of a " + dummyComponentBinding.getFullName() + ", try to choose another component fully compatible with a project licensed under " + spdxIdI18N.getString(projectLicense.toString()));
                             break;
                         case MOSTLY_UNCOMPATIBLE:
                             // The analyzed ficticious component is incompatible
@@ -227,21 +228,21 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                             // overall project, because it is prone to error.
                             riskExposure++;
                             riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
-                            rootCauses.add("A " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", could not be included in " + project.getFullName() + ", until a deep analysis. Its license is incompatible wit a project released under " + spdxIdI18N.getString(projectLicense.toString()) + " except under certain circumstances.");
-                            warnings.add("Before including in the project a " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", carry out a deep analysis to be sure that your specific case would be one of the exceptions in wich " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + " is compatible with a project released under " + spdxIdI18N.getString(projectLicense.toString()) + " before using the component in the project.");
-                            tips.add("Instead of a " + ficticiousComponentBinding.getFullName() + ", try to choose another component fully compatible with a project licensed under " + spdxIdI18N.getString(projectLicense.toString()));
+                            rootCauses.add("A " + dummyComponentBinding.getFullNameForDummyComponent() + ", could not be included in " + project.getFullName() + ", until a deep analysis. Its license is incompatible wit a project released under " + spdxIdI18N.getString(projectLicense.toString()) + " except under certain circumstances.");
+                            warnings.add("Before including in the project a " + dummyComponentBinding.getFullNameForDummyComponent() + ", carry out a deep analysis to be sure that your specific case would be one of the exceptions in wich " + dummyComponentBinding.getFullNameForDummyComponent() + " is compatible with a project released under " + spdxIdI18N.getString(projectLicense.toString()) + " before using the component in the project.");
+                            tips.add("Instead of a " + dummyComponentBinding.getFullName() + ", try to choose another component fully compatible with a project licensed under " + spdxIdI18N.getString(projectLicense.toString()));
                             break;
                     }
                 }
                 if (compatibilityCounter.containsKey(SupportedCompatibilities.COMPATIBLE)) {
                     if (compatibilityCounter.get(SupportedCompatibilities.COMPATIBLE) == project.getLicenses().size()) {
-                        goodThings.add("A " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", could be included in " + this.project.getFullName() + ", because it would be natively compatible with project licenses.");
+                        goodThings.add("A " + dummyComponentBinding.getFullNameForDummyComponent() + ", could be included in " + this.project.getFullName() + ", because it would be natively compatible with project licenses.");
                     }
                 }
                 if (compatibilityCounter.containsKey(SupportedCompatibilities.FORCED_COMPATIBLE)) {
                     if (compatibilityCounter.get(SupportedCompatibilities.FORCED_COMPATIBLE) == project.getLicenses().size()) {
-                        warnings.add("Although a " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", could be used in the project, it could be a source of risk for the evolution of the project in the future because it would not be natively compatible.");
-                        goodThings.add("A " + ficticiousComponentBinding.getFullNameForFicticiousComponent() + ", could be included in " + this.project.getFullName() + ", because it would be forced to be fully compatible with project licenses.");
+                        warnings.add("Although a " + dummyComponentBinding.getFullNameForDummyComponent() + ", could be used in the project, it could be a source of risk for the evolution of the project in the future because it would not be natively compatible.");
+                        goodThings.add("A " + dummyComponentBinding.getFullNameForDummyComponent() + ", could be included in " + this.project.getFullName() + ", because it would be forced to be fully compatible with project licenses.");
                     }
                 }
             }
@@ -266,6 +267,10 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
 
     @Override
     public void onLanguageChange(LanguageChangeEvent languageChangeEvent) {
+        if (languageChangeEvent == null) {
+            logger.error("languajeEvent cannot be null");
+            throw new IllegalArgumentException("languajeEvent cannot be null");
+        }
         languageConfig.setLanguage(languageChangeEvent.getNewLanguage());
         // reload resource bundles
         spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
