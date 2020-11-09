@@ -103,21 +103,4 @@ public class SupportedCompatibilitiesTest {
         assertTrue(worksFine);
     }
 
-    /**
-     * Test of getDescriptionValue method, of class SupportedCompatibilities.
-     */
-    @Test
-    public void testGetDescriptionValue() {
-        System.out.println("getDescriptionValue");
-        boolean worksFine = true;
-        for (SupportedCompatibilities compatibility : SupportedCompatibilities.values()) {
-            if ((compatibility.getDescriptionValue() != null) && (!compatibility.getDescriptionValue().isEmpty())) {
-                worksFine &= true;
-            } else {
-                worksFine = false;
-            }
-        }
-        assertTrue(worksFine);
-    }
-
 }
