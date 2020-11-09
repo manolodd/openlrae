@@ -126,8 +126,8 @@ public class ComponentBinding implements ILanguageChangeListener {
      *
      * @return the name and license of the component.
      */
-    public String getFullNameForFicticiousComponent() {
-        return component.getName() + " (" + spdxIdI18N.getString(component.getLicense().toString()) + "), " + linksI18N.getString(link.toString());
+    public String getFullNameForDummyComponent() {
+        return component.getName() + " ("+spdxIdI18N.getString(component.getLicense().toString()) + "), " + linksI18N.getString(link.toString());
     }
 
     /**
