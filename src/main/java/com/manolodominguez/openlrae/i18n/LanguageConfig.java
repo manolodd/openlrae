@@ -15,6 +15,8 @@
  */
 package com.manolodominguez.openlrae.i18n;
 
+import static com.manolodominguez.openlrae.i18n.SupportedLanguages.DEFAULT_LANGUAGE;
+import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,6 +55,34 @@ public class LanguageConfig {
             throw new IllegalArgumentException("locale cannot be null");
         }
         language = newLanguage;
+    }
+
+    /**
+     * This method sets a new language for the instance to the value specified
+     * as a Locale by argument. Itr does some computations to know whether a
+     * language supported by OpenLRAE fits completely to the specified Locale, 
+     * partially, or the language has to be the default one.
+     *
+     * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
+     * @param newLocale a locale that represent the new language for the
+     * instance.
+     */
+    public void setLanguage(Locale newLocale) {
+        if (newLocale == null) {
+            throw new IllegalArgumentException("newLocale cannot be null");
+        }
+        SupportedLanguages newLanguage = SupportedLanguages.DEFAULT_LANGUAGE;
+        for (SupportedLanguages language : SupportedLanguages.values()) {
+            if (language.getLocale().getLanguage().equals(newLocale.getLanguage()) && language.getLocale().getCountry().equals(newLocale.getCountry())) {
+                newLanguage = language;
+            }
+        }
+        for (SupportedLanguages language : SupportedLanguages.values()) {
+            if (language.getLocale().getLanguage().equals(newLocale.getLanguage())) {
+                newLanguage = language;
+            }
+        }
+        setLanguage(newLanguage);
     }
 
     /**
