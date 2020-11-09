@@ -80,20 +80,4 @@ public class SupportedLinksTest {
         assertTrue(worksFine);
     }
 
-    /**
-     * Test of getDescriptionValue method, of class SupportedLinks.
-     */
-    @Test
-    public void testGetDescriptionValue() {
-        System.out.println("getDescriptionValue");
-        boolean worksFine = true;
-        for (SupportedLinks link : SupportedLinks.values()) {
-            if ((link.getDescriptionValue() != null) && (!link.getDescriptionValue().isEmpty())) {
-                worksFine &= true;
-            } else {
-                worksFine = false;
-            }
-        }
-        assertTrue(worksFine);
-    }
 }
