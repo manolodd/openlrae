@@ -25,18 +25,17 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedCompatibilities {
-    FORCED_COMPATIBLE(1.0f, "forced to be compatible with the project license(s)"),
-    COMPATIBLE(1.0f, "compatible with the project license(s)"),
-    MOSTLY_COMPATIBLE(0.67f, "compatible with the project license(s) except in some cases"),
-    MOSTLY_UNCOMPATIBLE(0.33f, "compatible with the project license(s) only in a few cases"),
-    UNCOMPATIBLE(0.0f, "incompatible with the project license(s)"),
-    UNKNOWN(0.0f, "impossible to analyse and then, is handled as incompatible with the project license(s)"),
-    UNSUPPORTED(0.0f, "not supported by Open LRAE yet and then, is handled as incompatible with the project license(s)");
+    FORCED_COMPATIBLE(1.0f),
+    COMPATIBLE(1.0f),
+    MOSTLY_COMPATIBLE(0.67f),
+    MOSTLY_UNCOMPATIBLE(0.33f),
+    UNCOMPATIBLE(0.0f),
+    UNKNOWN(0.0f),
+    UNSUPPORTED(0.0f);
 
     private Logger logger = LoggerFactory.getLogger(SupportedCompatibilities.class);
 
     private final float compatibilityValue;
-    private final String descriptionValue;
 
     /**
      * This is the constructor of the class. It defines SupportedCompatibilities
@@ -49,21 +48,12 @@ public enum SupportedCompatibilities {
      * compatibility.
      * @param descriptionValue A text describing the meaning of the enum item.
      */
-    private SupportedCompatibilities(float compatibilityValue, String descriptionValue) {
+    private SupportedCompatibilities(float compatibilityValue) {
         if ((compatibilityValue < MIN_RATIO) || (compatibilityValue > MAX_RATIO)) {
             logger.error("compatibilityValue has to be a float between 0.0f and 1.0");
             throw new IllegalArgumentException("compatibilityValue has to be a float between 0.0f and 1.0");
         }
-        if (descriptionValue == null) {
-            logger.error("descriptionValue cannot be null");
-            throw new IllegalArgumentException("descriptionValue cannot be null");
-        }
-        if (descriptionValue.isEmpty()) {
-            logger.error("descriptionValue cannot be blank");
-            throw new IllegalArgumentException("descriptionValue cannot be blank");
-        }
         this.compatibilityValue = compatibilityValue;
-        this.descriptionValue = descriptionValue;
     }
 
     /**
@@ -74,16 +64,6 @@ public enum SupportedCompatibilities {
     public float getCompatibilityValue() {
         return compatibilityValue;
     }
-
-    /**
-     * This method get the description of the enum item.
-     *
-     * @return the description of the enum item.
-     */
-    public String getDescriptionValue() {
-        return descriptionValue;
-    }
-
     private static final float MIN_RATIO = 0.0f;
     private static final float MAX_RATIO = 1.0f;
 }
