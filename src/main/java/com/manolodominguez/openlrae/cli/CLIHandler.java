@@ -40,6 +40,8 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedSpreadings;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedTrends;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCompatibilityFactory;
+import com.manolodominguez.openlrae.i18n.LanguageConfig;
+import com.manolodominguez.openlrae.i18n.Translations;
 import com.manolodominguez.openlrae.reporting.SupportedVerbosityLevel;
 import com.manolodominguez.openlrae.resourceslocators.FilesPaths;
 import java.io.BufferedReader;
@@ -49,6 +51,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import mjson.Json;
 import org.slf4j.LoggerFactory;
 
@@ -60,7 +64,9 @@ import org.slf4j.LoggerFactory;
 public class CLIHandler {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(CLIHandler.class);
-
+    private LanguageConfig languageConfig = new LanguageConfig(); 
+    ResourceBundle compatibilityI18N = Translations.SUPPORTED_COMPATIBILITIES.getResourceBundle(languageConfig.getLanguage().getLocale());
+            
     /**
      * This method is the constructor of the class. It creates a new instance of
      * CLIAnalyser and fills their attributes.
@@ -125,7 +131,7 @@ public class CLIHandler {
                         riskAnalysisEngine.addRiskAnalyser(riskAnalyser9);
                         riskAnalysisEngine.addRiskAnalyser(riskAnalyser10);
                         riskAnalysisEngine.addRiskAnalyser(riskAnalyser11);
-
+                        
                         // Run the license risks analysis and collect results
                         RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
 
@@ -190,13 +196,17 @@ public class CLIHandler {
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser3);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser4);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser5);
+
+        // Choose the desired language and continue adding risks analysers
+        riskAnalysisEngine.setLanguage(new Locale("es"));
+
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser6);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser7);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser8);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser9);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser10);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser11);
-
+        
         // Run the license risks analysis and collect results
         RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
 
@@ -245,7 +255,7 @@ public class CLIHandler {
         writeToConsole("");
         writeToConsole("=== Supported types of license compatibility (of components added to a project)");
         for (SupportedCompatibilities compatibility : SupportedCompatibilities.values()) {
-            writeToConsole("\t- " + compatibility.getDescriptionValue());
+            writeToConsole("\t- " + compatibilityI18N.getString(compatibility.toString()));
         }
         writeToConsole("");
         writeToConsole("=== Supported components weight (real use of the component in the project)");
