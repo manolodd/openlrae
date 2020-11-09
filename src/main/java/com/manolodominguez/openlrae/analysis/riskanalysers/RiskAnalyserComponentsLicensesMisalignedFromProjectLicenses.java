@@ -19,6 +19,10 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
+import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
+import com.manolodominguez.openlrae.i18n.SupportedLanguages;
+import com.manolodominguez.openlrae.i18n.Translations;
+import java.util.ResourceBundle;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -53,6 +57,8 @@ import org.slf4j.LoggerFactory;
  */
 public class RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses extends AbstractRiskAnalyser {
 
+    private ResourceBundle spdxIdI18N;
+    
     /**
      * This is the constructor of the class. It creates a new instance of
      * RiskAnalyserComponentLicensesMisalignedFromProjectLicenses.
@@ -63,6 +69,8 @@ public class RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses extends
         // Project is ckecked at superclass
         super(project, SupportedRisks.HAVING_COMPONENTS_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses.class);
+        ownI18N = Translations.RISK_ANALYSER_COMPONENTS_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES.getResourceBundle(languageConfig.getLanguage().getLocale());
+        spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -78,12 +86,12 @@ public class RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses extends
             for (SupportedLicenses projectLicense : project.getLicenses()) {
                 maxImpact += componentBinding.getWeight().getWeightValue();
                 if (componentBinding.getComponent().getLicense() == projectLicense) {
-                    goodThings.add(componentBinding.getFullName() + ", uses the same license as " + project.getFullName());
+                    goodThings.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_THE_SAME_LICENSE_AS") + " " + project.getFullName());
                 } else {
                     riskImpact += componentBinding.getWeight().getWeightValue();
                     riskExposure++;
-                    rootCauses.add(componentBinding.getFullName() + ", uses a license that is different than " + projectLicense.getSPDXIdentifier() + ", used by " + project.getFullName());
-                    tips.add("Try to replace " + componentBinding.getFullName() + ", by another component released under " + projectLicense.getSPDXIdentifier() + ", that is used by " + project.getFullName());
+                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_A_LICENSE_THAT_IS_DIFFERENT_THAN") + " " + spdxIdI18N.getString(projectLicense.toString()) + ", " + ownI18N.getString("THAT_IS_USED_BY") + " " + project.getFullName());
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_COMPONENT_RELEASED_UNDER") + " " + spdxIdI18N.getString(projectLicense.toString()) + ", " + ownI18N.getString("THAT_IS_USED_BY") + " " + project.getFullName());
                 }
             }
         }
@@ -91,16 +99,31 @@ public class RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses extends
         riskExposure /= (float) totalCases;
         riskImpact /= maxImpact;
         if (riskExposure > NO_RISK) {
-            tips.add("General tip: Try to use components with the same license than the project license as it is easier to handle license terms and therefore to avoid risks.");
-            tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start changing components that are root causes in more cases.");
-            tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start with those with higher level of contribution to the overall project.");
-            tips.add("General tip: If you own all right on a given risky component, try changing its license instead of looking for another component.");
+            tips.add(ownI18N.getString("GENERAL_TIP_1"));
+            tips.add(ownI18N.getString("GENERAL_TIP_2"));
+            tips.add(ownI18N.getString("GENERAL_TIP_3"));
+            tips.add(ownI18N.getString("GENERAL_TIP_4"));
             if (project.getLicenses().size() > ONE) {
-                tips.add("General tip: Try not to use more than a license for the project unless completely necessary. It makes very difficult to evolve the project without making mistakes when including a new component.");
+                tips.add(ownI18N.getString("GENERAL_TIP_5"));
             }
         }
     }
+
+    @Override
+    public void onLanguageChange(LanguageChangeEvent languageChangeEvent) {
+        if (languageChangeEvent == null) {
+            logger.error("languajeEvent cannot be null");
+            throw new IllegalArgumentException("languajeEvent cannot be null");
+        }
+        languageConfig.setLanguage(languageChangeEvent.getNewLanguage());
+        // reload resource bundles
+        ownI18N = Translations.RISK_ANALYSER_COMPONENTS_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES.getResourceBundle(languageConfig.getLanguage().getLocale());
+        spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
+        fireLanguageChangeEvent();
+    }
+
     private static final float NO_RISK = 0.0f;
     private static final float INITIAL_MAXIMPACT = 0.0f;
     private static final int ONE = 1;
+
 }
