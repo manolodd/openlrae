@@ -16,13 +16,7 @@
 package com.manolodominguez.openlrae.arquitecture;
 
 import com.manolodominguez.openlrae.analysis.LicenseRiskAnalysisEngine;
-import com.manolodominguez.openlrae.analysis.riskanalysers.AbstractRiskAnalyser;
-import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses;
-import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSetOfPotentialComponentsLicenses;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSetOfPotentialProjectLicenses;
-import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserObsoleteComponentsLicenses;
-import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserScarcelySpreadComponentsLicenses;
-import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserUnfashionableComponentsLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponentWeights;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
