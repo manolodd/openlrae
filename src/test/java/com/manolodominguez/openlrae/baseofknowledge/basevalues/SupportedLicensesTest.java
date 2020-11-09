@@ -100,40 +100,6 @@ public class SupportedLicensesTest {
     }
 
     /**
-     * Test of getSPDXIdentifier method, of class SupportedLicenses.
-     */
-    @Test
-    public void testGetSPDXIdentifier() {
-        System.out.println("getSPDXIdentifier");
-        boolean worksFine = true;
-        for (SupportedLicenses license : SupportedLicenses.values()) {
-            if ((license.getSPDXIdentifier() != null) && (!license.getSPDXIdentifier().isEmpty())) {
-                worksFine &= true;
-            } else {
-                worksFine = false;
-            }
-        }
-        assertTrue(worksFine);
-    }
-
-    /**
-     * Test of getSPDXFullName method, of class SupportedLicenses.
-     */
-    @Test
-    public void testGetSPDXFullName() {
-        System.out.println("getSPDXFullName");
-        boolean worksFine = true;
-        for (SupportedLicenses license : SupportedLicenses.values()) {
-            if ((license.getSPDXFullName()!= null) && (!license.getSPDXFullName().isEmpty())) {
-                worksFine &= true;
-            } else {
-                worksFine = false;
-            }
-        }
-        assertTrue(worksFine);
-    }
-
-    /**
      * Test of getLicensesForProjects method, of class SupportedLicenses.
      */
     @Test
