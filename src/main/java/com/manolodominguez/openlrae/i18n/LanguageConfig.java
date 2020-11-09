@@ -60,7 +60,7 @@ public class LanguageConfig {
     /**
      * This method sets a new language for the instance to the value specified
      * as a Locale by argument. Itr does some computations to know whether a
-     * language supported by OpenLRAE fits completely to the specified Locale, 
+     * language supported by OpenLRAE fits completely to the specified Locale,
      * partially, or the language has to be the default one.
      *
      * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
