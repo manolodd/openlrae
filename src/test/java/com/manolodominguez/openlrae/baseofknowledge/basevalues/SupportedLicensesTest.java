@@ -100,23 +100,6 @@ public class SupportedLicensesTest {
     }
 
     /**
-     * Test of getDescriptionValue method, of class SupportedLicenses.
-     */
-    @Test
-    public void testGetDescriptionValue() {
-        System.out.println("getDescriptionValue");
-        boolean worksFine = true;
-        for (SupportedComponentWeights weight : SupportedComponentWeights.values()) {
-            if ((weight.getDescriptionValue() != null) && (!weight.getDescriptionValue().isEmpty())) {
-                worksFine &= true;
-            } else {
-                worksFine = false;
-            }
-        }
-        assertTrue(worksFine);
-    }
-
-    /**
      * Test of getSPDXIdentifier method, of class SupportedLicenses.
      */
     @Test

@@ -99,21 +99,4 @@ public class SupportedComponentWeightsTest {
         assertTrue(worksFine);
     }
 
-    /**
-     * Test of getDescriptionValue method, of class SupportedComponentWeights.
-     */
-    @Test
-    public void testGetDescriptionValue() {
-        System.out.println("getDescriptionValue");
-        boolean worksFine = true;
-        for (SupportedComponentWeights weight : SupportedComponentWeights.values()) {
-            if ((weight.getDescriptionValue() != null) && (!weight.getDescriptionValue().isEmpty())) {
-                worksFine &= true;
-            } else {
-                worksFine = false;
-            }
-        }
-        assertTrue(worksFine);
-    }
-
 }
