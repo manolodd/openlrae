@@ -46,6 +46,7 @@ public class ComponentBinding implements ILanguageChangeListener {
     private SupportedLinks link;
     private LanguageConfig languageConfig;
     private ResourceBundle spdxIdI18N;
+    private ResourceBundle linksI18N;
 
     /**
      * This is the constuctor of the class. It creates a new instance of
@@ -76,6 +77,7 @@ public class ComponentBinding implements ILanguageChangeListener {
         this.weight = weight;
         languageConfig = new LanguageConfig();
         spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
+        linksI18N = Translations.SUPPORTED_LINKS.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -115,7 +117,7 @@ public class ComponentBinding implements ILanguageChangeListener {
      * @return the name, version and license of the component.
      */
     public String getFullName() {
-        return component.getName() + "-" + component.getVersion() + " (" + spdxIdI18N.getString(component.getLicense().toString()) + "), " + link.getDescriptionValue();
+        return component.getName() + "-" + component.getVersion() + " (" + spdxIdI18N.getString(component.getLicense().toString()) + "), " + linksI18N.getString(link.toString());
     }
 
     /**
@@ -125,7 +127,7 @@ public class ComponentBinding implements ILanguageChangeListener {
      * @return the name and license of the component.
      */
     public String getFullNameForFicticiousComponent() {
-        return component.getName() + " (" + spdxIdI18N.getString(component.getLicense().toString()) + "), " + link.getDescriptionValue();
+        return component.getName() + " (" + spdxIdI18N.getString(component.getLicense().toString()) + "), " + linksI18N.getString(link.toString());
     }
 
     /**
@@ -146,5 +148,6 @@ public class ComponentBinding implements ILanguageChangeListener {
         languageConfig.setLanguage(languageChangeEvent.getNewLanguage());
         // Reload resource bundles
         spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
+        linksI18N = Translations.SUPPORTED_LINKS.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 }
