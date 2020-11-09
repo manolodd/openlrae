@@ -64,10 +64,11 @@ import org.slf4j.LoggerFactory;
 public class CLIHandler {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(CLIHandler.class);
-    private LanguageConfig languageConfig = new LanguageConfig(); 
+    private LanguageConfig languageConfig = new LanguageConfig();
     private ResourceBundle compatibilityI18N = Translations.SUPPORTED_COMPATIBILITIES.getResourceBundle(languageConfig.getLanguage().getLocale());
     private ResourceBundle weightsI18N = Translations.SUPPORTED_COMPONENTS_WEIGHTS.getResourceBundle(languageConfig.getLanguage().getLocale());
-            
+    private ResourceBundle spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
+
     /**
      * This method is the constructor of the class. It creates a new instance of
      * CLIAnalyser and fills their attributes.
@@ -132,7 +133,7 @@ public class CLIHandler {
                         riskAnalysisEngine.addRiskAnalyser(riskAnalyser9);
                         riskAnalysisEngine.addRiskAnalyser(riskAnalyser10);
                         riskAnalysisEngine.addRiskAnalyser(riskAnalyser11);
-                        
+
                         // Run the license risks analysis and collect results
                         RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
 
@@ -207,7 +208,7 @@ public class CLIHandler {
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser9);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser10);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser11);
-        
+
         // Run the license risks analysis and collect results
         RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
 
@@ -236,12 +237,12 @@ public class CLIHandler {
         writeToConsole("");
         writeToConsole("=== Supported licenses for components");
         for (SupportedLicenses license : SupportedLicenses.getLicensesForComponents()) {
-            writeToConsole("\t- " + license.getSPDXIdentifier());
+            writeToConsole("\t- " + spdxIdI18N.getString(license.toString()));
         }
         writeToConsole("");
         writeToConsole("=== Supported licenses for projects");
         for (SupportedLicenses license : SupportedLicenses.getLicensesForProjects()) {
-            writeToConsole("\t- " + license.getSPDXIdentifier());
+            writeToConsole("\t- " + spdxIdI18N.getString(license.toString()));
         }
         writeToConsole("");
         writeToConsole("=== Supported types of links (of components linked to a project)");
@@ -289,7 +290,7 @@ public class CLIHandler {
                     for (SupportedLicenses componentLicense : SupportedLicenses.getLicensesForComponents()) {
                         if (compatibilities.getCompatibilityOf(componentLicense, projectLicense, link, redistribution) != SupportedCompatibilities.UNSUPPORTED) {
                             i++;
-                            writeToConsole(i + "- Component: " + componentLicense.getSPDXIdentifier() + " (" + link + ") --> Project: " + projectLicense.getSPDXIdentifier() + " (" + redistribution + ")");
+                            writeToConsole(i + "- Component: " + spdxIdI18N.getString(componentLicense.toString()) + " (" + link + ") --> Project: " + spdxIdI18N.getString(projectLicense.toString()) + " (" + redistribution + ")");
                         }
                     }
                 }
@@ -305,7 +306,7 @@ public class CLIHandler {
                     for (SupportedLicenses componentLicense : SupportedLicenses.values()) {
                         if (compatibilities.getCompatibilityOf(componentLicense, projectLicense, link, redistribution) == SupportedCompatibilities.UNSUPPORTED) {
                             j++;
-                            writeToConsole(j + "- Component: " + componentLicense.getSPDXIdentifier() + " (" + link + ") --> Project: " + projectLicense.getSPDXIdentifier() + " (" + redistribution + ")");
+                            writeToConsole(j + "- Component: " + spdxIdI18N.getString(componentLicense.toString()) + " (" + link + ") --> Project: " + spdxIdI18N.getString(projectLicense.toString()) + " (" + redistribution + ")");
                         }
                     }
                 }
