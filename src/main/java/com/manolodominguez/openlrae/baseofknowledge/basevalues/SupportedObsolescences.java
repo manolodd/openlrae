@@ -26,15 +26,14 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedObsolescences {
-    UPDATED(0.0f, "in its latest version."),
-    NEAR_UPDATED(0.33f, "not in its latest version but it is nearer of the latest than of the first version."),
-    NEAR_OUTDATED(0.67f, "not in its latest version but it is nearer of the first than of the latest version."),
-    OUTDATED(1.0f, "in its first version and there are more modern versions of that license.");
+    UPDATED(0.0f),
+    NEAR_UPDATED(0.33f),
+    NEAR_OUTDATED(0.67f),
+    OUTDATED(1.0f);
 
     private Logger logger = LoggerFactory.getLogger(SupportedObsolescences.class);
 
     private final float obsolescenceValue;
-    private final String descriptionValue;
 
     /**
      * This is the constructor of the class. It defines SupportedObsolescences
@@ -47,21 +46,12 @@ public enum SupportedObsolescences {
      * the component is using the most outdated one.
      * @param descriptionValue A text describing the meaning of the enum item.
      */
-    private SupportedObsolescences(float obsolescenceValue, String descriptionValue) {
+    private SupportedObsolescences(float obsolescenceValue) {
         if ((obsolescenceValue < MIN_RATIO) || (obsolescenceValue > MAX_RATIO)) {
             logger.error("obsolescenceValue has to be a float between 0.0f and 1.0");
             throw new IllegalArgumentException("obsolescenceValue has to be a float between 0.0f and 1.0");
         }
-        if (descriptionValue == null) {
-            logger.error("descriptionValue cannot be null");
-            throw new IllegalArgumentException("descriptionValue cannot be null");
-        }
-        if (descriptionValue.isEmpty()) {
-            logger.error("descriptionValue cannot be blank");
-            throw new IllegalArgumentException("descriptionValue cannot be blank");
-        }
         this.obsolescenceValue = obsolescenceValue;
-        this.descriptionValue = descriptionValue;
     }
 
     /**
@@ -71,15 +61,6 @@ public enum SupportedObsolescences {
      */
     public float getObsolescenceValue() {
         return obsolescenceValue;
-    }
-
-    /**
-     * This method get the description of the enum item.
-     *
-     * @return the description of the enum item.
-     */
-    public String getDescriptionValue() {
-        return descriptionValue;
     }
 
     private static final float MIN_RATIO = 0.0f;
