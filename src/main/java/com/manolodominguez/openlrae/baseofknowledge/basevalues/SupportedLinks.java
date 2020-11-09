@@ -26,36 +26,8 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedLinks {
-    STATIC("linked statically"),
-    DYNAMIC("linked dynamically");
+    STATIC,
+    DYNAMIC;
 
     private Logger logger = LoggerFactory.getLogger(SupportedLinks.class);
-
-    private final String descriptionValue;
-
-    /**
-     * This is the constructor of the class. It defines SupportedLinks enum.
-     *
-     * @param descriptionValue A text describing the meaning of the enum item.
-     */
-    private SupportedLinks(String descriptionValue) {
-        if (descriptionValue == null) {
-            logger.error("descriptionValue cannot be null");
-            throw new IllegalArgumentException("descriptionValue cannot be null");
-        }
-        if (descriptionValue.isEmpty()) {
-            logger.error("descriptionValue cannot be blank");
-            throw new IllegalArgumentException("descriptionValue cannot be blank");
-        }
-        this.descriptionValue = descriptionValue;
-    }
-
-    /**
-     * This method get the description of the enum item.
-     *
-     * @return the description of the enum item.
-     */
-    public String getDescriptionValue() {
-        return descriptionValue;
-    }
 }
