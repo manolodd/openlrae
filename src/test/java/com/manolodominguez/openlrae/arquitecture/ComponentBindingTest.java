@@ -69,7 +69,7 @@ public class ComponentBindingTest {
         assertEquals(link, instance.getLinkType());
         assertEquals(weight, instance.getWeight());
         assertEquals("ComponentName-ComponentVersion (Artistic-2.0), linked dynamically", instance.getFullName());
-        assertEquals("ComponentName (Artistic-2.0), linked dynamically", instance.getFullNameForFicticiousComponent());
+        assertEquals("ComponentName (Artistic-2.0), linked dynamically", instance.getFullNameForDummyComponent());
     }
 
     /**
@@ -170,7 +170,7 @@ public class ComponentBindingTest {
         System.out.println("getFullNameForFicticiousComponent");
         Component component = new Component("ComponentName", "ComponentVersion", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding instance = new ComponentBinding(component, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
-        assertEquals("ComponentName (Artistic-2.0), linked dynamically", instance.getFullNameForFicticiousComponent());
+        assertEquals("ComponentName (Artistic-2.0), linked dynamically", instance.getFullNameForDummyComponent());
     }
 
     /**
