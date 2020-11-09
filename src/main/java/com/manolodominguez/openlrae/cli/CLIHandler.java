@@ -69,6 +69,7 @@ public class CLIHandler {
     private ResourceBundle weightsI18N = Translations.SUPPORTED_COMPONENTS_WEIGHTS.getResourceBundle(languageConfig.getLanguage().getLocale());
     private ResourceBundle spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
     private ResourceBundle linksI18N = Translations.SUPPORTED_LINKS.getResourceBundle(languageConfig.getLanguage().getLocale());
+    private ResourceBundle obsolescencesI18N = Translations.SUPPORTED_OBSOLESCENCES.getResourceBundle(languageConfig.getLanguage().getLocale());
 
     /**
      * This method is the constructor of the class. It creates a new instance of
@@ -268,7 +269,7 @@ public class CLIHandler {
         writeToConsole("");
         writeToConsole("=== Supported licenses obsolescence (measures how old is the license version)");
         for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {
-            writeToConsole("\t- " + obsolescence.getDescriptionValue());
+            writeToConsole("\t- " + obsolescencesI18N.getString(obsolescence.toString()));
         }
         writeToConsole("");
         writeToConsole("=== Supported licenses spreading (measures how many third party project use the same license NOW)");
