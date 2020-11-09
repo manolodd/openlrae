@@ -33,8 +33,9 @@ public enum Translations {
     RISK_ANALYSER_COMPONENTS_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES("RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses"),
     SUPPORTED_COMPONENTS_WEIGHTS("SupportedComponentWeights"),
     SUPPORTED_COMPATIBILITIES("SupportedCompatibilities"),
+    SUPPORTED_LICENSES_SPDX_FULL("SupportedCompatibilitiesSPDXFull"),
     SUPPORTED_LICENSES_SPDX_ID("SupportedCompatibilitiesSPDXId"),
-    SUPPORTED_LICENSES_SPDX_FULL("SupportedCompatibilitiesSPDXFull");
+    SUPPORTED_LINKS("SupportedLinks");
 
     private Logger logger = LoggerFactory.getLogger(Translations.class);
 
