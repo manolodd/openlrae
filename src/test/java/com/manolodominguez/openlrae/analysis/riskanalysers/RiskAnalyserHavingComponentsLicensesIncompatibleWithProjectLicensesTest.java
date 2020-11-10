@@ -62,7 +62,7 @@ public class RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses
         Project project = null;
         // Should throw an exception because project is null
         assertThrows(IllegalArgumentException.class, () -> {
-            new RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses(project);
+            new RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses(project);
         });
     }
     
@@ -75,7 +75,7 @@ public class RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses instance = new RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses(project);
+        RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses instance = new RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses(project);
         assertEquals(SupportedRisks.HAVING_COMPONENTS_LICENSES_INCOMPATIBLE_WITH_PROJECT_LICENSES, instance.handledRiskType);
     }
     
@@ -88,7 +88,7 @@ public class RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses instance = new RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses(project);
+        RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses instance = new RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result1 = instance.getRiskAnalisysResult();
         RiskAnalysisResult result2 = instance.getRiskAnalisysResult();
@@ -107,7 +107,7 @@ public class RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));
-        RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses instance = new RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicenses(project);
+        RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses instance = new RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses(project);
         // This calls runAnalyser method of instance
         RiskAnalysisResult result = instance.getRiskAnalisysResult();
         assertNotNull(result);

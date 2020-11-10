@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
  */
 public enum Translations {
     PROJECT("Project"),
+    RISK_ANALYSER_COMPONENTS_LICENSES_INCOMPATIBLE_WITH_PROJECT_LICENSES("RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses"),
     RISK_ANALYSER_COMPONENTS_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES("RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses"),
     SUPPORTED_COMPONENTS_WEIGHTS("SupportedComponentWeights"),
     SUPPORTED_COMPATIBILITIES("SupportedCompatibilities"),
