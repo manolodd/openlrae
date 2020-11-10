@@ -99,20 +99,4 @@ public class SupportedSpreadingsTest {
         assertTrue(worksFine);
     }
 
-    /**
-     * Test of getDescriptionValue method, of class SupportedSpreadings.
-     */
-    @Test
-    public void testGetDescriptionValue() {
-        System.out.println("getDescriptionValue");
-        boolean worksFine = true;
-        for (SupportedSpreadings spreading : SupportedSpreadings.values()) {
-            if ((spreading.getDescriptionValue() != null) && (!spreading.getDescriptionValue().isEmpty())) {
-                worksFine &= true;
-            } else {
-                worksFine = false;
-            }
-        }
-        assertTrue(worksFine);
-    }
 }

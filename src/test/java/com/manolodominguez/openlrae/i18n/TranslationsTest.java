@@ -55,8 +55,8 @@ public class TranslationsTest {
     @Test
     public void testItemsNumber() {
         System.out.println("items number");
-        // Currently there are 10 resource bundles defined in enum
-        assertEquals(10, Translations.values().length);
+        // Currently there are 11 resource bundles defined in enum
+        assertEquals(11, Translations.values().length);
     }
 
     /**
@@ -80,6 +80,7 @@ public class TranslationsTest {
                 case SUPPORTED_OBSOLESCENCES:
                 case SUPPORTED_REDISTRIBUTIONS:
                 case SUPPORTED_RISKS:
+                case SUPPORTED_SPREADINGS:
                     worksFine &= true;
                     break;
                 default:
