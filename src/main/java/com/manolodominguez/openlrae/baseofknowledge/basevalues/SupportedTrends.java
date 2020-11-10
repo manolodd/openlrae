@@ -26,15 +26,14 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedTrends {
-    UNFASHIONABLE(1.0f, "is unfashionable"),
-    NEAR_UNFASHIONABLE(0.67f, "is almost unfashionable"),
-    NEAR_TRENDY(0.33f, "is almost trendy"),
-    TRENDY(0.0f, "is trendy");
+    UNFASHIONABLE(1.0f),
+    NEAR_UNFASHIONABLE(0.67f),
+    NEAR_TRENDY(0.33f),
+    TRENDY(0.0f);
 
     private Logger logger = LoggerFactory.getLogger(SupportedTrends.class);
 
     private final float trendValue;
-    private final String descriptionValue;
 
     /**
      * This is the constructor of the class. It defines SupportedTrends enum.
@@ -44,23 +43,13 @@ public enum SupportedTrends {
      * 0.0 a value that represents that a given license is unfasionable (and its
      * use is declining) and 1.0 a value that represents that the license is
      * trendy (and its use is growing).
-     * @param descriptionValue A text describing the meaning of the enum item.
      */
-    private SupportedTrends(float trendValue, String descriptionValue) {
+    private SupportedTrends(float trendValue) {
         if ((trendValue < MIN_RATIO) || (trendValue > MAX_RATIO)) {
             logger.error("trendValue has to be a float between 0.0f and 1.0");
             throw new IllegalArgumentException("trendValue has to be a float between 0.0f and 1.0");
         }
-        if (descriptionValue == null) {
-            logger.error("descriptionValue cannot be null");
-            throw new IllegalArgumentException("descriptionValue cannot be null");
-        }
-        if (descriptionValue.isEmpty()) {
-            logger.error("descriptionValue cannot be blank");
-            throw new IllegalArgumentException("descriptionValue cannot be blank");
-        }
         this.trendValue = trendValue;
-        this.descriptionValue = descriptionValue;
     }
 
     /**
@@ -70,15 +59,6 @@ public enum SupportedTrends {
      */
     public float getTrendValue() {
         return trendValue;
-    }
-
-    /**
-     * This method get the description of the enum item.
-     *
-     * @return the description of the enum item.
-     */
-    public String getDescriptionValue() {
-        return descriptionValue;
     }
 
     private static final float MIN_RATIO = 0.0f;
