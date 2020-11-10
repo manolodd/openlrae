@@ -36,7 +36,8 @@ public enum Translations {
     SUPPORTED_LICENSES_SPDX_FULL("SupportedCompatibilitiesSPDXFull"),
     SUPPORTED_LICENSES_SPDX_ID("SupportedCompatibilitiesSPDXId"),
     SUPPORTED_LINKS("SupportedLinks"),
-    SUPPORTED_OBSOLESCENCES("SupportedObsolescences");
+    SUPPORTED_OBSOLESCENCES("SupportedObsolescences"),
+    SUPPORTED_REDISTRIBUTIONS("SupportedRedistributions");
 
     private Logger logger = LoggerFactory.getLogger(Translations.class);
 
