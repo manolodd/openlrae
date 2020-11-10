@@ -71,6 +71,7 @@ public class CLIHandler {
     private ResourceBundle linksI18N = Translations.SUPPORTED_LINKS.getResourceBundle(languageConfig.getLanguage().getLocale());
     private ResourceBundle obsolescencesI18N = Translations.SUPPORTED_OBSOLESCENCES.getResourceBundle(languageConfig.getLanguage().getLocale());
     private ResourceBundle redistributionsI18N = Translations.SUPPORTED_REDISTRIBUTIONS.getResourceBundle(languageConfig.getLanguage().getLocale());
+    private ResourceBundle risksI18N = Translations.SUPPORTED_RISKS.getResourceBundle(languageConfig.getLanguage().getLocale());
 
     /**
      * This method is the constructor of the class. It creates a new instance of
@@ -235,7 +236,7 @@ public class CLIHandler {
         writeToConsole("");
         writeToConsole("=== Supported risks analysis");
         for (SupportedRisks risk : SupportedRisks.values()) {
-            writeToConsole("\t- " + risk.getDescriptionValue());
+            writeToConsole("\t- " + risksI18N.getString(risk.toString()));
         }
         writeToConsole("");
         writeToConsole("=== Supported licenses for components");

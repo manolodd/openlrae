@@ -212,6 +212,7 @@ public class ReportsFactory {
         ResourceBundle spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
         ResourceBundle spdxFullI18N = Translations.SUPPORTED_LICENSES_SPDX_FULL.getResourceBundle(languageConfig.getLanguage().getLocale());
         ResourceBundle redistributionsI18N = Translations.SUPPORTED_REDISTRIBUTIONS.getResourceBundle(languageConfig.getLanguage().getLocale());
+        ResourceBundle risksI18N = Translations.SUPPORTED_RISKS.getResourceBundle(languageConfig.getLanguage().getLocale());
         String report = EMPTY_REPORT_AS_PLAIN_TEXT;
         report += "**************************************************\n";
         report += "Project name: " + project.getName() + "\n";
@@ -229,7 +230,7 @@ public class ReportsFactory {
         }
         report += "### Risk analysis\n";
         for (RiskAnalysisResult riskAnalysisResult : resultSet) {
-            report += addTab(1) + "=> " + riskAnalysisResult.getRiskType().getDescriptionValue() + "\n";
+            report += addTab(1) + "=> " + risksI18N.getString(riskAnalysisResult.getRiskType().toString()) + "\n";
             report += addTab(2) + "*** Risk = " + riskAnalysisResult.getRiskValue() + " (Exposure = " + riskAnalysisResult.getRiskExposure() + ", Impact = " + riskAnalysisResult.getRiskImpact() + ")\n";
             if ((verbosity == SupportedVerbosityLevel.RICH) || (verbosity == SupportedVerbosityLevel.DETAILED)) {
                 report += addTab(2) + "*** Root causes\n";
