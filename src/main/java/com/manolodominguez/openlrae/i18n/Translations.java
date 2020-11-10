@@ -39,7 +39,8 @@ public enum Translations {
     SUPPORTED_OBSOLESCENCES("SupportedObsolescences"),
     SUPPORTED_REDISTRIBUTIONS("SupportedRedistributions"),
     SUPPORTED_RISKS("SupportedRisks"),
-    SUPPORTED_SPREADINGS("SupportedSpreadings");
+    SUPPORTED_SPREADINGS("SupportedSpreadings"),
+    SUPPORTED_TRENDS("SupportedTrends");
 
     private Logger logger = LoggerFactory.getLogger(Translations.class);
 
