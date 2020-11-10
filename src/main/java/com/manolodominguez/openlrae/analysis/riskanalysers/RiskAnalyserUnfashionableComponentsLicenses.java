@@ -21,6 +21,8 @@ import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesTr
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
+import com.manolodominguez.openlrae.i18n.Translations;
+import java.util.ResourceBundle;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -54,6 +56,8 @@ import org.slf4j.LoggerFactory;
  */
 public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAnalyser {
 
+    private ResourceBundle trendsI18N;
+    
     /**
      * This is the constructor of the class. It creates a new instance of
      * RiskAnalyserUnfashionableComponentsLicenses.
@@ -64,6 +68,7 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
         // Project is ckecked at superclass
         super(project, SupportedRisks.HAVING_UNFASHIONABLE_COMPONENTS_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserUnfashionableComponentsLicenses.class);
+        trendsI18N = Translations.SUPPORTED_TRENDS.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -84,7 +89,7 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
                     // (is being used more and more in third party projects). 
                     // Therefore there is not unfashionable license risk in this
                     // case. 
-                    goodThings.add(componentBinding.getFullName() + " uses a license that " + trend.getDescriptionValue());
+                    goodThings.add(componentBinding.getFullName() + " uses a license that " + trendsI18N.getString(trend.toString()));
                     break;
                 case NEAR_TRENDY:
                     // The analyzed component is using a license that is not 
@@ -93,7 +98,7 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
                     // unfashionable license risk in this case. 
                     riskImpact += (trend.getTrendValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + " uses a license that " + trend.getDescriptionValue());
+                    rootCauses.add(componentBinding.getFullName() + " uses a license that " + trendsI18N.getString(trend.toString()));
                     tips.add("Try to replace " + componentBinding.getFullName() + ", by another component with a more trendy license.");
                     break;
                 case NEAR_UNFASHIONABLE:
@@ -103,7 +108,7 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
                     // license risk in this case. 
                     riskImpact += (trend.getTrendValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + " uses a license that " + trend.getDescriptionValue());
+                    rootCauses.add(componentBinding.getFullName() + " uses a license that " + trendsI18N.getString(trend.toString()));
                     tips.add("Try to replace " + componentBinding.getFullName() + ", by another component with a more trendy license.");
                     break;
                 case UNFASHIONABLE:
@@ -113,7 +118,7 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
                     // there is unfashionable license risk in this case. 
                     riskImpact += (trend.getTrendValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + " uses a license that " + trend.getDescriptionValue());
+                    rootCauses.add(componentBinding.getFullName() + " uses a license that " + trendsI18N.getString(trend.toString()));
                     tips.add("Try to replace " + componentBinding.getFullName() + ", by another component with a more trendy license.");
                     break;
             }
@@ -140,6 +145,7 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
         }
         languageConfig.setLanguage(languageChangeEvent.getNewLanguage());
         // reload resource bundles
+        trendsI18N = Translations.SUPPORTED_TRENDS.getResourceBundle(languageConfig.getLanguage().getLocale());
         fireLanguageChangeEvent();
     }
 

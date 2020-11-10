@@ -73,6 +73,7 @@ public class CLIHandler {
     private ResourceBundle redistributionsI18N = Translations.SUPPORTED_REDISTRIBUTIONS.getResourceBundle(languageConfig.getLanguage().getLocale());
     private ResourceBundle risksI18N = Translations.SUPPORTED_RISKS.getResourceBundle(languageConfig.getLanguage().getLocale());
     private ResourceBundle spreadingsI18N = Translations.SUPPORTED_SPREADINGS.getResourceBundle(languageConfig.getLanguage().getLocale());
+    private ResourceBundle trendsI18N = Translations.SUPPORTED_TRENDS.getResourceBundle(languageConfig.getLanguage().getLocale());
 
     /**
      * This method is the constructor of the class. It creates a new instance of
@@ -285,7 +286,7 @@ public class CLIHandler {
         writeToConsole("");
         writeToConsole("=== Supported licenses trend (measures whether the use of the license is growing NOW or declining)");
         for (SupportedTrends trend : SupportedTrends.values()) {
-            writeToConsole("\t- " + trend.getDescriptionValue());
+            writeToConsole("\t- " + trendsI18N.getString(trend.toString()));
         }
         writeToConsole("");
         writeToConsole("=== Supported license compatibilities combination (can be analysed by OpenLRAE right now)");
