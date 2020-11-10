@@ -27,22 +27,22 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author manolodd
  */
 public class SupportedRedistributionsTest {
-    
+
     public SupportedRedistributionsTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
@@ -75,23 +75,6 @@ public class SupportedRedistributionsTest {
                 default:
                     worksFine = false;
                     break;
-            }
-        }
-        assertTrue(worksFine);
-    }
-
-    /**
-     * Test of getDescriptionValue method, of class SupportedRedistributions.
-     */
-    @Test
-    public void testGetDescriptionValue() {
-        System.out.println("getDescriptionValue");
-        boolean worksFine = true;
-        for (SupportedRedistributions redistribution : SupportedRedistributions.values()) {
-            if ((redistribution.getDescriptionValue() != null) && (!redistribution.getDescriptionValue().isEmpty())) {
-                worksFine &= true;
-            } else {
-                worksFine = false;
             }
         }
         assertTrue(worksFine);
