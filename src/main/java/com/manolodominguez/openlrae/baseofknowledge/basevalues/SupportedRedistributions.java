@@ -26,37 +26,9 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedRedistributions {
-    NONE("is not going to be redistributed in any way"),
-    SOFTWARE_PACKAGE_OR_SAAS("is going to be redistributed as a software package (binary or source code) or as an online service");
+    NONE,
+    SOFTWARE_PACKAGE_OR_SAAS;
 
     private Logger logger = LoggerFactory.getLogger(SupportedRedistributions.class);
-    
-    private final String descriptionValue;
 
-    /**
-     * This is the constructor of the class. It defines SupportedRedistributions
-     * enum.
-     *
-     * @param descriptionValue A text describing the meaning of the enum item.
-     */
-    private SupportedRedistributions(String descriptionValue) {
-        if (descriptionValue == null) {
-            logger.error("descriptionValue cannot be null");
-            throw new IllegalArgumentException("descriptionValue cannot be null");
-        }
-        if (descriptionValue.isEmpty()) {
-            logger.error("descriptionValue cannot be blank");
-            throw new IllegalArgumentException("descriptionValue cannot be blank");
-        }
-        this.descriptionValue = descriptionValue;
-    }
-
-    /**
-     * This method get the description of the enum item.
-     *
-     * @return the description of the enum item.
-     */
-    public String getDescriptionValue() {
-        return descriptionValue;
-    }
 }
