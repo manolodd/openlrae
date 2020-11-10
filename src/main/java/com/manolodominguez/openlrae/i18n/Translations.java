@@ -38,7 +38,8 @@ public enum Translations {
     SUPPORTED_LINKS("SupportedLinks"),
     SUPPORTED_OBSOLESCENCES("SupportedObsolescences"),
     SUPPORTED_REDISTRIBUTIONS("SupportedRedistributions"),
-    SUPPORTED_RISKS("SupportedRisks");
+    SUPPORTED_RISKS("SupportedRisks"),
+    SUPPORTED_SPREADINGS("SupportedSpreadings");
 
     private Logger logger = LoggerFactory.getLogger(Translations.class);
 
