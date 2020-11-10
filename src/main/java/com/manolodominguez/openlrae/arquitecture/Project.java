@@ -55,6 +55,7 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
     private LanguageConfig languageConfig;
     protected ResourceBundle ownI18N;
     private ResourceBundle spdxIdI18N;
+    private ResourceBundle redistributionsI18N;
 
     /**
      * This is the constuctor of the class.It creates a new instance of Project.
@@ -127,6 +128,7 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
         languageConfig = new LanguageConfig();
         ownI18N = Translations.PROJECT.getResourceBundle(languageConfig.getLanguage().getLocale());
         spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
+        redistributionsI18N = Translations.SUPPORTED_REDISTRIBUTIONS.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -159,6 +161,7 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
         languageConfig = new LanguageConfig();
         ownI18N = Translations.PROJECT.getResourceBundle(languageConfig.getLanguage().getLocale());
         spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
+        redistributionsI18N = Translations.SUPPORTED_REDISTRIBUTIONS.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -185,6 +188,7 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
         languageConfig = new LanguageConfig();
         ownI18N = Translations.PROJECT.getResourceBundle(languageConfig.getLanguage().getLocale());
         spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
+        redistributionsI18N = Translations.SUPPORTED_REDISTRIBUTIONS.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -358,7 +362,7 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
             fullName += spdxIdI18N.getString(projectLicense.toString()) + ", ";
         }
         fullName = fullName.substring(ZERO, fullName.length() - 2);
-        fullName += "), " + ownI18N.getString("THAT") + " " + redistribution.getDescriptionValue();
+        fullName += "), " + ownI18N.getString("THAT") + " " + redistributionsI18N.getString(redistribution.toString());
         return fullName;
     }
 
@@ -440,6 +444,7 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
         // reload resource bundles
         ownI18N = Translations.PROJECT.getResourceBundle(languageConfig.getLanguage().getLocale());
         spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
+        redistributionsI18N = Translations.SUPPORTED_REDISTRIBUTIONS.getResourceBundle(languageConfig.getLanguage().getLocale());
         fireLanguageChangeEvent();
     }
 

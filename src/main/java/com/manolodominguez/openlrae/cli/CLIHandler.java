@@ -70,6 +70,7 @@ public class CLIHandler {
     private ResourceBundle spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
     private ResourceBundle linksI18N = Translations.SUPPORTED_LINKS.getResourceBundle(languageConfig.getLanguage().getLocale());
     private ResourceBundle obsolescencesI18N = Translations.SUPPORTED_OBSOLESCENCES.getResourceBundle(languageConfig.getLanguage().getLocale());
+    private ResourceBundle redistributionsI18N = Translations.SUPPORTED_REDISTRIBUTIONS.getResourceBundle(languageConfig.getLanguage().getLocale());
 
     /**
      * This method is the constructor of the class. It creates a new instance of
@@ -254,7 +255,7 @@ public class CLIHandler {
         writeToConsole("");
         writeToConsole("=== Supported types of project redistributions");
         for (SupportedRedistributions redistribution : SupportedRedistributions.values()) {
-            writeToConsole("\t- " + redistribution.getDescriptionValue());
+            writeToConsole("\t- " + redistributionsI18N.getString(redistribution.toString()));
         }
         writeToConsole("");
         writeToConsole("=== Supported types of license compatibility (of components added to a project)");

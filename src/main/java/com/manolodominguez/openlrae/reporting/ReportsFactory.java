@@ -211,6 +211,7 @@ public class ReportsFactory {
         ResourceBundle weightsI18N = Translations.SUPPORTED_COMPONENTS_WEIGHTS.getResourceBundle(languageConfig.getLanguage().getLocale());
         ResourceBundle spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
         ResourceBundle spdxFullI18N = Translations.SUPPORTED_LICENSES_SPDX_FULL.getResourceBundle(languageConfig.getLanguage().getLocale());
+        ResourceBundle redistributionsI18N = Translations.SUPPORTED_REDISTRIBUTIONS.getResourceBundle(languageConfig.getLanguage().getLocale());
         String report = EMPTY_REPORT_AS_PLAIN_TEXT;
         report += "**************************************************\n";
         report += "Project name: " + project.getName() + "\n";
@@ -220,7 +221,7 @@ public class ReportsFactory {
             report += spdxFullI18N.getString(projectLicense.toString()) + " (" + spdxIdI18N.getString(projectLicense.toString()) + "),";
         }
         report += "\n";
-        report += addTab(1) + "=> Project redistribution: " + project.getRedistribution().getDescriptionValue() + "\n";
+        report += addTab(1) + "=> Project redistribution: " + redistributionsI18N.getString(project.getRedistribution().toString()) + "\n";
         report += "**************************************************\n";
         report += "### Component bindigs:\n";
         for (ComponentBinding spp : project.getBillOfComponentBindings()) {
