@@ -57,7 +57,7 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses extends AbstractRiskAnalyser {
-
+    
     private EnumMap<SupportedCompatibilities, Integer> compatibilityCounter;
     private ResourceBundle spdxIdI18N;
 
@@ -126,9 +126,9 @@ public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses exten
                         // the exit of this loop to avoid repeating the same 
                         // tips, warnings, root causes... for each project 
                         // license.
-                        warnings.add("Although " + componentBinding.getFullName() + ", is compatible with a project released under " + spdxIdI18N.getString(projectLicense.toString()) + " and can be included in " + this.project.getFullName() + ", it could be a source of risk for the evolution of the project in the future because it is not natively compatible.");
-                        warnings.add("Be sure that you have written permission from the copyright holder of " + componentBinding.getFullName() + ", to use the component in a project licensed under " + spdxIdI18N.getString(projectLicense.toString()));
-                        tips.add("Try to replace " + componentBinding.getFullName() + ", by another component natively compatible with a project released under " + spdxIdI18N.getString(projectLicense.toString()));
+                        warnings.add(ownI18N.getString("ALTHOUGH") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("IS_COMPATIBLE_WITH_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("AND_CAN_BE_INCLUDED_IN") + " " + this.project.getFullName() + ", " + ownI18N.getString("IT_COULD_BE_SOURCE_OF_BLAH"));
+                        warnings.add(ownI18N.getString("BE_SURE_YOU_HAVE_WRITTEN_BLAH") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("TO_USE_IT_IN_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()));
+                        tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_COMPONENT_NATIVELY_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()));
                         break;
                     case UNCOMPATIBLE:
                         // The analyzed component is incompatible with the 
@@ -137,8 +137,8 @@ public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses exten
                         // has been specified). Therefore, it cannot be used in 
                         // the project independently on whether it is compatible
                         // with other licenses of the project or not.
-                        rootCauses.add(componentBinding.getFullName() + ", cannot be included in " + project.getFullName() + ". The license of the component is not compatible with " + spdxIdI18N.getString(projectLicense.toString()));
-                        tips.add("Try to replace " + componentBinding.getFullName() + ", by another component compatible with a project licensed under " + spdxIdI18N.getString(projectLicense.toString()));
+                        rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("CANNOT_BE_INCLUDED_IN") + " " + project.getFullName() + ". The license of the component is not compatible with " + spdxIdI18N.getString(projectLicense.toString()));
+                        tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", by another component compatible with a project licensed under " + spdxIdI18N.getString(projectLicense.toString()));
                         tips.add("Try to get written permission from the copyright holder of " + componentBinding.getFullName() + ", to use that component in a project licensed under " + spdxIdI18N.getString(projectLicense.toString()));
                         riskExposure += componentBinding.getWeight().getWeightValue();
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
@@ -155,9 +155,9 @@ public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses exten
                         // cannot be used in the project. 
                         riskExposure += componentBinding.getWeight().getWeightValue();
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
-                        rootCauses.add(componentBinding.getFullName() + ", cannot be included in " + project.getFullName() + ". The license of the component is unknown and, therefore, assumed as incompatible with " + spdxIdI18N.getString(projectLicense.toString()));
-                        warnings.add("Although " + componentBinding.getFullName() + ", is handled as incompatible because its undefined license, it could be compatible once its license is known.");
-                        tips.add("Try to replace " + componentBinding.getFullName() + ", by another component known to be compatible with a project released under " + spdxIdI18N.getString(projectLicense.toString()));
+                        rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("CANNOT_BE_INCLUDED_IN") + " " + project.getFullName() + ". The license of the component is unknown and, therefore, assumed as incompatible with " + spdxIdI18N.getString(projectLicense.toString()));
+                        warnings.add(ownI18N.getString("ALTHOUGH") + " " + componentBinding.getFullName() + ", is handled as incompatible because its undefined license, it could be compatible once its license is known.");
+                        tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", by another component known to be compatible with a project released under " + spdxIdI18N.getString(projectLicense.toString()));
                         tips.add("Try to ask the copyright holder of " + componentBinding.getFullName() + ", to clarify the license of the component ant whether it is compatible with a project licensed under " + spdxIdI18N.getString(projectLicense.toString()) + " or not.");
                         break;
                     case UNSUPPORTED:
@@ -174,9 +174,9 @@ public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses exten
                         // project evolves.
                         riskExposure += componentBinding.getWeight().getWeightValue();
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
-                        rootCauses.add(componentBinding.getFullName() + ", cannot be included in " + project.getFullName() + ". OpenLRAE does not support the license of the component yet and, therefore, it is assumed as incompatible with " + spdxIdI18N.getString(projectLicense.toString()));
-                        warnings.add("Although " + componentBinding.getFullName() + ", is handled as incompatible because OpenLRAE does not support its license, it could be really compatible with a project licensed under " + spdxIdI18N.getString(projectLicense.toString()) + ". We apologize for the inconvenience.");
-                        tips.add("Try to replace " + componentBinding.getFullName() + ", by another component with a license supported by OpenLRAE and compatible with a project released under " + spdxIdI18N.getString(projectLicense.toString()));
+                        rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("CANNOT_BE_INCLUDED_IN") + " " + project.getFullName() + ". OpenLRAE does not support the license of the component yet and, therefore, it is assumed as incompatible with " + spdxIdI18N.getString(projectLicense.toString()));
+                        warnings.add(ownI18N.getString("ALTHOUGH") + " " + componentBinding.getFullName() + ", is handled as incompatible because OpenLRAE does not support its license, it could be really compatible with a project licensed under " + spdxIdI18N.getString(projectLicense.toString()) + ". We apologize for the inconvenience.");
+                        tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", by another component with a license supported by OpenLRAE and compatible with a project released under " + spdxIdI18N.getString(projectLicense.toString()));
                         break;
                     case MOSTLY_COMPATIBLE:
                         // The analyzed component is compatible with the project 
@@ -191,9 +191,9 @@ public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses exten
                         // overall project, because it is prone to error.
                         riskExposure += componentBinding.getWeight().getWeightValue();
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
-                        rootCauses.add(componentBinding.getFullName() + ", cannot be included in " + project.getFullName() + ", until a deep analysis. Its license is compatible with a project released under " + spdxIdI18N.getString(projectLicense.toString()) + " except under certain circumstances.");
+                        rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("CANNOT_BE_INCLUDED_IN") + " " + project.getFullName() + ", until a deep analysis. Its license is compatible with a project released under " + spdxIdI18N.getString(projectLicense.toString()) + " except under certain circumstances.");
                         warnings.add("Carry out a deep analysis to be sure that your specific case is not one of the exceptions in wich " + componentBinding.getFullName() + " is incompatible with a project released under " + spdxIdI18N.getString(projectLicense.toString()) + " before using the component in the project.");
-                        tips.add("Try to replace " + componentBinding.getFullName() + ", by another component fully compatible with a project licensed under " + spdxIdI18N.getString(projectLicense.toString()));
+                        tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", by another component fully compatible with a project licensed under " + spdxIdI18N.getString(projectLicense.toString()));
                         break;
                     case MOSTLY_UNCOMPATIBLE:
                         // The analyzed component is incompatible with the 
@@ -208,9 +208,9 @@ public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses exten
                         // overall project, because it is prone to error.
                         riskExposure += componentBinding.getWeight().getWeightValue();
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
-                        rootCauses.add(componentBinding.getFullName() + ", cannot be included in " + project.getFullName() + ", until a deep analysis. Its license is incompatible wit a project released under " + spdxIdI18N.getString(projectLicense.toString()) + " except under certain circumstances.");
+                        rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("CANNOT_BE_INCLUDED_IN") + " " + project.getFullName() + ", until a deep analysis. Its license is incompatible wit a project released under " + spdxIdI18N.getString(projectLicense.toString()) + " except under certain circumstances.");
                         warnings.add("Perform a deep analysis to be sure that your specific case is one of the exceptions in wich " + componentBinding.getFullName() + " is compatible with a project released under " + spdxIdI18N.getString(projectLicense.toString()) + " before using the component in the project.");
-                        tips.add("Try to replace " + componentBinding.getFullName() + ", by another component fully compatible with a project licensed under " + spdxIdI18N.getString(projectLicense.toString()));
+                        tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", by another component fully compatible with a project licensed under " + spdxIdI18N.getString(projectLicense.toString()));
                         break;
                 }
             }
@@ -242,7 +242,7 @@ public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses exten
             }
         }
     }
-
+    
     @Override
     public void onLanguageChange(LanguageChangeEvent languageChangeEvent) {
         if (languageChangeEvent == null) {
@@ -255,9 +255,9 @@ public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses exten
         ownI18N = Translations.RISK_ANALYSER_COMPONENTS_LICENSES_INCOMPATIBLE_WITH_PROJECT_LICENSES.getResourceBundle(languageConfig.getLanguage().getLocale());
         fireLanguageChangeEvent();
     }
-
+    
     private static final float TOTAL_COMPATIBILITY = 1.0f;
     private static final float NO_RISK = 0.0f;
     private static final int ONE = 1;
-
+    
 }
