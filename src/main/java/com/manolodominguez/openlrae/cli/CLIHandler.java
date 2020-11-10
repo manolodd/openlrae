@@ -72,13 +72,16 @@ public class CLIHandler {
     private ResourceBundle obsolescencesI18N = Translations.SUPPORTED_OBSOLESCENCES.getResourceBundle(languageConfig.getLanguage().getLocale());
     private ResourceBundle redistributionsI18N = Translations.SUPPORTED_REDISTRIBUTIONS.getResourceBundle(languageConfig.getLanguage().getLocale());
     private ResourceBundle risksI18N = Translations.SUPPORTED_RISKS.getResourceBundle(languageConfig.getLanguage().getLocale());
+    private ResourceBundle spreadingsI18N = Translations.SUPPORTED_SPREADINGS.getResourceBundle(languageConfig.getLanguage().getLocale());
 
     /**
      * This method is the constructor of the class. It creates a new instance of
      * CLIAnalyser and fills their attributes.
      */
     public CLIHandler() {
-        // Does nothing
+        // Everything of this class is going to be printed in console. Therefore
+        // the default system local is used as main option.
+        languageConfig.setLanguage(Locale.getDefault());
     }
 
     /**
@@ -138,6 +141,8 @@ public class CLIHandler {
                         riskAnalysisEngine.addRiskAnalyser(riskAnalyser10);
                         riskAnalysisEngine.addRiskAnalyser(riskAnalyser11);
 
+                        riskAnalysisEngine.setLanguage(languageConfig.getLanguage().getLocale());
+                        
                         // Run the license risks analysis and collect results
                         RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
 
@@ -202,10 +207,6 @@ public class CLIHandler {
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser3);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser4);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser5);
-
-        // Choose the desired language and continue adding risks analysers
-        riskAnalysisEngine.setLanguage(new Locale("es"));
-
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser6);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser7);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser8);
@@ -213,6 +214,9 @@ public class CLIHandler {
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser10);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser11);
 
+        // Choose the desired language and continue adding risks analysers
+        riskAnalysisEngine.setLanguage(languageConfig.getLanguage().getLocale());
+        
         // Run the license risks analysis and collect results
         RiskAnalysisResult[] resultSet = riskAnalysisEngine.analyse();
 
@@ -276,7 +280,7 @@ public class CLIHandler {
         writeToConsole("");
         writeToConsole("=== Supported licenses spreading (measures how many third party project use the same license NOW)");
         for (SupportedSpreadings spreading : SupportedSpreadings.values()) {
-            writeToConsole("\t- " + spreading.getDescriptionValue());
+            writeToConsole("\t- " + spreadingsI18N.getString(spreading.toString()));
         }
         writeToConsole("");
         writeToConsole("=== Supported licenses trend (measures whether the use of the license is growing NOW or declining)");

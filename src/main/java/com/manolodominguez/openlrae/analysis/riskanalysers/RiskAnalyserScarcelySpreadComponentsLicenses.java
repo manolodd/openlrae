@@ -21,6 +21,8 @@ import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesSp
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
+import com.manolodominguez.openlrae.i18n.Translations;
+import java.util.ResourceBundle;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -55,6 +57,8 @@ import org.slf4j.LoggerFactory;
  */
 public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAnalyser {
 
+    private ResourceBundle spreadingsI18N;
+    
     /**
      * This is the constructor of the class. It creates a new instance of
      * RiskAnalyserScarcelySpreadComponentsLicenses.
@@ -65,6 +69,7 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
         // Project is ckecked at superclass
         super(project, SupportedRisks.HAVING_SCARCELY_SPREAD_COMPONENTS_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserScarcelySpreadComponentsLicenses.class);
+        spreadingsI18N = Translations.SUPPORTED_SPREADINGS.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -84,7 +89,7 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
                     // The analyzed component is using a license that is used in 
                     // lots of third party projects. Therefore there is not 
                     // scarce deployment risk in this case. 
-                    goodThings.add(componentBinding.getFullName() + ", uses a license that " + spreading.getDescriptionValue());
+                    goodThings.add(componentBinding.getFullName() + ", uses a license that " + spreadingsI18N.getString(spreading.toString()));
                     break;
                 case NEAR_HIGHLY_WIDESPREAD:
                     // The analyzed component is using a license that is not 
@@ -92,7 +97,7 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
                     // a little scarce deployment risk in this case.                    
                     riskImpact += (spreading.getSpreadingValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", uses a license that " + spreading.getDescriptionValue());
+                    rootCauses.add(componentBinding.getFullName() + ", uses a license that " + spreadingsI18N.getString(spreading.toString()));
                     tips.add("Try changing " + componentBinding.getFullName() + ", by another component released under a license more spread.");
                     break;
                 case NEAR_LITTLE_WIDESPREAD:
@@ -101,7 +106,7 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
                     // moderated scarce deployment risk in this case.
                     riskImpact += (spreading.getSpreadingValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", uses a license that " + spreading.getDescriptionValue());
+                    rootCauses.add(componentBinding.getFullName() + ", uses a license that " + spreadingsI18N.getString(spreading.toString()));
                     tips.add("Try changing " + componentBinding.getFullName() + ", by another component released under a license more spread.");
                     break;
                 case LITTLE_WIDESPREAD:
@@ -110,7 +115,7 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
                     // a high scarce deployment risk in this case.
                     riskImpact += (spreading.getSpreadingValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", uses a license that " + spreading.getDescriptionValue());
+                    rootCauses.add(componentBinding.getFullName() + ", uses a license that " + spreadingsI18N.getString(spreading.toString()));
                     tips.add("Try changing " + componentBinding.getFullName() + ", by another component released under a license more spread.");
                     break;
             }
@@ -137,6 +142,7 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
         }
         languageConfig.setLanguage(languageChangeEvent.getNewLanguage());
         // reload resource bundles
+        spreadingsI18N = Translations.SUPPORTED_SPREADINGS.getResourceBundle(languageConfig.getLanguage().getLocale());
         fireLanguageChangeEvent();
     }
 
