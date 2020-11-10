@@ -26,15 +26,14 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedSpreadings {
-    HIGHLY_WIDESPREAD(0.0f, "is highly widespread. Lots of projects use this license."),
-    NEAR_HIGHLY_WIDESPREAD(0.33f, "is near highly widespread. Several projects use this license."),
-    NEAR_LITTLE_WIDESPREAD(0.67f, "is near little widespread. Only a few projects uses this license."),
-    LITTLE_WIDESPREAD(1.0f, "is little widespread. It is difficult to find out project that use that license.");
+    HIGHLY_WIDESPREAD(0.0f),
+    NEAR_HIGHLY_WIDESPREAD(0.33f),
+    NEAR_LITTLE_WIDESPREAD(0.67f),
+    LITTLE_WIDESPREAD(1.0f);
 
     private Logger logger = LoggerFactory.getLogger(SupportedSpreadings.class);
 
     private final float spreadingValue;
-    private final String descriptionValue;
 
     /**
      * This is the constructor of the class. It defines SupportedSpreadings
@@ -45,23 +44,13 @@ public enum SupportedSpreadings {
      * 1.0f, being 0.0 a value that represents that a given license is used NOW
      * by lots and lots of third party projects and 1.0 a value that represents
      * that the license is almost unused NOW by third party projects.
-     * @param descriptionValue A text describing the meaning of the enum item.
      */
-    private SupportedSpreadings(float spreadingValue, String descriptionValue) {
+    private SupportedSpreadings(float spreadingValue) {
         if ((spreadingValue < MIN_RATIO) || (spreadingValue > MAX_RATIO)) {
             logger.error("spreadingValue has to be a float between 0.0f and 1.0");
             throw new IllegalArgumentException("spreadingValue has to be a float between 0.0f and 1.0");
         }
-        if (descriptionValue == null) {
-            logger.error("descriptionValue cannot be null");
-            throw new IllegalArgumentException("descriptionValue cannot be null");
-        }
-        if (descriptionValue.isEmpty()) {
-            logger.error("descriptionValue cannot be blank");
-            throw new IllegalArgumentException("descriptionValue cannot be blank");
-        }
         this.spreadingValue = spreadingValue;
-        this.descriptionValue = descriptionValue;
     }
 
     /**
@@ -71,15 +60,6 @@ public enum SupportedSpreadings {
      */
     public float getSpreadingValue() {
         return spreadingValue;
-    }
-
-    /**
-     * This method get the description of the enum item.
-     *
-     * @return the description of the enum item.
-     */
-    public String getDescriptionValue() {
-        return descriptionValue;
     }
 
     private static final float MIN_RATIO = 0.0f;
