@@ -5,7 +5,7 @@
 # PROJECT STATUS (Tested from JDK 9 to 15)
 
 [![Build Status](https://img.shields.io/travis/manolodd/openlrae/master.svg)](https://travis-ci.org/manolodd/openlrae?branch=master)
-[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=manolodd_openlrae&metric=alert_status#.svg)](https://sonarcloud.io/dashboard?branch=develop&id=manolodd_openlrae)
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=manolodd_openlrae&metric=alert_status#.svg)](https://sonarcloud.io/dashboard?id=manolodd_openlrae)
 
 # THE PROJECT
 
