@@ -18,6 +18,8 @@ package com.manolodominguez.openlrae.analysis.riskanalysers;
 import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
+import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
+import com.manolodominguez.openlrae.i18n.SupportedLanguages;
 import com.manolodominguez.openlrae.resourceslocators.FilesPaths;
 import java.net.URL;
 import mjson.Json;
@@ -131,4 +133,17 @@ public class RiskAnalyserHeterogeneousComponentsLicensesTest {
         assertEquals(0.5008f, result.getRiskValue());
     }
     
+
+    /**
+     * Test of onLanguageChange method, of class RiskAnalyserHeterogeneousComponentsLicenses.
+     */
+    @Test
+    public void testOnLanguageChange() {
+        // Define the project. In this case, it is defined from a JSON file.
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        Project project = new Project(Json.read(projectURL));
+        RiskAnalyserHeterogeneousComponentsLicenses instance = new RiskAnalyserHeterogeneousComponentsLicenses(project);
+        instance.onLanguageChange(new LanguageChangeEvent(project, SupportedLanguages.SPANISH));
+        assertEquals(SupportedLanguages.SPANISH, instance.getLanguage());
+    }    
 }
