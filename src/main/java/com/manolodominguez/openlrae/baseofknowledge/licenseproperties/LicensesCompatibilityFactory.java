@@ -38,7 +38,7 @@ public final class LicensesCompatibilityFactory {
 
     private Logger logger = LoggerFactory.getLogger(LicensesCompatibilityFactory.class);
 
-    private static volatile LicensesCompatibilityFactory instance;
+    private static LicensesCompatibilityFactory instance;
     private final CopyOnWriteArrayList<LicenseCompatibilityEntry> licensesCompatibilities;
 
     /**

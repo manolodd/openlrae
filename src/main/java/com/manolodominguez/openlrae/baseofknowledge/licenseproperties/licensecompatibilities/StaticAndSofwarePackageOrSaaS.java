@@ -38,7 +38,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
 
     private Logger logger = LoggerFactory.getLogger(StaticAndSofwarePackageOrSaaS.class);
 
-    private static volatile StaticAndSofwarePackageOrSaaS instance;
+    private static StaticAndSofwarePackageOrSaaS instance;
     private final CopyOnWriteArrayList<LicenseCompatibilityEntry> licensesCompatibilities;
 
     /**

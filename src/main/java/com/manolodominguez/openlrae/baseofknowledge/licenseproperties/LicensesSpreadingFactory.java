@@ -31,7 +31,7 @@ public final class LicensesSpreadingFactory {
 
     private Logger logger = LoggerFactory.getLogger(LicensesSpreadingFactory.class);
 
-    private static volatile LicensesSpreadingFactory instance;
+    private static LicensesSpreadingFactory instance;
     private final EnumMap<SupportedLicenses, SupportedSpreadings> licensesSpreadings;
 
     /**

@@ -37,7 +37,7 @@ public final class DinamicAndNone implements InterfaceLicenseCompatibilitiesSubf
 
     private Logger logger = LoggerFactory.getLogger(DinamicAndNone.class);
 
-    private static volatile DinamicAndNone instance;
+    private static DinamicAndNone instance;
     private final CopyOnWriteArrayList<LicenseCompatibilityEntry> licensesCompatibilities;
 
     /**

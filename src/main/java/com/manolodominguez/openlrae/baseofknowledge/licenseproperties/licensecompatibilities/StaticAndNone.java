@@ -37,7 +37,7 @@ public final class StaticAndNone implements InterfaceLicenseCompatibilitiesSubfa
 
     private Logger logger = LoggerFactory.getLogger(StaticAndNone.class);
 
-    private static volatile StaticAndNone instance;
+    private static StaticAndNone instance;
     private final CopyOnWriteArrayList<LicenseCompatibilityEntry> licensesCompatibilities;
 
     /**

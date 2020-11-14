@@ -39,7 +39,7 @@ public final class DinamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
 
     private Logger logger = LoggerFactory.getLogger(DinamicAndSofwarePackageOrSaaS.class);
 
-    private static volatile DinamicAndSofwarePackageOrSaaS instance;
+    private static DinamicAndSofwarePackageOrSaaS instance;
     private final CopyOnWriteArrayList<LicenseCompatibilityEntry> licensesCompatibilities;
 
     /**

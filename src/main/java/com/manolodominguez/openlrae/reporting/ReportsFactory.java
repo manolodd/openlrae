@@ -38,7 +38,7 @@ public class ReportsFactory {
 
     private Logger logger = LoggerFactory.getLogger(ReportsFactory.class);
 
-    private static volatile ReportsFactory instance;
+    private static ReportsFactory instance;
     private SupportedVerbosityLevel verbosity;
 
     /**

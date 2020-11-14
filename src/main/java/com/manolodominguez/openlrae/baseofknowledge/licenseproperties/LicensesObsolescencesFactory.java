@@ -31,7 +31,7 @@ public final class LicensesObsolescencesFactory {
 
     private Logger logger = LoggerFactory.getLogger(LicensesObsolescencesFactory.class);
 
-    private static volatile LicensesObsolescencesFactory instance;
+    private static LicensesObsolescencesFactory instance;
     private final EnumMap<SupportedLicenses, SupportedObsolescences> licensesObsolescenses;
 
     /**
