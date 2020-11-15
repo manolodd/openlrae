@@ -1,13 +1,12 @@
 <div align="center"><img src="https://github.com/manolodd/openlrae/raw/develop/src/main/resources/com/manolodominguez/openlrae/logo/logo_openlrae.png" alt="OpenLRAE logo" width="400"/></div>
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.manolodominguez/openlrae)](https://search.maven.org/artifact/com.manolodominguez/openlrae/0.7/jar)
-
 # PROJECT STATUS (Tested from JDK 9 to 15)
 
 ## Master branch
 
 [![Build Status](https://img.shields.io/travis/manolodd/openlrae/master.svg)](https://travis-ci.org/manolodd/openlrae?branch=master)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=manolodd_openlrae&branch=master&metric=alert_status#.svg)](https://sonarcloud.io/dashboard?id=manolodd_openlrae)
+[![Maven Central](https://img.shields.io/maven-central/v/com.manolodominguez/openlrae)](https://search.maven.org/artifact/com.manolodominguez/openlrae/0.7/jar)
 
 ## Develop branch
 
