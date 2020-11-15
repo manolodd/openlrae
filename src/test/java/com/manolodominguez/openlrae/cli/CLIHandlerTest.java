@@ -92,26 +92,13 @@ public class CLIHandlerTest {
     }
 
     /**
-     * Test of runAnalysis method, of class CLIHandler.
-     */
-/*
-    @Test
-    public void testRunAnalysis() {
-        System.out.println("runAnalysis");
-        String fileName = "";
-        CLIHandler instance = new CLIHandler();
-        instance.runAnalysis(fileName);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-*/
-    /**
      * Test of runExample method, of class CLIHandler.
      */
     @Test
     public void testRunExample() {
         System.out.println("runExample");
         CLIHandler instance = new CLIHandler();
+        assertNotNull(instance);
         instance.runExample();
     }
 
@@ -122,6 +109,7 @@ public class CLIHandlerTest {
     public void testShowInfo() {
         System.out.println("showInfo");
         CLIHandler instance = new CLIHandler();
+        assertNotNull(instance);
         instance.showInfo();
     }
 
@@ -132,6 +120,7 @@ public class CLIHandlerTest {
     public void testShowOptions() {
         System.out.println("showOptions");
         CLIHandler instance = new CLIHandler();
+        assertNotNull(instance);
         instance.showOptions();
     }
 
@@ -142,6 +131,7 @@ public class CLIHandlerTest {
     public void testShowSchema() {
         System.out.println("showSchema");
         CLIHandler instance = new CLIHandler();
+        assertNotNull(instance);
         instance.showSchema();
     }
 
