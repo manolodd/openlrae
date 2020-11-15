@@ -20,7 +20,6 @@ import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
-import com.manolodominguez.openlrae.i18n.SupportedLanguages;
 import com.manolodominguez.openlrae.i18n.Translations;
 import java.util.EnumMap;
 import java.util.ResourceBundle;
@@ -87,6 +86,7 @@ public class RiskAnalyserHeterogeneousComponentsLicenses extends AbstractRiskAna
             licensesByWeight.put(suportedLicense, INITIAL_WEIGHT);
         }
         spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
+        ownI18N = Translations.RISK_ANALYSER_HETEROGENEOUS_COMPONENTS_LICENSES.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -149,24 +149,24 @@ public class RiskAnalyserHeterogeneousComponentsLicenses extends AbstractRiskAna
         // Analysis can start
         for (ComponentBinding componentBinding : project.getBillOfComponentBindings()) {
             if (componentBinding.getComponent().getLicense() == mainLicense) {
-                goodThings.add(componentBinding.getFullName() + ", uses the most representative license among the set of the bill of components licenses.");
+                goodThings.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_THE_MOST_BLAH"));
             } else {
                 riskExposure++;
                 riskImpact += componentBinding.getWeight().getWeightValue();
-                rootCauses.add(componentBinding.getFullName() + ", uses a license different from the most representative license among the set of the bill of components licenses (" + spdxIdI18N.getString(mainLicense.toString()) + ")");
-                tips.add("Try to replace " + componentBinding.getFullName() + ", by another component released under " + spdxIdI18N.getString(mainLicense.toString()) + ", to reduce the licenses heterogeneity of the bill of components.");
+                rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_A_LICENSE_DIFFERENT_BLAH") + " (" + spdxIdI18N.getString(mainLicense.toString()) + ")");
+                tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH") + " " + spdxIdI18N.getString(mainLicense.toString()) + ", " + ownI18N.getString("TO_REDUCE_BLAH"));
             }
         }
 
         riskExposure /= (float) totalCases;
         riskImpact /= maxImpact;
         if (riskExposure > NO_RISK) {
-            warnings.add("Althoug there are " + totalCases + " different licenses in the bill of components, " + spdxIdI18N.getString(mainLicense.toString()) + " has been chosen as the most representative because it is used by the most relevant components. Choosing it reduces the risk impact, but other combinations might be possible if you choose one of the other " + (totalCases - ONE) + " licenses as the main license. However these options will give you equal or greater risk exposure and impact levels. The current one is the the best worst case.");
-            rootCauses.add("The project bill of components uses " + totalCases + " different licenses. This means that you will have to take into account the legal term of those licenses each time you include a new component or each time you try to change project licenses; and this is risky.");
-            tips.add("General tip: Try to use components with the same licenses as it is easier to handle license terms and therefore to avoid risks.");
-            tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start changing components that are root causes in more cases.");
-            tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start with those with higher level of contribution to the overall project.");
-            tips.add("General tip: If you own all right on a given risky component, try changing its license instead of looking for another component.");
+            warnings.add(ownI18N.getString("ALTHOUGH_THERE_ARE") + " " + totalCases + " " + ownI18N.getString("DIFFERENT_LICENSES_BLAH") + ", " + spdxIdI18N.getString(mainLicense.toString()) + " " + ownI18N.getString("HAS_BEEN_CHOSEN_BLAH") + " " + (totalCases - ONE) + " " + ownI18N.getString("LICENSES_AS_THE_MAIN_BLAH"));
+            rootCauses.add(ownI18N.getString("THE_PROJECT_BILL_BLAH")+" " + totalCases + " "+ownI18N.getString("DIFFERENT_LICENSES_THIS_BLAH"));
+            tips.add(ownI18N.getString("GENERAL_TIP_1"));
+            tips.add(ownI18N.getString("GENERAL_TIP_2"));
+            tips.add(ownI18N.getString("GENERAL_TIP_3"));
+            tips.add(ownI18N.getString("GENERAL_TIP_4"));
         }
     }
 
@@ -179,6 +179,7 @@ public class RiskAnalyserHeterogeneousComponentsLicenses extends AbstractRiskAna
         languageConfig.setLanguage(languageChangeEvent.getNewLanguage());
         // reload resource bundles
         spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
+        ownI18N = Translations.RISK_ANALYSER_HETEROGENEOUS_COMPONENTS_LICENSES.getResourceBundle(languageConfig.getLanguage().getLocale());
         fireLanguageChangeEvent();
     }
 
