@@ -91,4 +91,58 @@ public class CLIHandlerTest {
         });
     }
 
+    /**
+     * Test of runAnalysis method, of class CLIHandler.
+     */
+/*
+    @Test
+    public void testRunAnalysis() {
+        System.out.println("runAnalysis");
+        String fileName = "";
+        CLIHandler instance = new CLIHandler();
+        instance.runAnalysis(fileName);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+*/
+    /**
+     * Test of runExample method, of class CLIHandler.
+     */
+    @Test
+    public void testRunExample() {
+        System.out.println("runExample");
+        CLIHandler instance = new CLIHandler();
+        instance.runExample();
+    }
+
+    /**
+     * Test of showInfo method, of class CLIHandler.
+     */
+    @Test
+    public void testShowInfo() {
+        System.out.println("showInfo");
+        CLIHandler instance = new CLIHandler();
+        instance.showInfo();
+    }
+
+    /**
+     * Test of showOptions method, of class CLIHandler.
+     */
+    @Test
+    public void testShowOptions() {
+        System.out.println("showOptions");
+        CLIHandler instance = new CLIHandler();
+        instance.showOptions();
+    }
+
+    /**
+     * Test of showSchema method, of class CLIHandler.
+     */
+    @Test
+    public void testShowSchema() {
+        System.out.println("showSchema");
+        CLIHandler instance = new CLIHandler();
+        instance.showSchema();
+    }
+
 }
