@@ -12,6 +12,7 @@
 
 [![Build Status](https://img.shields.io/travis/manolodd/openlrae/develop.svg)](https://travis-ci.org/manolodd/openlrae?branch=develop)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=manolodd_openlrae&branch=develop&metric=alert_status#.svg)](https://sonarcloud.io/dashboard?branch=develop&id=manolodd_openlrae)
+[![Maven Central](https://img.shields.io/badge/maven--central-Not%20available-inactive)]
 
 # THE PROJECT
 
