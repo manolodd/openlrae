@@ -236,9 +236,8 @@ public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses exten
             tips.add(ownI18N.getString("GENERAL_TIP_5"));
             tips.add(ownI18N.getString("GENERAL_TIP_6"));
             tips.add(ownI18N.getString("GENERAL_TIP_7"));
-            tips.add(ownI18N.getString("GENERAL_TIP_8"));
             if (project.getLicenses().size() > ONE) {
-                tips.add(ownI18N.getString("GENERAL_TIP_9"));
+                tips.add(ownI18N.getString("GENERAL_TIP_8"));
             }
         }
     }
