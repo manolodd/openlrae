@@ -224,6 +224,7 @@ public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses exten
                     goodThings.add(componentBinding.getFullName() + ", "+ownI18N.getString("IS_FORCED_TO_BLAH")+" " + this.project.getFullName());
                 }
             }
+            compatibilityCounter.clear();
         }
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
