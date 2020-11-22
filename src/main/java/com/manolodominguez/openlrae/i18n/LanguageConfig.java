@@ -15,7 +15,6 @@
  */
 package com.manolodominguez.openlrae.i18n;
 
-import static com.manolodominguez.openlrae.i18n.SupportedLanguages.DEFAULT_LANGUAGE;
 import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +45,6 @@ public class LanguageConfig {
      * This method sets a new language for the instance to the value specified
      * as an argument.
      *
-     * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
      * @param newLanguage a new language for the instance.
      */
     public void setLanguage(SupportedLanguages newLanguage) {
@@ -63,7 +61,6 @@ public class LanguageConfig {
      * language supported by OpenLRAE fits completely to the specified Locale,
      * partially, or the language has to be the default one.
      *
-     * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
      * @param newLocale a locale that represent the new language for the
      * instance.
      */
@@ -88,7 +85,6 @@ public class LanguageConfig {
     /**
      * This method gets the language currently used by the instance.
      *
-     * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
      * @return the language currently used by the instance.
      */
     public SupportedLanguages getLanguage() {
