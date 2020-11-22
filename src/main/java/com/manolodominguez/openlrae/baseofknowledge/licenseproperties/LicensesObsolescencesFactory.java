@@ -107,7 +107,7 @@ public final class LicensesObsolescencesFactory {
             logger.error("currentVersion has to be greater or equal than 1");
             throw new IllegalArgumentException("currentVersion has to be greater or equal than 1");
         }
-        if (currentVersion >  numberOfVersions) {
+        if (currentVersion > numberOfVersions) {
             logger.error("currentVersion cannot be greater than numberOfVersions");
             throw new IllegalArgumentException("currentVersion cannot be greater than numberOfVersions");
         }
@@ -155,10 +155,6 @@ public final class LicensesObsolescencesFactory {
     private static final int FOUR = 4;
     private static final int FIVE = 5;
     private static final int SIX = 6;
-    private static final int SEVEN = 7;
-    private static final int EIGHT = 8;
-    private static final int NINE = 9;
-    private static final int TEN = 10;
 
     private static final int FIRST = 1;
     private static final int SECOND = 2;
@@ -166,8 +162,4 @@ public final class LicensesObsolescencesFactory {
     private static final int FOURTH = 4;
     private static final int FIVETH = 5;
     private static final int SIXTH = 6;
-    private static final int SEVENTH = 7;
-    private static final int EIGHTH = 8;
-    private static final int NINETH = 9;
-    private static final int TENTH = 10;
 }
