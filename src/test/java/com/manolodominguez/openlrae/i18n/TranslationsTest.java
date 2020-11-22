@@ -29,22 +29,22 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author manolodd
  */
 public class TranslationsTest {
-    
+
     public TranslationsTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
@@ -55,8 +55,8 @@ public class TranslationsTest {
     @Test
     public void testItemsNumber() {
         System.out.println("items number");
-        // Currently there are 15 resource bundles defined in enum
-        assertEquals(15, Translations.values().length);
+        // Currently there are 16 resource bundles defined in enum
+        assertEquals(16, Translations.values().length);
     }
 
     /**
@@ -75,6 +75,7 @@ public class TranslationsTest {
                 case RISK_ANALYSER_COMPONENTS_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES:
                 case RISK_ANALYSER_HETEROGENEOUS_COMPONENTS_LICENSES:
                 case RISK_ANALYSER_LIMITED_SET_OF_POTENTIAL_COMPONENT_LICENSES:
+                case RISK_ANALYSER_LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES:
                 case SUPPORTED_COMPATIBILITIES:
                 case SUPPORTED_COMPONENTS_WEIGHTS:
                 case SUPPORTED_LICENSES_SPDX_FULL:
@@ -94,7 +95,7 @@ public class TranslationsTest {
         }
         assertTrue(worksFine);
     }
-    
+
     /**
      * Test of getResourceBundle method, of class Translations.
      */
@@ -104,8 +105,8 @@ public class TranslationsTest {
         ResourceBundle resourceBundle;
         LanguageConfig languageConfig = new LanguageConfig();
         languageConfig.setLanguage(Locale.CHINESE);
-        
-        for (Translations translation: Translations.values()) {
+
+        for (Translations translation : Translations.values()) {
             // This language is supported
             resourceBundle = translation.getResourceBundle(SupportedLanguages.SPANISH.getLocale());
             assertEquals(SupportedLanguages.SPANISH.getLocale().toString(), resourceBundle.getLocale().toString());
@@ -117,7 +118,7 @@ public class TranslationsTest {
             assertEquals("", resourceBundle.getLocale().toString());
         }
     }
-    
+
     /**
      * Test of getResourceBundle method, of class Translations.
      */
@@ -129,5 +130,5 @@ public class TranslationsTest {
             Translations.PROJECT.getResourceBundle(null);
         });
     }
-    
+
 }
