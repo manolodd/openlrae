@@ -95,7 +95,6 @@ public class LanguageConfig {
      * This method sets SupportedLanguages.DEFAULT_LANGUAGE as the new language
      * for the instance.
      *
-     * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
      */
     public void setDefaultLanguage() {
         language = SupportedLanguages.DEFAULT_LANGUAGE;
