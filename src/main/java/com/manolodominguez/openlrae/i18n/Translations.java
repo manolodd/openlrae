@@ -35,6 +35,7 @@ public enum Translations {
     RISK_ANALYSER_HETEROGENEOUS_COMPONENTS_LICENSES("RiskAnalyserHeterogeneousComponentsLicenses"),
     RISK_ANALYSER_LIMITED_SET_OF_POTENTIAL_COMPONENT_LICENSES("RiskAnalyserLimitedSetOfPotentialComponentsLicenses"),
     RISK_ANALYSER_LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES("RiskAnalyserLimitedSetOfPotentialProjectLicenses"),
+    RISK_ANALYSER_OBSOLETE_COMPONENT_LICENSES("RiskAnalyserObsoleteComponentsLicenses"),
     SUPPORTED_COMPONENTS_WEIGHTS("SupportedComponentWeights"),
     SUPPORTED_COMPATIBILITIES("SupportedCompatibilities"),
     SUPPORTED_LICENSES_SPDX_FULL("SupportedCompatibilitiesSPDXFull"),
