@@ -69,6 +69,7 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
         super(project, SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserObsoleteComponentsLicenses.class);
         obsolescencesI18N = Translations.SUPPORTED_OBSOLESCENCES.getResourceBundle(languageConfig.getLanguage().getLocale());
+        ownI18N = Translations.RISK_ANALYSER_OBSOLETE_COMPONENT_LICENSES.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -87,7 +88,7 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // The analyzed component is using the latest version of its
                     // license. Therefore there is not obsolescence risk in this
                     // case. 
-                    goodThings.add(componentBinding.getFullName() + ", is using the license " + obsolescencesI18N.getString(obsolescence.toString()));
+                    goodThings.add(componentBinding.getFullName() + ", "+ownI18N.getString("IS_USING_THE_LICENSE")+" " + obsolescencesI18N.getString(obsolescence.toString()));
                     break;
                 case NEAR_UPDATED:
                     // The analyzed component is not using the latest version of
@@ -95,8 +96,8 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // one. Therefore there is obsolescence risk in this case. 
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", is using the license " + obsolescencesI18N.getString(obsolescence.toString()));
-                    tips.add("Try to replace " + componentBinding.getFullName() + ", by another component released under a newer license version.");
+                    rootCauses.add(componentBinding.getFullName() + ", "+ownI18N.getString("IS_USING_THE_LICENSE")+" " + obsolescencesI18N.getString(obsolescence.toString()));
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
                     break;
                 case NEAR_OUTDATED:
                     // The analyzed component is not using the latest version of
@@ -104,8 +105,8 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // one. Therefore there is obsolescence risk in this case. 
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + " is using the license " + obsolescencesI18N.getString(obsolescence.toString()));
-                    tips.add("Try to replace " + componentBinding.getFullName() + ", by another component released under a newer license version.");
+                    rootCauses.add(componentBinding.getFullName() + " "+ownI18N.getString("IS_USING_THE_LICENSE")+" " + obsolescencesI18N.getString(obsolescence.toString()));
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
                     break;
                 case OUTDATED:
                     // The analyzed component is not using the latest version of
@@ -113,20 +114,20 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // is obsolescence risk in this case. 
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + " is using the license " + obsolescencesI18N.getString(obsolescence.toString()));
-                    tips.add("Try to replace " + componentBinding.getFullName() + ", by another component released under a newer license version.");
+                    rootCauses.add(componentBinding.getFullName() + " "+ownI18N.getString("IS_USING_THE_LICENSE")+" " + obsolescencesI18N.getString(obsolescence.toString()));
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
                     break;
             }
         }
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
         if (riskExposure > NO_RISK) {
-            tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risk, start changing components that are root causes in more cases.");
-            tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risk, start with those components with higher level of contribution to the overall project.");
-            tips.add("General tip: If you own all right on a given component involved in risk root causes, try changing its license instead of looking for another component.");
-            tips.add("General tip: Always try to maintain a bill of components with modern liceses versions as it is less likely to have licensing incompatibilities.");
+            tips.add(ownI18N.getString("GENERAL_TIP_1"));
+            tips.add(ownI18N.getString("GENERAL_TIP_2"));
+            tips.add(ownI18N.getString("GENERAL_TIP_3"));
+            tips.add(ownI18N.getString("GENERAL_TIP_4"));
             if (project.getLicenses().size() > ONE) {
-                tips.add("General tip: Try not to use more than a license for the project unless completely necessary. It makes very difficult to all components trendy because each component license has to be compatible with all project licenses. If project licenses are obsolete it is more difficult to have componentes with licenses in their latest version.");
+                tips.add(ownI18N.getString("GENERAL_TIP_5"));
             }
         }
     }
@@ -140,6 +141,7 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
         languageConfig.setLanguage(languageChangeEvent.getNewLanguage());
         // reload resource bundles
         obsolescencesI18N = Translations.SUPPORTED_OBSOLESCENCES.getResourceBundle(languageConfig.getLanguage().getLocale());
+        ownI18N = Translations.RISK_ANALYSER_OBSOLETE_COMPONENT_LICENSES.getResourceBundle(languageConfig.getLanguage().getLocale());
         fireLanguageChangeEvent();
     }
 
