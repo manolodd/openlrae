@@ -39,12 +39,12 @@ public class LicenseCompatibilityEntry {
 
     private Logger logger = LoggerFactory.getLogger(LicenseCompatibilityEntry.class);
 
-    private SupportedLicenses componentLicense;
-    private SupportedLicenses projectLicense;
-    private SupportedCompatibilities compatibility;
-    private SupportedLinks link;
-    private SupportedRedistributions redistribution;
-    private String specificWarning;
+    private final SupportedLicenses componentLicense;
+    private final SupportedLicenses projectLicense;
+    private final SupportedCompatibilities compatibility;
+    private final SupportedLinks link;
+    private final SupportedRedistributions redistribution;
+    private final String specificWarning;
 
     /**
      * This is the constructor of the class. It creates a new instance of

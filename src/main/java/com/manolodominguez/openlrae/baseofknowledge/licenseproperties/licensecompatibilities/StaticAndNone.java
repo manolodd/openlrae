@@ -98,6 +98,6 @@ public final class StaticAndNone implements InterfaceLicenseCompatibilitiesSubfa
      */
     @Override
     public CopyOnWriteArrayList<LicenseCompatibilityEntry> getCompatibilities() {
-        return this.licensesCompatibilities;
+        return new CopyOnWriteArrayList<LicenseCompatibilityEntry>(this.licensesCompatibilities);
     }
 }

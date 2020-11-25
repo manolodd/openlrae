@@ -451,6 +451,6 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
      */
     @Override
     public CopyOnWriteArrayList<LicenseCompatibilityEntry> getCompatibilities() {
-        return this.licensesCompatibilities;
+        return new CopyOnWriteArrayList<LicenseCompatibilityEntry>(this.licensesCompatibilities);
     }
 }
