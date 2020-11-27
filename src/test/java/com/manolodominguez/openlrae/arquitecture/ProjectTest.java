@@ -442,7 +442,7 @@ public class ProjectTest {
         SupportedRedistributions projectRedistribution = SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS;
         Project project = new Project(projectName, projectVersion, firstProjectLicense, projectRedistribution, firstComponentBinding);
         project.addLicense(secondProjectLicense);
-        assertEquals("MyProject-MyProjectVersion (Artistic-2.0, Apache-2.0), that is going to be redistributed as a software package (binary or source code) or as an online service", project.getFullName());
+        assertEquals("MyProject-MyProjectVersion (Artistic-2.0, Apache-2.0), that is going to be redistributed", project.getFullName());
     }
 
     /**
