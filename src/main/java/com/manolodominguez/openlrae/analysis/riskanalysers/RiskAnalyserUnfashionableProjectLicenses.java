@@ -67,6 +67,7 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
         logger = LoggerFactory.getLogger(RiskAnalyserUnfashionableProjectLicenses.class);
         spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
         trendsI18N = Translations.SUPPORTED_TRENDS.getResourceBundle(languageConfig.getLanguage().getLocale());
+        ownI18N = Translations.RISK_ANALYSER_UNFASHIONABLE_PROJECT_LICENSES.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -84,7 +85,7 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
                 case TRENDY:
                     // This project licenses is trendy. Therefore there is not 
                     // risk of being unfashionable in this case. 
-                    goodThings.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that " + trendsI18N.getString(trend.toString()));
+                    goodThings.add(project.getFullName() + ", "+ownI18N.getString("IS_RELEASED_UNDER_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + trendsI18N.getString(trend.toString()));
                     break;
                 case NEAR_TRENDY:
                     // The analyzed license is not completely trendy but is 
@@ -92,8 +93,8 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
                     // is risk of being unfashioable in this case. 
                     riskImpact += trend.getTrendValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that " + trendsI18N.getString(trend.toString()));
-                    tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a trendier license, if possible.");
+                    rootCauses.add(project.getFullName() + ", "+ownI18N.getString("IS_RELEASED_UNDER_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + trendsI18N.getString(trend.toString())+".");
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()) + " "+ownI18N.getString("BY_A_TRENDIER_BLAH"));
                     break;
                 case NEAR_UNFASHIONABLE:
                     // The analyzed license is not completely trendy but is 
@@ -101,28 +102,28 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
                     // is risk of being unfashioable in this case. 
                     riskImpact += trend.getTrendValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that " + trendsI18N.getString(trend.toString()));
-                    tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a trendier license, if possible.");
+                    rootCauses.add(project.getFullName() + ", "+ownI18N.getString("IS_RELEASED_UNDER_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + trendsI18N.getString(trend.toString())+".");
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()) + " "+ownI18N.getString("BY_A_TRENDIER_BLAH"));
                     break;
                 case UNFASHIONABLE:
                     // This project license is trendy. Therefore there is risk 
                     // of being unfashionable in this case. 
                     riskImpact += trend.getTrendValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that " + trendsI18N.getString(trend.toString()));
-                    tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a trendier license, if possible.");
+                    rootCauses.add(project.getFullName() + ", "+ownI18N.getString("IS_RELEASED_UNDER_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + trendsI18N.getString(trend.toString())+".");
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()) + " "+ownI18N.getString("BY_A_TRENDIER_BLAH"));
                     break;
             }
         }
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
         if (riskExposure > NO_RISK) {
-            tips.add("General tip: When replacing a project license by a trendier one, do not forget to check whether the componets of the project are still compatible with it or not.");
-            tips.add("General tip: When modifying the set of project licenses to reduce the exposure to this risk, start with those licenses whose risk contribution, in trend terms, is greater.");
-            tips.add("General tip: Sometimes, using the same license but in a different version is also trendier; perhaps it is not necessasry to change to a very different license.");
-            tips.add("General tip: Always try to maintain a trendy set of project licenses as it is easier keep the project on trend.");
+            tips.add(ownI18N.getString("GENERAL_TIP_1"));
+            tips.add(ownI18N.getString("GENERAL_TIP_2"));
+            tips.add(ownI18N.getString("GENERAL_TIP_3"));
+            tips.add(ownI18N.getString("GENERAL_TIP_4"));
             if (project.getLicenses().size() > ONE) {
-                tips.add("General tip: Try not to use more than a license for the project unless completely necessary. It makes very difficult to maintain all them trendy.");
+                tips.add(ownI18N.getString("GENERAL_TIP_5"));
             }
         }
     }
@@ -137,6 +138,7 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
         // reload resource bundles
         spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
         trendsI18N = Translations.SUPPORTED_TRENDS.getResourceBundle(languageConfig.getLanguage().getLocale());
+        ownI18N = Translations.RISK_ANALYSER_UNFASHIONABLE_PROJECT_LICENSES.getResourceBundle(languageConfig.getLanguage().getLocale());
         fireLanguageChangeEvent();
     }
 
