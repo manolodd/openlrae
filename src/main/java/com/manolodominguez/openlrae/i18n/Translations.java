@@ -40,6 +40,7 @@ public enum Translations {
     RISK_ANALYSER_SCARCELY_SPREAD_COMPONENTS_LICENSES("RiskAnalyserScarcelySpreadComponentsLicenses"),
     RISK_ANALYSER_SCARCELY_SPREAD_PROJECT_LICENSES("RiskAnalyserScarcelySpreadProjectLicenses"),
     RISK_ANALYSER_UNFASHIONABLE_COMPONENTS_LICENSES("RiskAnalyserUnfashionableComponentsLicenses"),
+    RISK_ANALYSER_UNFASHIONABLE_PROJECT_LICENSES("RiskAnalyserUnfashionableProjectLicenses"),
     SUPPORTED_COMPONENTS_WEIGHTS("SupportedComponentWeights"),
     SUPPORTED_COMPATIBILITIES("SupportedCompatibilities"),
     SUPPORTED_LICENSES_SPDX_FULL("SupportedCompatibilitiesSPDXFull"),
