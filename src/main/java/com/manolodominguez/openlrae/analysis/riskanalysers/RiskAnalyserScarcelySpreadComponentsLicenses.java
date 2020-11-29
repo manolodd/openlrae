@@ -70,6 +70,7 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
         super(project, SupportedRisks.HAVING_SCARCELY_SPREAD_COMPONENTS_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserScarcelySpreadComponentsLicenses.class);
         spreadingsI18N = Translations.SUPPORTED_SPREADINGS.getResourceBundle(languageConfig.getLanguage().getLocale());
+        ownI18N = Translations.RISK_ANALYSER_SCARCELY_SPREAD_COMPONENTS_LICENSES.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -89,7 +90,7 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
                     // The analyzed component is using a license that is used in 
                     // lots of third party projects. Therefore there is not 
                     // scarce deployment risk in this case. 
-                    goodThings.add(componentBinding.getFullName() + ", uses a license that " + spreadingsI18N.getString(spreading.toString()));
+                    goodThings.add(componentBinding.getFullName() + ", "+ownI18N.getString("USES_A_LICENSE_THAT")+" " + spreadingsI18N.getString(spreading.toString()));
                     break;
                 case NEAR_HIGHLY_WIDESPREAD:
                     // The analyzed component is using a license that is not 
@@ -97,8 +98,8 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
                     // a little scarce deployment risk in this case.                    
                     riskImpact += (spreading.getSpreadingValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", uses a license that " + spreadingsI18N.getString(spreading.toString()));
-                    tips.add("Try changing " + componentBinding.getFullName() + ", by another component released under a license more spread.");
+                    rootCauses.add(componentBinding.getFullName() + ", "+ownI18N.getString("USES_A_LICENSE_THAT")+" " + spreadingsI18N.getString(spreading.toString()));
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
                     break;
                 case NEAR_LITTLE_WIDESPREAD:
                     // The analyzed component is using a license that is not 
@@ -106,8 +107,8 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
                     // moderated scarce deployment risk in this case.
                     riskImpact += (spreading.getSpreadingValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", uses a license that " + spreadingsI18N.getString(spreading.toString()));
-                    tips.add("Try changing " + componentBinding.getFullName() + ", by another component released under a license more spread.");
+                    rootCauses.add(componentBinding.getFullName() + ", "+ownI18N.getString("USES_A_LICENSE_THAT")+" " + spreadingsI18N.getString(spreading.toString()));
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
                     break;
                 case LITTLE_WIDESPREAD:
                     // The analyzed component is using a license that is used  
@@ -115,8 +116,8 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
                     // a high scarce deployment risk in this case.
                     riskImpact += (spreading.getSpreadingValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", uses a license that " + spreadingsI18N.getString(spreading.toString()));
-                    tips.add("Try changing " + componentBinding.getFullName() + ", by another component released under a license more spread.");
+                    rootCauses.add(componentBinding.getFullName() + ", "+ownI18N.getString("USES_A_LICENSE_THAT")+" " + spreadingsI18N.getString(spreading.toString()));
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
                     break;
             }
         }
@@ -124,12 +125,12 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
         if (riskExposure > NO_RISK) {
-            tips.add("General tip: Try to use components with spread licenses as it is less likely to have licensing risks.");
-            tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start changing components that are root causes in more cases.");
-            tips.add("General tip: When modifying the project bill of components to reduce the exposure to this risks, start with those with higher level of contribution to the overall project.");
-            tips.add("General tip: If you own all right on a given risky component, try changing its license instead of looking for another component.");
+            tips.add(ownI18N.getString("GENERAL_TIP_1"));
+            tips.add(ownI18N.getString("GENERAL_TIP_2"));
+            tips.add(ownI18N.getString("GENERAL_TIP_3"));
+            tips.add(ownI18N.getString("GENERAL_TIP_4"));
             if (project.getLicenses().size() > ONE) {
-                tips.add("General tip: Try not to use more than a license for the project unless completely necessary. It makes very difficult to all compents licenses widely spread because each component license has to be compatible with all project licenses. If project licenses are not widely spread it is more difficult to have componentes with licenses widely spread.");
+                tips.add(ownI18N.getString("GENERAL_TIP_5"));
             }
         }
     }
@@ -143,6 +144,7 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
         languageConfig.setLanguage(languageChangeEvent.getNewLanguage());
         // reload resource bundles
         spreadingsI18N = Translations.SUPPORTED_SPREADINGS.getResourceBundle(languageConfig.getLanguage().getLocale());
+        ownI18N = Translations.RISK_ANALYSER_SCARCELY_SPREAD_COMPONENTS_LICENSES.getResourceBundle(languageConfig.getLanguage().getLocale());
         fireLanguageChangeEvent();
     }
 
