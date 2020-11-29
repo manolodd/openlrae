@@ -68,6 +68,7 @@ public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnaly
         logger = LoggerFactory.getLogger(RiskAnalyserScarcelySpreadProjectLicenses.class);
         spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
         spreadingsI18N = Translations.SUPPORTED_SPREADINGS.getResourceBundle(languageConfig.getLanguage().getLocale());
+        ownI18N = Translations.RISK_ANALYSER_SCARCELY_SPREAD_PROJECT_LICENSES.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -85,7 +86,7 @@ public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnaly
                 case HIGHLY_WIDESPREAD:
                     // This project licenses is highly spread. Therefore there 
                     // is not risk of being scarcely spread in this case. 
-                    goodThings.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that " + spreadingsI18N.getString(spreading.toString()));
+                    goodThings.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + spreadingsI18N.getString(spreading.toString()));
                     break;
                 case NEAR_HIGHLY_WIDESPREAD:
                     // The analyzed license is not highly spread but is 
@@ -93,8 +94,8 @@ public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnaly
                     // there is risk of being scarcely spread in this case. 
                     riskImpact += spreading.getSpreadingValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that " + spreadingsI18N.getString(spreading.toString()));
-                    tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a more spreadlicense, if possible.");
+                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + spreadingsI18N.getString(spreading.toString()));
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("BY_A_MORE_BLAH"));
                     break;
                 case NEAR_LITTLE_WIDESPREAD:
                     // The analyzed license is not highly spread but is 
@@ -102,28 +103,28 @@ public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnaly
                     // there is risk of being scarcely spread in this case. 
                     riskImpact += spreading.getSpreadingValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that " + spreadingsI18N.getString(spreading.toString()));
-                    tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a more spreadlicense, if possible.");
+                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + spreadingsI18N.getString(spreading.toString()));
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("BY_A_MORE_BLAH"));
                     break;
                 case LITTLE_WIDESPREAD:
                     // This project license is poorly spread. Therefore there 
                     // is risk of being scarcely spread in this case. 
                     riskImpact += spreading.getSpreadingValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", is released under the license " + spdxIdI18N.getString(projectLicense.toString()) + " that " + spreadingsI18N.getString(spreading.toString()));
-                    tips.add("Try to replace the project license " + spdxIdI18N.getString(projectLicense.toString()) + ", by a more spreadlicense, if possible.");
+                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + spreadingsI18N.getString(spreading.toString()));
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("BY_A_MORE_BLAH"));
                     break;
             }
         }
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
         if (riskExposure > NO_RISK) {
-            tips.add("General tip: When replacing a project license by a more spreadone, do not forget to check whether the componets of the project are still compatible with it or not.");
-            tips.add("General tip: When modifying the set of project licenses to reduce the exposure to this risk, start with those licenses whose risk contribution, in trend spreading, is greater.");
-            tips.add("General tip: Sometimes, using the same license but in a different version is also more spread; perhaps it is not necessasry to change to a very different license.");
-            tips.add("General tip: Always try to maintain a spread set of project licenses as it is easier keep the project on trend.");
+            tips.add(ownI18N.getString("GENERAL_TIP_1"));
+            tips.add(ownI18N.getString("GENERAL_TIP_2"));
+            tips.add(ownI18N.getString("GENERAL_TIP_3"));
+            tips.add(ownI18N.getString("GENERAL_TIP_4"));
             if (project.getLicenses().size() > ONE) {
-                tips.add("General tip: Try not to use more than a license for the project unless completely necessary. It makes more difficult that all them are widely spread.");
+                tips.add(ownI18N.getString("GENERAL_TIP_5"));
             }
         }
     }
@@ -138,6 +139,7 @@ public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnaly
         // reload resource bundles
         spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
         spreadingsI18N = Translations.SUPPORTED_SPREADINGS.getResourceBundle(languageConfig.getLanguage().getLocale());
+        ownI18N = Translations.RISK_ANALYSER_SCARCELY_SPREAD_PROJECT_LICENSES.getResourceBundle(languageConfig.getLanguage().getLocale());
         fireLanguageChangeEvent();
     }
 
