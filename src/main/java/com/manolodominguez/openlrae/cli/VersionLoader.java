@@ -51,24 +51,35 @@ public class VersionLoader {
     }
 
     /**
-     * This method read the OpenLRAE properties file and generates an String
-     * containing information about OpenLRAE version and license.
+     * This method read the OpenLRAE properties file and generates a String
+     * containing the OpenLRAE license.
      *
-     * @return a string containig information about OpenLRAE version (if
-     * defined) and OpenLRAE license (if defined). If none of the above is
-     * defined, return a blank string.
+     * @return a String containing the OpenLRAE license. If the license is
+     * undefined, return a blank string.
+     */
+    public String getLicense() {
+        String license = properties.getProperty(OPENLRAE_LICENSE);
+        String returnedLicense = "";
+        if (license != null) {
+            returnedLicense += license;
+        }
+        return returnedLicense;
+    }
+
+    /**
+     * This method read the OpenLRAE properties file and returns a String
+     * containing the current OpenLRAE version.
+     *
+     * @return a String containing the current OpenLRAE version. If the version
+     * is undefined, return a blank string.
      */
     public String getVersion() {
         String version = properties.getProperty(OPENLRAE_VERSION);
-        String license = properties.getProperty(OPENLRAE_LICENSE);
-        String versionPlusLicense = "";
+        String returnedVersion = "";
         if (version != null) {
-            versionPlusLicense += version;
-            if (license != null) {
-                versionPlusLicense += " - released under " + license;
-            }
+            returnedVersion += version;
         }
-        return versionPlusLicense;
+        return returnedVersion;
     }
 
     public static final String OPENLRAE_VERSION = "com.manolodominguez.openlrae.version";
