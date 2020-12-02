@@ -57,6 +57,8 @@ public class VersionLoaderTest {
         assertEquals(2, instance.properties.size());
         assertNotNull(instance.getVersion());
         assertTrue(!instance.getVersion().isEmpty());
+        assertNotNull(instance.getLicense());
+        assertTrue(!instance.getLicense().isEmpty());
     }
 
     /**
@@ -68,6 +70,8 @@ public class VersionLoaderTest {
         VersionLoader instance = new VersionLoader();
         assertNotNull(instance.getVersion());
         assertTrue(!instance.getVersion().isEmpty());
+        assertNotNull(instance.getLicense());
+        assertTrue(!instance.getLicense().isEmpty());
     }
     
 }
