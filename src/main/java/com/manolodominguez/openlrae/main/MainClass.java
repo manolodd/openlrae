@@ -33,8 +33,11 @@ public class MainClass {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        String arg0;
+        String arg1;
         if (args.length == 1) {
-            switch (args[0]) {
+            arg0 = args[0].substring(0, Math.min(args[0].length(), ARG0_MAX_LENGTH));
+            switch (arg0) {
                 case "-i":
                     new CLIHandler().showInfo();
                     break;
@@ -44,15 +47,20 @@ public class MainClass {
                 case "-e":
                     new CLIHandler().runExample();
                     break;
+                case "-v":
+                    new CLIHandler().showVersion();
+                    break;
                 default:
                     new CLIHandler().showOptions();
                     break;
             }
         } else {
             if (args.length == 2) {
-                switch (args[0]) {
+                arg0 = args[0].substring(0, Math.min(args[0].length(), ARG0_MAX_LENGTH));
+                arg1 = args[1].substring(0, Math.min(args[1].length(), ARG1_MAX_LENGTH));
+                switch (arg0) {
                     case "-a":
-                        new CLIHandler().runAnalysis(args[1]);
+                        new CLIHandler().runAnalysis(arg1);
                         break;
                     default:
                         new CLIHandler().showOptions();
@@ -63,4 +71,7 @@ public class MainClass {
             }
         }
     }
+    
+    public static final int ARG0_MAX_LENGTH=3;
+    public static final int ARG1_MAX_LENGTH=1024;
 }
