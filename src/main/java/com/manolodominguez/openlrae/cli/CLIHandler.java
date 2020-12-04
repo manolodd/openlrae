@@ -226,7 +226,7 @@ public class CLIHandler {
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser10);
         riskAnalysisEngine.addRiskAnalyser(riskAnalyser11);
 
-        // Choose the desired language and continue adding risks analysers
+        // Choose the desired reporting language 
         riskAnalysisEngine.setLanguage(languageConfig.getLanguage().getLocale());
 
         // Run the license risks analysis and collect results
