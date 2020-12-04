@@ -6,7 +6,7 @@
 
 [![Build Status](https://img.shields.io/travis/manolodd/openlrae/master.svg)](https://travis-ci.org/manolodd/openlrae?branch=master)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=manolodd_openlrae&branch=master&metric=alert_status#.svg)](https://sonarcloud.io/dashboard?id=manolodd_openlrae)
-[![Maven Central](https://img.shields.io/maven-central/v/com.manolodominguez/openlrae)](https://search.maven.org/artifact/com.manolodominguez/openlrae/0.7/jar)
+[![Maven Central](https://img.shields.io/maven-central/v/com.manolodominguez/openlrae)](https://search.maven.org/artifact/com.manolodominguez/openlrae/0.8/jar)
 
 ## Develop branch
 
@@ -16,7 +16,7 @@
 
 # THE PROJECT
 
-<b>OpenLRAE</b> is a multiplatform Licensing Risks Analysis Engine. It's a java library that allow knowing the risk induced by the bill of components you have included in your project, the way they are bound, the kind of distribution you're going to do of your project, and so on.
+<b>OpenLRAE</b> is a multiplatform, multilanguage Licensing Risks Analysis Engine. It's a java library that allow knowing the risk induced by the bill of components you have included in your project, the way they are bound, the kind of distribution you're going to do of your project, and so on.
 
 After decades working in public, private and academic sector, assesing hundreds of platforms from an opensource perspective, I realized that most of the existing tools try to detect the components that have been included in a project and, then, they try to infer their licenses. Only after that (that brings a lots of false positives and negatives) a license analysis is done.
 
@@ -32,12 +32,12 @@ With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard o
 
 ## Latest snapshot version being developed:
  
-- <b>OpenLRAE 0.8-SNAPSHOT</b> (development branch) - Apache-2.0.
+- <b>OpenLRAE 0.9-SNAPSHOT</b> (development branch) - Apache-2.0.
 
 ## Binary releases:
 
-- <b>OpenLRAE 0.7</b> (current, master branch) - Apache-2.0.
-- <b>OpenLRAE from 0.1 to 0.6</b> - Apache-2.0.
+- <b>OpenLRAE 0.8</b> (current, master branch) - Apache-2.0.
+- <b>OpenLRAE from 0.1 to 0.7</b> - Apache-2.0.
 
 # PEOPLE BEHIND OPENLRAE
 
@@ -56,10 +56,10 @@ You can download latest compiled stable releases from the releases section of th
 <dependency>
   <groupId>com.manolodominguez</groupId>
   <artifactId>openlrae</artifactId>
-  <version>0.7</version>
+  <version>0.8</version>
 </dependency>
 ```
-For othe project builders (graddle, buildr...) see the next link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/0.7/jar
+For othe project builders (graddle, buildr...) see the next link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/0.8/jar
 
 # COMPILING FROM SOURCES
 
@@ -121,7 +121,7 @@ At this point, you have a well-defined project. You could also do the same using
 
 Once the project is defined, what risks would you to measure? OpenLRAE supports several risks related to licensing. Create one risk analyser for each risk you want to evaluate. In this example we use two (their name are self-explainatory).
 ```console
-RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense riskAnalyser1 = new RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense(project);
+RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses riskAnalyser1 = new RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses(project);
 RiskAnalyserLimitedSetOfPotentialComponentsLicenses riskAnalyser2 = new RiskAnalyserLimitedSetOfPotentialComponentsLicenses(project);
 ```
 And you will need a license riks analysis engine that will do the job. So create it and add the risk analysers you have defined above.
@@ -129,7 +129,11 @@ And you will need a license riks analysis engine that will do the job. So create
 LicenseRiskAnalysisEngine engine = new LicenseRiskAnalysisEngine(riskAnalyser1);
 engine.addRiskAnalyser(riskAnalyser2);
 ```
-And... that's all. Whenever you want, run the analysis and collect the result.
+And choose the reporting language if you want. Otherwise the resulting report will be generated using the default language (English). Now, English (default) and Spanish languages are supported.
+```console
+engine.setLanguage(new Locale("es"));
+```
+That's all. Whenever you want, run the analysis and collect the result.
 ```console
 RiskAnalysisResult[] resultSet = engine.analyse();
 ```
@@ -137,7 +141,7 @@ You could also transform the result into a JSON String report (there are other o
 ```console
 String JSONReport = ReportsFactory.getInstance().getReportAsBeautifiedJSONString(project, resultSet);
 ```
-Now, print the report, send over a REST service, store it in a file or whatever you want.
+Now, print the report, send over a REST service, store it in a file, use its values to feed a dashboard or whatever you want.
 ```console
 System.out.println("This is the analysis report:\n\n"+JSONReport);
 ```
