@@ -27,22 +27,22 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author manolodd
  */
 public class SupportedVerbosityLevelTest {
-    
+
     public SupportedVerbosityLevelTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
@@ -81,20 +81,4 @@ public class SupportedVerbosityLevelTest {
         assertTrue(worksFine);
     }
 
-    /**
-     * Test of getDescriptionValue method, of class SupportedVerbosityLevel.
-     */
-    @Test
-    public void testGetDescriptionValue() {
-        System.out.println("getDescriptionValue");
-        boolean worksFine = true;
-        for (SupportedVerbosityLevel verbosity : SupportedVerbosityLevel.values()) {
-            if ((verbosity.getDescriptionValue() != null) && (!verbosity.getDescriptionValue().isEmpty())) {
-                worksFine &= true;
-            } else {
-                worksFine = false;
-            }
-        }
-        assertTrue(worksFine);
-    }
 }
