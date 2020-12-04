@@ -206,48 +206,28 @@ public class ReportsFactory {
             logger.error("resultSet cannot be null");
             throw new IllegalArgumentException("resultSet cannot be null");
         }
-        LanguageConfig languageConfig = new LanguageConfig(); 
-        languageConfig.setLanguage(project.getLanguage());
-        ResourceBundle weightsI18N = Translations.SUPPORTED_COMPONENTS_WEIGHTS.getResourceBundle(languageConfig.getLanguage().getLocale());
-        ResourceBundle spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
-        ResourceBundle spdxFullI18N = Translations.SUPPORTED_LICENSES_SPDX_FULL.getResourceBundle(languageConfig.getLanguage().getLocale());
-        ResourceBundle redistributionsI18N = Translations.SUPPORTED_REDISTRIBUTIONS.getResourceBundle(languageConfig.getLanguage().getLocale());
-        ResourceBundle risksI18N = Translations.SUPPORTED_RISKS.getResourceBundle(languageConfig.getLanguage().getLocale());
         String report = EMPTY_REPORT_AS_PLAIN_TEXT;
-        report += "**************************************************\n";
-        report += "Project name: " + project.getName() + "\n";
-        report += "Project version: " + project.getVersion() + "\n";
-        report += "Project's selected licenses: ";
-        for (SupportedLicenses projectLicense : project.getLicenses()) {
-            report += spdxFullI18N.getString(projectLicense.toString()) + " (" + spdxIdI18N.getString(projectLicense.toString()) + "),";
-        }
-        report += "\n";
-        report += addTab(1) + "=> Project redistribution: " + redistributionsI18N.getString(project.getRedistribution().toString()) + "\n";
-        report += "**************************************************\n";
-        report += "### Component bindigs:\n";
-        for (ComponentBinding spp : project.getBillOfComponentBindings()) {
-            report += addTab(1) + "=> " + spp.getComponent().getName() + "-" + spp.getComponent().getVersion() + " (" + spdxIdI18N.getString(spp.getComponent().getLicense().toString()) + ") --> Contribution to the project: " + weightsI18N.getString(spp.getWeight().toString()) + "\n";
-        }
-        report += "### Risk analysis\n";
         for (RiskAnalysisResult riskAnalysisResult : resultSet) {
-            report += addTab(1) + "=> " + risksI18N.getString(riskAnalysisResult.getRiskType().toString()) + "\n";
-            report += addTab(2) + "*** Risk = " + riskAnalysisResult.getRiskValue() + " (Exposure = " + riskAnalysisResult.getRiskExposure() + ", Impact = " + riskAnalysisResult.getRiskImpact() + ")\n";
+            report += addTab(1) + "*** risk: " + riskAnalysisResult.getRiskType().toString() + "\n";
+            report += addTab(2) + "*** riskvalue: " + riskAnalysisResult.getRiskValue()+"\n";
+            report += addTab(2) + "*** riskexposure: " + riskAnalysisResult.getRiskExposure()  + "\n";
+            report += addTab(2) + "*** riskimpact: " + riskAnalysisResult.getRiskImpact() + "\n";
             if ((verbosity == SupportedVerbosityLevel.RICH) || (verbosity == SupportedVerbosityLevel.DETAILED)) {
-                report += addTab(2) + "*** Root causes\n";
+                report += addTab(2) + "*** rootcauses\n";
                 for (String rootCause : riskAnalysisResult.getRootCauses()) {
                     report += addTab(3) + "=> " + rootCause + "\n";
                 }
-                report += addTab(2) + "*** Warnings\n";
+                report += addTab(2) + "*** warnings\n";
                 for (String warning : riskAnalysisResult.getWarnings()) {
                     report += addTab(3) + "=> " + warning + "\n";
                 }
-                report += addTab(2) + "*** Good things\n";
+                report += addTab(2) + "*** goodthings\n";
                 for (String goodThing : riskAnalysisResult.getGoodThings()) {
                     report += addTab(3) + "=> " + goodThing + "\n";
                 }
             }
             if (verbosity == SupportedVerbosityLevel.DETAILED) {
-                report += addTab(2) + "*** Tips to mitigate the risk\n";
+                report += addTab(2) + "*** tips\n";
                 for (String tip : riskAnalysisResult.getTips()) {
                     report += addTab(3) + "=> " + tip + "\n";
                 }
