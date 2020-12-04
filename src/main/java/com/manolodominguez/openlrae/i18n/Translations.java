@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum Translations {
+    CLI_HANDLER("CLIHandler"),
     PROJECT("Project"),
     RISK_ANALYSER_COMPONENTS_LICENSES_INCOMPATIBLE_WITH_PROJECT_LICENSES("RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses"),
     RISK_ANALYSER_COMPONENTS_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES("RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses"),
