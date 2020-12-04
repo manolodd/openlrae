@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 public class VersionLoader {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(VersionLoader.class);
-    public Properties properties;
+    private Properties properties;
 
     /**
      * This is the constructor of the class. Ite creates a new instance of
