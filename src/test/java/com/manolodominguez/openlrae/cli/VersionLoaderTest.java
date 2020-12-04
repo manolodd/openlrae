@@ -54,7 +54,6 @@ public class VersionLoaderTest {
     public void testConstructor() {
         System.out.println("constructor");
         VersionLoader instance = new VersionLoader();
-        assertEquals(2, instance.properties.size());
         assertNotNull(instance.getVersion());
         assertTrue(!instance.getVersion().isEmpty());
         assertNotNull(instance.getLicense());
