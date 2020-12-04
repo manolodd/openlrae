@@ -20,42 +20,12 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This class implements an enum to define all type some versbosity levels to be
- * used when generating a report. 
+ * used when generating a report.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedVerbosityLevel {
-    ESSENTIAL("only risk information and values"),
-    RICH("risk information and values, root causes, good things and warnings"),
-    DETAILED("risk information and values, root causes, good things, warnings and tips");
-
-    private Logger logger = LoggerFactory.getLogger(SupportedVerbosityLevel.class);
-
-    private final String descriptionValue;
-
-    /**
-     * This is the constructor of the class. It defines SupportedLinks enum.
-     *
-     * @param descriptionValue A text describing the meaning of the enum item.
-     */
-    private SupportedVerbosityLevel(String descriptionValue) {
-        if (descriptionValue == null) {
-            logger.error("descriptionValue cannot be null");
-            throw new IllegalArgumentException("descriptionValue cannot be null");
-        }
-        if (descriptionValue.isEmpty()) {
-            logger.error("descriptionValue cannot be blank");
-            throw new IllegalArgumentException("descriptionValue cannot be blank");
-        }
-        this.descriptionValue = descriptionValue;
-    }
-
-    /**
-     * This method get the description of the enum item.
-     *
-     * @return the description of the enum item.
-     */
-    public String getDescriptionValue() {
-        return descriptionValue;
-    }
+    ESSENTIAL,
+    RICH,
+    DETAILED;
 }
