@@ -1,6 +1,6 @@
-OpenSimMPLS uses third-party components each one of them having its own OSS 
-license. License compatibility has been taken into account to allow OpenSimMPLS
-be released under its current OSS licence. They are:
+OpenLRAE uses third-party components each one of them having its own OSS 
+license. License compatibility has been taken into account to allow OpenLRAE
+to be released under its current OSS licence. They are:
 
 - slf4j-api 2.0.0-alpha1 - MIT - https://www.slf4j.org
 - slf4j-simple 2.0.0-alpha1 - MIT - https://www.slf4j.org
