@@ -1,0 +1,38 @@
+{
+    "projectinfo": {
+        "name": "OpenLRAE",
+        "version": "0.8",
+        "redistribution": "SOFTWARE_PACKAGE_OR_SAAS",
+        "licenses": ["APACHE_2_0"]
+    },
+    "componentbindings": [
+        {
+            "component": "mjson",
+            "version": "1.4.1",
+            "license": "APACHE_2_0",
+            "weight": "NEAR_LOW",
+            "link": "DYNAMIC"
+        },
+        {
+            "component": "junit-jupiter-engine",
+            "version": "5.7.0",
+            "license": "UNSUPPORTED",
+            "weight": "NEAR_LOW",
+            "link": "DYNAMIC"
+        },
+        {
+            "component": "slf4j-api",
+            "version": "2.0.0-alpha1",
+            "license": "MIT",
+            "weight": "NEAR_LOW",
+            "link": "DYNAMIC"
+        },
+        {
+            "component": "slf4j-simple",
+            "version": "2.0.0-alpha1",
+            "license": "MIT",
+            "weight": "NEAR_LOW",
+            "link": "DYNAMIC"
+        }
+    ]
+}
