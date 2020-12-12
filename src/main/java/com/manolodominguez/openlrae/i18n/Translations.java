@@ -88,6 +88,7 @@ public enum Translations {
      * fallback to the default system locale, but the default locale configured
      * in OpenLRAE.
      *
+     * @param locale The locale of the resource bundle.
      * @return the to the resource bundle for the translation.
      */
     public ResourceBundle getResourceBundle(Locale locale) {

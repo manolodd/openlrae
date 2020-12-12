@@ -69,14 +69,14 @@ public class LanguageConfig {
             throw new IllegalArgumentException("newLocale cannot be null");
         }
         SupportedLanguages newLanguage = SupportedLanguages.DEFAULT_LANGUAGE;
-        for (SupportedLanguages language : SupportedLanguages.values()) {
-            if (language.getLocale().getLanguage().equals(newLocale.getLanguage()) && language.getLocale().getCountry().equals(newLocale.getCountry())) {
-                newLanguage = language;
+        for (SupportedLanguages languageAux : SupportedLanguages.values()) {
+            if (languageAux.getLocale().getLanguage().equals(newLocale.getLanguage()) && languageAux.getLocale().getCountry().equals(newLocale.getCountry())) {
+                newLanguage = languageAux;
             }
         }
-        for (SupportedLanguages language : SupportedLanguages.values()) {
-            if (language.getLocale().getLanguage().equals(newLocale.getLanguage())) {
-                newLanguage = language;
+        for (SupportedLanguages languageAux : SupportedLanguages.values()) {
+            if (languageAux.getLocale().getLanguage().equals(newLocale.getLanguage())) {
+                newLanguage = languageAux;
             }
         }
         setLanguage(newLanguage);

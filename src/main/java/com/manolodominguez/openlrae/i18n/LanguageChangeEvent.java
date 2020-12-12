@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 public class LanguageChangeEvent extends EventObject {
 
     private Logger logger = LoggerFactory.getLogger(LanguageChangeEvent.class);
-    public SupportedLanguages newLanguage;
+    private SupportedLanguages newLanguage;
 
     /**
      * This is the constructor of the class. It creates a new instance of
