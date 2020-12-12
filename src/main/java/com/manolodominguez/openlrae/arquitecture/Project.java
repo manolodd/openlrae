@@ -49,9 +49,9 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
 
     private String name;
     private String version;
-    private CopyOnWriteArrayList<SupportedLicenses> licenses;
+    private List<SupportedLicenses> licenses;
     private SupportedRedistributions redistribution;
-    private CopyOnWriteArrayList<ComponentBinding> billOfComponentBindings;
+    private List<ComponentBinding> billOfComponentBindings;
     private LanguageConfig languageConfig;
     protected ResourceBundle ownI18N;
     private ResourceBundle spdxIdI18N;
@@ -210,10 +210,7 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
             URI schemaURI = getClass().getResource(FilesPaths.PROJECT_SCHEMA.getFilePath()).toURI();
             schema = Json.schema(schemaURI);
             Json validationResult = schema.validate(projectDefinition);
-            if (validationResult.at("ok").asBoolean()) {
-                return true;
-            }
-            return false;
+            return validationResult.at("ok").asBoolean();
         } catch (RuntimeException | URISyntaxException ex) {
             return false;
         }
@@ -396,7 +393,7 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
      *
      * @return the license of the project.
      */
-    public CopyOnWriteArrayList<SupportedLicenses> getLicenses() {
+    public List<SupportedLicenses> getLicenses() {
         return licenses;
     }
 
@@ -423,7 +420,7 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
      *
      * @return the complete bill of components bindigs of the project.
      */
-    public CopyOnWriteArrayList<ComponentBinding> getBillOfComponentBindings() {
+    public List<ComponentBinding> getBillOfComponentBindings() {
         return billOfComponentBindings;
     }
 
