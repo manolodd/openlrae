@@ -50,6 +50,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -161,7 +162,7 @@ public class CLIHandler {
                         // Print analysis report. As a JSON string in this case.
                         writeToConsole("");
                         writeToConsole(ReportsFactory.getInstance(SupportedVerbosityLevel.DETAILED).getReportAsPlainText(project, resultSet));
-                    } catch (Exception ex) {
+                    } catch (MalformedURLException ex) {
                         writeToConsole(ownI18N.getString("NOT_A_VALID_JSON_1") + " " + fileName + ". " + ownI18N.getString("NOT_A_VALID_JSON_2"));
                     }
                 }
