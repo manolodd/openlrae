@@ -15,6 +15,7 @@
  */
 package com.manolodominguez.openlrae.baseofknowledge.basevalues;
 
+import java.util.Arrays;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -134,9 +135,7 @@ public enum SupportedLicenses {
      */
     public static SupportedLicenses[] getLicensesForComponents() {
         CopyOnWriteArrayList<SupportedLicenses> licensesList = new CopyOnWriteArrayList<>();
-        for (SupportedLicenses license : SupportedLicenses.values()) {
-            licensesList.add(license);
-        }
+        licensesList.addAll(Arrays.asList(SupportedLicenses.values()));
         return licensesList.toArray(new SupportedLicenses[0]);
     }
 
