@@ -141,8 +141,8 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
                         // project.
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
                         canBeProjectLicense = false;
-                        rootCauses.add(spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("COULD_NOT_BE_USED_BLAH")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("THAT_IS_INCOMPATIBLE_BLAH")+" " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + redistributionsI18N.getString(project.getRedistribution().toString()));
-                        tips.add(ownI18N.getString("TRY_TO_REPLACE")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_A_COMPONENT_WITH_BLAH_2")+" " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + redistributionsI18N.getString(project.getRedistribution().toString()));
+                        rootCauses.add(spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("COULD_NOT_BE_USED_BLAH") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("THAT_IS_INCOMPATIBLE_BLAH") + " " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + redistributionsI18N.getString(project.getRedistribution().toString()));
+                        tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_A_COMPONENT_WITH_BLAH_2") + " " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + redistributionsI18N.getString(project.getRedistribution().toString()));
                         break;
                     case UNKNOWN:
                         // The analyzed component could be compatible or 
@@ -155,8 +155,8 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
                         // component is handled as uncompatible.
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
                         canBeProjectLicense = false;
-                        rootCauses.add(spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("COULD_NOT_BE_USED_BLAH")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("THAT_IS_NOT_KNOWN_BLAH")+" " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + redistributionsI18N.getString(project.getRedistribution().toString()));
-                        tips.add(ownI18N.getString("TRY_TO_REPLACE")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_A_COMPONENT_WITH_BLAH_3")+" " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + redistributionsI18N.getString(project.getRedistribution().toString()));
+                        rootCauses.add(spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("COULD_NOT_BE_USED_BLAH") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("THAT_IS_NOT_KNOWN_BLAH") + " " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + redistributionsI18N.getString(project.getRedistribution().toString()));
+                        tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_A_COMPONENT_WITH_BLAH_3") + " " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + redistributionsI18N.getString(project.getRedistribution().toString()));
                         break;
                     case UNSUPPORTED:
                         // The analyzed component could be compatible or 
@@ -170,9 +170,9 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
                         // handled as uncompatible.
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
                         canBeProjectLicense = false;
-                        rootCauses.add(spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("COULD_NOT_BE_USED_BLAH")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("WHOSE_LICENSE_BLAH")+" " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + redistributionsI18N.getString(project.getRedistribution().toString()) + ". "+ownI18N.getString("WE_APOLOGIZE_BLAH"));
-                        warnings.add(ownI18N.getString("ALTHOUGH")+" " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("COULD_NOT_BE_USED_BLAH")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("IS_HANDLED_AS_BLAH"));
-                        tips.add(ownI18N.getString("TRY_TO_REPLACE")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_A_COMPONENT_WITH_BLAH_4")+" " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + redistributionsI18N.getString(project.getRedistribution().toString()) + ", "+ownI18N.getString("OR_NOT"));
+                        rootCauses.add(spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("COULD_NOT_BE_USED_BLAH") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("WHOSE_LICENSE_BLAH") + " " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + redistributionsI18N.getString(project.getRedistribution().toString()) + ". " + ownI18N.getString("WE_APOLOGIZE_BLAH"));
+                        warnings.add(ownI18N.getString("ALTHOUGH") + " " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("COULD_NOT_BE_USED_BLAH") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("IS_HANDLED_AS_BLAH"));
+                        tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_A_COMPONENT_WITH_BLAH_4") + " " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + redistributionsI18N.getString(project.getRedistribution().toString()) + ", " + ownI18N.getString("OR_NOT"));
                         break;
                     case MOSTLY_COMPATIBLE:
                         // The analyzed component is compatible with the 
@@ -184,9 +184,9 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
                         // components with this kind of compatibilities induce 
                         // a moderated risk in the overall project.
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
-                        rootCauses.add(spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("COULD_NOT_BE_USED_BLAH_2")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("WHOSE_LICENSE_IS_BLAH")+" " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + redistributionsI18N.getString(project.getRedistribution().toString()) + ", "+ownI18N.getString("EXCEPT_UNDER_BLAH"));
-                        warnings.add(ownI18N.getString("CARRY_OUT_A_DEEP_BLAH")+" " + componentBinding.getFullName() + " "+ownI18N.getString("IS_INCOMPATIBLE_WITH_BLAH")+" " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("BEFORE_CHOOSING_BLAH"));
-                        tips.add(ownI18N.getString("TRY_TO_REPLACE")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_A_COMPONENT_WITH_BLAH_5")+" " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + redistributionsI18N.getString(project.getRedistribution().toString()));
+                        rootCauses.add(spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("COULD_NOT_BE_USED_BLAH_2") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("WHOSE_LICENSE_IS_BLAH") + " " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + redistributionsI18N.getString(project.getRedistribution().toString()) + ", " + ownI18N.getString("EXCEPT_UNDER_BLAH"));
+                        warnings.add(ownI18N.getString("CARRY_OUT_A_DEEP_BLAH") + " " + componentBinding.getFullName() + " " + ownI18N.getString("IS_INCOMPATIBLE_WITH_BLAH") + " " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("BEFORE_CHOOSING_BLAH"));
+                        tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_A_COMPONENT_WITH_BLAH_5") + " " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + redistributionsI18N.getString(project.getRedistribution().toString()));
                         break;
                     case MOSTLY_UNCOMPATIBLE:
                         // The analyzed component is incompatible with the 
@@ -198,9 +198,12 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
                         // components with this kind of compatibilities induce 
                         // a high risk in the overall project.
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
-                        rootCauses.add(spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("COULD_NOT_BE_USED_BLAH_2")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("WHOSE_LICENSE_IS_BLAH_2")+" " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + redistributionsI18N.getString(project.getRedistribution().toString()) + ", "+ownI18N.getString("EXCEPT_UNDER_BLAH"));
-                        warnings.add(ownI18N.getString("CARRY_OUT_A_DEEP_BLAH_2")+" " + componentBinding.getFullName() + " "+ownI18N.getString("IS_COMPATIBLE_WITH_BLAH")+" " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("BEFORE_CHOOSING_BLAH"));
-                        tips.add(ownI18N.getString("TRY_TO_REPLACE")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_A_COMPONENT_WITH_BLAH_5")+" " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + redistributionsI18N.getString(project.getRedistribution().toString()));
+                        rootCauses.add(spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("COULD_NOT_BE_USED_BLAH_2") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("WHOSE_LICENSE_IS_BLAH_2") + " " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + redistributionsI18N.getString(project.getRedistribution().toString()) + ", " + ownI18N.getString("EXCEPT_UNDER_BLAH"));
+                        warnings.add(ownI18N.getString("CARRY_OUT_A_DEEP_BLAH_2") + " " + componentBinding.getFullName() + " " + ownI18N.getString("IS_COMPATIBLE_WITH_BLAH") + " " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("BEFORE_CHOOSING_BLAH"));
+                        tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_A_COMPONENT_WITH_BLAH_5") + " " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + redistributionsI18N.getString(project.getRedistribution().toString()));
+                        break;
+                    default:
+                        logger.warn("default case reached in switch ???");
                         break;
                 }
             }
@@ -208,7 +211,7 @@ public class RiskAnalyserLimitedSetOfPotentialProjectLicenses extends AbstractRi
             if (canBeProjectLicense) {
                 // All components are compatible with the potential project 
                 // licenses being analysed.
-                goodThings.add(spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("COULD_BE_USED_AS_BLAH")+" " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + redistributionsI18N.getString(project.getRedistribution().toString()));
+                goodThings.add(spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("COULD_BE_USED_AS_BLAH") + " " + spdxIdI18N.getString(potentialProjectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + redistributionsI18N.getString(project.getRedistribution().toString()));
             } else {
                 // riskExposure is updated here because in order to be used as
                 // a project license, all component bindings of the project have

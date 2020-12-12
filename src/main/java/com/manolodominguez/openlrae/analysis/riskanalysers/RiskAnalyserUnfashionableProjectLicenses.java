@@ -85,7 +85,7 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
                 case TRENDY:
                     // This project licenses is trendy. Therefore there is not 
                     // risk of being unfashionable in this case. 
-                    goodThings.add(project.getFullName() + ", "+ownI18N.getString("IS_RELEASED_UNDER_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + trendsI18N.getString(trend.toString()));
+                    goodThings.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + trendsI18N.getString(trend.toString()));
                     break;
                 case NEAR_TRENDY:
                     // The analyzed license is not completely trendy but is 
@@ -93,8 +93,8 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
                     // is risk of being unfashioable in this case. 
                     riskImpact += trend.getTrendValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", "+ownI18N.getString("IS_RELEASED_UNDER_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + trendsI18N.getString(trend.toString())+".");
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()) + " "+ownI18N.getString("BY_A_TRENDIER_BLAH"));
+                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + trendsI18N.getString(trend.toString()) + ".");
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("BY_A_TRENDIER_BLAH"));
                     break;
                 case NEAR_UNFASHIONABLE:
                     // The analyzed license is not completely trendy but is 
@@ -102,16 +102,19 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
                     // is risk of being unfashioable in this case. 
                     riskImpact += trend.getTrendValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", "+ownI18N.getString("IS_RELEASED_UNDER_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + trendsI18N.getString(trend.toString())+".");
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()) + " "+ownI18N.getString("BY_A_TRENDIER_BLAH"));
+                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + trendsI18N.getString(trend.toString()) + ".");
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("BY_A_TRENDIER_BLAH"));
                     break;
                 case UNFASHIONABLE:
                     // This project license is trendy. Therefore there is risk 
                     // of being unfashionable in this case. 
                     riskImpact += trend.getTrendValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", "+ownI18N.getString("IS_RELEASED_UNDER_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()) + " "+ownI18N.getString("THAT")+" " + trendsI18N.getString(trend.toString())+".");
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()) + " "+ownI18N.getString("BY_A_TRENDIER_BLAH"));
+                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + trendsI18N.getString(trend.toString()) + ".");
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("BY_A_TRENDIER_BLAH"));
+                    break;
+                default:
+                    logger.warn("default case reached in switch ???");
                     break;
             }
         }

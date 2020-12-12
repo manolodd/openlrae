@@ -232,18 +232,17 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                             warnings.add(ownI18N.getString("BEFORE_INCLUDING_BLAH") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("CARRY_OUT_A_DEEP_BLAH_2") + " " + dummyComponentBinding.getFullNameForDummyComponent() + " " + ownI18N.getString("IS_COMPATIBLE_WITH_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()));
                             tips.add(ownI18N.getString("INSTEAD_OF_A") + " " + dummyComponentBinding.getFullName() + ", " + ownI18N.getString("TRY_TO_CHOOSE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()));
                             break;
+                        default:
+                            logger.warn("default case reached in switch ???");
+                            break;
                     }
                 }
-                if (compatibilityCounter.containsKey(SupportedCompatibilities.COMPATIBLE)) {
-                    if (compatibilityCounter.get(SupportedCompatibilities.COMPATIBLE) == project.getLicenses().size()) {
-                        goodThings.add(ownI18N.getString("A") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("COULD_BE_INCLUDED_IN") + " " + this.project.getFullName() + ", " + ownI18N.getString("BECAUSE_IT_IS_NATIVELY_BLAH"));
-                    }
+                if ((compatibilityCounter.containsKey(SupportedCompatibilities.COMPATIBLE) && (compatibilityCounter.get(SupportedCompatibilities.COMPATIBLE) == project.getLicenses().size()))) {
+                    goodThings.add(ownI18N.getString("A") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("COULD_BE_INCLUDED_IN") + " " + this.project.getFullName() + ", " + ownI18N.getString("BECAUSE_IT_IS_NATIVELY_BLAH"));
                 }
-                if (compatibilityCounter.containsKey(SupportedCompatibilities.FORCED_COMPATIBLE)) {
-                    if (compatibilityCounter.get(SupportedCompatibilities.FORCED_COMPATIBLE) == project.getLicenses().size()) {
-                        warnings.add(ownI18N.getString("ALTHOUGH_A") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("COULD_BE_USED_BLAH"));
-                        goodThings.add(ownI18N.getString("A") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("COULD_BE_INCLUDED_IN") + " " + this.project.getFullName() + ", " + ownI18N.getString("BECAUSE_IT_IS_FORCED_BLAH"));
-                    }
+                if ((compatibilityCounter.containsKey(SupportedCompatibilities.FORCED_COMPATIBLE) && (compatibilityCounter.get(SupportedCompatibilities.FORCED_COMPATIBLE) == project.getLicenses().size()))) {
+                    warnings.add(ownI18N.getString("ALTHOUGH_A") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("COULD_BE_USED_BLAH"));
+                    goodThings.add(ownI18N.getString("A") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("COULD_BE_INCLUDED_IN") + " " + this.project.getFullName() + ", " + ownI18N.getString("BECAUSE_IT_IS_FORCED_BLAH"));
                 }
                 compatibilityCounter.clear();
             }

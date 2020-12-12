@@ -90,7 +90,7 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
                     // (is being used more and more in third party projects). 
                     // Therefore there is not unfashionable license risk in this
                     // case. 
-                    goodThings.add(componentBinding.getFullName() + " " + ownI18N.getString("USES_A_LICENSE_THAT") + " " + trendsI18N.getString(trend.toString())+".");
+                    goodThings.add(componentBinding.getFullName() + " " + ownI18N.getString("USES_A_LICENSE_THAT") + " " + trendsI18N.getString(trend.toString()) + ".");
                     break;
                 case NEAR_TRENDY:
                     // The analyzed component is using a license that is not 
@@ -99,7 +99,7 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
                     // unfashionable license risk in this case. 
                     riskImpact += (trend.getTrendValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_A_LICENSE_THAT") + " " + trendsI18N.getString(trend.toString())+".");
+                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_A_LICENSE_THAT") + " " + trendsI18N.getString(trend.toString()) + ".");
                     tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_BLAH"));
                     break;
                 case NEAR_UNFASHIONABLE:
@@ -109,7 +109,7 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
                     // license risk in this case. 
                     riskImpact += (trend.getTrendValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_A_LICENSE_THAT") + " " + trendsI18N.getString(trend.toString())+".");
+                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_A_LICENSE_THAT") + " " + trendsI18N.getString(trend.toString()) + ".");
                     tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_BLAH"));
                     break;
                 case UNFASHIONABLE:
@@ -119,8 +119,11 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
                     // there is unfashionable license risk in this case. 
                     riskImpact += (trend.getTrendValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_A_LICENSE_THAT") + " " + trendsI18N.getString(trend.toString())+".");
+                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_A_LICENSE_THAT") + " " + trendsI18N.getString(trend.toString()) + ".");
                     tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_BLAH"));
+                    break;
+                default:
+                    logger.warn("default case reached in switch ???");
                     break;
             }
         }

@@ -23,6 +23,7 @@ import com.manolodominguez.openlrae.i18n.ILanguageChangeListener;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
 import com.manolodominguez.openlrae.i18n.LanguageConfig;
 import com.manolodominguez.openlrae.i18n.SupportedLanguages;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
@@ -42,10 +43,10 @@ public abstract class AbstractRiskAnalyser implements ILanguageChangeEventEmitte
     protected SupportedRisks handledRiskType;
     protected float riskExposure;
     protected float riskImpact;
-    protected CopyOnWriteArrayList<String> rootCauses;
-    protected CopyOnWriteArrayList<String> warnings;
-    protected CopyOnWriteArrayList<String> goodThings;
-    protected CopyOnWriteArrayList<String> tips;
+    protected List<String> rootCauses;
+    protected List<String> warnings;
+    protected List<String> goodThings;
+    protected List<String> tips;
     protected ResourceBundle ownI18N;
     protected LanguageConfig languageConfig;
 

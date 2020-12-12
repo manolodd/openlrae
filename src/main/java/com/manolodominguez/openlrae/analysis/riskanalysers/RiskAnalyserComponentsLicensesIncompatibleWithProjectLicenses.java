@@ -137,9 +137,9 @@ public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses exten
                         // has been specified). Therefore, it cannot be used in 
                         // the project independently on whether it is compatible
                         // with other licenses of the project or not.
-                        rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("CANNOT_BE_INCLUDED_IN") + " " + project.getFullName() + ". "+ownI18N.getString("THE_LICENSE_OF_THE_PROJECT_IS_INCOMPATIBLE_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()));
-                        tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_ANOTHER_COMPONENT_COMPATIBLE_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()));
-                        tips.add(ownI18N.getString("TRY_TO_GET_BLAH")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("TO_USE_IT_IN_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()));
+                        rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("CANNOT_BE_INCLUDED_IN") + " " + project.getFullName() + ". " + ownI18N.getString("THE_LICENSE_OF_THE_PROJECT_IS_INCOMPATIBLE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()));
+                        tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_COMPONENT_COMPATIBLE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()));
+                        tips.add(ownI18N.getString("TRY_TO_GET_BLAH") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("TO_USE_IT_IN_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()));
                         riskExposure += componentBinding.getWeight().getWeightValue();
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
                         break;
@@ -208,21 +208,20 @@ public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses exten
                         // overall project, because it is prone to error.
                         riskExposure += componentBinding.getWeight().getWeightValue();
                         riskImpact += ((TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue()) * componentBinding.getWeight().getWeightValue());
-                        rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("CANNOT_BE_INCLUDED_IN") + " " + project.getFullName() + ", "+ownI18N.getString("UNTIL_A_DEEP_BLAH_2")+" " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("EXCEPT_UNDER_BLAH"));
+                        rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("CANNOT_BE_INCLUDED_IN") + " " + project.getFullName() + ", " + ownI18N.getString("UNTIL_A_DEEP_BLAH_2") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("EXCEPT_UNDER_BLAH"));
                         warnings.add(ownI18N.getString("CARRY_OUT_A_DEEP_BLAH_2") + " " + componentBinding.getFullName() + " " + ownI18N.getString("IS_COMPATIBLE_WITH_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("BEFORE_USING_BLAH"));
-                        tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_ANOTHER_COMPONENT_FULLY_BLAH")+" " + spdxIdI18N.getString(projectLicense.toString()));
+                        tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_COMPONENT_FULLY_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()));
+                        break;
+                    default:
+                        logger.warn("default case reached in switch ???");
                         break;
                 }
             }
-            if (compatibilityCounter.containsKey(SupportedCompatibilities.COMPATIBLE)) {
-                if (compatibilityCounter.get(SupportedCompatibilities.COMPATIBLE) == project.getLicenses().size()) {
-                    goodThings.add(componentBinding.getFullName() + ", "+ownI18N.getString("IS_NATIVELY_BLAH")+" " + this.project.getFullName());
-                }
+            if ((compatibilityCounter.containsKey(SupportedCompatibilities.COMPATIBLE) && (compatibilityCounter.get(SupportedCompatibilities.COMPATIBLE) == project.getLicenses().size()))) {
+                goodThings.add(componentBinding.getFullName() + ", " + ownI18N.getString("IS_NATIVELY_BLAH") + " " + this.project.getFullName());
             }
-            if (compatibilityCounter.containsKey(SupportedCompatibilities.FORCED_COMPATIBLE)) {
-                if (compatibilityCounter.get(SupportedCompatibilities.FORCED_COMPATIBLE) == project.getLicenses().size()) {
-                    goodThings.add(componentBinding.getFullName() + ", "+ownI18N.getString("IS_FORCED_TO_BLAH")+" " + this.project.getFullName());
-                }
+            if ((compatibilityCounter.containsKey(SupportedCompatibilities.FORCED_COMPATIBLE) && (compatibilityCounter.get(SupportedCompatibilities.FORCED_COMPATIBLE) == project.getLicenses().size()))) {
+                goodThings.add(componentBinding.getFullName() + ", " + ownI18N.getString("IS_FORCED_TO_BLAH") + " " + this.project.getFullName());
             }
             compatibilityCounter.clear();
         }

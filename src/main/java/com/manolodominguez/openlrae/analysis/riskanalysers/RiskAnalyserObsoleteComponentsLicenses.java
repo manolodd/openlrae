@@ -57,7 +57,7 @@ import org.slf4j.LoggerFactory;
 public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser {
 
     private ResourceBundle obsolescencesI18N;
-    
+
     /**
      * This is the constructor of the class. It creates a new instance of
      * RiskAnalyserObsoleteComponentsLicenses.
@@ -88,7 +88,7 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // The analyzed component is using the latest version of its
                     // license. Therefore there is not obsolescence risk in this
                     // case. 
-                    goodThings.add(componentBinding.getFullName() + ", "+ownI18N.getString("IS_USING_THE_LICENSE")+" " + obsolescencesI18N.getString(obsolescence.toString()));
+                    goodThings.add(componentBinding.getFullName() + ", " + ownI18N.getString("IS_USING_THE_LICENSE") + " " + obsolescencesI18N.getString(obsolescence.toString()));
                     break;
                 case NEAR_UPDATED:
                     // The analyzed component is not using the latest version of
@@ -96,8 +96,8 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // one. Therefore there is obsolescence risk in this case. 
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", "+ownI18N.getString("IS_USING_THE_LICENSE")+" " + obsolescencesI18N.getString(obsolescence.toString()));
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
+                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("IS_USING_THE_LICENSE") + " " + obsolescencesI18N.getString(obsolescence.toString()));
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
                     break;
                 case NEAR_OUTDATED:
                     // The analyzed component is not using the latest version of
@@ -105,8 +105,8 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // one. Therefore there is obsolescence risk in this case. 
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + " "+ownI18N.getString("IS_USING_THE_LICENSE")+" " + obsolescencesI18N.getString(obsolescence.toString()));
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
+                    rootCauses.add(componentBinding.getFullName() + " " + ownI18N.getString("IS_USING_THE_LICENSE") + " " + obsolescencesI18N.getString(obsolescence.toString()));
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
                     break;
                 case OUTDATED:
                     // The analyzed component is not using the latest version of
@@ -114,8 +114,11 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // is obsolescence risk in this case. 
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + " "+ownI18N.getString("IS_USING_THE_LICENSE")+" " + obsolescencesI18N.getString(obsolescence.toString()));
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
+                    rootCauses.add(componentBinding.getFullName() + " " + ownI18N.getString("IS_USING_THE_LICENSE") + " " + obsolescencesI18N.getString(obsolescence.toString()));
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
+                    break;
+                default:
+                    logger.warn("default case reached in switch ???");
                     break;
             }
         }

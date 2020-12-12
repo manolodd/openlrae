@@ -58,7 +58,7 @@ import org.slf4j.LoggerFactory;
 public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAnalyser {
 
     private ResourceBundle spreadingsI18N;
-    
+
     /**
      * This is the constructor of the class. It creates a new instance of
      * RiskAnalyserScarcelySpreadComponentsLicenses.
@@ -90,7 +90,7 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
                     // The analyzed component is using a license that is used in 
                     // lots of third party projects. Therefore there is not 
                     // scarce deployment risk in this case. 
-                    goodThings.add(componentBinding.getFullName() + ", "+ownI18N.getString("USES_A_LICENSE_THAT")+" " + spreadingsI18N.getString(spreading.toString()));
+                    goodThings.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_A_LICENSE_THAT") + " " + spreadingsI18N.getString(spreading.toString()));
                     break;
                 case NEAR_HIGHLY_WIDESPREAD:
                     // The analyzed component is using a license that is not 
@@ -98,8 +98,8 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
                     // a little scarce deployment risk in this case.                    
                     riskImpact += (spreading.getSpreadingValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", "+ownI18N.getString("USES_A_LICENSE_THAT")+" " + spreadingsI18N.getString(spreading.toString()));
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
+                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_A_LICENSE_THAT") + " " + spreadingsI18N.getString(spreading.toString()));
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
                     break;
                 case NEAR_LITTLE_WIDESPREAD:
                     // The analyzed component is using a license that is not 
@@ -107,8 +107,8 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
                     // moderated scarce deployment risk in this case.
                     riskImpact += (spreading.getSpreadingValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", "+ownI18N.getString("USES_A_LICENSE_THAT")+" " + spreadingsI18N.getString(spreading.toString()));
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
+                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_A_LICENSE_THAT") + " " + spreadingsI18N.getString(spreading.toString()));
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
                     break;
                 case LITTLE_WIDESPREAD:
                     // The analyzed component is using a license that is used  
@@ -116,8 +116,11 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
                     // a high scarce deployment risk in this case.
                     riskImpact += (spreading.getSpreadingValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", "+ownI18N.getString("USES_A_LICENSE_THAT")+" " + spreadingsI18N.getString(spreading.toString()));
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE")+" " + componentBinding.getFullName() + ", "+ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
+                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_A_LICENSE_THAT") + " " + spreadingsI18N.getString(spreading.toString()));
+                    tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
+                    break;
+                default:
+                    logger.warn("default case reached in switch ???");
                     break;
             }
         }

@@ -114,6 +114,9 @@ public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnaly
                     rootCauses.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + spreadingsI18N.getString(spreading.toString()));
                     tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("BY_A_MORE_BLAH"));
                     break;
+                default:
+                    logger.warn("default case reached in switch ???");
+                    break;
             }
         }
         riskExposure /= (float) totalCases;
