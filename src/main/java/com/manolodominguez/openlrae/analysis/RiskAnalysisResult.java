@@ -16,6 +16,7 @@
 package com.manolodominguez.openlrae.analysis;
 
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,10 +37,10 @@ public class RiskAnalysisResult {
     private float riskExposure;
     private float riskImpact;
     private float riskValue;
-    private CopyOnWriteArrayList<String> rootCauses;
-    private CopyOnWriteArrayList<String> warnings;
-    private CopyOnWriteArrayList<String> goodThings;
-    private CopyOnWriteArrayList<String> tips;
+    private List<String> rootCauses;
+    private List<String> warnings;
+    private List<String> goodThings;
+    private List<String> tips;
 
     /**
      * This is the constructor of the class.It creates a new instance of
@@ -65,7 +66,7 @@ public class RiskAnalysisResult {
      * this will be a set of text with recommendations to mitigate, avoid or
      * transfer the risk.
      */
-    public RiskAnalysisResult(SupportedRisks riskType, float riskExposure, float riskImpact, CopyOnWriteArrayList<String> rootCauses, CopyOnWriteArrayList<String> warnings, CopyOnWriteArrayList<String> goodThings, CopyOnWriteArrayList<String> tips) {
+    public RiskAnalysisResult(SupportedRisks riskType, float riskExposure, float riskImpact, List<String> rootCauses, List<String> warnings, List<String> goodThings, List<String> tips) {
         if (riskType == null) {
             logger.error("riskType cannot be null");
             throw new IllegalArgumentException("riskType cannot be null");
@@ -163,7 +164,7 @@ public class RiskAnalysisResult {
      * account to compute the risk exposure and risk impact. In human readable
      * format.
      */
-    public CopyOnWriteArrayList<String> getRootCauses() {
+    public List<String> getRootCauses() {
         return rootCauses;
     }
 
@@ -175,7 +176,7 @@ public class RiskAnalysisResult {
      * @return a set of text with information of interest to complete the
      * contexto of the risk analysis. In human readable format.
      */
-    public CopyOnWriteArrayList<String> getWarnings() {
+    public List<String> getWarnings() {
         return warnings;
     }
 
@@ -186,7 +187,7 @@ public class RiskAnalysisResult {
      * @return a set of text with information of interest to know wich kind of
      * things are well done and do not induces risk. In human readable format.
      */
-    public CopyOnWriteArrayList<String> getGoodThings() {
+    public List<String> getGoodThings() {
         return goodThings;
     }
 
@@ -197,7 +198,7 @@ public class RiskAnalysisResult {
      * @return a set of text with recommendations to mitigate, avoid or transfer
      * the risk. In human readable format.
      */
-    public CopyOnWriteArrayList<String> getTips() {
+    public List<String> getTips() {
         return tips;
     }
 

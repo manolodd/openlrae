@@ -20,6 +20,7 @@ import com.manolodominguez.openlrae.i18n.ILanguageChangeEventEmitter;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
 import com.manolodominguez.openlrae.i18n.LanguageConfig;
 import com.manolodominguez.openlrae.i18n.SupportedLanguages;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
@@ -35,8 +36,8 @@ import org.slf4j.LoggerFactory;
 public class LicenseRiskAnalysisEngine implements ILanguageChangeEventEmitter {
 
     private Logger logger = LoggerFactory.getLogger(LicenseRiskAnalysisEngine.class);
-    private CopyOnWriteArrayList<AbstractRiskAnalyser> risksAnalysers;
-    private CopyOnWriteArrayList<RiskAnalysisResult> riskAnalysisResultSet;
+    private List<AbstractRiskAnalyser> risksAnalysers;
+    private List<RiskAnalysisResult> riskAnalysisResultSet;
     private LanguageConfig languageConfig;
 
     /**
@@ -138,7 +139,7 @@ public class LicenseRiskAnalysisEngine implements ILanguageChangeEventEmitter {
      * @return the list of risk analysers that have been added to the license
      * risk analysis engine.
      */
-    public CopyOnWriteArrayList<AbstractRiskAnalyser> getRisksAnalysers() {
+    public List<AbstractRiskAnalyser> getRisksAnalysers() {
         return risksAnalysers;
     }
 
