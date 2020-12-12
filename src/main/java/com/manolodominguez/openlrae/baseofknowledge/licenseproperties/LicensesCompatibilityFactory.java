@@ -107,14 +107,11 @@ public final class LicensesCompatibilityFactory {
             throw new IllegalArgumentException("redistribution cannot be null");
         }
         for (LicenseCompatibilityEntry licenseCompatibilityEntry : this.licensesCompatibilities) {
-            if (licenseCompatibilityEntry.getComponentLicense() == componentLicense) {
-                if (licenseCompatibilityEntry.getProjectLicense() == projectLicense) {
-                    if (licenseCompatibilityEntry.getRedistribution() == redistribution) {
-                        if (licenseCompatibilityEntry.getLink() == link) {
-                            return licenseCompatibilityEntry.getCompatibility();
-                        }
-                    }
-                }
+            if ((licenseCompatibilityEntry.getComponentLicense() == componentLicense)
+                    && (licenseCompatibilityEntry.getProjectLicense() == projectLicense)
+                    && (licenseCompatibilityEntry.getRedistribution() == redistribution)
+                    && (licenseCompatibilityEntry.getLink() == link)) {
+                return licenseCompatibilityEntry.getCompatibility();
             }
         }
         return SupportedCompatibilities.UNSUPPORTED;

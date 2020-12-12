@@ -19,6 +19,7 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatib
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistributions;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,8 +35,6 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public final class StaticAndNone implements InterfaceLicenseCompatibilitiesSubfactory {
-
-    private Logger logger = LoggerFactory.getLogger(StaticAndNone.class);
 
     private static StaticAndNone instance;
     private final CopyOnWriteArrayList<LicenseCompatibilityEntry> licensesCompatibilities;
@@ -97,7 +96,7 @@ public final class StaticAndNone implements InterfaceLicenseCompatibilitiesSubfa
      * statically to a project that is not going to be redistributed.
      */
     @Override
-    public CopyOnWriteArrayList<LicenseCompatibilityEntry> getCompatibilities() {
-        return new CopyOnWriteArrayList<LicenseCompatibilityEntry>(this.licensesCompatibilities);
+    public List<LicenseCompatibilityEntry> getCompatibilities() {
+        return new CopyOnWriteArrayList<>(this.licensesCompatibilities);
     }
 }

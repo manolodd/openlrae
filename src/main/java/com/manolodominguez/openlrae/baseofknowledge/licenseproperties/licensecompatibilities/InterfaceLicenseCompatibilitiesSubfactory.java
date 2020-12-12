@@ -15,7 +15,7 @@
  */
 package com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities;
 
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.List;
 
 /**
  * This interface has to be implemented by classes that generates partial bases
@@ -35,5 +35,5 @@ public interface InterfaceLicenseCompatibilitiesSubfactory {
      * a given way) to a project that is going to be redistributed (in any
      * form), or not.
      */
-    public CopyOnWriteArrayList<LicenseCompatibilityEntry> getCompatibilities();
+    public List<LicenseCompatibilityEntry> getCompatibilities();
 }
