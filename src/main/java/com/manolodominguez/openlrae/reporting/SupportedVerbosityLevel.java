@@ -15,9 +15,6 @@
  */
 package com.manolodominguez.openlrae.reporting;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * This class implements an enum to define all type some versbosity levels to be
  * used when generating a report.

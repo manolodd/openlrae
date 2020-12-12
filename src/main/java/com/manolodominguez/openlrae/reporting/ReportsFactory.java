@@ -16,12 +16,7 @@
 package com.manolodominguez.openlrae.reporting;
 
 import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
-import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.arquitecture.Project;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
-import com.manolodominguez.openlrae.i18n.LanguageConfig;
-import com.manolodominguez.openlrae.i18n.Translations;
-import java.util.ResourceBundle;
 import mjson.Json;
 import static mjson.Json.array;
 import static mjson.Json.object;
@@ -38,7 +33,7 @@ public class ReportsFactory {
 
     private Logger logger = LoggerFactory.getLogger(ReportsFactory.class);
 
-    private static ReportsFactory instance;
+    private static volatile ReportsFactory instance;
     private SupportedVerbosityLevel verbosity;
 
     /**
@@ -206,34 +201,34 @@ public class ReportsFactory {
             logger.error("resultSet cannot be null");
             throw new IllegalArgumentException("resultSet cannot be null");
         }
-        String report = EMPTY_REPORT_AS_PLAIN_TEXT;
+        StringBuilder stringBuilder = new StringBuilder();
         for (RiskAnalysisResult riskAnalysisResult : resultSet) {
-            report += addTab(1) + "*** risk: " + riskAnalysisResult.getRiskType().toString() + "\n";
-            report += addTab(2) + "*** riskvalue: " + riskAnalysisResult.getRiskValue()+"\n";
-            report += addTab(2) + "*** riskexposure: " + riskAnalysisResult.getRiskExposure()  + "\n";
-            report += addTab(2) + "*** riskimpact: " + riskAnalysisResult.getRiskImpact() + "\n";
+            stringBuilder.append(addTab(1)).append("*** risk: ").append(riskAnalysisResult.getRiskType().toString()).append("\n");
+            stringBuilder.append(addTab(2)).append("*** riskvalue: ").append(riskAnalysisResult.getRiskValue()).append("\n");
+            stringBuilder.append(addTab(2)).append("*** riskexposure: ").append(riskAnalysisResult.getRiskExposure()).append("\n");
+            stringBuilder.append(addTab(2)).append("*** riskimpact: ").append(riskAnalysisResult.getRiskImpact()).append("\n");
             if ((verbosity == SupportedVerbosityLevel.RICH) || (verbosity == SupportedVerbosityLevel.DETAILED)) {
-                report += addTab(2) + "*** rootcauses\n";
+                stringBuilder.append(addTab(2)).append("*** rootcauses\n");
                 for (String rootCause : riskAnalysisResult.getRootCauses()) {
-                    report += addTab(3) + "=> " + rootCause + "\n";
+                    stringBuilder.append(addTab(3)).append("=> ").append(rootCause).append("\n");
                 }
-                report += addTab(2) + "*** warnings\n";
+                stringBuilder.append(addTab(2)).append("*** warnings\n");
                 for (String warning : riskAnalysisResult.getWarnings()) {
-                    report += addTab(3) + "=> " + warning + "\n";
+                    stringBuilder.append(addTab(3)).append("=> ").append(warning).append("\n");
                 }
-                report += addTab(2) + "*** goodthings\n";
+                stringBuilder.append(addTab(2)).append("*** goodthings\n");
                 for (String goodThing : riskAnalysisResult.getGoodThings()) {
-                    report += addTab(3) + "=> " + goodThing + "\n";
+                    stringBuilder.append(addTab(3)).append("=> ").append(goodThing).append("\n");
                 }
             }
             if (verbosity == SupportedVerbosityLevel.DETAILED) {
-                report += addTab(2) + "*** tips\n";
+                stringBuilder.append(addTab(2)).append("*** tips\n");
                 for (String tip : riskAnalysisResult.getTips()) {
-                    report += addTab(3) + "=> " + tip + "\n";
+                    stringBuilder.append(addTab(3)).append("=> ").append(tip).append("\n");
                 }
             }
         }
-        return report;
+        return stringBuilder.toString();
     }
 
     /**
@@ -325,17 +320,17 @@ public class ReportsFactory {
     }
 
     private String addTab(int indentLevel) {
-        String auxString = "";
-        for (int indentions = 0; indentions < indentLevel; indentions++) {
-            for (int spaces = 0; spaces < INDENTION_SPACES; spaces++) {
-                auxString += " ";
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int indentions = MIN_INDENT_LEVEL; indentions < indentLevel; indentions++) {
+            for (int spaces = MIN_SPACES; spaces < INDENTION_SPACES; spaces++) {
+                stringBuilder.append(" ");
             }
         }
-        return auxString;
+        return stringBuilder.toString();
     }
 
-    private static final String EMPTY_REPORT_AS_PLAIN_TEXT = "";
     private static final int INDENTION_SPACES = 2;
     private static final int MIN_INDENT_LEVEL = 0;
+    private static final int MIN_SPACES = 0;
     private static final SupportedVerbosityLevel DEFAULT_VERBOSITY_LEVEL = SupportedVerbosityLevel.DETAILED;
 }
