@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class LicensesTrendFactoryTest {
+class LicensesTrendFactoryTest {
     
     public LicensesTrendFactoryTest() {
     }
@@ -60,7 +60,7 @@ public class LicensesTrendFactoryTest {
         System.out.println("getInstance");
         LicensesTrendFactory instance1 = LicensesTrendFactory.getInstance();
         LicensesTrendFactory instance2 = LicensesTrendFactory.getInstance();
-        assertTrue(instance1 == instance2); // We're comparing object references here
+        assertSame(instance1, instance2); 
     }
 
     /**

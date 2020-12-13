@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class StaticAndNoneTest {
+class StaticAndNoneTest {
     
     public StaticAndNoneTest() {
     }
@@ -56,7 +56,7 @@ public class StaticAndNoneTest {
         System.out.println("getInstance");
         StaticAndNone instance1 = StaticAndNone.getInstance();
         StaticAndNone instance2 = StaticAndNone.getInstance();
-        assertTrue(instance1 == instance2); // We're comparing object references here
+        assertSame(instance1, instance2);
     }
 
     /**

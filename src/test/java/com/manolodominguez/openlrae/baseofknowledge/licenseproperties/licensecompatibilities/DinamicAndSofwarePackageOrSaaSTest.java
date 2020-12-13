@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class DinamicAndSofwarePackageOrSaaSTest {
+class DinamicAndSofwarePackageOrSaaSTest {
     
     public DinamicAndSofwarePackageOrSaaSTest() {
     }
@@ -55,7 +55,7 @@ public class DinamicAndSofwarePackageOrSaaSTest {
         System.out.println("getInstance");
         DinamicAndSofwarePackageOrSaaS instance1 = DinamicAndSofwarePackageOrSaaS.getInstance();
         DinamicAndSofwarePackageOrSaaS instance2 = DinamicAndSofwarePackageOrSaaS.getInstance();
-        assertTrue(instance1 == instance2); // We're comparing object references here
+        assertSame(instance1, instance2); 
     }
 
     /**

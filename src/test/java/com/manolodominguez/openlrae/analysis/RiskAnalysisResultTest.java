@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class RiskAnalysisResultTest {
+class RiskAnalysisResultTest {
 
     public RiskAnalysisResultTest() {
     }

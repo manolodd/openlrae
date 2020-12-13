@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class RiskAnalyserObsoleteComponentsLicensesTest {
+class RiskAnalyserObsoleteComponentsLicensesTest {
     
     public RiskAnalyserObsoleteComponentsLicensesTest() {
     }

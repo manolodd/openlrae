@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class SupportedSpreadingsTest {
+class SupportedSpreadingsTest {
     
     public SupportedSpreadingsTest() {
     }

@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class LanguageChangeEventTest {
+class LanguageChangeEventTest {
 
     public LanguageChangeEventTest() {
     }

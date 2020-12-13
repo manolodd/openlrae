@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class ComponentTest {
+class ComponentTest {
     
     public ComponentTest() {
     }

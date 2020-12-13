@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class ComponentBindingTest {
+class ComponentBindingTest {
 
     public ComponentBindingTest() {
     }

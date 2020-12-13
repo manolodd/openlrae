@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class VersionLoaderTest {
+class VersionLoaderTest {
     
     public VersionLoaderTest() {
     }

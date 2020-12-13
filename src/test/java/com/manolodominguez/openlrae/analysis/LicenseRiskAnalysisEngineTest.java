@@ -43,7 +43,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class LicenseRiskAnalysisEngineTest {
+class LicenseRiskAnalysisEngineTest {
 
     public LicenseRiskAnalysisEngineTest() {
     }

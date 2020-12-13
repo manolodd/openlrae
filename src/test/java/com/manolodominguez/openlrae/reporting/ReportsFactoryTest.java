@@ -40,7 +40,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class ReportsFactoryTest {
+class ReportsFactoryTest {
 
     public ReportsFactoryTest() {
     }

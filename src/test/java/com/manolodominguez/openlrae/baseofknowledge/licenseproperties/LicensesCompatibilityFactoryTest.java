@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class LicensesCompatibilityFactoryTest {
+class LicensesCompatibilityFactoryTest {
     
     public LicensesCompatibilityFactoryTest() {
     }
