@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class SupportedComponentWeightsTest {
+class SupportedComponentWeightsTest {
 
     public SupportedComponentWeightsTest() {
     }
@@ -51,7 +51,7 @@ public class SupportedComponentWeightsTest {
      * Test of number of items, of class SupportedComponentWeights.
      */
     @Test
-    public void testItemsNumber() {
+    void testItemsNumber() {
         System.out.println("items number");
         // Currently there are 4 wights defined in enum
         assertEquals(4, SupportedComponentWeights.values().length);
@@ -62,7 +62,7 @@ public class SupportedComponentWeightsTest {
      * class SupportedComponentWeights.
      */
     @Test
-    public void testItems() {
+    void testItems() {
         System.out.println("items existence");
         // Currently these are the weights items defined in enum
         boolean worksFine = true;
@@ -86,7 +86,7 @@ public class SupportedComponentWeightsTest {
      * Test of getWeightValue method, of class SupportedComponentWeights.
      */
     @Test
-    public void testGetWeightValue() {
+    void testGetWeightValue() {
         System.out.println("getWeightValue");
         boolean worksFine = true;
         for (SupportedComponentWeights weight : SupportedComponentWeights.values()) {

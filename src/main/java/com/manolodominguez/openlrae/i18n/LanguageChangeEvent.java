@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("serial")
 public class LanguageChangeEvent extends EventObject {
 
-    private Logger logger = LoggerFactory.getLogger(LanguageChangeEvent.class);
+    private transient Logger logger = LoggerFactory.getLogger(LanguageChangeEvent.class);
     private SupportedLanguages newLanguage;
 
     /**

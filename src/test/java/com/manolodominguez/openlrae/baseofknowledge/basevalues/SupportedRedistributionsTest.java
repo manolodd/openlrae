@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class SupportedRedistributionsTest {
+class SupportedRedistributionsTest {
 
     public SupportedRedistributionsTest() {
     }
@@ -51,7 +51,7 @@ public class SupportedRedistributionsTest {
      * Test of number of items, of class SupportedRedistributions.
      */
     @Test
-    public void testItemsNumber() {
+    void testItemsNumber() {
         System.out.println("items number");
         // Currently there are 2 redistributions defined in enum
         assertEquals(2, SupportedRedistributions.values().length);
@@ -62,7 +62,7 @@ public class SupportedRedistributionsTest {
      * class SupportedRedistributions.
      */
     @Test
-    public void testItems() {
+    void testItems() {
         System.out.println("items existence");
         // Currently these are the redistribution items defined in enum
         boolean worksFine = true;

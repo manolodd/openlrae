@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author manolodd
  */
-public class SupportedCompatibilitiesTest {
+class SupportedCompatibilitiesTest {
 
     public SupportedCompatibilitiesTest() {
     }
@@ -52,7 +52,7 @@ public class SupportedCompatibilitiesTest {
      * Test of number of items, of class SupportedCompatibilities.
      */
     @Test
-    public void testItemsNumber() {
+    void testItemsNumber() {
         System.out.println("items number");
         // Currently there are 7 compatibilities defined in enum
         assertEquals(7, SupportedCompatibilities.values().length);
@@ -63,7 +63,7 @@ public class SupportedCompatibilitiesTest {
      * class SupportedCompatibilities.
      */
     @Test
-    public void testItems() {
+    void testItems() {
         System.out.println("items existence");
         // Currently these are the compatibilities items defined in enum
         boolean worksFine = true;
@@ -90,7 +90,7 @@ public class SupportedCompatibilitiesTest {
      * Test of getCompatibilityValue method, of class SupportedCompatibilities.
      */
     @Test
-    public void testGetCompatibilityValue() {
+    void testGetCompatibilityValue() {
         System.out.println("getCompatibilityValue");
         boolean worksFine = true;
         for (SupportedCompatibilities compatibility : SupportedCompatibilities.values()) {

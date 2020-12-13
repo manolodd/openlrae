@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class SupportedObsolescencesTest {
+class SupportedObsolescencesTest {
 
     public SupportedObsolescencesTest() {
     }
@@ -51,7 +51,7 @@ public class SupportedObsolescencesTest {
      * Test of number of items, of class SupportedObsolescences.
      */
     @Test
-    public void testItemsNumber() {
+    void testItemsNumber() {
         System.out.println("items number");
         // Currently there are 4 obsolescences defined in enum
         assertEquals(4, SupportedObsolescences.values().length);
@@ -62,7 +62,7 @@ public class SupportedObsolescencesTest {
      * class SupportedObsolescences.
      */
     @Test
-    public void testItems() {
+    void testItems() {
         System.out.println("items existence");
         // Currently these are the obsolescences items defined in enum
         boolean worksFine = true;
@@ -86,7 +86,7 @@ public class SupportedObsolescencesTest {
      * Test of getObsolescenceValue method, of class SupportedObsolescences.
      */
     @Test
-    public void testGetObsolescenceValue() {
+    void testGetObsolescenceValue() {
         System.out.println("getObsolescenceValue");
         boolean worksFine = true;
         for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {

@@ -57,7 +57,7 @@ public abstract class AbstractRiskAnalyser implements ILanguageChangeEventEmitte
      * @param project The software project to be analised.
      * @param handledRiskType The type of risk the subclass addresses.
      */
-    public AbstractRiskAnalyser(Project project, SupportedRisks handledRiskType) {
+    protected AbstractRiskAnalyser(Project project, SupportedRisks handledRiskType) {
         logger = LoggerFactory.getLogger(AbstractRiskAnalyser.class);
         if (project == null) {
             logger.error("Project cannot be null");

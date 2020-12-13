@@ -15,11 +15,6 @@
  */
 package com.manolodominguez.openlrae.cli;
 
-import com.manolodominguez.openlrae.arquitecture.Project;
-import com.manolodominguez.openlrae.resourceslocators.FilesPaths;
-import java.io.FileReader;
-import java.io.InputStream;
-import java.net.URL;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;

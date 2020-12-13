@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class SupportedLinksTest {
+class SupportedLinksTest {
     
     public SupportedLinksTest() {
     }
@@ -51,7 +51,7 @@ public class SupportedLinksTest {
      * Test of number of items, of class SupportedLinks.
      */
     @Test
-    public void testItemsNumber() {
+    void testItemsNumber() {
         System.out.println("items number");
         // Currently there are 2 links defined in enum
         assertEquals(2, SupportedLinks.values().length);
@@ -62,7 +62,7 @@ public class SupportedLinksTest {
      * class SupportedLinks.
      */
     @Test
-    public void testItems() {
+    void testItems() {
         System.out.println("items existence");
         // Currently these are the links items defined in enum
         boolean worksFine = true;

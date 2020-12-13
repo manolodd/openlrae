@@ -58,20 +58,17 @@ public class MainClass {
             if (args.length == 2) {
                 arg0 = args[0].substring(0, Math.min(args[0].length(), ARG0_MAX_LENGTH));
                 arg1 = args[1].substring(0, Math.min(args[1].length(), ARG1_MAX_LENGTH));
-                switch (arg0) {
-                    case "-a":
-                        new CLIHandler().runAnalysis(arg1);
-                        break;
-                    default:
-                        new CLIHandler().showOptions();
-                        break;
+                if (arg0.equals("-a")) {
+                    new CLIHandler().runAnalysis(arg1);
+                } else {
+                    new CLIHandler().showOptions();
                 }
             } else {
                 new CLIHandler().showOptions();
             }
         }
     }
-    
-    public static final int ARG0_MAX_LENGTH=3;
-    public static final int ARG1_MAX_LENGTH=1024;
+
+    public static final int ARG0_MAX_LENGTH = 3;
+    public static final int ARG1_MAX_LENGTH = 1024;
 }

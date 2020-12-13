@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-public class SupportedLicensesTest {
+class SupportedLicensesTest {
 
     public SupportedLicensesTest() {
     }
@@ -51,7 +51,7 @@ public class SupportedLicensesTest {
      * Test of number of items, of class SupportedLicenses.
      */
     @Test
-    public void testItemsNumber() {
+    void testItemsNumber() {
         System.out.println("items number");
         // Currently there are 21 licenses defined in enum
         assertEquals(21, SupportedLicenses.values().length);
@@ -62,7 +62,7 @@ public class SupportedLicensesTest {
      * class SupportedLicenses.
      */
     @Test
-    public void testItems() {
+    void testItems() {
         System.out.println("items existence");
         // Currently these are the licenses items defined in enum
         boolean worksFine = true;
@@ -103,7 +103,7 @@ public class SupportedLicensesTest {
      * Test of getLicensesForProjects method, of class SupportedLicenses.
      */
     @Test
-    public void testGetLicensesForProjects() {
+    void testGetLicensesForProjects() {
         System.out.println("getLicensesForProjects");
         // Currently there are 18 licenses for projects defined in enum
         assertEquals(18, SupportedLicenses.getLicensesForProjects().length);
@@ -113,7 +113,7 @@ public class SupportedLicensesTest {
      * Test of getLicensesForComponents method, of class SupportedLicenses.
      */
     @Test
-    public void testGetLicensesForComponents() {
+    void testGetLicensesForComponents() {
         System.out.println("getLicensesForComponents");
         // Currently there are 21 licenses for components defined in enum
         assertEquals(21, SupportedLicenses.getLicensesForComponents().length);
@@ -123,7 +123,7 @@ public class SupportedLicensesTest {
      * Test of getFicticiousLicenses method, of class SupportedLicenses.
      */
     @Test
-    public void testGetFicticiousLicenses() {
+    void testGetFicticiousLicenses() {
         System.out.println("getFicticiousLicenses");
         // Currently there are 3 ficticious licenses defined in enum
         assertEquals(3, SupportedLicenses.getFicticiousLicenses().length);
@@ -133,7 +133,7 @@ public class SupportedLicensesTest {
      * Test of getNotFicticiousLicenses method, of class SupportedLicenses.
      */
     @Test
-    public void testGetNotFicticiousLicenses() {
+    void testGetNotFicticiousLicenses() {
         System.out.println("getNotFicticiousLicenses");
         // Currently there are 18 not ficticious licenses defined in enum
         assertEquals(18, SupportedLicenses.getNotFicticiousLicenses().length);
