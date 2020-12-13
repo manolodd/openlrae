@@ -1,7 +1,7 @@
 /* 
  * Copyright (C) Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License);
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -88,7 +88,7 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // The analyzed component is using the latest version of its
                     // license. Therefore there is not obsolescence risk in this
                     // case. 
-                    goodThings.add(componentBinding.getFullName() + ", " + ownI18N.getString("IS_USING_THE_LICENSE") + " " + obsolescencesI18N.getString(obsolescence.toString()));
+                    goodThings.add(componentBinding.getFullName() + ", " + ownI18N.getString(IS_USING_THE_LICENSE) + " " + obsolescencesI18N.getString(obsolescence.toString()));
                     break;
                 case NEAR_UPDATED:
                     // The analyzed component is not using the latest version of
@@ -96,8 +96,8 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // one. Therefore there is obsolescence risk in this case. 
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("IS_USING_THE_LICENSE") + " " + obsolescencesI18N.getString(obsolescence.toString()));
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
+                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString(IS_USING_THE_LICENSE) + " " + obsolescencesI18N.getString(obsolescence.toString()));
+                    tips.add(ownI18N.getString(TRY_TO_REPLACE) + " " + componentBinding.getFullName() + ", " + ownI18N.getString(BY_ANOTHER_COMPONENT_BLAH));
                     break;
                 case NEAR_OUTDATED:
                     // The analyzed component is not using the latest version of
@@ -105,8 +105,8 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // one. Therefore there is obsolescence risk in this case. 
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + " " + ownI18N.getString("IS_USING_THE_LICENSE") + " " + obsolescencesI18N.getString(obsolescence.toString()));
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
+                    rootCauses.add(componentBinding.getFullName() + " " + ownI18N.getString(IS_USING_THE_LICENSE) + " " + obsolescencesI18N.getString(obsolescence.toString()));
+                    tips.add(ownI18N.getString(TRY_TO_REPLACE) + " " + componentBinding.getFullName() + ", " + ownI18N.getString(BY_ANOTHER_COMPONENT_BLAH));
                     break;
                 case OUTDATED:
                     // The analyzed component is not using the latest version of
@@ -114,8 +114,8 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
                     // is obsolescence risk in this case. 
                     riskImpact += (obsolescence.getObsolescenceValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + " " + ownI18N.getString("IS_USING_THE_LICENSE") + " " + obsolescencesI18N.getString(obsolescence.toString()));
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH"));
+                    rootCauses.add(componentBinding.getFullName() + " " + ownI18N.getString(IS_USING_THE_LICENSE) + " " + obsolescencesI18N.getString(obsolescence.toString()));
+                    tips.add(ownI18N.getString(TRY_TO_REPLACE) + " " + componentBinding.getFullName() + ", " + ownI18N.getString(BY_ANOTHER_COMPONENT_BLAH));
                     break;
                 default:
                     logger.warn("default case reached in switch ???");
@@ -125,12 +125,12 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
         if (riskExposure > NO_RISK) {
-            tips.add(ownI18N.getString("GENERAL_TIP_1"));
-            tips.add(ownI18N.getString("GENERAL_TIP_2"));
-            tips.add(ownI18N.getString("GENERAL_TIP_3"));
-            tips.add(ownI18N.getString("GENERAL_TIP_4"));
+            tips.add(ownI18N.getString(GENERAL_TIP_1));
+            tips.add(ownI18N.getString(GENERAL_TIP_2));
+            tips.add(ownI18N.getString(GENERAL_TIP_3));
+            tips.add(ownI18N.getString(GENERAL_TIP_4));
             if (project.getLicenses().size() > ONE) {
-                tips.add(ownI18N.getString("GENERAL_TIP_5"));
+                tips.add(ownI18N.getString(GENERAL_TIP_5));
             }
         }
     }
@@ -150,5 +150,15 @@ public class RiskAnalyserObsoleteComponentsLicenses extends AbstractRiskAnalyser
 
     private static final float NO_RISK = 0.0f;
     private static final int ONE = 1;
+
+    // i18N Keys
+    private static final String IS_USING_THE_LICENSE = "IS_USING_THE_LICENSE";
+    private static final String TRY_TO_REPLACE = "TRY_TO_REPLACE";
+    private static final String BY_ANOTHER_COMPONENT_BLAH = "BY_ANOTHER_COMPONENT_BLAH";
+    private static final String GENERAL_TIP_1 = "GENERAL_TIP_1";
+    private static final String GENERAL_TIP_2 = "GENERAL_TIP_2";
+    private static final String GENERAL_TIP_3 = "GENERAL_TIP_3";
+    private static final String GENERAL_TIP_4 = "GENERAL_TIP_4";
+    private static final String GENERAL_TIP_5 = "GENERAL_TIP_5";
 
 }

@@ -1,7 +1,7 @@
 /* 
  * Copyright (C) Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License);
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -57,7 +57,7 @@ import org.slf4j.LoggerFactory;
 public class RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses extends AbstractRiskAnalyser {
 
     private ResourceBundle spdxIdI18N;
-    
+
     /**
      * This is the constructor of the class. It creates a new instance of
      * RiskAnalyserComponentLicensesMisalignedFromProjectLicenses.
@@ -85,12 +85,12 @@ public class RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses extends
             for (SupportedLicenses projectLicense : project.getLicenses()) {
                 maxImpact += componentBinding.getWeight().getWeightValue();
                 if (componentBinding.getComponent().getLicense() == projectLicense) {
-                    goodThings.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_THE_SAME_LICENSE_AS") + " " + project.getFullName());
+                    goodThings.add(componentBinding.getFullName() + ", " + ownI18N.getString(USES_THE_SAME_LICENSE_AS) + " " + project.getFullName());
                 } else {
                     riskImpact += componentBinding.getWeight().getWeightValue();
                     riskExposure++;
-                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_A_LICENSE_THAT_IS_DIFFERENT_THAN") + " " + spdxIdI18N.getString(projectLicense.toString()) + ", " + ownI18N.getString("THAT_IS_USED_BY") + " " + project.getFullName());
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_COMPONENT_RELEASED_UNDER") + " " + spdxIdI18N.getString(projectLicense.toString()) + ", " + ownI18N.getString("THAT_IS_USED_BY") + " " + project.getFullName());
+                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString(USES_A_LICENSE_THAT_IS_DIFFERENT_THAN) + " " + spdxIdI18N.getString(projectLicense.toString()) + ", " + ownI18N.getString(THAT_IS_USED_BY) + " " + project.getFullName());
+                    tips.add(ownI18N.getString(TRY_TO_REPLACE) + " " + componentBinding.getFullName() + ", " + ownI18N.getString(BY_ANOTHER_COMPONENT_RELEASED_UNDER) + " " + spdxIdI18N.getString(projectLicense.toString()) + ", " + ownI18N.getString(THAT_IS_USED_BY) + " " + project.getFullName());
                 }
             }
         }
@@ -98,12 +98,12 @@ public class RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses extends
         riskExposure /= (float) totalCases;
         riskImpact /= maxImpact;
         if (riskExposure > NO_RISK) {
-            tips.add(ownI18N.getString("GENERAL_TIP_1"));
-            tips.add(ownI18N.getString("GENERAL_TIP_2"));
-            tips.add(ownI18N.getString("GENERAL_TIP_3"));
-            tips.add(ownI18N.getString("GENERAL_TIP_4"));
+            tips.add(ownI18N.getString(GENERAL_TIP_1));
+            tips.add(ownI18N.getString(GENERAL_TIP_2));
+            tips.add(ownI18N.getString(GENERAL_TIP_3));
+            tips.add(ownI18N.getString(GENERAL_TIP_4));
             if (project.getLicenses().size() > ONE) {
-                tips.add(ownI18N.getString("GENERAL_TIP_5"));
+                tips.add(ownI18N.getString(GENERAL_TIP_5));
             }
         }
     }
@@ -124,5 +124,17 @@ public class RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses extends
     private static final float NO_RISK = 0.0f;
     private static final float INITIAL_MAXIMPACT = 0.0f;
     private static final int ONE = 1;
+
+    // i18N Keys
+    private static final String USES_THE_SAME_LICENSE_AS = "USES_THE_SAME_LICENSE_AS";
+    private static final String USES_A_LICENSE_THAT_IS_DIFFERENT_THAN = "USES_A_LICENSE_THAT_IS_DIFFERENT_THAN";
+    private static final String THAT_IS_USED_BY = "THAT_IS_USED_BY";
+    private static final String TRY_TO_REPLACE = "TRY_TO_REPLACE";
+    private static final String BY_ANOTHER_COMPONENT_RELEASED_UNDER = "BY_ANOTHER_COMPONENT_RELEASED_UNDER";
+    private static final String GENERAL_TIP_1 = "GENERAL_TIP_1";
+    private static final String GENERAL_TIP_2 = "GENERAL_TIP_2";
+    private static final String GENERAL_TIP_3 = "GENERAL_TIP_3";
+    private static final String GENERAL_TIP_4 = "GENERAL_TIP_4";
+    private static final String GENERAL_TIP_5 = "GENERAL_TIP_5";
 
 }

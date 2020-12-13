@@ -1,7 +1,7 @@
 /* 
  * Copyright (C) Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License);
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -90,7 +90,7 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
                     // (is being used more and more in third party projects). 
                     // Therefore there is not unfashionable license risk in this
                     // case. 
-                    goodThings.add(componentBinding.getFullName() + " " + ownI18N.getString("USES_A_LICENSE_THAT") + " " + trendsI18N.getString(trend.toString()) + ".");
+                    goodThings.add(componentBinding.getFullName() + " " + ownI18N.getString(USES_A_LICENSE_THAT) + " " + trendsI18N.getString(trend.toString()) + ".");
                     break;
                 case NEAR_TRENDY:
                     // The analyzed component is using a license that is not 
@@ -99,8 +99,8 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
                     // unfashionable license risk in this case. 
                     riskImpact += (trend.getTrendValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_A_LICENSE_THAT") + " " + trendsI18N.getString(trend.toString()) + ".");
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_BLAH"));
+                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString(USES_A_LICENSE_THAT) + " " + trendsI18N.getString(trend.toString()) + ".");
+                    tips.add(ownI18N.getString(TRY_TO_REPLACE) + " " + componentBinding.getFullName() + ", " + ownI18N.getString(BY_ANOTHER_BLAH));
                     break;
                 case NEAR_UNFASHIONABLE:
                     // The analyzed component is using a license that is not 
@@ -109,8 +109,8 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
                     // license risk in this case. 
                     riskImpact += (trend.getTrendValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_A_LICENSE_THAT") + " " + trendsI18N.getString(trend.toString()) + ".");
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_BLAH"));
+                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString(USES_A_LICENSE_THAT) + " " + trendsI18N.getString(trend.toString()) + ".");
+                    tips.add(ownI18N.getString(TRY_TO_REPLACE) + " " + componentBinding.getFullName() + ", " + ownI18N.getString(BY_ANOTHER_BLAH));
                     break;
                 case UNFASHIONABLE:
                     // The analyzed component is using a license that is not 
@@ -119,8 +119,8 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
                     // there is unfashionable license risk in this case. 
                     riskImpact += (trend.getTrendValue() * componentBinding.getWeight().getWeightValue());
                     riskExposure += componentBinding.getWeight().getWeightValue();
-                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_A_LICENSE_THAT") + " " + trendsI18N.getString(trend.toString()) + ".");
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_BLAH"));
+                    rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString(USES_A_LICENSE_THAT) + " " + trendsI18N.getString(trend.toString()) + ".");
+                    tips.add(ownI18N.getString(TRY_TO_REPLACE) + " " + componentBinding.getFullName() + ", " + ownI18N.getString(BY_ANOTHER_BLAH));
                     break;
                 default:
                     logger.warn("default case reached in switch ???");
@@ -131,12 +131,12 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
         if (riskExposure > NO_RISK) {
-            tips.add(ownI18N.getString("GENERAL_TIP_1"));
-            tips.add(ownI18N.getString("GENERAL_TIP_2"));
-            tips.add(ownI18N.getString("GENERAL_TIP_3"));
-            tips.add(ownI18N.getString("GENERAL_TIP_4"));
+            tips.add(ownI18N.getString(GENERAL_TIP_1));
+            tips.add(ownI18N.getString(GENERAL_TIP_2));
+            tips.add(ownI18N.getString(GENERAL_TIP_3));
+            tips.add(ownI18N.getString(GENERAL_TIP_4));
             if (project.getLicenses().size() > ONE) {
-                tips.add(ownI18N.getString("GENERAL_TIP_5"));
+                tips.add(ownI18N.getString(GENERAL_TIP_5));
             }
         }
     }
@@ -156,5 +156,15 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
 
     private static final float NO_RISK = 0.0f;
     private static final int ONE = 1;
+
+    // i18N Keys
+    private static final String USES_A_LICENSE_THAT = "USES_A_LICENSE_THAT";
+    private static final String TRY_TO_REPLACE = "TRY_TO_REPLACE";
+    private static final String BY_ANOTHER_BLAH = "BY_ANOTHER_BLAH";
+    private static final String GENERAL_TIP_1 = "GENERAL_TIP_1";
+    private static final String GENERAL_TIP_2 = "GENERAL_TIP_2";
+    private static final String GENERAL_TIP_3 = "GENERAL_TIP_3";
+    private static final String GENERAL_TIP_4 = "GENERAL_TIP_4";
+    private static final String GENERAL_TIP_5 = "GENERAL_TIP_5";
 
 }

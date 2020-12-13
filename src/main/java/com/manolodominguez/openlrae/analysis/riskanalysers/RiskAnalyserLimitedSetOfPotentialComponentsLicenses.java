@@ -1,7 +1,7 @@
 /* 
  * Copyright (C) Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License);
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -106,7 +106,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
         LicensesCompatibilityFactory licensesCompatibilities = LicensesCompatibilityFactory.getInstance();
         for (SupportedLicenses potentialComponentLicense : allPotentialComponentsLicenses) {
             for (SupportedLinks potentialLink : SupportedLinks.values()) {
-                dummyComponent = new Component(ownI18N.getString("COMPONENT_WITH_LICENSE"), "-------", potentialComponentLicense);
+                dummyComponent = new Component(ownI18N.getString(COMPONENT_WITH_LICENSE), "-------", potentialComponentLicense);
                 dummyComponentBinding = new ComponentBinding(dummyComponent, potentialLink, SupportedComponentWeights.HIGH);
                 dummyComponentBinding.onLanguageChange(new LanguageChangeEvent(project, languageConfig.getLanguage()));
                 for (SupportedLicenses projectLicense : this.project.getLicenses()) {
@@ -147,7 +147,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                             // at the exit of this loop to avoid repeating the 
                             // same tips, warnings, root causes... for each 
                             // project license.
-                            warnings.add(ownI18N.getString("ALTHOUGH_A") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("COULD_BE_INCLUDED_IN") + " " + project.getFullName() + ", " + ownI18N.getString("BE_SURE_YOU_HAVE_WRITEN_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()));
+                            warnings.add(ownI18N.getString(ALTHOUGH_A) + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString(COULD_BE_INCLUDED_IN) + " " + project.getFullName() + ", " + ownI18N.getString(BE_SURE_YOU_HAVE_WRITEN_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()));
                             break;
                         case UNCOMPATIBLE:
                             // The analyzed ficticious component is incompatible with the 
@@ -156,8 +156,8 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                             // has been specified). Therefore, it cannot be used in 
                             // the project independently on whether it is compatible
                             // with other licenses of the project or not.
-                            rootCauses.add(ownI18N.getString("A") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("COULD_NOT_BE_INCLUDED_IN") + " " + project.getFullName() + ", " + ownI18N.getString("BECAUSE_IT_IS_INCOMPATIBLE_WITH") + " " + spdxIdI18N.getString(projectLicense.toString()));
-                            tips.add(ownI18N.getString("TRY_TO_USE_A_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + ", " + ownI18N.getString("THAT_ALLOW_A") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("TO_BE_INCLUDED_BLAH"));
+                            rootCauses.add(ownI18N.getString(A) + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString(COULD_NOT_BE_INCLUDED_IN) + " " + project.getFullName() + ", " + ownI18N.getString(BECAUSE_IT_IS_INCOMPATIBLE_WITH) + " " + spdxIdI18N.getString(projectLicense.toString()));
+                            tips.add(ownI18N.getString(TRY_TO_USE_A_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + ", " + ownI18N.getString(THAT_ALLOW_A) + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString(TO_BE_INCLUDED_BLAH));
                             riskExposure++;
                             riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
                             break;
@@ -171,8 +171,8 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                             // compatible. On the contrary, in this situation the 
                             //component is handled as uncompatible. Therefore, it 
                             // cannot be used in the project. 
-                            rootCauses.add(ownI18N.getString("A") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("COULD_NOT_BE_INCLUDED_IN") + " " + project.getFullName() + ", " + ownI18N.getString("BECAUSE_IT_IS_NOT_KNOWN_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("AND_THEREFORE_BLAH"));
-                            tips.add(ownI18N.getString("WHENEVER_YOU_PLAN") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("ASK_THE_AUTHOR_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("OR_NOT"));
+                            rootCauses.add(ownI18N.getString(A) + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString(COULD_NOT_BE_INCLUDED_IN) + " " + project.getFullName() + ", " + ownI18N.getString(BECAUSE_IT_IS_NOT_KNOWN_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(AND_THEREFORE_BLAH));
+                            tips.add(ownI18N.getString(WHENEVER_YOU_PLAN) + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString(ASK_THE_AUTHOR_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(OR_NOT));
                             riskExposure++;
                             riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
                             break;
@@ -189,9 +189,9 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                             // is uncompatible. This is obviously a weakness of 
                             // OpenLRAE that will be reduced as the project 
                             // evolves.
-                            rootCauses.add(ownI18N.getString("A") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("COULD_NOT_BE_INCLUDED_IN") + " " + project.getFullName() + ". " + ownI18N.getString("OPENLRAE_DOES_NOT") + " " + spdxIdI18N.getString(projectLicense.toString()) + ". " + ownI18N.getString("WE_APOLOGIZE_BLAH"));
-                            warnings.add(ownI18N.getString("ALTHOUGH_A") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("WOULD_BE_HANDLED_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + ". " + ownI18N.getString("WE_APOLOGIZE_BLAH"));
-                            tips.add(ownI18N.getString("WHENEVER_YOU_PLAN") + " " + dummyComponentBinding.getFullNameForDummyComponent() + " " + ownI18N.getString("IN_A_PROJECT_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + ", " + ownI18N.getString("TRY_TO_USE_A_BLAH_2"));
+                            rootCauses.add(ownI18N.getString(A) + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString(COULD_NOT_BE_INCLUDED_IN) + " " + project.getFullName() + ". " + ownI18N.getString(OPENLRAE_DOES_NOT) + " " + spdxIdI18N.getString(projectLicense.toString()) + ". " + ownI18N.getString(WE_APOLOGIZE_BLAH));
+                            warnings.add(ownI18N.getString(ALTHOUGH_A) + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString(WOULD_BE_HANDLED_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + ". " + ownI18N.getString(WE_APOLOGIZE_BLAH));
+                            tips.add(ownI18N.getString(WHENEVER_YOU_PLAN) + " " + dummyComponentBinding.getFullNameForDummyComponent() + " " + ownI18N.getString(IN_A_PROJECT_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + ", " + ownI18N.getString(TRY_TO_USE_A_BLAH_2));
                             riskExposure++;
                             riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
                             break;
@@ -210,9 +210,9 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                             // error.
                             riskExposure++;
                             riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
-                            rootCauses.add(ownI18N.getString("A") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("COULD_NOT_BE_INCLUDED_IN") + " " + project.getFullName() + ", " + ownI18N.getString("UNTIL_A_DEEP_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("EXCEPT_UNDER_BLAH"));
-                            warnings.add(ownI18N.getString("BEFORE_INCLUDING_BLAH") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("CARRY_OUT_A_DEEP_BLAH") + " " + dummyComponentBinding.getFullNameForDummyComponent() + " " + ownI18N.getString("IS_INCOMPATIBLE_WITH_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()));
-                            tips.add(ownI18N.getString("INSTEAD_OF_A") + " " + dummyComponentBinding.getFullName() + ", " + ownI18N.getString("TRY_TO_CHOOSE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()));
+                            rootCauses.add(ownI18N.getString(A) + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString(COULD_NOT_BE_INCLUDED_IN) + " " + project.getFullName() + ", " + ownI18N.getString(UNTIL_A_DEEP_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(EXCEPT_UNDER_BLAH));
+                            warnings.add(ownI18N.getString(BEFORE_INCLUDING_BLAH) + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString(CARRY_OUT_A_DEEP_BLAH) + " " + dummyComponentBinding.getFullNameForDummyComponent() + " " + ownI18N.getString(IS_INCOMPATIBLE_WITH_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()));
+                            tips.add(ownI18N.getString(INSTEAD_OF_A) + " " + dummyComponentBinding.getFullName() + ", " + ownI18N.getString(TRY_TO_CHOOSE_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()));
                             break;
                         case MOSTLY_UNCOMPATIBLE:
                             // The analyzed ficticious component is incompatible
@@ -228,9 +228,9 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                             // overall project, because it is prone to error.
                             riskExposure++;
                             riskImpact += (TOTAL_COMPATIBILITY - compatibility.getCompatibilityValue());
-                            rootCauses.add(ownI18N.getString("A") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("COULD_NOT_BE_INCLUDED_IN") + " " + project.getFullName() + ", " + ownI18N.getString("UNTIL_A_DEEP_BLAH_2") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("EXCEPT_UNDER_BLAH"));
-                            warnings.add(ownI18N.getString("BEFORE_INCLUDING_BLAH") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("CARRY_OUT_A_DEEP_BLAH_2") + " " + dummyComponentBinding.getFullNameForDummyComponent() + " " + ownI18N.getString("IS_COMPATIBLE_WITH_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()));
-                            tips.add(ownI18N.getString("INSTEAD_OF_A") + " " + dummyComponentBinding.getFullName() + ", " + ownI18N.getString("TRY_TO_CHOOSE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()));
+                            rootCauses.add(ownI18N.getString(A) + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString(COULD_NOT_BE_INCLUDED_IN) + " " + project.getFullName() + ", " + ownI18N.getString(UNTIL_A_DEEP_BLAH_2) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(EXCEPT_UNDER_BLAH));
+                            warnings.add(ownI18N.getString(BEFORE_INCLUDING_BLAH) + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString(CARRY_OUT_A_DEEP_BLAH_2) + " " + dummyComponentBinding.getFullNameForDummyComponent() + " " + ownI18N.getString(IS_COMPATIBLE_WITH_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()));
+                            tips.add(ownI18N.getString(INSTEAD_OF_A) + " " + dummyComponentBinding.getFullName() + ", " + ownI18N.getString(TRY_TO_CHOOSE_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()));
                             break;
                         default:
                             logger.warn("default case reached in switch ???");
@@ -238,11 +238,11 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
                     }
                 }
                 if ((compatibilityCounter.containsKey(SupportedCompatibilities.COMPATIBLE) && (compatibilityCounter.get(SupportedCompatibilities.COMPATIBLE) == project.getLicenses().size()))) {
-                    goodThings.add(ownI18N.getString("A") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("COULD_BE_INCLUDED_IN") + " " + this.project.getFullName() + ", " + ownI18N.getString("BECAUSE_IT_IS_NATIVELY_BLAH"));
+                    goodThings.add(ownI18N.getString(A) + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString(COULD_BE_INCLUDED_IN) + " " + this.project.getFullName() + ", " + ownI18N.getString(BECAUSE_IT_IS_NATIVELY_BLAH));
                 }
                 if ((compatibilityCounter.containsKey(SupportedCompatibilities.FORCED_COMPATIBLE) && (compatibilityCounter.get(SupportedCompatibilities.FORCED_COMPATIBLE) == project.getLicenses().size()))) {
-                    warnings.add(ownI18N.getString("ALTHOUGH_A") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("COULD_BE_USED_BLAH"));
-                    goodThings.add(ownI18N.getString("A") + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString("COULD_BE_INCLUDED_IN") + " " + this.project.getFullName() + ", " + ownI18N.getString("BECAUSE_IT_IS_FORCED_BLAH"));
+                    warnings.add(ownI18N.getString(ALTHOUGH_A) + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString(COULD_BE_USED_BLAH));
+                    goodThings.add(ownI18N.getString(A) + " " + dummyComponentBinding.getFullNameForDummyComponent() + ", " + ownI18N.getString(COULD_BE_INCLUDED_IN) + " " + this.project.getFullName() + ", " + ownI18N.getString(BECAUSE_IT_IS_FORCED_BLAH));
                 }
                 compatibilityCounter.clear();
             }
@@ -251,15 +251,15 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
         if (riskExposure > NO_RISK) {
-            tips.add(ownI18N.getString("GENERAL_TIP_1"));
-            tips.add(ownI18N.getString("GENERAL_TIP_2"));
-            tips.add(ownI18N.getString("GENERAL_TIP_3"));
-            tips.add(ownI18N.getString("GENERAL_TIP_4"));
-            tips.add(ownI18N.getString("GENERAL_TIP_5"));
-            tips.add(ownI18N.getString("GENERAL_TIP_6"));
-            tips.add(ownI18N.getString("GENERAL_TIP_7"));
+            tips.add(ownI18N.getString(GENERAL_TIP_1));
+            tips.add(ownI18N.getString(GENERAL_TIP_2));
+            tips.add(ownI18N.getString(GENERAL_TIP_3));
+            tips.add(ownI18N.getString(GENERAL_TIP_4));
+            tips.add(ownI18N.getString(GENERAL_TIP_5));
+            tips.add(ownI18N.getString(GENERAL_TIP_6));
+            tips.add(ownI18N.getString(GENERAL_TIP_7));
             if (project.getLicenses().size() > ONE) {
-                tips.add(ownI18N.getString("GENERAL_TIP_8"));
+                tips.add(ownI18N.getString(GENERAL_TIP_8));
             }
         }
     }
@@ -281,4 +281,46 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
     private static final float NO_RISK = 0.0f;
     private static final int ONE = 1;
 
+    // i18N Keys
+    private static final String COMPONENT_WITH_LICENSE = "COMPONENT_WITH_LICENSE";
+    private static final String ALTHOUGH_A = "ALTHOUGH_A";
+    private static final String COULD_BE_INCLUDED_IN = "COULD_BE_INCLUDED_IN";
+    private static final String BE_SURE_YOU_HAVE_WRITEN_BLAH = "BE_SURE_YOU_HAVE_WRITEN_BLAH";
+    private static final String A = "A";
+    private static final String COULD_NOT_BE_INCLUDED_IN = "COULD_NOT_BE_INCLUDED_IN";
+    private static final String BECAUSE_IT_IS_INCOMPATIBLE_WITH = "BECAUSE_IT_IS_INCOMPATIBLE_WITH";
+    private static final String TRY_TO_USE_A_BLAH = "TRY_TO_USE_A_BLAH";
+    private static final String THAT_ALLOW_A = "THAT_ALLOW_A";
+    private static final String TO_BE_INCLUDED_BLAH = "TO_BE_INCLUDED_BLAH";
+    private static final String BECAUSE_IT_IS_NOT_KNOWN_BLAH = "BECAUSE_IT_IS_NOT_KNOWN_BLAH";
+    private static final String AND_THEREFORE_BLAH = "AND_THEREFORE_BLAH";
+    private static final String WHENEVER_YOU_PLAN = "WHENEVER_YOU_PLAN";
+    private static final String ASK_THE_AUTHOR_BLAH = "ASK_THE_AUTHOR_BLAH";
+    private static final String OR_NOT = "OR_NOT";
+    private static final String OPENLRAE_DOES_NOT = "OPENLRAE_DOES_NOT";
+    private static final String WE_APOLOGIZE_BLAH = "WE_APOLOGIZE_BLAH";
+    private static final String WOULD_BE_HANDLED_BLAH = "WOULD_BE_HANDLED_BLAH";
+    private static final String TRY_TO_USE_A_BLAH_2 = "TRY_TO_USE_A_BLAH_2";
+    private static final String UNTIL_A_DEEP_BLAH = "UNTIL_A_DEEP_BLAH";
+    private static final String EXCEPT_UNDER_BLAH = "EXCEPT_UNDER_BLAH";
+    private static final String BEFORE_INCLUDING_BLAH = "BEFORE_INCLUDING_BLAH";
+    private static final String CARRY_OUT_A_DEEP_BLAH = "CARRY_OUT_A_DEEP_BLAH";
+    private static final String IS_INCOMPATIBLE_WITH_BLAH = "IS_INCOMPATIBLE_WITH_BLAH";
+    private static final String INSTEAD_OF_A = "INSTEAD_OF_A";
+    private static final String TRY_TO_CHOOSE_BLAH = "TRY_TO_CHOOSE_BLAH";
+    private static final String UNTIL_A_DEEP_BLAH_2 = "UNTIL_A_DEEP_BLAH_2";
+    private static final String CARRY_OUT_A_DEEP_BLAH_2 = "CARRY_OUT_A_DEEP_BLAH_2";
+    private static final String IS_COMPATIBLE_WITH_BLAH = "IS_COMPATIBLE_WITH_BLAH";
+    private static final String BECAUSE_IT_IS_NATIVELY_BLAH = "BECAUSE_IT_IS_NATIVELY_BLAH";
+    private static final String BECAUSE_IT_IS_FORCED_BLAH = "BECAUSE_IT_IS_FORCED_BLAH";
+    private static final String COULD_BE_USED_BLAH = "COULD_BE_USED_BLAH";
+    private static final String GENERAL_TIP_1 = "GENERAL_TIP_1";
+    private static final String GENERAL_TIP_2 = "GENERAL_TIP_2";
+    private static final String GENERAL_TIP_3 = "GENERAL_TIP_3";
+    private static final String GENERAL_TIP_4 = "GENERAL_TIP_4";
+    private static final String GENERAL_TIP_5 = "GENERAL_TIP_5";
+    private static final String GENERAL_TIP_6 = "GENERAL_TIP_6";
+    private static final String GENERAL_TIP_7 = "GENERAL_TIP_7";
+    private static final String GENERAL_TIP_8 = "GENERAL_TIP_8";
+    private static final String IN_A_PROJECT_BLAH = "IN_A_PROJECT_BLAH";
 }

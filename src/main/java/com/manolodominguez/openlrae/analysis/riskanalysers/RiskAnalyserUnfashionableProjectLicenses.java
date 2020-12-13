@@ -1,7 +1,7 @@
 /* 
  * Copyright (C) Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License);
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -85,7 +85,7 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
                 case TRENDY:
                     // This project licenses is trendy. Therefore there is not 
                     // risk of being unfashionable in this case. 
-                    goodThings.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + trendsI18N.getString(trend.toString()));
+                    goodThings.add(project.getFullName() + ", " + ownI18N.getString(IS_RELEASED_UNDER_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(THAT) + " " + trendsI18N.getString(trend.toString()));
                     break;
                 case NEAR_TRENDY:
                     // The analyzed license is not completely trendy but is 
@@ -93,8 +93,8 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
                     // is risk of being unfashioable in this case. 
                     riskImpact += trend.getTrendValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + trendsI18N.getString(trend.toString()) + ".");
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("BY_A_TRENDIER_BLAH"));
+                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString(IS_RELEASED_UNDER_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(THAT) + " " + trendsI18N.getString(trend.toString()) + ".");
+                    tips.add(ownI18N.getString(TRY_TO_REPLACE_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(BY_A_TRENDIER_BLAH));
                     break;
                 case NEAR_UNFASHIONABLE:
                     // The analyzed license is not completely trendy but is 
@@ -102,16 +102,16 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
                     // is risk of being unfashioable in this case. 
                     riskImpact += trend.getTrendValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + trendsI18N.getString(trend.toString()) + ".");
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("BY_A_TRENDIER_BLAH"));
+                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString(IS_RELEASED_UNDER_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(THAT) + " " + trendsI18N.getString(trend.toString()) + ".");
+                    tips.add(ownI18N.getString(TRY_TO_REPLACE_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(BY_A_TRENDIER_BLAH));
                     break;
                 case UNFASHIONABLE:
                     // This project license is trendy. Therefore there is risk 
                     // of being unfashionable in this case. 
                     riskImpact += trend.getTrendValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + trendsI18N.getString(trend.toString()) + ".");
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("BY_A_TRENDIER_BLAH"));
+                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString(IS_RELEASED_UNDER_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(THAT) + " " + trendsI18N.getString(trend.toString()) + ".");
+                    tips.add(ownI18N.getString(TRY_TO_REPLACE_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(BY_A_TRENDIER_BLAH));
                     break;
                 default:
                     logger.warn("default case reached in switch ???");
@@ -121,12 +121,12 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
         if (riskExposure > NO_RISK) {
-            tips.add(ownI18N.getString("GENERAL_TIP_1"));
-            tips.add(ownI18N.getString("GENERAL_TIP_2"));
-            tips.add(ownI18N.getString("GENERAL_TIP_3"));
-            tips.add(ownI18N.getString("GENERAL_TIP_4"));
+            tips.add(ownI18N.getString(GENERAL_TIP_1));
+            tips.add(ownI18N.getString(GENERAL_TIP_2));
+            tips.add(ownI18N.getString(GENERAL_TIP_3));
+            tips.add(ownI18N.getString(GENERAL_TIP_4));
             if (project.getLicenses().size() > ONE) {
-                tips.add(ownI18N.getString("GENERAL_TIP_5"));
+                tips.add(ownI18N.getString(GENERAL_TIP_5));
             }
         }
     }
@@ -147,5 +147,16 @@ public class RiskAnalyserUnfashionableProjectLicenses extends AbstractRiskAnalys
 
     private static final float NO_RISK = 0.0f;
     private static final int ONE = 1;
+
+    // i18N Keys
+    private static final String IS_RELEASED_UNDER_BLAH = "IS_RELEASED_UNDER_BLAH";
+    private static final String THAT = "THAT";
+    private static final String TRY_TO_REPLACE_BLAH = "TRY_TO_REPLACE_BLAH";
+    private static final String BY_A_TRENDIER_BLAH = "BY_A_TRENDIER_BLAH";
+    private static final String GENERAL_TIP_1 = "GENERAL_TIP_1";
+    private static final String GENERAL_TIP_2 = "GENERAL_TIP_2";
+    private static final String GENERAL_TIP_3 = "GENERAL_TIP_3";
+    private static final String GENERAL_TIP_4 = "GENERAL_TIP_4";
+    private static final String GENERAL_TIP_5 = "GENERAL_TIP_5";
 
 }

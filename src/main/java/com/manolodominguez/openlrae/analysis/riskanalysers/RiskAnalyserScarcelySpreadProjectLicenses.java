@@ -1,7 +1,7 @@
 /* 
  * Copyright (C) Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License);
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -86,7 +86,7 @@ public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnaly
                 case HIGHLY_WIDESPREAD:
                     // This project licenses is highly spread. Therefore there 
                     // is not risk of being scarcely spread in this case. 
-                    goodThings.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + spreadingsI18N.getString(spreading.toString()));
+                    goodThings.add(project.getFullName() + ", " + ownI18N.getString(IS_RELEASED_UNDER_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(THAT) + " " + spreadingsI18N.getString(spreading.toString()));
                     break;
                 case NEAR_HIGHLY_WIDESPREAD:
                     // The analyzed license is not highly spread but is 
@@ -94,8 +94,8 @@ public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnaly
                     // there is risk of being scarcely spread in this case. 
                     riskImpact += spreading.getSpreadingValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + spreadingsI18N.getString(spreading.toString()));
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("BY_A_MORE_BLAH"));
+                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString(IS_RELEASED_UNDER_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(THAT) + " " + spreadingsI18N.getString(spreading.toString()));
+                    tips.add(ownI18N.getString(TRY_TO_REPLACE_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(BY_A_MORE_BLAH));
                     break;
                 case NEAR_LITTLE_WIDESPREAD:
                     // The analyzed license is not highly spread but is 
@@ -103,16 +103,16 @@ public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnaly
                     // there is risk of being scarcely spread in this case. 
                     riskImpact += spreading.getSpreadingValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + spreadingsI18N.getString(spreading.toString()));
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("BY_A_MORE_BLAH"));
+                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString(IS_RELEASED_UNDER_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(THAT) + " " + spreadingsI18N.getString(spreading.toString()));
+                    tips.add(ownI18N.getString(TRY_TO_REPLACE_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(BY_A_MORE_BLAH));
                     break;
                 case LITTLE_WIDESPREAD:
                     // This project license is poorly spread. Therefore there 
                     // is risk of being scarcely spread in this case. 
                     riskImpact += spreading.getSpreadingValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT") + " " + spreadingsI18N.getString(spreading.toString()));
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("BY_A_MORE_BLAH"));
+                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString(IS_RELEASED_UNDER_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(THAT) + " " + spreadingsI18N.getString(spreading.toString()));
+                    tips.add(ownI18N.getString(TRY_TO_REPLACE_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(BY_A_MORE_BLAH));
                     break;
                 default:
                     logger.warn("default case reached in switch ???");
@@ -122,12 +122,12 @@ public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnaly
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
         if (riskExposure > NO_RISK) {
-            tips.add(ownI18N.getString("GENERAL_TIP_1"));
-            tips.add(ownI18N.getString("GENERAL_TIP_2"));
-            tips.add(ownI18N.getString("GENERAL_TIP_3"));
-            tips.add(ownI18N.getString("GENERAL_TIP_4"));
+            tips.add(ownI18N.getString(GENERAL_TIP_1));
+            tips.add(ownI18N.getString(GENERAL_TIP_2));
+            tips.add(ownI18N.getString(GENERAL_TIP_3));
+            tips.add(ownI18N.getString(GENERAL_TIP_4));
             if (project.getLicenses().size() > ONE) {
-                tips.add(ownI18N.getString("GENERAL_TIP_5"));
+                tips.add(ownI18N.getString(GENERAL_TIP_5));
             }
         }
     }
@@ -148,5 +148,16 @@ public class RiskAnalyserScarcelySpreadProjectLicenses extends AbstractRiskAnaly
 
     private static final float NO_RISK = 0.0f;
     private static final int ONE = 1;
+
+    // i18N Keys
+    private static final String IS_RELEASED_UNDER_BLAH = "IS_RELEASED_UNDER_BLAH";
+    private static final String THAT = "THAT";
+    private static final String TRY_TO_REPLACE_BLAH = "TRY_TO_REPLACE_BLAH";
+    private static final String BY_A_MORE_BLAH = "BY_A_MORE_BLAH";
+    private static final String GENERAL_TIP_1 = "GENERAL_TIP_1";
+    private static final String GENERAL_TIP_2 = "GENERAL_TIP_2";
+    private static final String GENERAL_TIP_3 = "GENERAL_TIP_3";
+    private static final String GENERAL_TIP_4 = "GENERAL_TIP_4";
+    private static final String GENERAL_TIP_5 = "GENERAL_TIP_5";
 
 }

@@ -1,7 +1,7 @@
 /* 
  * Copyright (C) Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License);
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -149,24 +149,24 @@ public class RiskAnalyserHeterogeneousComponentsLicenses extends AbstractRiskAna
         // Analysis can start
         for (ComponentBinding componentBinding : project.getBillOfComponentBindings()) {
             if (componentBinding.getComponent().getLicense() == mainLicense) {
-                goodThings.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_THE_MOST_BLAH"));
+                goodThings.add(componentBinding.getFullName() + ", " + ownI18N.getString(USES_THE_MOST_BLAH));
             } else {
                 riskExposure++;
                 riskImpact += componentBinding.getWeight().getWeightValue();
-                rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString("USES_A_LICENSE_DIFFERENT_BLAH") + " (" + spdxIdI18N.getString(mainLicense.toString()) + ")");
-                tips.add(ownI18N.getString("TRY_TO_REPLACE") + " " + componentBinding.getFullName() + ", " + ownI18N.getString("BY_ANOTHER_COMPONENT_BLAH") + " " + spdxIdI18N.getString(mainLicense.toString()) + ", " + ownI18N.getString("TO_REDUCE_BLAH"));
+                rootCauses.add(componentBinding.getFullName() + ", " + ownI18N.getString(USES_A_LICENSE_DIFFERENT_BLAH) + " (" + spdxIdI18N.getString(mainLicense.toString()) + ")");
+                tips.add(ownI18N.getString(TRY_TO_REPLACE) + " " + componentBinding.getFullName() + ", " + ownI18N.getString(BY_ANOTHER_COMPONENT_BLAH) + " " + spdxIdI18N.getString(mainLicense.toString()) + ", " + ownI18N.getString(TO_REDUCE_BLAH));
             }
         }
 
         riskExposure /= (float) totalCases;
         riskImpact /= maxImpact;
         if (riskExposure > NO_RISK) {
-            warnings.add(ownI18N.getString("ALTHOUGH_THERE_ARE") + " " + totalCases + " " + ownI18N.getString("DIFFERENT_LICENSES_BLAH") + ", " + spdxIdI18N.getString(mainLicense.toString()) + " " + ownI18N.getString("HAS_BEEN_CHOSEN_BLAH") + " " + (totalCases - ONE) + " " + ownI18N.getString("LICENSES_AS_THE_MAIN_BLAH"));
-            rootCauses.add(ownI18N.getString("THE_PROJECT_BILL_BLAH")+" " + totalCases + " "+ownI18N.getString("DIFFERENT_LICENSES_THIS_BLAH"));
-            tips.add(ownI18N.getString("GENERAL_TIP_1"));
-            tips.add(ownI18N.getString("GENERAL_TIP_2"));
-            tips.add(ownI18N.getString("GENERAL_TIP_3"));
-            tips.add(ownI18N.getString("GENERAL_TIP_4"));
+            warnings.add(ownI18N.getString(ALTHOUGH_THERE_ARE) + " " + totalCases + " " + ownI18N.getString(DIFFERENT_LICENSES_BLAH) + ", " + spdxIdI18N.getString(mainLicense.toString()) + " " + ownI18N.getString(HAS_BEEN_CHOSEN_BLAH) + " " + (totalCases - ONE) + " " + ownI18N.getString(LICENSES_AS_THE_MAIN_BLAH));
+            rootCauses.add(ownI18N.getString(THE_PROJECT_BILL_BLAH) + " " + totalCases + " " + ownI18N.getString(DIFFERENT_LICENSES_THIS_BLAH));
+            tips.add(ownI18N.getString(GENERAL_TIP_1));
+            tips.add(ownI18N.getString(GENERAL_TIP_2));
+            tips.add(ownI18N.getString(GENERAL_TIP_3));
+            tips.add(ownI18N.getString(GENERAL_TIP_4));
         }
     }
 
@@ -188,5 +188,22 @@ public class RiskAnalyserHeterogeneousComponentsLicenses extends AbstractRiskAna
     private static final float INITIAL_WEIGHT = 0.0f;
     private static final int ZERO = 0;
     private static final int ONE = 1;
+
+    // i18N Keys
+    private static final String USES_THE_MOST_BLAH = "USES_THE_MOST_BLAH";
+    private static final String USES_A_LICENSE_DIFFERENT_BLAH = "USES_A_LICENSE_DIFFERENT_BLAH";
+    private static final String TRY_TO_REPLACE = "TRY_TO_REPLACE";
+    private static final String BY_ANOTHER_COMPONENT_BLAH = "BY_ANOTHER_COMPONENT_BLAH";
+    private static final String TO_REDUCE_BLAH = "TO_REDUCE_BLAH";
+    private static final String ALTHOUGH_THERE_ARE = "ALTHOUGH_THERE_ARE";
+    private static final String DIFFERENT_LICENSES_BLAH = "DIFFERENT_LICENSES_BLAH";
+    private static final String HAS_BEEN_CHOSEN_BLAH = "HAS_BEEN_CHOSEN_BLAH";
+    private static final String LICENSES_AS_THE_MAIN_BLAH = "LICENSES_AS_THE_MAIN_BLAH";
+    private static final String THE_PROJECT_BILL_BLAH = "THE_PROJECT_BILL_BLAH";
+    private static final String DIFFERENT_LICENSES_THIS_BLAH = "DIFFERENT_LICENSES_THIS_BLAH";
+    private static final String GENERAL_TIP_1 = "GENERAL_TIP_1";
+    private static final String GENERAL_TIP_2 = "GENERAL_TIP_2";
+    private static final String GENERAL_TIP_3 = "GENERAL_TIP_3";
+    private static final String GENERAL_TIP_4 = "GENERAL_TIP_4";
 
 }

@@ -1,7 +1,7 @@
 /* 
  * Copyright (C) Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License);
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -86,7 +86,7 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
                 case UPDATED:
                     // This project licenses is in its latest version. Therefore 
                     // there is not obsolescence risk in this case. 
-                    goodThings.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT_IS") + " " + obsolescencesI18N.getString(obsolescence.toString()));
+                    goodThings.add(project.getFullName() + ", " + ownI18N.getString(IS_RELEASED_UNDER_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(THAT_IS) + " " + obsolescencesI18N.getString(obsolescence.toString()));
                     break;
                 case NEAR_UPDATED:
                     // The analyzed license is not in its latest version but in
@@ -94,8 +94,8 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
                     // obsolescence risk in this case. 
                     riskImpact += obsolescence.getObsolescenceValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT_IS") + " " + obsolescencesI18N.getString(obsolescence.toString()));
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + ", " + ownI18N.getString("BY_A_MORE_BLAH"));
+                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString(IS_RELEASED_UNDER_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(THAT_IS) + " " + obsolescencesI18N.getString(obsolescence.toString()));
+                    tips.add(ownI18N.getString(TRY_TO_REPLACE_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + ", " + ownI18N.getString(BY_A_MORE_BLAH));
                     break;
                 case NEAR_OUTDATED:
                     // The analyzed license is not in its latest version but in
@@ -103,8 +103,8 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
                     // obsolescence risk in this case. 
                     riskImpact += obsolescence.getObsolescenceValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT_IS") + " " + obsolescencesI18N.getString(obsolescence.toString()));
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + ", " + ownI18N.getString("BY_A_MORE_BLAH"));
+                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString(IS_RELEASED_UNDER_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(THAT_IS) + " " + obsolescencesI18N.getString(obsolescence.toString()));
+                    tips.add(ownI18N.getString(TRY_TO_REPLACE_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + ", " + ownI18N.getString(BY_A_MORE_BLAH));
                     break;
                 case OUTDATED:
                     // The analyzed license is not in its latest version but in
@@ -112,8 +112,8 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
                     // risk in this case. 
                     riskImpact += obsolescence.getObsolescenceValue();
                     riskExposure++;
-                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString("IS_RELEASED_UNDER_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString("THAT_IS") + " " + obsolescencesI18N.getString(obsolescence.toString()));
-                    tips.add(ownI18N.getString("TRY_TO_REPLACE_BLAH") + " " + spdxIdI18N.getString(projectLicense.toString()) + ", " + ownI18N.getString("BY_A_MORE_BLAH"));
+                    rootCauses.add(project.getFullName() + ", " + ownI18N.getString(IS_RELEASED_UNDER_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + " " + ownI18N.getString(THAT_IS) + " " + obsolescencesI18N.getString(obsolescence.toString()));
+                    tips.add(ownI18N.getString(TRY_TO_REPLACE_BLAH) + " " + spdxIdI18N.getString(projectLicense.toString()) + ", " + ownI18N.getString(BY_A_MORE_BLAH));
                     break;
                 default:
                     logger.warn("default case reached in switch ???");
@@ -123,12 +123,12 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
         riskExposure /= (float) totalCases;
         riskImpact /= (float) totalCases;
         if (riskExposure > NO_RISK) {
-            tips.add(ownI18N.getString("GENERAL_TIP_1"));
-            tips.add(ownI18N.getString("GENERAL_TIP_2"));
-            tips.add(ownI18N.getString("GENERAL_TIP_3"));
-            tips.add(ownI18N.getString("GENERAL_TIP_4"));
+            tips.add(ownI18N.getString(GENERAL_TIP_1));
+            tips.add(ownI18N.getString(GENERAL_TIP_2));
+            tips.add(ownI18N.getString(GENERAL_TIP_3));
+            tips.add(ownI18N.getString(GENERAL_TIP_4));
             if (project.getLicenses().size() > ONE) {
-                tips.add(ownI18N.getString("GENERAL_TIP_5"));
+                tips.add(ownI18N.getString(GENERAL_TIP_5));
             }
         }
     }
@@ -149,5 +149,16 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
 
     private static final float NO_RISK = 0.0f;
     private static final int ONE = 1;
+
+    // i18N Keys
+    private static final String IS_RELEASED_UNDER_BLAH = "IS_RELEASED_UNDER_BLAH";
+    private static final String TRY_TO_REPLACE_BLAH = "TRY_TO_REPLACE_BLAH";
+    private static final String THAT_IS = "THAT_IS";
+    private static final String BY_A_MORE_BLAH = "BY_A_MORE_BLAH";
+    private static final String GENERAL_TIP_1 = "GENERAL_TIP_1";
+    private static final String GENERAL_TIP_2 = "GENERAL_TIP_2";
+    private static final String GENERAL_TIP_3 = "GENERAL_TIP_3";
+    private static final String GENERAL_TIP_4 = "GENERAL_TIP_4";
+    private static final String GENERAL_TIP_5 = "GENERAL_TIP_5";
 
 }
