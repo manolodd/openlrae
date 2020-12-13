@@ -15,7 +15,6 @@
  */
 package com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities;
 
-import java.util.concurrent.CopyOnWriteArrayList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,18 +40,18 @@ public class DinamicAndSofwarePackageOrSaaSTest {
     }
     
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
     
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test of getInstance method, of class DinamicAndSofwarePackageOrSaaSTest.
      */
     @Test
-    public void testGetInstance() {
+    void testGetInstance() {
         System.out.println("getInstance");
         DinamicAndSofwarePackageOrSaaS instance1 = DinamicAndSofwarePackageOrSaaS.getInstance();
         DinamicAndSofwarePackageOrSaaS instance2 = DinamicAndSofwarePackageOrSaaS.getInstance();
@@ -63,7 +62,7 @@ public class DinamicAndSofwarePackageOrSaaSTest {
      * Test of getCompatibilities method, of class DinamicAndSofwarePackageOrSaaSTest.
      */
     @Test
-    public void testGetCompatibilities() {
+    void testGetCompatibilities() {
         System.out.println("getCompatibilities");
         DinamicAndSofwarePackageOrSaaS instance = DinamicAndSofwarePackageOrSaaS.getInstance();
         assertNotNull(instance.getCompatibilities());

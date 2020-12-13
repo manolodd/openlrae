@@ -41,18 +41,18 @@ public class ComponentTest {
     }
     
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
     
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test constructor of class Component.
      */
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         System.out.println("getName");
         Component instance = null;
         String name = "ComponentName";
@@ -68,7 +68,7 @@ public class ComponentTest {
      * Test constructor of class Component.
      */
     @Test
-    public void testConstructorWhenNameIsNull() {
+    void testConstructorWhenNameIsNull() {
         System.out.println("getName");
         String name = null;
         String version = "1.0";
@@ -83,7 +83,7 @@ public class ComponentTest {
      * Test constructor of class Component.
      */
     @Test
-    public void testConstructorWhenVersionIsNull() {
+    void testConstructorWhenVersionIsNull() {
         System.out.println("getName");
         String name = "ComponentName";
         String version = null;
@@ -98,7 +98,7 @@ public class ComponentTest {
      * Test constructor of class Component.
      */
     @Test
-    public void testConstructorWhenLicenseIsNull() {
+    void testConstructorWhenLicenseIsNull() {
         System.out.println("getName");
         String name = "ComponentName";
         String version = "1.0";
@@ -113,7 +113,7 @@ public class ComponentTest {
      * Test constructor of class Component.
      */
     @Test
-    public void testConstructorWhenNameIsEmpty() {
+    void testConstructorWhenNameIsEmpty() {
         System.out.println("getName");
         String name = "";
         String version = "1.0";
@@ -128,7 +128,7 @@ public class ComponentTest {
      * Test constructor of class Component.
      */
     @Test
-    public void testConstructorWhenVersionIsEmpty() {
+    void testConstructorWhenVersionIsEmpty() {
         System.out.println("getName");
         String name = "ComponentName";
         String version = "";
@@ -143,7 +143,7 @@ public class ComponentTest {
      * Test of getName method, of class Component.
      */
     @Test
-    public void testGetName() {
+    void testGetName() {
         System.out.println("getName");
         Component instance = null;
         String name = "ComponentName";
@@ -157,7 +157,7 @@ public class ComponentTest {
      * Test of getVersion method, of class Component.
      */
     @Test
-    public void testGetVersion() {
+    void testGetVersion() {
         System.out.println("getVersion");
         Component instance = null;
         String name = "ComponentName";
@@ -171,7 +171,7 @@ public class ComponentTest {
      * Test of getLicense method, of class Component.
      */
     @Test
-    public void testGetLicense() {
+    void testGetLicense() {
         System.out.println("getLicense");
         Component instance = null;
         String name = "ComponentName";

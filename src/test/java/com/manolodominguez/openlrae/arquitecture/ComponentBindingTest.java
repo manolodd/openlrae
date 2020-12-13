@@ -48,18 +48,18 @@ public class ComponentBindingTest {
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test constructor of class ComponentBinding.
      */
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         System.out.println("getComponent");
         Component component = new Component("ComponentName", "ComponentVersion", SupportedLicenses.ARTISTIC_2_0);
         SupportedLinks link = SupportedLinks.DYNAMIC;
@@ -76,7 +76,7 @@ public class ComponentBindingTest {
      * Test constructor of class ComponentBinding.
      */
     @Test
-    public void testConstructorWhenLinkIsNull() {
+    void testConstructorWhenLinkIsNull() {
         System.out.println("getComponent");
         Component component = new Component("ComponentName", "ComponentVersion", SupportedLicenses.ARTISTIC_2_0);
         SupportedLinks link = null;
@@ -91,7 +91,7 @@ public class ComponentBindingTest {
      * Test constructor of class ComponentBinding.
      */
     @Test
-    public void testConstructorWhenWeightIsNull() {
+    void testConstructorWhenWeightIsNull() {
         System.out.println("getComponent");
         Component component = new Component("ComponentName", "ComponentVersion", SupportedLicenses.ARTISTIC_2_0);
         SupportedLinks link = SupportedLinks.DYNAMIC;
@@ -106,7 +106,7 @@ public class ComponentBindingTest {
      * Test constructor of class ComponentBinding.
      */
     @Test
-    public void testConstructorWhenComponentIsNull() {
+    void testConstructorWhenComponentIsNull() {
         System.out.println("getComponent");
 //        Component component = new Component("ComponentName", "ComponentVersion", SupportedLicenses.ARTISTIC_2_0);
         Component component = null;
@@ -122,7 +122,7 @@ public class ComponentBindingTest {
      * Test of getComponent method, of class ComponentBinding.
      */
     @Test
-    public void testGetComponent() {
+    void testGetComponent() {
         System.out.println("getComponent");
         Component component = new Component("ComponentName", "ComponentVersion", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding instance = new ComponentBinding(component, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -133,7 +133,7 @@ public class ComponentBindingTest {
      * Test of getLinkType method, of class ComponentBinding.
      */
     @Test
-    public void testGetLinkType() {
+    void testGetLinkType() {
         Component component = new Component("ComponentName", "ComponentVersion", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding instance = new ComponentBinding(component, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
         assertEquals(SupportedLinks.DYNAMIC, instance.getLinkType());
@@ -143,7 +143,7 @@ public class ComponentBindingTest {
      * Test of getWeight method, of class ComponentBinding.
      */
     @Test
-    public void testGetWeight() {
+    void testGetWeight() {
         System.out.println("getWeight");
         Component component = new Component("ComponentName", "ComponentVersion", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding instance = new ComponentBinding(component, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -154,7 +154,7 @@ public class ComponentBindingTest {
      * Test of getFullName method, of class ComponentBinding.
      */
     @Test
-    public void testGetFullName() {
+    void testGetFullName() {
         System.out.println("getFullName");
         Component component = new Component("ComponentName", "ComponentVersion", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding instance = new ComponentBinding(component, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -166,7 +166,7 @@ public class ComponentBindingTest {
      * ComponentBinding.
      */
     @Test
-    public void testGetFullNameForFicticiousComponent() {
+    void testGetFullNameForFicticiousComponent() {
         System.out.println("getFullNameForFicticiousComponent");
         Component component = new Component("ComponentName", "ComponentVersion", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding instance = new ComponentBinding(component, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -177,7 +177,7 @@ public class ComponentBindingTest {
      * Test of getLanguage method, of class ComponentBinding.
      */
     @Test
-    public void testGetLanguage() {
+    void testGetLanguage() {
         System.out.println("getLanguage");
         // Define the project. In this case, it is defined from a JSON file.
         // but could be come in by a call to a rest service or other methods. 
@@ -197,7 +197,7 @@ public class ComponentBindingTest {
      * Test of onLanguageChange method, of class ComponentBinding.
      */
     @Test
-    public void testOnLanguageChange() {
+    void testOnLanguageChange() {
         System.out.println("onLanguageChange");
         // Define the project. In this case, it is defined from a JSON file.
         // but could be come in by a call to a rest service or other methods. 

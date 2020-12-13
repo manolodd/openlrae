@@ -45,18 +45,18 @@ public class LicensesTrendFactoryTest {
     }
     
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
     
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test of getInstance method, of class LicensesTrendFactory.
      */
     @Test
-    public void testGetInstance() {
+    void testGetInstance() {
         System.out.println("getInstance");
         LicensesTrendFactory instance1 = LicensesTrendFactory.getInstance();
         LicensesTrendFactory instance2 = LicensesTrendFactory.getInstance();
@@ -67,7 +67,7 @@ public class LicensesTrendFactoryTest {
      * Test of getTrendOf method, of class LicensesTrendFactory.
      */
     @Test
-    public void testGetTrendOf() {
+    void testGetTrendOf() {
         System.out.println("getTrendOf");
         LicensesTrendFactory instance = LicensesTrendFactory.getInstance();
         Set<SupportedTrends> trends = Collections.synchronizedSet(EnumSet.allOf(SupportedTrends.class));

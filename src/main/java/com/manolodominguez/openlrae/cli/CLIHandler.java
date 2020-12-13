@@ -118,13 +118,13 @@ public class CLIHandler {
         }
         File file = new File(fileName);
         if (!file.exists()) {
-            writeToConsole(ownI18N.getString("NOT_FOUND_1") + " " + fileName + " " + ownI18N.getString("NOT_FOUND_2"));
+            writeToConsole(ownI18N.getString(NOT_FOUND_1) + " " + fileName + " " + ownI18N.getString(NOT_FOUND_2));
         } else {
             if (!file.isFile()) {
-                writeToConsole(fileName + " " + ownI18N.getString("NOT_A_FILE"));
+                writeToConsole(fileName + " " + ownI18N.getString(NOT_A_FILE));
             } else {
                 if (!file.canRead()) {
-                    writeToConsole(ownI18N.getString("NOT_READABLE_1") + " " + fileName + " " + ownI18N.getString("NOT_READABLE_2"));
+                    writeToConsole(ownI18N.getString(NOT_READABLE_1) + " " + fileName + " " + ownI18N.getString(NOT_READABLE_2));
                 } else {
                     try {
 
@@ -163,7 +163,7 @@ public class CLIHandler {
                         writeToConsole("");
                         writeToConsole(ReportsFactory.getInstance(SupportedVerbosityLevel.DETAILED).getReportAsPlainText(project, resultSet));
                     } catch (MalformedURLException ex) {
-                        writeToConsole(ownI18N.getString("NOT_A_VALID_JSON_1") + " " + fileName + ". " + ownI18N.getString("NOT_A_VALID_JSON_2"));
+                        writeToConsole(ownI18N.getString(NOT_A_VALID_JSON_1) + " " + fileName + ". " + ownI18N.getString(NOT_A_VALID_JSON_2));
                     }
                 }
             }
@@ -187,16 +187,16 @@ public class CLIHandler {
             String string;
             writeToConsole("");
             writeToConsole("==========================================================");
-            writeToConsole(ownI18N.getString("EXAMPLE_PROJECT"));
+            writeToConsole(ownI18N.getString(EXAMPLE_PROJECT));
             writeToConsole("==========================================================");
             writeToConsole("");
             while ((string = bufferedReader.readLine()) != null) {
                 writeToConsole(string);
             }
         } catch (FileNotFoundException ex) {
-            writeToConsole(ownI18N.getString("EXAMPLE_NOT_FOUND"));
+            writeToConsole(ownI18N.getString(EXAMPLE_NOT_FOUND));
         } catch (IOException ex) {
-            writeToConsole(ownI18N.getString("EXAMPLE_UNREADABLE"));
+            writeToConsole(ownI18N.getString(EXAMPLE_UNREADABLE));
         }
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
@@ -236,7 +236,7 @@ public class CLIHandler {
         // Print analysis report. As a JSON string in this case.
         writeToConsole("");
         writeToConsole("==========================================================");
-        writeToConsole(ownI18N.getString("RISKS_ANALYSIS_OF"));
+        writeToConsole(ownI18N.getString(RISKS_ANALYSIS_OF));
         writeToConsole("==========================================================");
         writeToConsole("");
         writeToConsole(ReportsFactory.getInstance().getReportAsBeautifiedJSONString(project, resultSet));
@@ -249,71 +249,71 @@ public class CLIHandler {
         String version = new VersionLoader().getVersion();
         writeToConsole("");
         writeToConsole("==========================================================");
-        writeToConsole(ownI18N.getString("SUPPORTED_FEATURES") + " " + version);
+        writeToConsole(ownI18N.getString(SUPPORTED_FEATURES) + " " + version);
         writeToConsole("==========================================================");
         writeToConsole("");
-        writeToConsole("=== " + ownI18N.getString("SUPPORTED_RISKS"));
+        writeToConsole("=== " + ownI18N.getString(SUPPORTED_RISKS));
         writeToConsole("");
         for (SupportedRisks risk : SupportedRisks.values()) {
             writeToConsole("\t- " + risksI18N.getString(risk.toString()));
         }
         writeToConsole("");
-        writeToConsole("=== " + ownI18N.getString("LICENSES_FOR_COMPONENTS"));
+        writeToConsole("=== " + ownI18N.getString(LICENSES_FOR_COMPONENTS));
         writeToConsole("");
         for (SupportedLicenses license : SupportedLicenses.getLicensesForComponents()) {
             writeToConsole("\t- " + spdxIdI18N.getString(license.toString()));
         }
         writeToConsole("");
-        writeToConsole("=== " + ownI18N.getString("LICENSES_FOR_PROJECTS"));
+        writeToConsole("=== " + ownI18N.getString(LICENSES_FOR_PROJECTS));
         writeToConsole("");
         for (SupportedLicenses license : SupportedLicenses.getLicensesForProjects()) {
             writeToConsole("\t- " + spdxIdI18N.getString(license.toString()));
         }
         writeToConsole("");
-        writeToConsole("=== " + ownI18N.getString("LINKS"));
+        writeToConsole("=== " + ownI18N.getString(LINKS));
         writeToConsole("");
         for (SupportedLinks link : SupportedLinks.values()) {
             writeToConsole("\t- " + linksI18N.getString(link.toString()));
         }
         writeToConsole("");
-        writeToConsole("=== " + ownI18N.getString("REDISTRIBUTIONS"));
+        writeToConsole("=== " + ownI18N.getString(REDISTRIBUTIONS));
         writeToConsole("");
         for (SupportedRedistributions redistribution : SupportedRedistributions.values()) {
             writeToConsole("\t- " + redistributionsI18N.getString(redistribution.toString()));
         }
         writeToConsole("");
-        writeToConsole("=== " + ownI18N.getString("COMPATIBILITIES"));
+        writeToConsole("=== " + ownI18N.getString(COMPATIBILITIES));
         writeToConsole("");
         for (SupportedCompatibilities compatibility : SupportedCompatibilities.values()) {
             writeToConsole("\t- " + compatibilityI18N.getString(compatibility.toString()));
         }
         writeToConsole("");
-        writeToConsole("=== " + ownI18N.getString("WEIGHTS"));
+        writeToConsole("=== " + ownI18N.getString(WEIGHTS));
         writeToConsole("");
         for (SupportedComponentWeights weight : SupportedComponentWeights.values()) {
             writeToConsole("\t- " + weightsI18N.getString(weight.toString()));
         }
         writeToConsole("");
-        writeToConsole("=== " + ownI18N.getString("OBSOLESCENCES"));
+        writeToConsole("=== " + ownI18N.getString(OBSOLESCENCES));
         writeToConsole("");
         for (SupportedObsolescences obsolescence : SupportedObsolescences.values()) {
             writeToConsole("\t- " + obsolescencesI18N.getString(obsolescence.toString()));
         }
         writeToConsole("");
-        writeToConsole("=== " + ownI18N.getString("SPREADINGS"));
+        writeToConsole("=== " + ownI18N.getString(SPREADINGS));
         writeToConsole("");
         for (SupportedSpreadings spreading : SupportedSpreadings.values()) {
             writeToConsole("\t- " + spreadingsI18N.getString(spreading.toString()));
         }
         writeToConsole("");
-        writeToConsole("=== " + ownI18N.getString("TRENDS"));
+        writeToConsole("=== " + ownI18N.getString(TRENDS));
         writeToConsole("");
         for (SupportedTrends trend : SupportedTrends.values()) {
             writeToConsole("\t- " + trendsI18N.getString(trend.toString()));
         }
         writeToConsole("");
-        writeToConsole("=== " + ownI18N.getString("SUPPORTED_COMPATIBILITY_COMBINATIONS"));
-        writeToConsole("=== " + ownI18N.getString("HEADER"));
+        writeToConsole("=== " + ownI18N.getString(SUPPORTED_COMPATIBILITY_COMBINATIONS));
+        writeToConsole("=== " + ownI18N.getString(HEADER));
         writeToConsole("");
         LicensesCompatibilityFactory compatibilities = LicensesCompatibilityFactory.getInstance();
         int i = ZERO;
@@ -323,15 +323,15 @@ public class CLIHandler {
                     for (SupportedLicenses componentLicense : SupportedLicenses.getLicensesForComponents()) {
                         if (compatibilities.getCompatibilityOf(componentLicense, projectLicense, link, redistribution) != SupportedCompatibilities.UNSUPPORTED) {
                             i++;
-                            writeToConsole(i + "- " + ownI18N.getString("COMPONENT") + ": " + spdxIdI18N.getString(componentLicense.toString()) + " (" + linksI18N.getString(link.toString()) + ") --> " + ownI18N.getString("PROJECT") + ": " + spdxIdI18N.getString(projectLicense.toString()) + " (" + redistributionsI18N.getString(redistribution.toString()) + ")");
+                            writeToConsole(i + "- " + ownI18N.getString(COMPONENT) + ": " + spdxIdI18N.getString(componentLicense.toString()) + " (" + linksI18N.getString(link.toString()) + ") --> " + ownI18N.getString(PROJECT) + ": " + spdxIdI18N.getString(projectLicense.toString()) + " (" + redistributionsI18N.getString(redistribution.toString()) + ")");
                         }
                     }
                 }
             }
         }
         writeToConsole("");
-        writeToConsole("=== " + ownI18N.getString("UNSUPPORTED_COMPATIBILITY_COMBINATIONS"));
-        writeToConsole("=== " + ownI18N.getString("HEADER"));
+        writeToConsole("=== " + ownI18N.getString(UNSUPPORTED_COMPATIBILITY_COMBINATIONS));
+        writeToConsole("=== " + ownI18N.getString(HEADER));
         writeToConsole("");
         int j = ZERO;
         for (SupportedRedistributions redistribution : SupportedRedistributions.values()) {
@@ -340,7 +340,7 @@ public class CLIHandler {
                     for (SupportedLicenses componentLicense : SupportedLicenses.values()) {
                         if (compatibilities.getCompatibilityOf(componentLicense, projectLicense, link, redistribution) == SupportedCompatibilities.UNSUPPORTED) {
                             j++;
-                            writeToConsole(j + "- " + ownI18N.getString("COMPONENT") + ": " + spdxIdI18N.getString(componentLicense.toString()) + " (" + linksI18N.getString(link.toString()) + ") --> " + ownI18N.getString("PROJECT") + ": " + spdxIdI18N.getString(projectLicense.toString()) + " (" + redistributionsI18N.getString(redistribution.toString()) + ")");
+                            writeToConsole(j + "- " + ownI18N.getString(COMPONENT) + ": " + spdxIdI18N.getString(componentLicense.toString()) + " (" + linksI18N.getString(link.toString()) + ") --> " + ownI18N.getString(PROJECT) + ": " + spdxIdI18N.getString(projectLicense.toString()) + " (" + redistributionsI18N.getString(redistribution.toString()) + ")");
                         }
                     }
                 }
@@ -372,28 +372,28 @@ public class CLIHandler {
         writeToConsole("Open LRAE " + new VersionLoader().getVersion() + " (" + new VersionLoader().getLicense() + ")");
         writeToConsole("*************************************************************");
         writeToConsole("");
-        writeToConsole(ownI18N.getString("SHOW_OPTION_1"));
-        writeToConsole(ownI18N.getString("SHOW_OPTION_2"));
-        writeToConsole(ownI18N.getString("SHOW_OPTION_3"));
+        writeToConsole(ownI18N.getString(SHOW_OPTION_1));
+        writeToConsole(ownI18N.getString(SHOW_OPTION_2));
+        writeToConsole(ownI18N.getString(SHOW_OPTION_3));
         writeToConsole("");
         writeToConsole("java -jar " + openLRAEBynaryName + " -v");
-        writeToConsole("\t" + ownI18N.getString("SHOW_OPTION_4"));
+        writeToConsole("\t" + ownI18N.getString(SHOW_OPTION_4));
         writeToConsole("");
         writeToConsole("java -jar " + openLRAEBynaryName + " -s");
-        writeToConsole("\t" + ownI18N.getString("SHOW_OPTION_5"));
+        writeToConsole("\t" + ownI18N.getString(SHOW_OPTION_5));
         writeToConsole("");
         writeToConsole("java -jar " + openLRAEBynaryName + " -i");
-        writeToConsole("\t" + ownI18N.getString("SHOW_OPTION_6"));
+        writeToConsole("\t" + ownI18N.getString(SHOW_OPTION_6));
         writeToConsole("");
         writeToConsole("java -jar " + openLRAEBynaryName + " -e");
-        writeToConsole("\t" + ownI18N.getString("SHOW_OPTION_7"));
-        writeToConsole("\t" + ownI18N.getString("SHOW_OPTION_8"));
+        writeToConsole("\t" + ownI18N.getString(SHOW_OPTION_7));
+        writeToConsole("\t" + ownI18N.getString(SHOW_OPTION_8));
         writeToConsole("");
-        writeToConsole("java -jar " + openLRAEBynaryName + " -a " + ownI18N.getString("SHOW_OPTION_9"));
-        writeToConsole("\t" + ownI18N.getString("SHOW_OPTION_10") + " \"" + ownI18N.getString("SHOW_OPTION_9") + "\" ");
-        writeToConsole("\t" + ownI18N.getString("SHOW_OPTION_11"));
-        writeToConsole("\t" + ownI18N.getString("SHOW_OPTION_12"));
-        writeToConsole("\t" + ownI18N.getString("SHOW_OPTION_13"));
+        writeToConsole("java -jar " + openLRAEBynaryName + " -a " + ownI18N.getString(SHOW_OPTION_9));
+        writeToConsole("\t" + ownI18N.getString(SHOW_OPTION_10) + " \"" + ownI18N.getString(SHOW_OPTION_9) + "\" ");
+        writeToConsole("\t" + ownI18N.getString(SHOW_OPTION_11));
+        writeToConsole("\t" + ownI18N.getString(SHOW_OPTION_12));
+        writeToConsole("\t" + ownI18N.getString(SHOW_OPTION_13));
         writeToConsole("");
     }
 
@@ -412,9 +412,9 @@ public class CLIHandler {
                 writeToConsole(string);
             }
         } catch (FileNotFoundException ex) {
-            writeToConsole(ownI18N.getString("SCHEMA_NOT_FOUND"));
+            writeToConsole(ownI18N.getString(SCHEMA_NOT_FOUND));
         } catch (IOException ex) {
-            writeToConsole(ownI18N.getString("SCHEMA_UNREADABLE"));
+            writeToConsole(ownI18N.getString(SCHEMA_UNREADABLE));
         }
     }
 
@@ -435,4 +435,49 @@ public class CLIHandler {
     }
 
     private static final int ZERO = 0;
+
+    // i18N Keys
+    private static final String NOT_FOUND_1 = "NOT_FOUND_1";
+    private static final String NOT_FOUND_2 = "NOT_FOUND_2";
+    private static final String NOT_A_FILE = "NOT_A_FILE";
+    private static final String NOT_READABLE_1 = "NOT_READABLE_1";
+    private static final String NOT_READABLE_2 = "NOT_READABLE_2";
+    private static final String NOT_A_VALID_JSON_1 = "NOT_A_VALID_JSON_1";
+    private static final String NOT_A_VALID_JSON_2 = "NOT_A_VALID_JSON_2";
+    private static final String EXAMPLE_PROJECT = "EXAMPLE_PROJECT";
+    private static final String EXAMPLE_NOT_FOUND = "EXAMPLE_NOT_FOUND";
+    private static final String EXAMPLE_UNREADABLE = "EXAMPLE_UNREADABLE";
+    private static final String RISKS_ANALYSIS_OF = "RISKS_ANALYSIS_OF";
+    private static final String SHOW_OPTION_1 = "SHOW_OPTION_1";
+    private static final String SHOW_OPTION_2 = "SHOW_OPTION_2";
+    private static final String SHOW_OPTION_3 = "SHOW_OPTION_3";
+    private static final String SHOW_OPTION_4 = "SHOW_OPTION_4";
+    private static final String SHOW_OPTION_5 = "SHOW_OPTION_5";
+    private static final String SHOW_OPTION_6 = "SHOW_OPTION_6";
+    private static final String SHOW_OPTION_7 = "SHOW_OPTION_7";
+    private static final String SHOW_OPTION_8 = "SHOW_OPTION_8";
+    private static final String SHOW_OPTION_9 = "SHOW_OPTION_9";
+    private static final String SHOW_OPTION_10 = "SHOW_OPTION_10";
+    private static final String SHOW_OPTION_11 = "SHOW_OPTION_11";
+    private static final String SHOW_OPTION_12 = "SHOW_OPTION_12";
+    private static final String SHOW_OPTION_13 = "SHOW_OPTION_13";
+    private static final String SCHEMA_NOT_FOUND = "SCHEMA_NOT_FOUND";
+    private static final String SCHEMA_UNREADABLE = "SCHEMA_UNREADABLE";
+    private static final String SUPPORTED_FEATURES = "SUPPORTED_FEATURES";
+    private static final String SUPPORTED_RISKS = "SUPPORTED_RISKS";
+    private static final String LICENSES_FOR_COMPONENTS = "LICENSES_FOR_COMPONENTS";
+    private static final String LICENSES_FOR_PROJECTS = "LICENSES_FOR_PROJECTS";
+    private static final String LINKS = "LINKS";
+    private static final String REDISTRIBUTIONS = "REDISTRIBUTIONS";
+    private static final String COMPATIBILITIES = "COMPATIBILITIES";
+    private static final String WEIGHTS = "WEIGHTS";
+    private static final String OBSOLESCENCES = "OBSOLESCENCES";
+    private static final String SPREADINGS = "SPREADINGS";
+    private static final String TRENDS = "TRENDS";
+    private static final String COMPONENT = "COMPONENT";
+    private static final String PROJECT = "PROJECT";
+    private static final String SUPPORTED_COMPATIBILITY_COMBINATIONS = "SUPPORTED_COMPATIBILITY_COMBINATIONS";
+    private static final String UNSUPPORTED_COMPATIBILITY_COMBINATIONS = "UNSUPPORTED_COMPATIBILITY_COMBINATIONS";
+    private static final String HEADER = "HEADER";
+
 }

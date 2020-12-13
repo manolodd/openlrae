@@ -16,7 +16,6 @@
 package com.manolodominguez.openlrae.baseofknowledge.licenseproperties;
 
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedObsolescences;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedSpreadings;
 import java.util.Collections;
 import java.util.EnumSet;
@@ -46,18 +45,18 @@ public class LicensesSpreadingFactoryTest {
     }
     
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
     
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test of getInstance method, of class LicensesSpreadingFactory.
      */
     @Test
-    public void testGetInstance() {
+    void testGetInstance() {
         System.out.println("getInstance");
         LicensesSpreadingFactory instance1 = LicensesSpreadingFactory.getInstance();
         LicensesSpreadingFactory instance2 = LicensesSpreadingFactory.getInstance();
@@ -68,7 +67,7 @@ public class LicensesSpreadingFactoryTest {
      * Test of getSpreadingOf method, of class LicensesSpreadingFactory.
      */
     @Test
-    public void testGetSpreadingOf() {
+    void testGetSpreadingOf() {
         System.out.println("getSpreadingOf");
         LicensesSpreadingFactory instance = LicensesSpreadingFactory.getInstance();
         Set<SupportedSpreadings> spreadings = Collections.synchronizedSet(EnumSet.allOf(SupportedSpreadings.class));

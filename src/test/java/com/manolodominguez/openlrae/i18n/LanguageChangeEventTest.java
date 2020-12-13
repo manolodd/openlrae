@@ -15,12 +15,7 @@
  */
 package com.manolodominguez.openlrae.i18n;
 
-import com.manolodominguez.openlrae.arquitecture.Component;
-import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.arquitecture.Project;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponentWeights;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
 import com.manolodominguez.openlrae.resourceslocators.FilesPaths;
 import java.net.URL;
 import mjson.Json;
@@ -49,18 +44,18 @@ public class LanguageChangeEventTest {
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test of constructor of class LanguageChangeEvent.
      */
     @Test
-    public void TestConstructor() {
+    void TestConstructor() {
         System.out.println("Constructor");
         // Define a project. Just because we need a ILanguageChangeEventEmitter
         // and a Project is one.
@@ -76,7 +71,7 @@ public class LanguageChangeEventTest {
      * Test of constructor of class LanguageChangeEvent.
      */
     @Test
-    public void TestConstructorWhenSourceIsNull() {
+    void TestConstructorWhenSourceIsNull() {
         System.out.println("Constructor");
         // Define a project. Just because we need a ILanguageChangeEventEmitter
         // and a Project is one.
@@ -93,7 +88,7 @@ public class LanguageChangeEventTest {
      * Test of constructor of class LanguageChangeEvent.
      */
     @Test
-    public void TestConstructorWhenNewLanguageIsNull() {
+    void TestConstructorWhenNewLanguageIsNull() {
         System.out.println("Constructor");
         // Define a project. Just because we need a ILanguageChangeEventEmitter
         // and a Project is one.
@@ -110,7 +105,7 @@ public class LanguageChangeEventTest {
      * Test of getNewLanguage method, of class LanguageChangeEvent.
      */
     @Test
-    public void testGetNewLanguage() {
+    void testGetNewLanguage() {
         System.out.println("getNewLanguage");
         // Define a project. Just because we need a ILanguageChangeEventEmitter
         // and a Project is one.

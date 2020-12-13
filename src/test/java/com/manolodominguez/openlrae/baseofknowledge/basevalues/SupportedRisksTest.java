@@ -40,18 +40,18 @@ class SupportedRisksTest {
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test of number of items, of class SupportedRisks.
      */
     @Test
-    public void testItemsNumber() {
+    void testItemsNumber() {
         System.out.println("items number");
         // Currently there are 11 risks defined in enum
         assertEquals(11, SupportedRisks.values().length);
@@ -62,7 +62,7 @@ class SupportedRisksTest {
      * class SupportedRisks.
      */
     @Test
-    public void testItems() {
+    void testItems() {
         System.out.println("items existence");
         // Currently these are the risks items defined in enum
         boolean worksFine = true;

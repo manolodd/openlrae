@@ -40,18 +40,18 @@ public class VersionLoaderTest {
     }
     
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
     
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test constructor, of class VersionLoader.
      */
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         System.out.println("constructor");
         VersionLoader instance = new VersionLoader();
         assertNotNull(instance.getVersion());
@@ -64,7 +64,7 @@ public class VersionLoaderTest {
      * Test of getVersion method, of class VersionLoader.
      */
     @Test
-    public void testGetVersion() {
+    void testGetVersion() {
         System.out.println("getVersion");
         VersionLoader instance = new VersionLoader();
         assertNotNull(instance.getVersion());

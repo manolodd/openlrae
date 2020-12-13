@@ -44,18 +44,18 @@ public class LicenseCompatibilityEntryTest {
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test of getComponentLicense method, of class LicenseCompatibilityEntry.
      */
     @Test
-    public void testGetComponentLicenseWhenSpecificWarningIsEmpty() {
+    void testGetComponentLicenseWhenSpecificWarningIsEmpty() {
         System.out.println("getComponentLicense");
         SupportedLicenses componentLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedLicenses projectLicense = SupportedLicenses.AGPL_3_0_ONLY;
@@ -73,7 +73,7 @@ public class LicenseCompatibilityEntryTest {
      * Test of getComponentLicense method, of class LicenseCompatibilityEntry.
      */
     @Test
-    public void testGetComponentLicenseWhenRedistributionIsNull() {
+    void testGetComponentLicenseWhenRedistributionIsNull() {
         System.out.println("getComponentLicense");
         SupportedLicenses componentLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedLicenses projectLicense = SupportedLicenses.AGPL_3_0_ONLY;
@@ -91,7 +91,7 @@ public class LicenseCompatibilityEntryTest {
      * Test of getComponentLicense method, of class LicenseCompatibilityEntry.
      */
     @Test
-    public void testGetComponentLicenseWhenLinkIsNull() {
+    void testGetComponentLicenseWhenLinkIsNull() {
         System.out.println("getComponentLicense");
         SupportedLicenses componentLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedLicenses projectLicense = SupportedLicenses.AGPL_3_0_ONLY;
@@ -109,7 +109,7 @@ public class LicenseCompatibilityEntryTest {
      * Test of getComponentLicense method, of class LicenseCompatibilityEntry.
      */
     @Test
-    public void testGetComponentLicenseWhenCompatibilityIsNull() {
+    void testGetComponentLicenseWhenCompatibilityIsNull() {
         System.out.println("getComponentLicense");
         SupportedLicenses componentLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedLicenses projectLicense = SupportedLicenses.AGPL_3_0_ONLY;
@@ -127,7 +127,7 @@ public class LicenseCompatibilityEntryTest {
      * Test of getComponentLicense method, of class LicenseCompatibilityEntry.
      */
     @Test
-    public void testGetComponentLicenseWhenProjectLicenseIsInvalid() {
+    void testGetComponentLicenseWhenProjectLicenseIsInvalid() {
         System.out.println("getComponentLicense");
         SupportedLicenses componentLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedLicenses projectLicense = SupportedLicenses.UNDEFINED;
@@ -146,7 +146,7 @@ public class LicenseCompatibilityEntryTest {
      * Test of getComponentLicense method, of class LicenseCompatibilityEntry.
      */
     @Test
-    public void testGetComponentLicenseWhenProjectLicenseIsNull() {
+    void testGetComponentLicenseWhenProjectLicenseIsNull() {
         System.out.println("getComponentLicense");
         SupportedLicenses componentLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedLicenses projectLicense = null;
@@ -164,7 +164,7 @@ public class LicenseCompatibilityEntryTest {
      * Test of getComponentLicense method, of class LicenseCompatibilityEntry.
      */
     @Test
-    public void testGetComponentLicenseWhenComponentLicenseIsNull() {
+    void testGetComponentLicenseWhenComponentLicenseIsNull() {
         System.out.println("getComponentLicense");
         SupportedLicenses componentLicense = null;
         SupportedLicenses projectLicense = SupportedLicenses.AGPL_3_0_ONLY;
@@ -182,7 +182,7 @@ public class LicenseCompatibilityEntryTest {
      * Test of getComponentLicense method, of class LicenseCompatibilityEntry.
      */
     @Test
-    public void testGetComponentLicense1() {
+    void testGetComponentLicense1() {
         System.out.println("getComponentLicense");
         SupportedLicenses componentLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedLicenses projectLicense = SupportedLicenses.AGPL_3_0_ONLY;
@@ -204,7 +204,7 @@ public class LicenseCompatibilityEntryTest {
      * Test of getComponentLicense method, of class LicenseCompatibilityEntry.
      */
     @Test
-    public void testGetComponentLicense2() {
+    void testGetComponentLicense2() {
         System.out.println("getComponentLicense");
         SupportedLicenses componentLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedLicenses projectLicense = SupportedLicenses.AGPL_3_0_ONLY;
@@ -226,7 +226,7 @@ public class LicenseCompatibilityEntryTest {
      * Test of getProjectLicense method, of class LicenseCompatibilityEntry.
      */
     @Test
-    public void testGetProjectLicense() {
+    void testGetProjectLicense() {
         System.out.println("getProjectLicense");
         SupportedLicenses componentLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedLicenses projectLicense = SupportedLicenses.AGPL_3_0_ONLY;
@@ -242,7 +242,7 @@ public class LicenseCompatibilityEntryTest {
      * Test of getCompatibility method, of class LicenseCompatibilityEntry.
      */
     @Test
-    public void testGetCompatibility() {
+    void testGetCompatibility() {
         System.out.println("getCompatibility");
         SupportedLicenses componentLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedLicenses projectLicense = SupportedLicenses.AGPL_3_0_ONLY;
@@ -258,7 +258,7 @@ public class LicenseCompatibilityEntryTest {
      * Test of getLink method, of class LicenseCompatibilityEntry.
      */
     @Test
-    public void testGetLink() {
+    void testGetLink() {
         System.out.println("getLink");
         SupportedLicenses componentLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedLicenses projectLicense = SupportedLicenses.AGPL_3_0_ONLY;
@@ -274,7 +274,7 @@ public class LicenseCompatibilityEntryTest {
      * Test of getRedistribution method, of class LicenseCompatibilityEntry.
      */
     @Test
-    public void testGetRedistribution() {
+    void testGetRedistribution() {
         System.out.println("getRedistribution");
         SupportedLicenses componentLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedLicenses projectLicense = SupportedLicenses.AGPL_3_0_ONLY;
@@ -290,7 +290,7 @@ public class LicenseCompatibilityEntryTest {
      * Test of getSpecificWarning method, of class LicenseCompatibilityEntry.
      */
     @Test
-    public void testGetSpecificWarning() {
+    void testGetSpecificWarning() {
         System.out.println("getSpecificWarning");
         SupportedLicenses componentLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedLicenses projectLicense = SupportedLicenses.AGPL_3_0_ONLY;
@@ -309,7 +309,7 @@ public class LicenseCompatibilityEntryTest {
      * Test of hasSpecificWarning method, of class LicenseCompatibilityEntry.
      */
     @Test
-    public void testHasSpecificWarning() {
+    void testHasSpecificWarning() {
         System.out.println("hasSpecificWarning");
         SupportedLicenses componentLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedLicenses projectLicense = SupportedLicenses.AGPL_3_0_ONLY;

@@ -42,18 +42,18 @@ public class RiskAnalysisResultTest {
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test constructor of class RiskAnalysisResult.
      */
     @Test
-    public void testConstructorWhenRiskTypeNull() {
+    void testConstructorWhenRiskTypeNull() {
         System.out.println("Constructor");
         SupportedRisks riskType = null;
         float riskExposure = 0.0f;
@@ -72,7 +72,7 @@ public class RiskAnalysisResultTest {
      * Test constructor of class RiskAnalysisResult.
      */
     @Test
-    public void testConstructorWhenRiskExposureOutOfRange1() {
+    void testConstructorWhenRiskExposureOutOfRange1() {
         System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = -0.1f;
@@ -91,7 +91,7 @@ public class RiskAnalysisResultTest {
      * Test constructor of class RiskAnalysisResult.
      */
     @Test
-    public void testConstructorWhenRiskExposureOutOfRange2() {
+    void testConstructorWhenRiskExposureOutOfRange2() {
         System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 1.1f;
@@ -110,7 +110,7 @@ public class RiskAnalysisResultTest {
      * Test constructor of class RiskAnalysisResult.
      */
     @Test
-    public void testConstructorWhenRiskImpactOutOfRange1() {
+    void testConstructorWhenRiskImpactOutOfRange1() {
         System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.0f;
@@ -129,7 +129,7 @@ public class RiskAnalysisResultTest {
      * Test constructor of class RiskAnalysisResult.
      */
     @Test
-    public void testConstructorWhenRiskImpactOutOfRange2() {
+    void testConstructorWhenRiskImpactOutOfRange2() {
         System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.0f;
@@ -148,7 +148,7 @@ public class RiskAnalysisResultTest {
      * Test constructor of class RiskAnalysisResult.
      */
     @Test
-    public void testConstructorWhenRootCausesIsNull() {
+    void testConstructorWhenRootCausesIsNull() {
         System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.0f;
@@ -167,7 +167,7 @@ public class RiskAnalysisResultTest {
      * Test constructor of class RiskAnalysisResult.
      */
     @Test
-    public void testConstructorWhenWarningsIsNull() {
+    void testConstructorWhenWarningsIsNull() {
         System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.0f;
@@ -186,7 +186,7 @@ public class RiskAnalysisResultTest {
      * Test constructor of class RiskAnalysisResult.
      */
     @Test
-    public void testConstructorWhenGoodThingsIsNull() {
+    void testConstructorWhenGoodThingsIsNull() {
         System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.0f;
@@ -205,7 +205,7 @@ public class RiskAnalysisResultTest {
      * Test constructor of class RiskAnalysisResult.
      */
     @Test
-    public void testConstructorWhenTipsIsNull() {
+    void testConstructorWhenTipsIsNull() {
         System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.0f;
@@ -224,7 +224,7 @@ public class RiskAnalysisResultTest {
      * Test constructor of class RiskAnalysisResult.
      */
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         System.out.println("Constructor");
         SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;
@@ -248,7 +248,7 @@ public class RiskAnalysisResultTest {
      * Test of getRiskType method, of class RiskAnalysisResult.
      */
     @Test
-    public void testGetRiskType() {
+    void testGetRiskType() {
         SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;
         float riskImpact = 0.234567f;
@@ -264,7 +264,7 @@ public class RiskAnalysisResultTest {
      * Test of getRiskExposure method, of class RiskAnalysisResult.
      */
     @Test
-    public void testGetRiskExposure() {
+    void testGetRiskExposure() {
         System.out.println("getRiskExposure");
         SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;
@@ -281,7 +281,7 @@ public class RiskAnalysisResultTest {
      * Test of getRiskImpact method, of class RiskAnalysisResult.
      */
     @Test
-    public void testGetRiskImpact() {
+    void testGetRiskImpact() {
         System.out.println("getRiskImpact");
         SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;
@@ -298,7 +298,7 @@ public class RiskAnalysisResultTest {
      * Test of getRiskValue method, of class RiskAnalysisResult.
      */
     @Test
-    public void testGetRiskValue() {
+    void testGetRiskValue() {
         System.out.println("getRiskValue");
         SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;
@@ -315,7 +315,7 @@ public class RiskAnalysisResultTest {
      * Test of getRootCauses method, of class RiskAnalysisResult.
      */
     @Test
-    public void testGetRootCauses() {
+    void testGetRootCauses() {
         System.out.println("getRootCauses");
         SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;
@@ -332,7 +332,7 @@ public class RiskAnalysisResultTest {
      * Test of getWarnings method, of class RiskAnalysisResult.
      */
     @Test
-    public void testGetWarnings() {
+    void testGetWarnings() {
         System.out.println("getWarnings");
         SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;
@@ -349,7 +349,7 @@ public class RiskAnalysisResultTest {
      * Test of getGoodThings method, of class RiskAnalysisResult.
      */
     @Test
-    public void testGetGoodThings() {
+    void testGetGoodThings() {
         System.out.println("getGoodThings");
         SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;
@@ -366,7 +366,7 @@ public class RiskAnalysisResultTest {
      * Test of getTips method, of class RiskAnalysisResult.
      */
     @Test
-    public void testGetTips() {
+    void testGetTips() {
         System.out.println("getTips");
         SupportedRisks riskType = SupportedRisks.HAVING_OBSOLETE_COMPONENTS_LICENSES;
         float riskExposure = 0.123456f;

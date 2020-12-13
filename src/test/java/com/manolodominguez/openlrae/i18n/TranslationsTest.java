@@ -42,18 +42,18 @@ public class TranslationsTest {
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test of number of items, of class Translations.
      */
     @Test
-    public void testItemsNumber() {
+    void testItemsNumber() {
         System.out.println("items number");
         // Currently there are 23 resource bundles defined in enum
         assertEquals(23, Translations.values().length);
@@ -64,7 +64,7 @@ public class TranslationsTest {
      * class Translations.
      */
     @Test
-    public void testItems() {
+    void testItems() {
         System.out.println("items existence");
         // Currently these are the items defined in enum
         boolean worksFine = true;
@@ -107,7 +107,7 @@ public class TranslationsTest {
      * Test of getResourceBundle method, of class Translations.
      */
     @Test
-    public void testGetResourceBundle() {
+    void testGetResourceBundle() {
         System.out.println("getResourceBundle");
         ResourceBundle resourceBundle;
         LanguageConfig languageConfig = new LanguageConfig();
@@ -130,7 +130,7 @@ public class TranslationsTest {
      * Test of getResourceBundle method, of class Translations.
      */
     @Test
-    public void testGetResourceBundleWhenLocaleIsNull() {
+    void testGetResourceBundleWhenLocaleIsNull() {
         System.out.println("getResourceBundle");
         assertThrows(IllegalArgumentException.class, () -> {
             // Should throw an exception because locale is null

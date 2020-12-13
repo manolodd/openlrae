@@ -54,18 +54,18 @@ public class ReportsFactoryTest {
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test of getInstance method, of class ReportsFactory.
      */
     @Test
-    public void testGetInstance_SupportedVerbosityLevel_WhenVerbosityIsNull() {
+    void testGetInstance_SupportedVerbosityLevel_WhenVerbosityIsNull() {
         System.out.println("getInstance");
         SupportedVerbosityLevel verbosity = null;
         assertThrows(IllegalArgumentException.class, () -> {
@@ -78,7 +78,7 @@ public class ReportsFactoryTest {
      * Test of getReportAsBeautifiedJSONString method, of class ReportsFactory.
      */
     @Test
-    public void testGetReportAsBeautifiedJSONString() {
+    void testGetReportAsBeautifiedJSONString() {
         System.out.println("getReportAsBeautifiedJSONString");
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
@@ -122,7 +122,7 @@ public class ReportsFactoryTest {
      * Test of getReportAsJSON method, of class ReportsFactory.
      */
     @Test
-    public void testGetReportAsJSON() {
+    void testGetReportAsJSON() {
         System.out.println("getReportAsJSON");
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
@@ -165,7 +165,7 @@ public class ReportsFactoryTest {
      * Test of getReportAsPlainText method, of class ReportsFactory.
      */
     @Test
-    public void testGetReportAsPlainText() {
+    void testGetReportAsPlainText() {
         System.out.println("getReportAsPlainText");
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());

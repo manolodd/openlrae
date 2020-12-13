@@ -40,18 +40,18 @@ public class DinamicAndNoneTest {
     }
     
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
     
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test of getInstance method, of class DinamicAndNone.
      */
     @Test
-    public void testGetInstance() {
+    void testGetInstance() {
         System.out.println("getInstance");
         DinamicAndNone instance1 = DinamicAndNone.getInstance();
         DinamicAndNone instance2 = DinamicAndNone.getInstance();
@@ -62,7 +62,7 @@ public class DinamicAndNoneTest {
      * Test of getCompatibilities method, of class DinamicAndNone.
      */
     @Test
-    public void testGetCompatibilities() {
+    void testGetCompatibilities() {
         System.out.println("getCompatibilities");
         DinamicAndNone instance = DinamicAndNone.getInstance();
         assertNotNull(instance.getCompatibilities());

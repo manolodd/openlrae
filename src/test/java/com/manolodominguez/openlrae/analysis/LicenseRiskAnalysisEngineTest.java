@@ -57,18 +57,18 @@ public class LicenseRiskAnalysisEngineTest {
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test constructor of class LicenseRiskAnalysisEngine.
      */
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         System.out.println("constructor");
         assertThrows(IllegalArgumentException.class, () -> {
             new LicenseRiskAnalysisEngine(null); // Should throw an exception
@@ -79,7 +79,7 @@ public class LicenseRiskAnalysisEngineTest {
      * Test of addRiskAnalyser method, of class LicenseRiskAnalysisEngine.
      */
     @Test
-    public void testAddRiskAnalyserNull() {
+    void testAddRiskAnalyserNull() {
         System.out.println("addRiskAnalyser");
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
@@ -98,7 +98,7 @@ public class LicenseRiskAnalysisEngineTest {
      * Test of analyse method, of class LicenseRiskAnalysisEngine.
      */
     @Test
-    public void testAnalyse() {
+    void testAnalyse() {
         System.out.println("analyse");
         boolean worksFine = true;
         // Define the project. In this case, it is defined from a JSON file.
@@ -144,7 +144,7 @@ public class LicenseRiskAnalysisEngineTest {
      * Test of addRiskAnalyser method, of class LicenseRiskAnalysisEngine.
      */
     @Test
-    public void testAddRiskAnalyser() {
+    void testAddRiskAnalyser() {
         System.out.println("addRiskAnalyser");
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
@@ -175,7 +175,7 @@ public class LicenseRiskAnalysisEngineTest {
      * Test of setLanguage method, of class LicenseRiskAnalysisEngine.
      */
     @Test
-    public void testSetLanguage() {
+    void testSetLanguage() {
         System.out.println("setLanguage");
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
@@ -217,7 +217,7 @@ public class LicenseRiskAnalysisEngineTest {
      * Test of setDefaultLanguage method, of class LicenseRiskAnalysisEngine.
      */
     @Test
-    public void testSetDefaultLanguage() {
+    void testSetDefaultLanguage() {
         System.out.println("setDefaultLanguage");
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
@@ -268,7 +268,7 @@ public class LicenseRiskAnalysisEngineTest {
      * Test of fireLanguageChangeEvent method, of class LicenseRiskAnalysisEngine.
      */
     @Test
-    public void testFireLanguageChangeEvent() {
+    void testFireLanguageChangeEvent() {
         System.out.println("fireLanguageChangeEvent");
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());

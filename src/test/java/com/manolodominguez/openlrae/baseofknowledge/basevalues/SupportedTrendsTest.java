@@ -40,18 +40,18 @@ public class SupportedTrendsTest {
     }
     
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
     
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test of number of items, of class SupportedTrends.
      */
     @Test
-    public void testItemsNumber() {
+    void testItemsNumber() {
         System.out.println("items number");
         // Currently there are 4 trends defined in enum
         assertEquals(4, SupportedTrends.values().length);
@@ -62,7 +62,7 @@ public class SupportedTrendsTest {
      * class SupportedTrends.
      */
     @Test
-    public void testItems() {
+    void testItems() {
         System.out.println("items existence");
         // Currently these are the trends items defined in enum
         boolean worksFine = true;
@@ -86,7 +86,7 @@ public class SupportedTrendsTest {
      * Test of getTrendValue method, of class SupportedTrends.
      */
     @Test
-    public void testGetTrendValue() {
+    void testGetTrendValue() {
         System.out.println("getTrendValue");
         boolean worksFine = true;
         for (SupportedTrends trend : SupportedTrends.values()) {

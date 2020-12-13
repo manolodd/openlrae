@@ -47,18 +47,18 @@ public class LicensesCompatibilityFactoryTest {
     }
     
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
     
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test of getInstance method, of class LicensesCompatibilityFactory.
      */
     @Test
-    public void testGetInstance() {
+    void testGetInstance() {
         System.out.println("getInstance");
         LicensesCompatibilityFactory instance1 = LicensesCompatibilityFactory.getInstance();
         LicensesCompatibilityFactory instance2 = LicensesCompatibilityFactory.getInstance();
@@ -69,7 +69,7 @@ public class LicensesCompatibilityFactoryTest {
      * Test of getCompatibilityOf method, of class LicensesCompatibilityFactory.
      */
     @Test
-    public void testGetCompatibilityOf() {
+    void testGetCompatibilityOf() {
         System.out.println("getCompatibilityOf");
         LicensesCompatibilityFactory instance = LicensesCompatibilityFactory.getInstance();
         Set<SupportedCompatibilities> compatibilities = Collections.synchronizedSet(EnumSet.allOf(SupportedCompatibilities.class));
@@ -91,7 +91,7 @@ public class LicensesCompatibilityFactoryTest {
      * Test of getNumberOfSupportedCombinations method, of class LicensesCompatibilityFactory.
      */
     @Test
-    public void testGetNumberOfSupportedCombinations() {
+    void testGetNumberOfSupportedCombinations() {
         System.out.println("getNumberOfSupportedCombinations");
         LicensesCompatibilityFactory instance = LicensesCompatibilityFactory.getInstance();
         int numberOfSupportedComponentLicenses = SupportedLicenses.getLicensesForComponents().length;
@@ -107,7 +107,7 @@ public class LicensesCompatibilityFactoryTest {
      * Test of getLicensesCoverage method, of class LicensesCompatibilityFactory.
      */
     @Test
-    public void testGetLicensesCoverage() {
+    void testGetLicensesCoverage() {
         System.out.println("getLicensesCoverage");
         LicensesCompatibilityFactory instance = LicensesCompatibilityFactory.getInstance();
         // Just to control that every new release of OpenLRAE supports at least

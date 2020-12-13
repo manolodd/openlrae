@@ -48,18 +48,18 @@ public class RiskAnalyserObsoleteProjectLicensesTest {
     }
     
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
     
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test of constructor, of class RiskAnalyserProjectLicensesTooObsolete.
      */
     @Test
-    public void testConstructorWhenProjectIsNull() {
+    void testConstructorWhenProjectIsNull() {
         System.out.println("constructor");
         Project project = null;
         // Should throw an exception because project is null
@@ -72,7 +72,7 @@ public class RiskAnalyserObsoleteProjectLicensesTest {
      * Test of getHandledRiskType method, of class RiskAnalyserProjectLicensesTooObsolete.
      */
     @Test
-    public void testGetHandledRiskType() {
+    void testGetHandledRiskType() {
         System.out.println("getHandledRiskType");
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
@@ -85,7 +85,7 @@ public class RiskAnalyserObsoleteProjectLicensesTest {
      * Test of getRiskAnalisysResult method, of class RiskAnalyserProjectLicensesTooObsolete.
      */
     @Test
-    public void testGetRiskAnalisysResultr() {
+    void testGetRiskAnalisysResultr() {
         System.out.println("getRiskAnalisysResult");
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
@@ -104,7 +104,7 @@ public class RiskAnalyserObsoleteProjectLicensesTest {
      * Test of runAnalyser method, of class RiskAnalyserProjectLicensesTooObsolete.
      */
     @Test
-    public void testRunAnalyser() {
+    void testRunAnalyser() {
         System.out.println("runAnalyser");
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
@@ -137,7 +137,7 @@ public class RiskAnalyserObsoleteProjectLicensesTest {
      * Test of onLanguageChange method, of class RiskAnalyserProjectLicensesTooObsolete.
      */
     @Test
-    public void testOnLanguageChange() {
+    void testOnLanguageChange() {
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
         Project project = new Project(Json.read(projectURL));

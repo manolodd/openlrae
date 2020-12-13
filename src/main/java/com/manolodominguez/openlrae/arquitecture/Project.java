@@ -359,7 +359,7 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
             fullName += spdxIdI18N.getString(projectLicense.toString()) + ", ";
         }
         fullName = fullName.substring(ZERO, fullName.length() - 2);
-        fullName += "), " + ownI18N.getString("THAT") + " " + redistributionsI18N.getString(redistribution.toString());
+        fullName += "), " + ownI18N.getString(THAT) + " " + redistributionsI18N.getString(redistribution.toString());
         return fullName;
     }
 
@@ -448,4 +448,7 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
     private static final String DEFAULT_INVALID_PROJECT_VALIDATION_REPORT = "{\"ok\":false, errors:[\"Open LRAE JSON Schema cannot be loaded.\"]}";
     private static final int ZERO = 0;
 
+    // i18N Keys
+    private static final String THAT="THAT";
+    
 }

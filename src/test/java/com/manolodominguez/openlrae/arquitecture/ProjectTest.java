@@ -52,18 +52,18 @@ public class ProjectTest {
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test constructor of class Project.
      */
     @Test
-    public void testConstructor3() {
+    void testConstructor3() {
         System.out.println("Constructor");
         // Define the project. In this case, it is defined from a JSON file.
         // but could be come in by a call to a rest service or other methods. 
@@ -86,7 +86,7 @@ public class ProjectTest {
      * Test constructor of class Project.
      */
     @Test
-    public void testConstructor3WhenJSONDefinitionIsNotValid() {
+    void testConstructor3WhenJSONDefinitionIsNotValid() {
         System.out.println("Constructor");
         // Define the project. In this case, it is defined from a JSON file.
         // but could be come in by a call to a rest service or other methods. 
@@ -107,7 +107,7 @@ public class ProjectTest {
      * Test constructor of class Project.
      */
     @Test
-    public void testConstructor3WhenJSONDefinitionIsNull() {
+    void testConstructor3WhenJSONDefinitionIsNull() {
         System.out.println("Constructor");
         // Define the project. In this case, it is defined from a JSON file.
         // but could be come in by a call to a rest service or other methods. 
@@ -124,7 +124,7 @@ public class ProjectTest {
      * Test constructor of class Project.
      */
     @Test
-    public void testConstructor2() {
+    void testConstructor2() {
         System.out.println("Constructor");
         // Define the project. In this case, it is defined from a JSON file.
         // but could be come in by a call to a rest service or other methods. 
@@ -147,7 +147,7 @@ public class ProjectTest {
      * Test constructor of class Project.
      */
     @Test
-    public void testConstructor2WhenJSONStringIsNotValid() {
+    void testConstructor2WhenJSONStringIsNotValid() {
         System.out.println("Constructor");
         // Define the project. In this case, it is defined from a JSON file.
         // but could be come in by a call to a rest service or other methods. 
@@ -167,7 +167,7 @@ public class ProjectTest {
      * Test constructor of class Project.
      */
     @Test
-    public void testConstructor2WhenJSONStringIsNull() {
+    void testConstructor2WhenJSONStringIsNull() {
         System.out.println("Constructor");
         String projectDefinitionAsJSONString = null;
         assertThrows(IllegalArgumentException.class, () -> {
@@ -181,7 +181,7 @@ public class ProjectTest {
      * Test constructor of class Project.
      */
     @Test
-    public void testConstructor2WhenJSONStringIsEmpty() {
+    void testConstructor2WhenJSONStringIsEmpty() {
         System.out.println("Constructor");
         String projectDefinitionAsJSONString = "";
         assertThrows(IllegalArgumentException.class, () -> {
@@ -195,7 +195,7 @@ public class ProjectTest {
      * Test constructor of class Project.
      */
     @Test
-    public void testConstructor2WhenJSONStringIsNotJSON() {
+    void testConstructor2WhenJSONStringIsNotJSON() {
         System.out.println("Constructor");
         String projectDefinitionAsJSONString = "This is not a JSON string";
         assertThrows(IllegalArgumentException.class, () -> {
@@ -209,7 +209,7 @@ public class ProjectTest {
      * Test constructor of class Project.
      */
     @Test
-    public void testConstructor1() {
+    void testConstructor1() {
         System.out.println("Constructor");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding firstComponentBinding = new ComponentBinding(firstComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -232,7 +232,7 @@ public class ProjectTest {
      * Test constructor of class Project.
      */
     @Test
-    public void testConstructorWhenFirstComponentBindingIsNull() {
+    void testConstructorWhenFirstComponentBindingIsNull() {
         System.out.println("Constructor");
         ComponentBinding firstComponentBinding = null;
         String projectName = "MyProject";
@@ -249,7 +249,7 @@ public class ProjectTest {
      * Test constructor of class Project.
      */
     @Test
-    public void testConstructorWhenRedistributionIsNull() {
+    void testConstructorWhenRedistributionIsNull() {
         System.out.println("Constructor");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding firstComponentBinding = new ComponentBinding(firstComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -267,7 +267,7 @@ public class ProjectTest {
      * Test constructor of class Project.
      */
     @Test
-    public void testConstructorWhenFirstProjectLicenseIsInvalid() {
+    void testConstructorWhenFirstProjectLicenseIsInvalid() {
         System.out.println("Constructor");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding firstComponentBinding = new ComponentBinding(firstComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -285,7 +285,7 @@ public class ProjectTest {
      * Test constructor of class Project.
      */
     @Test
-    public void testConstructorWhenFirstProjectLicenseIsNull() {
+    void testConstructorWhenFirstProjectLicenseIsNull() {
         System.out.println("Constructor");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding firstComponentBinding = new ComponentBinding(firstComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -303,7 +303,7 @@ public class ProjectTest {
      * Test constructor of class Project.
      */
     @Test
-    public void testConstructorWhenVersionIsEmpty() {
+    void testConstructorWhenVersionIsEmpty() {
         System.out.println("Constructor");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding firstComponentBinding = new ComponentBinding(firstComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -321,7 +321,7 @@ public class ProjectTest {
      * Test constructor of class Project.
      */
     @Test
-    public void testConstructorWhenVersionIsNull() {
+    void testConstructorWhenVersionIsNull() {
         System.out.println("Constructor");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding firstComponentBinding = new ComponentBinding(firstComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -339,7 +339,7 @@ public class ProjectTest {
      * Test constructor of class Project.
      */
     @Test
-    public void testConstructorWhenNameIsEmpty() {
+    void testConstructorWhenNameIsEmpty() {
         System.out.println("Constructor");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding firstComponentBinding = new ComponentBinding(firstComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -357,7 +357,7 @@ public class ProjectTest {
      * Test constructor of class Project.
      */
     @Test
-    public void testConstructorWhenNameIsNull() {
+    void testConstructorWhenNameIsNull() {
         System.out.println("Constructor");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding firstComponentBinding = new ComponentBinding(firstComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -375,7 +375,7 @@ public class ProjectTest {
      * Test of addComponentBinding method, of class Project.
      */
     @Test
-    public void testAddComponentBindingWhenNull() {
+    void testAddComponentBindingWhenNull() {
         System.out.println("addComponentBinding");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding firstComponentBinding = new ComponentBinding(firstComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -394,7 +394,7 @@ public class ProjectTest {
      * Test of addComponentBinding method, of class Project.
      */
     @Test
-    public void testAddComponentBinding() {
+    void testAddComponentBinding() {
         System.out.println("addComponentBinding");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         Component secondComponent = new Component("ComponentName1", "ComponentVersion2", SupportedLicenses.MIT);
@@ -415,7 +415,7 @@ public class ProjectTest {
      * Test of getName method, of class Project.
      */
     @Test
-    public void testGetName() {
+    void testGetName() {
         System.out.println("getName");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding firstComponentBinding = new ComponentBinding(firstComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -431,7 +431,7 @@ public class ProjectTest {
      * Test of getFullName method, of class Project.
      */
     @Test
-    public void testGetFullName() {
+    void testGetFullName() {
         System.out.println("getFullName");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding firstComponentBinding = new ComponentBinding(firstComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -449,7 +449,7 @@ public class ProjectTest {
      * Test of getVersion method, of class Project.
      */
     @Test
-    public void testGetVersion() {
+    void testGetVersion() {
         System.out.println("getVersion");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding firstComponentBinding = new ComponentBinding(firstComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -465,7 +465,7 @@ public class ProjectTest {
      * Test of addLicense method, of class Project.
      */
     @Test
-    public void testAddLicense() {
+    void testAddLicense() {
         System.out.println("addLicense");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding firstComponentBinding = new ComponentBinding(firstComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -484,7 +484,7 @@ public class ProjectTest {
      * Test of addLicense method, of class Project.
      */
     @Test
-    public void testAddLicenseWhenNull() {
+    void testAddLicenseWhenNull() {
         System.out.println("addLicense");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding firstComponentBinding = new ComponentBinding(firstComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -503,7 +503,7 @@ public class ProjectTest {
      * Test of getLicenses method, of class Project.
      */
     @Test
-    public void testGetLicenses() {
+    void testGetLicenses() {
         System.out.println("getLicenses");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding firstComponentBinding = new ComponentBinding(firstComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -523,7 +523,7 @@ public class ProjectTest {
      * Test of getRedistribution method, of class Project.
      */
     @Test
-    public void testGetRedistribution() {
+    void testGetRedistribution() {
         System.out.println("getRedistribution");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         ComponentBinding firstComponentBinding = new ComponentBinding(firstComponent, SupportedLinks.DYNAMIC, SupportedComponentWeights.HIGH);
@@ -539,7 +539,7 @@ public class ProjectTest {
      * Test of getBillOfComponentBindings method, of class Project.
      */
     @Test
-    public void testGetBillOfComponentBindings() {
+    void testGetBillOfComponentBindings() {
         System.out.println("getBillOfComponentBindings");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         Component secondComponent = new Component("ComponentName1", "ComponentVersion2", SupportedLicenses.MIT);
@@ -562,7 +562,7 @@ public class ProjectTest {
      * Test of getLanguage method, of class Project.
      */
     @Test
-    public void testGetLanguage() {
+    void testGetLanguage() {
         System.out.println("getLanguage");
         Component firstComponent = new Component("ComponentName1", "ComponentVersion1", SupportedLicenses.ARTISTIC_2_0);
         Component secondComponent = new Component("ComponentName1", "ComponentVersion2", SupportedLicenses.MIT);
@@ -580,7 +580,7 @@ public class ProjectTest {
      * Test of fireLanguageChangeEvent method, of class Project.
      */
     @Test
-    public void testFireLanguageChangeEvent() {
+    void testFireLanguageChangeEvent() {
         System.out.println("fireLanguageChangeEvent");
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
@@ -601,7 +601,7 @@ public class ProjectTest {
      * Test of onLanguageChange method, of class Project.
      */
     @Test
-    public void testOnLanguageChange() {
+    void testOnLanguageChange() {
         System.out.println("onLanguageChange");
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
@@ -620,7 +620,7 @@ public class ProjectTest {
      * Test of onLanguageChange method, of class Project.
      */
     @Test
-    public void testOnLanguageChangeWhenEventisNull() {
+    void testOnLanguageChangeWhenEventisNull() {
         System.out.println("onLanguageChange");
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());

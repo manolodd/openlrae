@@ -15,7 +15,6 @@
  */
 package com.manolodominguez.openlrae.i18n;
 
-import java.util.Locale;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,18 +40,18 @@ public class SupportedLanguagesTest {
     }
     
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
     
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test of number of items, of class SupportedLanguages.
      */
     @Test
-    public void testItemsNumber() {
+    void testItemsNumber() {
         System.out.println("items number");
         // Currently there are 2 languages defined in enum
         assertEquals(2, SupportedLanguages.values().length);
@@ -63,7 +62,7 @@ public class SupportedLanguagesTest {
      * class SupportedLanguages.
      */
     @Test
-    public void testItems() {
+    void testItems() {
         System.out.println("items existence");
         // Currently these are the trends items defined in enum
         boolean worksFine = true;
@@ -85,7 +84,7 @@ public class SupportedLanguagesTest {
      * Test of getLocale method, of class SupportedLanguages.
      */
     @Test
-    public void testGetLocale() {
+    void testGetLocale() {
         System.out.println("getLocale");
         boolean worksFine = true;
         for (SupportedLanguages language : SupportedLanguages.values()) {

@@ -40,18 +40,18 @@ public class CLIHandlerTest {
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test of constructor of class CLIHandler.
      */
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         System.out.println("Constructor");
         String fileName = "";
         CLIHandler instance = new CLIHandler();
@@ -62,7 +62,7 @@ public class CLIHandlerTest {
      * Test of runAnalysis method, of class CLIHandler.
      */
     @Test
-    public void testRunAnalysisWhenFileNameIsNull() {
+    void testRunAnalysisWhenFileNameIsNull() {
         System.out.println("runAnalysis");
         String fileName = null;
         CLIHandler instance = new CLIHandler();
@@ -76,7 +76,7 @@ public class CLIHandlerTest {
      * Test of runAnalysis method, of class CLIHandler.
      */
     @Test
-    public void testRunAnalysisWhenFileNameIsEmpty() {
+    void testRunAnalysisWhenFileNameIsEmpty() {
         System.out.println("runAnalysis");
         String fileName = "";
         CLIHandler instance = new CLIHandler();
@@ -90,7 +90,7 @@ public class CLIHandlerTest {
      * Test of runExample method, of class CLIHandler.
      */
     @Test
-    public void testRunExample() {
+    void testRunExample() {
         System.out.println("runExample");
         CLIHandler instance = new CLIHandler();
         assertNotNull(instance);
@@ -101,7 +101,7 @@ public class CLIHandlerTest {
      * Test of showInfo method, of class CLIHandler.
      */
     @Test
-    public void testShowInfo() {
+    void testShowInfo() {
         System.out.println("showInfo");
         CLIHandler instance = new CLIHandler();
         assertNotNull(instance);
@@ -112,7 +112,7 @@ public class CLIHandlerTest {
      * Test of showOptions method, of class CLIHandler.
      */
     @Test
-    public void testShowOptions() {
+    void testShowOptions() {
         System.out.println("showOptions");
         CLIHandler instance = new CLIHandler();
         assertNotNull(instance);
@@ -123,7 +123,7 @@ public class CLIHandlerTest {
      * Test of showSchema method, of class CLIHandler.
      */
     @Test
-    public void testShowSchema() {
+    void testShowSchema() {
         System.out.println("showSchema");
         CLIHandler instance = new CLIHandler();
         assertNotNull(instance);

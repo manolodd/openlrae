@@ -40,18 +40,18 @@ public class LanguageConfigTest {
     }
     
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
     
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test of constructor, of class LanguageConfig.
      */
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         System.out.println("setLanguage");
         LanguageConfig instance = new LanguageConfig();
         assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, instance.getLanguage());
@@ -61,7 +61,7 @@ public class LanguageConfigTest {
      * Test of setLanguage method, of class LanguageConfig.
      */
     @Test
-    public void testSetLanguage() {
+    void testSetLanguage() {
         System.out.println("setLanguage");
         SupportedLanguages newLanguage = SupportedLanguages.SPANISH;
         LanguageConfig instance = new LanguageConfig();
@@ -73,7 +73,7 @@ public class LanguageConfigTest {
      * Test of setLanguage method, of class LanguageConfig.
      */
     @Test
-    public void testSetLanguageWhenLanguageIsNull() {
+    void testSetLanguageWhenLanguageIsNull() {
         System.out.println("setLanguage");
         SupportedLanguages newLanguage = null;
         LanguageConfig instance = new LanguageConfig();
@@ -87,7 +87,7 @@ public class LanguageConfigTest {
      * Test of getLanguage method, of class LanguageConfig.
      */
     @Test
-    public void testGetLanguage() {
+    void testGetLanguage() {
         System.out.println("getLanguage");
         LanguageConfig instance = new LanguageConfig();
         assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, instance.getLanguage());
@@ -97,7 +97,7 @@ public class LanguageConfigTest {
      * Test of setDefaultLanguage method, of class LanguageConfig.
      */
     @Test
-    public void testSetDefaultLanguage() {
+    void testSetDefaultLanguage() {
         System.out.println("setDefaultLanguage");
         SupportedLanguages newLanguage = SupportedLanguages.SPANISH;
         LanguageConfig instance = new LanguageConfig();

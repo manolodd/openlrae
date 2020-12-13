@@ -40,18 +40,18 @@ public class SupportedSpreadingsTest {
     }
     
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
     
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test of number of items, of class SupportedSpreadings.
      */
     @Test
-    public void testItemsNumber() {
+    void testItemsNumber() {
         System.out.println("items number");
         // Currently there are 4 spreadings defined in enum
         assertEquals(4, SupportedSpreadings.values().length);
@@ -62,7 +62,7 @@ public class SupportedSpreadingsTest {
      * class SupportedSpreadings.
      */
     @Test
-    public void testItems() {
+    void testItems() {
         System.out.println("items existence");
         // Currently these are the spreading items defined in enum
         boolean worksFine = true;
@@ -86,7 +86,7 @@ public class SupportedSpreadingsTest {
      * Test of getSpreadingValue method, of class SupportedSpreadings.
      */
     @Test
-    public void testGetSpreadingValue() {
+    void testGetSpreadingValue() {
         System.out.println("getSpreadingValue");
         boolean worksFine = true;
         for (SupportedSpreadings spreading : SupportedSpreadings.values()) {

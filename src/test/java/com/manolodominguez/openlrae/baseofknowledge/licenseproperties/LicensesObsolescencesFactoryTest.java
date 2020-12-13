@@ -45,18 +45,18 @@ public class LicensesObsolescencesFactoryTest {
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     /**
      * Test of getInstance method, of class LicensesObsolescencesFactory.
      */
     @Test
-    public void testGetInstance() {
+    void testGetInstance() {
         System.out.println("getInstance");
         LicensesObsolescencesFactory instance1 = LicensesObsolescencesFactory.getInstance();
         LicensesObsolescencesFactory instance2 = LicensesObsolescencesFactory.getInstance();
@@ -67,7 +67,7 @@ public class LicensesObsolescencesFactoryTest {
      * Test of getObsolescenceOf method, of class LicensesObsolescencesFactory.
      */
     @Test
-    public void testGetObsolescenceOf() {
+    void testGetObsolescenceOf() {
         System.out.println("getObsolescenceOf");
         LicensesObsolescencesFactory instance = LicensesObsolescencesFactory.getInstance();
         Set<SupportedObsolescences> compatibilities = Collections.synchronizedSet(EnumSet.allOf(SupportedObsolescences.class));
