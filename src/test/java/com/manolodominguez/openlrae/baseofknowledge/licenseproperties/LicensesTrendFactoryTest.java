@@ -32,22 +32,22 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author manolodd
  */
 class LicensesTrendFactoryTest {
-    
+
     public LicensesTrendFactoryTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     void setUp() {
     }
-    
+
     @AfterEach
     void tearDown() {
     }
@@ -60,7 +60,7 @@ class LicensesTrendFactoryTest {
         System.out.println("getInstance");
         LicensesTrendFactory instance1 = LicensesTrendFactory.getInstance();
         LicensesTrendFactory instance2 = LicensesTrendFactory.getInstance();
-        assertSame(instance1, instance2); 
+        assertSame(instance1, instance2);
     }
 
     /**
@@ -78,5 +78,17 @@ class LicensesTrendFactoryTest {
             assertTrue(trends.contains(instance.getTrendOf(license)));
         }
     }
-    
+
+    /**
+     * Test of getTrendOf method, of class LicensesTrendFactory.
+     */
+    @Test
+    void testGetTrendOfWhenLicenseIsNull() {
+        System.out.println("getTrendOf");
+        assertThrows(IllegalArgumentException.class, () -> {
+            // Should throw an exception because license is null
+            LicensesTrendFactory.getInstance().getTrendOf(null);
+        });
+    }
+
 }

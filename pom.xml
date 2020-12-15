@@ -112,7 +112,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.manolodominguez.openlrae.main.MainClass</mainClass>
+                            <mainClass>com.manolodominguez.openlrae.main.OpenLRAE</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -130,7 +130,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.manolodominguez.openlrae.main.MainClass</mainClass>
+                                    <mainClass>com.manolodominguez.openlrae.main.OpenLRAE</mainClass>
                                 </transformer>
                             </transformers>
                             <shadedArtifactAttached>true</shadedArtifactAttached>

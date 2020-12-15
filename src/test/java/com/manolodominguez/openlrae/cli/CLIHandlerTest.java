@@ -15,6 +15,7 @@
  */
 package com.manolodominguez.openlrae.cli;
 
+import com.manolodominguez.openlrae.resourceslocators.FilesPaths;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -85,6 +86,18 @@ class CLIHandlerTest {
             instance.runAnalysis(fileName);
         });
     }
+    
+
+    /**
+     * Test of runAnalysis method, of class CLIHandler.
+     */
+    @Test
+    void testRunAnalysis() {
+        System.out.println("runAnalysis");
+        String fileName = "";
+        CLIHandler instance = new CLIHandler();
+            instance.runAnalysis(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+    }    
 
     /**
      * Test of runExample method, of class CLIHandler.

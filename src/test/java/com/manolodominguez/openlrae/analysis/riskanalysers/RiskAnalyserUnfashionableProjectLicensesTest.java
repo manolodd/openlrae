@@ -145,4 +145,21 @@ class RiskAnalyserUnfashionableProjectLicensesTest {
         instance.onLanguageChange(new LanguageChangeEvent(project, SupportedLanguages.SPANISH));
         assertEquals(SupportedLanguages.SPANISH, instance.getLanguage());
     }    
+    
+    /**
+     * Test of onLanguageChange method, of class
+     * RiskAnalyserUnfashionableProjectLicenses.
+     */
+    @Test
+    void testOnLanguageChangeWhenEventIsNull() {
+        System.out.println("setLanguage");
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        Project project = new Project(Json.read(projectURL));
+        RiskAnalyserUnfashionableProjectLicenses instance = new RiskAnalyserUnfashionableProjectLicenses(project);
+        assertThrows(IllegalArgumentException.class, () -> {
+            // Should throw an exception because event is null
+            instance.onLanguageChange(null);
+        });
+    }
+    
 }

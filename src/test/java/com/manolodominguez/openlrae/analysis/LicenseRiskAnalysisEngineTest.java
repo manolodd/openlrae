@@ -17,6 +17,7 @@ package com.manolodominguez.openlrae.analysis;
 
 import com.manolodominguez.openlrae.analysis.riskanalysers.AbstractRiskAnalyser;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses;
+import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserHeterogeneousComponentsLicenses;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserObsoleteComponentsLicenses;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSetOfPotentialComponentsLicenses;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSetOfPotentialProjectLicenses;
@@ -213,6 +214,23 @@ class LicenseRiskAnalysisEngineTest {
         }
     }
 
+    
+    /**
+     * Test of onLanguageChange method, of class
+     * LicenseRiskAnalysisEngine.
+     */
+    @Test
+    void testSetLanguageWhenLanguageIsNull() {
+        System.out.println("setLanguage");
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        Project project = new Project(Json.read(projectURL));
+        RiskAnalyserHeterogeneousComponentsLicenses riskAnalyser = new RiskAnalyserHeterogeneousComponentsLicenses(project);
+        LicenseRiskAnalysisEngine instance = new LicenseRiskAnalysisEngine(riskAnalyser);
+        assertThrows(IllegalArgumentException.class, () -> {
+            // Should throw an exception because language is null
+            instance.setLanguage(null);
+        });
+    }    
     /**
      * Test of setDefaultLanguage method, of class LicenseRiskAnalysisEngine.
      */

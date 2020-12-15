@@ -23,7 +23,7 @@ import com.manolodominguez.openlrae.cli.CLIHandler;
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
-public class MainClass {
+public class OpenLRAE {
 
     /**
      * This is the main method, that converts OpenLRAE in an executable

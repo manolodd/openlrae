@@ -146,4 +146,20 @@ class RiskAnalyserHavingComponentsLicensesIncompatibleWithProjectLicensesTest {
         assertEquals(SupportedLanguages.SPANISH, instance.getLanguage());
     }    
     
+    /**
+     * Test of onLanguageChange method, of class
+     * RiskAnalyserLicensesOfComponentsIncompatibleWithProjectLicense.
+     */
+    @Test
+    void testOnLanguageChangeWhenEventIsNull() {
+        System.out.println("setLanguage");
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        Project project = new Project(Json.read(projectURL));
+        RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses instance = new RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses(project);
+        assertThrows(IllegalArgumentException.class, () -> {
+            // Should throw an exception because event is null
+            instance.onLanguageChange(null);
+        });
+    }         
+    
 }

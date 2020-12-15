@@ -72,12 +72,8 @@ class LanguageChangeEventTest {
      */
     @Test
     void TestConstructorWhenSourceIsNull() {
-        System.out.println("Constructor");
-        // Define a project. Just because we need a ILanguageChangeEventEmitter
-        // and a Project is one.
-        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
-        Json projectDefinitionAsJSON = Json.read(projectURL);
-        Project project = new Project(projectDefinitionAsJSON);
+        System.out.println("Constructor source");
+
         assertThrows(IllegalArgumentException.class, () -> {
             // Should throw an exception because source is null
             new LanguageChangeEvent(null, SupportedLanguages.SPANISH);

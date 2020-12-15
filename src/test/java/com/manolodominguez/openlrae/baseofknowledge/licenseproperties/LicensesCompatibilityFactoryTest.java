@@ -62,7 +62,7 @@ class LicensesCompatibilityFactoryTest {
         System.out.println("getInstance");
         LicensesCompatibilityFactory instance1 = LicensesCompatibilityFactory.getInstance();
         LicensesCompatibilityFactory instance2 = LicensesCompatibilityFactory.getInstance();
-        assertTrue(instance1 == instance2); // We're comparing object references here
+        assertSame(instance1, instance2);
     }
 
     /**
@@ -85,6 +85,59 @@ class LicensesCompatibilityFactoryTest {
                 }
             }
         }
+    }
+
+    /**
+     * Test of getCompatibilityOf method, of class LicensesCompatibilityFactory.
+     */
+    @Test
+    void testGetCompatibilityOfWhenComponentLicenseIsNull() {
+        System.out.println("getCompatibilityOf");
+        LicensesCompatibilityFactory instance = LicensesCompatibilityFactory.getInstance();
+        assertThrows(IllegalArgumentException.class, () -> {
+            instance.getCompatibilityOf(null, SupportedLicenses.ARTISTIC_2_0, SupportedLinks.STATIC, SupportedRedistributions.NONE);
+        });
+        
+    }
+
+    /**
+     * Test of getCompatibilityOf method, of class LicensesCompatibilityFactory.
+     */
+    @Test
+    void testGetCompatibilityOfWhenProjectLicenseIsNull() {
+        System.out.println("getCompatibilityOf");
+        LicensesCompatibilityFactory instance = LicensesCompatibilityFactory.getInstance();
+        assertThrows(IllegalArgumentException.class, () -> {
+            instance.getCompatibilityOf(SupportedLicenses.APACHE_2_0, null, SupportedLinks.STATIC, SupportedRedistributions.NONE);
+        });
+        
+    }
+
+    /**
+     * Test of getCompatibilityOf method, of class LicensesCompatibilityFactory.
+     */
+    @Test
+    void testGetCompatibilityOfWhenLinkTypeIsNull() {
+        System.out.println("getCompatibilityOf");
+        LicensesCompatibilityFactory instance = LicensesCompatibilityFactory.getInstance();
+        assertThrows(IllegalArgumentException.class, () -> {
+            instance.getCompatibilityOf(SupportedLicenses.APACHE_2_0, SupportedLicenses.APACHE_2_0, null, SupportedRedistributions.NONE);
+        });
+        
+    }
+
+
+    /**
+     * Test of getCompatibilityOf method, of class LicensesCompatibilityFactory.
+     */
+    @Test
+    void testGetCompatibilityOfWhenRedistributionIsNull() {
+        System.out.println("getCompatibilityOf");
+        LicensesCompatibilityFactory instance = LicensesCompatibilityFactory.getInstance();
+        assertThrows(IllegalArgumentException.class, () -> {
+            instance.getCompatibilityOf(SupportedLicenses.APACHE_2_0, SupportedLicenses.APACHE_2_0, SupportedLinks.DYNAMIC, null);
+        });
+        
     }
 
     /**

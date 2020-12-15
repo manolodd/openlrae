@@ -213,4 +213,25 @@ class ComponentBindingTest {
         assertEquals(SupportedLanguages.SPANISH, firstComponentBinding.getLanguage());
     }
 
+    /**
+     * Test of onLanguageChange method, of class
+     * RiskAnalyserHeterogeneousComponentsLicenses.
+     */
+    @Test
+    void testOnLanguageChangeWhenEventIsNull() {
+        System.out.println("onLanguageChange");
+        // Define the project. In this case, it is defined from a JSON file.
+        // but could be come in by a call to a rest service or other methods. 
+        // See /com/manolodominguez/openlrae/json/ExampleProject.json to know
+        // the content of that project.
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        String projectDefinitionAsJSONString = Json.read(projectURL).toString();
+        // Here we have the definition of a project as JSON string 
+        Project project = new Project(projectDefinitionAsJSONString);
+        ComponentBinding firstComponentBinding = project.getBillOfComponentBindings().get(0);
+        assertThrows(IllegalArgumentException.class, () -> {
+            // Should throw an exception because event is null
+            firstComponentBinding.onLanguageChange(null);
+        });
+    }
 }

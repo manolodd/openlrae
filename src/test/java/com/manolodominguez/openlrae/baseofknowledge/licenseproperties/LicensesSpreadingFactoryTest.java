@@ -78,5 +78,16 @@ class LicensesSpreadingFactoryTest {
             assertTrue(spreadings.contains(instance.getSpreadingOf(license)));
         }
     }
+    /**
+     * Test of getSpreadingOf method, of class LicensesSpreadingFactory.
+     */
+    @Test
+    void testGetSpreadingOfWhenLicenseIsNull() {
+        System.out.println("getSpreadingOf");
+        assertThrows(IllegalArgumentException.class, () -> {
+            // Should throw an exception because license is null
+            LicensesSpreadingFactory.getInstance().getSpreadingOf(null);
+        });
+    }
     
 }

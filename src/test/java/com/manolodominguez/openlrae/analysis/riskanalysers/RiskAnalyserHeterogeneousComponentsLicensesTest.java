@@ -35,28 +35,29 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author manolodd
  */
 class RiskAnalyserHeterogeneousComponentsLicensesTest {
-    
+
     public RiskAnalyserHeterogeneousComponentsLicensesTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     void setUp() {
     }
-    
+
     @AfterEach
     void tearDown() {
     }
 
     /**
-     * Test of constructor, of class RiskAnalyserHeterogeneousComponentsLicenses.
+     * Test of constructor, of class
+     * RiskAnalyserHeterogeneousComponentsLicenses.
      */
     @Test
     void testConstructorWhenProjectIsNull() {
@@ -69,7 +70,8 @@ class RiskAnalyserHeterogeneousComponentsLicensesTest {
     }
 
     /**
-     * Test of getHandledRiskType method, of class RiskAnalyserHeterogeneousComponentsLicenses.
+     * Test of getHandledRiskType method, of class
+     * RiskAnalyserHeterogeneousComponentsLicenses.
      */
     @Test
     void testGetHandledRiskType() {
@@ -80,9 +82,10 @@ class RiskAnalyserHeterogeneousComponentsLicensesTest {
         RiskAnalyserHeterogeneousComponentsLicenses instance = new RiskAnalyserHeterogeneousComponentsLicenses(project);
         assertEquals(SupportedRisks.HAVING_HETEROGENEOUS_COMPONENTS_LICENSES, instance.handledRiskType);
     }
-    
+
     /**
-     * Test of getRiskAnalisysResult method, of class RiskAnalyserHeterogeneousComponentsLicenses.
+     * Test of getRiskAnalisysResult method, of class
+     * RiskAnalyserHeterogeneousComponentsLicenses.
      */
     @Test
     void testGetRiskAnalisysResult() {
@@ -99,9 +102,10 @@ class RiskAnalyserHeterogeneousComponentsLicensesTest {
         // Result should be different objects in diferent calls to the method
         assertTrue(result1 != result2); // We're comparing references here
     }
-    
+
     /**
-     * Test of runAnalyser method, of class RiskAnalyserHeterogeneousComponentsLicenses.
+     * Test of runAnalyser method, of class
+     * RiskAnalyserHeterogeneousComponentsLicenses.
      */
     @Test
     void testRunAnalyser() {
@@ -132,10 +136,10 @@ class RiskAnalyserHeterogeneousComponentsLicensesTest {
         assertTrue(result.getRiskValue() <= 1.0f);
         assertEquals(0.5008f, result.getRiskValue());
     }
-    
 
     /**
-     * Test of onLanguageChange method, of class RiskAnalyserHeterogeneousComponentsLicenses.
+     * Test of onLanguageChange method, of class
+     * RiskAnalyserHeterogeneousComponentsLicenses.
      */
     @Test
     void testOnLanguageChange() {
@@ -145,5 +149,22 @@ class RiskAnalyserHeterogeneousComponentsLicensesTest {
         RiskAnalyserHeterogeneousComponentsLicenses instance = new RiskAnalyserHeterogeneousComponentsLicenses(project);
         instance.onLanguageChange(new LanguageChangeEvent(project, SupportedLanguages.SPANISH));
         assertEquals(SupportedLanguages.SPANISH, instance.getLanguage());
-    }    
+    }
+
+    /**
+     * Test of onLanguageChange method, of class
+     * RiskAnalyserHeterogeneousComponentsLicenses.
+     */
+    @Test
+    void testOnLanguageChangeWhenEventIsNull() {
+        System.out.println("setLanguage");
+        URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
+        Project project = new Project(Json.read(projectURL));
+        RiskAnalyserHeterogeneousComponentsLicenses instance = new RiskAnalyserHeterogeneousComponentsLicenses(project);
+        assertThrows(IllegalArgumentException.class, () -> {
+            // Should throw an exception because event is null
+            instance.onLanguageChange(null);
+        });
+    }
+
 }
