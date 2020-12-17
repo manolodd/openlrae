@@ -110,6 +110,11 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>${maven.jar.plugin.version}</version>
                 <configuration>
+                    <excludes>
+                        <exclude>**/*.png</exclude>
+                        <exclude>**/*.jpg</exclude>
+                        <exclude>**/*.xcf</exclude>
+                    </excludes>
                     <archive>
                         <manifest>
                             <mainClass>com.manolodominguez.openlrae.main.OpenLRAE</mainClass>
@@ -135,6 +140,15 @@
                             </transformers>
                             <shadedArtifactAttached>true</shadedArtifactAttached>
                             <shadedClassifierName>with-dependencies</shadedClassifierName>
+                            <filters>
+                                <filter>
+                                    <excludes>
+                                        <exclude>*.jpg</exclude>
+                                        <exclude>*.png</exclude>
+                                        <exclude>*.xce</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
                         </configuration>
                     </execution>
                 </executions>
