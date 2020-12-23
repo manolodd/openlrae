@@ -57,6 +57,7 @@ public final class LicensesObsolescencesFactory {
         this.licensesObsolescenses.put(SupportedLicenses.CDDL_1_0, computeObsolescence(TWO, FIRST));
         this.licensesObsolescenses.put(SupportedLicenses.CPL_1_0, computeObsolescence(ONE, FIRST));
         this.licensesObsolescenses.put(SupportedLicenses.EPL_1_0, computeObsolescence(TWO, FIRST));
+        this.licensesObsolescenses.put(SupportedLicenses.EPL_2_0, computeObsolescence(TWO, SECOND));
         this.licensesObsolescenses.put(SupportedLicenses.EUPL_1_1, computeObsolescence(THREE, SECOND));
         this.licensesObsolescenses.put(SupportedLicenses.GPL_2_0_ONLY, computeObsolescence(SIX, THIRD));
         this.licensesObsolescenses.put(SupportedLicenses.GPL_2_0_OR_LATER, computeObsolescence(SIX, FOURTH));

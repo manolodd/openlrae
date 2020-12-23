@@ -57,6 +57,7 @@ public enum SupportedLicenses {
     CDDL_1_0(false),
     CPL_1_0(false),
     EPL_1_0(false),
+    EPL_2_0(false),
     EUPL_1_1(false),
     GPL_2_0_ONLY(false),
     GPL_2_0_OR_LATER(false),
