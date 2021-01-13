@@ -42,16 +42,12 @@ public final class LicensesTrendFactory {
         // Generating trend values for each supported licenses ID. Is this 
         // license being used more and more on the time?
         this.licensesTrends = new EnumMap<>(SupportedLicenses.class);
-        this.licensesTrends.put(SupportedLicenses.MIT, SupportedTrends.TRENDY);
-        this.licensesTrends.put(SupportedLicenses.BSD_4_CLAUSE, SupportedTrends.UNFASHIONABLE);
-        this.licensesTrends.put(SupportedLicenses.BSD_3_CLAUSE, SupportedTrends.NEAR_TRENDY);
+        this.licensesTrends.put(SupportedLicenses.AGPL_3_0_ONLY, SupportedTrends.NEAR_UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.APACHE_1_1, SupportedTrends.UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.APACHE_2_0, SupportedTrends.TRENDY);
         this.licensesTrends.put(SupportedLicenses.ARTISTIC_2_0, SupportedTrends.NEAR_TRENDY);
-        this.licensesTrends.put(SupportedLicenses.LGPL_2_1_ONLY, SupportedTrends.UNFASHIONABLE);
-        this.licensesTrends.put(SupportedLicenses.LGPL_2_1_OR_LATER, SupportedTrends.NEAR_UNFASHIONABLE);
-        this.licensesTrends.put(SupportedLicenses.LGPL_3_0_OR_LATER, SupportedTrends.NEAR_UNFASHIONABLE);
-        this.licensesTrends.put(SupportedLicenses.MPL_1_1, SupportedTrends.NEAR_UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.BSD_3_CLAUSE, SupportedTrends.NEAR_TRENDY);
+        this.licensesTrends.put(SupportedLicenses.BSD_4_CLAUSE, SupportedTrends.UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.CDDL_1_0, SupportedTrends.NEAR_UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.CPL_1_0, SupportedTrends.NEAR_UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.EPL_1_0, SupportedTrends.NEAR_UNFASHIONABLE);
@@ -60,7 +56,12 @@ public final class LicensesTrendFactory {
         this.licensesTrends.put(SupportedLicenses.GPL_2_0_ONLY, SupportedTrends.NEAR_UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.GPL_2_0_OR_LATER, SupportedTrends.NEAR_UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.GPL_3_0_ONLY, SupportedTrends.NEAR_TRENDY);
-        this.licensesTrends.put(SupportedLicenses.AGPL_3_0_ONLY, SupportedTrends.NEAR_UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.LGPL_2_1_ONLY, SupportedTrends.UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.LGPL_2_1_OR_LATER, SupportedTrends.NEAR_UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.LGPL_3_0_OR_LATER, SupportedTrends.NEAR_UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.MIT, SupportedTrends.TRENDY);
+        this.licensesTrends.put(SupportedLicenses.MPL_1_1, SupportedTrends.NEAR_UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.PUBLIC_DOMAIN, SupportedTrends.NEAR_UNFASHIONABLE);
         // The following ones are forced UNFASHIONABLE by design
         for (SupportedLicenses license : SupportedLicenses.getFicticiousLicenses()) {
             this.licensesTrends.put(license, SupportedTrends.UNFASHIONABLE);

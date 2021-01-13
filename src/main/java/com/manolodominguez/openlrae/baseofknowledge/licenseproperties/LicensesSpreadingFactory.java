@@ -43,16 +43,12 @@ public final class LicensesSpreadingFactory {
         // overall set of existing projecs. Are there many existing projects 
         // that use this license?
         this.licensesSpreadings = new EnumMap<>(SupportedLicenses.class);
-        this.licensesSpreadings.put(SupportedLicenses.MIT, SupportedSpreadings.HIGHLY_WIDESPREAD);
-        this.licensesSpreadings.put(SupportedLicenses.BSD_4_CLAUSE, SupportedSpreadings.LITTLE_WIDESPREAD);
-        this.licensesSpreadings.put(SupportedLicenses.BSD_3_CLAUSE, SupportedSpreadings.NEAR_HIGHLY_WIDESPREAD);
+        this.licensesSpreadings.put(SupportedLicenses.AGPL_3_0_ONLY, SupportedSpreadings.LITTLE_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.APACHE_1_1, SupportedSpreadings.NEAR_LITTLE_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.APACHE_2_0, SupportedSpreadings.HIGHLY_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.ARTISTIC_2_0, SupportedSpreadings.LITTLE_WIDESPREAD);
-        this.licensesSpreadings.put(SupportedLicenses.LGPL_2_1_ONLY, SupportedSpreadings.NEAR_HIGHLY_WIDESPREAD);
-        this.licensesSpreadings.put(SupportedLicenses.LGPL_2_1_OR_LATER, SupportedSpreadings.HIGHLY_WIDESPREAD);
-        this.licensesSpreadings.put(SupportedLicenses.LGPL_3_0_OR_LATER, SupportedSpreadings.LITTLE_WIDESPREAD);
-        this.licensesSpreadings.put(SupportedLicenses.MPL_1_1, SupportedSpreadings.NEAR_LITTLE_WIDESPREAD);
+        this.licensesSpreadings.put(SupportedLicenses.BSD_4_CLAUSE, SupportedSpreadings.LITTLE_WIDESPREAD);
+        this.licensesSpreadings.put(SupportedLicenses.BSD_3_CLAUSE, SupportedSpreadings.NEAR_HIGHLY_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.CDDL_1_0, SupportedSpreadings.LITTLE_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.CPL_1_0, SupportedSpreadings.LITTLE_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.EPL_1_0, SupportedSpreadings.LITTLE_WIDESPREAD);
@@ -61,7 +57,12 @@ public final class LicensesSpreadingFactory {
         this.licensesSpreadings.put(SupportedLicenses.GPL_2_0_ONLY, SupportedSpreadings.NEAR_HIGHLY_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.GPL_2_0_OR_LATER, SupportedSpreadings.HIGHLY_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.GPL_3_0_ONLY, SupportedSpreadings.NEAR_HIGHLY_WIDESPREAD);
-        this.licensesSpreadings.put(SupportedLicenses.AGPL_3_0_ONLY, SupportedSpreadings.LITTLE_WIDESPREAD);
+        this.licensesSpreadings.put(SupportedLicenses.LGPL_2_1_ONLY, SupportedSpreadings.NEAR_HIGHLY_WIDESPREAD);
+        this.licensesSpreadings.put(SupportedLicenses.LGPL_2_1_OR_LATER, SupportedSpreadings.HIGHLY_WIDESPREAD);
+        this.licensesSpreadings.put(SupportedLicenses.LGPL_3_0_OR_LATER, SupportedSpreadings.LITTLE_WIDESPREAD);
+        this.licensesSpreadings.put(SupportedLicenses.MIT, SupportedSpreadings.HIGHLY_WIDESPREAD);
+        this.licensesSpreadings.put(SupportedLicenses.MPL_1_1, SupportedSpreadings.NEAR_LITTLE_WIDESPREAD);
+        this.licensesSpreadings.put(SupportedLicenses.PUBLIC_DOMAIN, SupportedSpreadings.LITTLE_WIDESPREAD);
         // The following ones are forced LITTLE_WIDESPREAD by design
         for (SupportedLicenses license : SupportedLicenses.getFicticiousLicenses()) {
             this.licensesSpreadings.put(license, SupportedSpreadings.LITTLE_WIDESPREAD);

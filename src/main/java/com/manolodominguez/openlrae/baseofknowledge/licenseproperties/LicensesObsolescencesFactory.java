@@ -44,16 +44,12 @@ public final class LicensesObsolescencesFactory {
         // How old is a given license in relation to the versions line of this
         // license? Is it the oldest? The latest?
         this.licensesObsolescenses = new EnumMap<>(SupportedLicenses.class);
-        this.licensesObsolescenses.put(SupportedLicenses.MIT, computeObsolescence(ONE, FIRST));
-        this.licensesObsolescenses.put(SupportedLicenses.BSD_4_CLAUSE, computeObsolescence(FIVE, FIRST));
-        this.licensesObsolescenses.put(SupportedLicenses.BSD_3_CLAUSE, computeObsolescence(FIVE, SECOND));
+        this.licensesObsolescenses.put(SupportedLicenses.AGPL_3_0_ONLY, computeObsolescence(FOUR, THIRD));
         this.licensesObsolescenses.put(SupportedLicenses.APACHE_1_1, computeObsolescence(THREE, SECOND));
         this.licensesObsolescenses.put(SupportedLicenses.APACHE_2_0, computeObsolescence(THREE, THIRD));
         this.licensesObsolescenses.put(SupportedLicenses.ARTISTIC_2_0, computeObsolescence(TWO, SECOND));
-        this.licensesObsolescenses.put(SupportedLicenses.LGPL_2_1_ONLY, computeObsolescence(SIX, THIRD));
-        this.licensesObsolescenses.put(SupportedLicenses.LGPL_2_1_OR_LATER, computeObsolescence(SIX, FOURTH));
-        this.licensesObsolescenses.put(SupportedLicenses.LGPL_3_0_OR_LATER, computeObsolescence(SIX, SIXTH));
-        this.licensesObsolescenses.put(SupportedLicenses.MPL_1_1, computeObsolescence(THREE, SECOND));
+        this.licensesObsolescenses.put(SupportedLicenses.BSD_3_CLAUSE, computeObsolescence(FIVE, SECOND));
+        this.licensesObsolescenses.put(SupportedLicenses.BSD_4_CLAUSE, computeObsolescence(FIVE, FIRST));
         this.licensesObsolescenses.put(SupportedLicenses.CDDL_1_0, computeObsolescence(TWO, FIRST));
         this.licensesObsolescenses.put(SupportedLicenses.CPL_1_0, computeObsolescence(ONE, FIRST));
         this.licensesObsolescenses.put(SupportedLicenses.EPL_1_0, computeObsolescence(TWO, FIRST));
@@ -62,7 +58,12 @@ public final class LicensesObsolescencesFactory {
         this.licensesObsolescenses.put(SupportedLicenses.GPL_2_0_ONLY, computeObsolescence(SIX, THIRD));
         this.licensesObsolescenses.put(SupportedLicenses.GPL_2_0_OR_LATER, computeObsolescence(SIX, FOURTH));
         this.licensesObsolescenses.put(SupportedLicenses.GPL_3_0_ONLY, computeObsolescence(SIX, FIVETH));
-        this.licensesObsolescenses.put(SupportedLicenses.AGPL_3_0_ONLY, computeObsolescence(FOUR, THIRD));
+        this.licensesObsolescenses.put(SupportedLicenses.LGPL_2_1_ONLY, computeObsolescence(SIX, THIRD));
+        this.licensesObsolescenses.put(SupportedLicenses.LGPL_2_1_OR_LATER, computeObsolescence(SIX, FOURTH));
+        this.licensesObsolescenses.put(SupportedLicenses.LGPL_3_0_OR_LATER, computeObsolescence(SIX, SIXTH));
+        this.licensesObsolescenses.put(SupportedLicenses.MIT, computeObsolescence(ONE, FIRST));
+        this.licensesObsolescenses.put(SupportedLicenses.MPL_1_1, computeObsolescence(THREE, SECOND));
+        this.licensesObsolescenses.put(SupportedLicenses.PUBLIC_DOMAIN, computeObsolescence(ONE, FIRST));
         // The following ones are forced OUTDATED by design
         for (SupportedLicenses license : SupportedLicenses.getFicticiousLicenses()) {
             this.licensesObsolescenses.put(license, SupportedObsolescences.OUTDATED);
