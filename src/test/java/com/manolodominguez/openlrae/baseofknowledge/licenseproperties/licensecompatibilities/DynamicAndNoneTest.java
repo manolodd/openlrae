@@ -26,9 +26,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author manolodd
  */
-class DinamicAndSofwarePackageOrSaaSTest {
+class DynamicAndNoneTest {
     
-    public DinamicAndSofwarePackageOrSaaSTest() {
+    public DynamicAndNoneTest() {
     }
     
     @BeforeAll
@@ -48,23 +48,23 @@ class DinamicAndSofwarePackageOrSaaSTest {
     }
 
     /**
-     * Test of getInstance method, of class DinamicAndSofwarePackageOrSaaSTest.
+     * Test of getInstance method, of class DinamicAndNone.
      */
     @Test
     void testGetInstance() {
         System.out.println("getInstance");
-        DinamicAndSofwarePackageOrSaaS instance1 = DinamicAndSofwarePackageOrSaaS.getInstance();
-        DinamicAndSofwarePackageOrSaaS instance2 = DinamicAndSofwarePackageOrSaaS.getInstance();
-        assertSame(instance1, instance2); 
+        DynamicAndNone instance1 = DynamicAndNone.getInstance();
+        DynamicAndNone instance2 = DynamicAndNone.getInstance();
+        assertSame(instance1, instance2);
     }
 
     /**
-     * Test of getCompatibilities method, of class DinamicAndSofwarePackageOrSaaSTest.
+     * Test of getCompatibilities method, of class DinamicAndNone.
      */
     @Test
     void testGetCompatibilities() {
         System.out.println("getCompatibilities");
-        DinamicAndSofwarePackageOrSaaS instance = DinamicAndSofwarePackageOrSaaS.getInstance();
+        DynamicAndNone instance = DynamicAndNone.getInstance();
         assertNotNull(instance.getCompatibilities());
         // At least it has to contain a compatibility entry
         assertTrue(1 < instance.getCompatibilities().size());
