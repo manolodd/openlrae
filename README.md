@@ -32,12 +32,12 @@ With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard o
 
 ## Latest snapshot version being developed:
  
-- <b>OpenLRAE 1.1-SNAPSHOT</b> (development branch) - Apache-2.0.
+- <b>OpenLRAE 1.2-SNAPSHOT</b> (development branch) - Apache-2.0.
 
 ## Binary releases:
 
-- <b>OpenLRAE 1.0</b> (current, master branch) - Apache-2.0.
-- <b>OpenLRAE from 0.1 to 0.9</b> - Apache-2.0.
+- <b>OpenLRAE 1.1</b> (current, master branch) - Apache-2.0.
+- <b>OpenLRAE from 0.1 to 1.0</b> - Apache-2.0.
 
 # PEOPLE BEHIND OPENLRAE
 
