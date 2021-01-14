@@ -6,7 +6,7 @@
 
 [![Build Status](https://img.shields.io/travis/manolodd/openlrae/master.svg)](https://travis-ci.org/manolodd/openlrae?branch=master)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=manolodd_openlrae&branch=master&metric=alert_status#.svg)](https://sonarcloud.io/dashboard?branch=master&id=manolodd_openlrae)
-[![Maven Central](https://img.shields.io/maven-central/v/com.manolodominguez/openlrae)](https://search.maven.org/artifact/com.manolodominguez/openlrae/1.0/jar)
+[![Maven Central](https://img.shields.io/maven-central/v/com.manolodominguez/openlrae)](https://search.maven.org/artifact/com.manolodominguez/openlrae/1.1/jar)
 
 ## Develop branch
 
@@ -56,10 +56,10 @@ You can download latest compiled stable releases from the releases section of th
 <dependency>
   <groupId>com.manolodominguez</groupId>
   <artifactId>openlrae</artifactId>
-  <version>1.0</version>
+  <version>1.1</version>
 </dependency>
 ```
-For othe project builders (graddle, buildr...) see the next link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/1.0/jar
+For othe project builders (graddle, buildr...) see the next link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/1.1/jar
 
 # COMPILING FROM SOURCES
 
