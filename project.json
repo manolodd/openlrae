@@ -16,7 +16,7 @@
         {
             "component": "junit-jupiter-engine",
             "version": "5.7.0",
-            "license": "UNSUPPORTED",
+            "license": "EPL_2_0",
             "weight": "NEAR_LOW",
             "link": "DYNAMIC"
         },
