@@ -119,7 +119,7 @@ class RiskAnalyserLimitedSetOfPotentialProjectLicensesTest {
         assertNotNull(result.getRootCauses());
         assertTrue(!result.getRootCauses().isEmpty());
         assertNotNull(result.getWarnings());
-        assertTrue(!result.getWarnings().isEmpty());
+        assertTrue(result.getWarnings().isEmpty());
         assertNotNull(result.getTips());
         assertTrue(!result.getTips().isEmpty());
         assertTrue(result.getRiskExposure() >= 0.0f);
@@ -127,10 +127,10 @@ class RiskAnalyserLimitedSetOfPotentialProjectLicensesTest {
         assertEquals(0.9524f, result.getRiskExposure());
         assertTrue(result.getRiskImpact() >= 0.0f);
         assertTrue(result.getRiskImpact() <= 1.0f);
-        assertEquals(0.4123f, result.getRiskImpact());
+        assertEquals(0.3965f, result.getRiskImpact());
         assertTrue(result.getRiskValue() >= 0.0f);
         assertTrue(result.getRiskValue() <= 1.0f);
-        assertEquals(0.3926f, result.getRiskValue());
+        assertEquals(0.3776f, result.getRiskValue());
     }
     
     /**
