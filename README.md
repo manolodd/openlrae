@@ -176,7 +176,11 @@ System.out.println("This is the analysis report:\n\n"+JSONReport);
 * Unsupported (Only for components. Meaning: The license of the component is known, but is not supported by OpenLRAE).
 * Forced as project license (Only for components. Meaning: You have written permission from the copyright holder to include the component in your project).
 
-## Supported licenses
+## Supported multiple licensing
+
+* OpenLRAE is able to analyze projects licensed under the terms of one, two or more licenses simultaneously.
+
+## Supported links
 
 * Dynamic link
 * Static link
