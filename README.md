@@ -148,6 +148,44 @@ System.out.println("This is the analysis report:\n\n"+JSONReport);
 
 # Current features
 
+## Supported licenses
+
+* AGPL-3.0-only
+* APACHE-1.1
+* APACHE-2.0
+* ARTISTIC-2.0
+* BSD-3-clause
+* BSD-4-clause
+* CDDL-1.0
+* CPL-1.0
+* EPL-1.0
+* EPL-2.0
+* EUPL-1.1
+* GPL-2.0-only
+* GPL-2.0-or-later
+* GPL-3.0-only
+* GPL-3.0-or-later
+* LGPL-2.1-only
+* LGPL-2.1-or-later
+* LGPL-3.0-or-later
+* MIT
+* MPL-1.1
+* Public domain
+
+* Undefined (Only for components. Meaning: The license of the component is unknown).
+* Unsupported (Only for components. Meaning: The license of the component is known, but is not supported by OpenLRAE).
+* Forced as project license (Only for components. Meaning: Yuo have written permission from the copyright holder to include the component in your project).
+
+## Supported licenses
+
+* Dynamic link
+* Static link
+
+## Supported project redistributions
+
+* Projects distributed
+* Projects not distributed
+
 ## Supported risks
 
 OpenLRAE is about licensing risks. But not only license compatibility risks. There are some other risks related to the license of projects and components that are important and could be considered. The following paragraphs show you the risks OpenLRAE support at the moment. And, for all of them, OpenLRAE is able to analyse your current project and give you the risk exposure level, and also the risk impact related to this type of risk, in terms of "the effort needed to reduce the risk exposure to 0%".
