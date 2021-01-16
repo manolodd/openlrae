@@ -62,6 +62,7 @@ public enum SupportedLicenses {
     GPL_2_0_ONLY(false),
     GPL_2_0_OR_LATER(false),
     GPL_3_0_ONLY(false),
+    GPL_3_0_OR_LATER(false),
     LGPL_2_1_ONLY(false),
     LGPL_2_1_OR_LATER(false),
     LGPL_3_0_OR_LATER(false),
