@@ -57,6 +57,7 @@ public final class LicensesSpreadingFactory {
         this.licensesSpreadings.put(SupportedLicenses.GPL_2_0_ONLY, SupportedSpreadings.NEAR_HIGHLY_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.GPL_2_0_OR_LATER, SupportedSpreadings.HIGHLY_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.GPL_3_0_ONLY, SupportedSpreadings.NEAR_HIGHLY_WIDESPREAD);
+        this.licensesSpreadings.put(SupportedLicenses.GPL_3_0_OR_LATER, SupportedSpreadings.NEAR_HIGHLY_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.LGPL_2_1_ONLY, SupportedSpreadings.NEAR_HIGHLY_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.LGPL_2_1_OR_LATER, SupportedSpreadings.HIGHLY_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.LGPL_3_0_OR_LATER, SupportedSpreadings.LITTLE_WIDESPREAD);
