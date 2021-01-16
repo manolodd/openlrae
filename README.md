@@ -151,9 +151,9 @@ System.out.println("This is the analysis report:\n\n"+JSONReport);
 ## Supported licenses
 
 * AGPL-3.0-only
-* APACHE-1.1
-* APACHE-2.0
-* ARTISTIC-2.0
+* Apache-1.1
+* Apache-2.0
+* Artistic-2.0
 * BSD-3-clause
 * BSD-4-clause
 * CDDL-1.0
@@ -174,7 +174,7 @@ System.out.println("This is the analysis report:\n\n"+JSONReport);
 
 * Undefined (Only for components. Meaning: The license of the component is unknown).
 * Unsupported (Only for components. Meaning: The license of the component is known, but is not supported by OpenLRAE).
-* Forced as project license (Only for components. Meaning: Yuo have written permission from the copyright holder to include the component in your project).
+* Forced as project license (Only for components. Meaning: You have written permission from the copyright holder to include the component in your project).
 
 ## Supported licenses
 
