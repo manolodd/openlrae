@@ -44,7 +44,7 @@ public class LicenseCompatibilityEntry {
     private final SupportedCompatibilities compatibility;
     private final SupportedLinks link;
     private final SupportedRedistributions redistribution;
-    private final String specificWarning;
+    private final String specificWarningKey;
 
     /**
      * This is the constructor of the class. It creates a new instance of
@@ -60,14 +60,14 @@ public class LicenseCompatibilityEntry {
      * @param link The way the component is going to be included (or its is
      * included) in the prtoject.
      * @param redistribution The kind of project distribution.
-     * @param specificWarning If the is any additional hint related to this
+     * @param specificWarningKey If the is any additional hint related to this
      * specific license compatiliblity combination, it should be put here so
      * different risk analysers can use it properly. If there is no hints to
      * highlight, null should be specified. Often, this is used when the
      * compatiblity value is neither 100% compatible nor 100% incompatible and
      * an intermediate value has to be explained.
      */
-    public LicenseCompatibilityEntry(SupportedLicenses componentLicense, SupportedLicenses projectLicense, SupportedCompatibilities compatibility, SupportedLinks link, SupportedRedistributions redistribution, String specificWarning) {
+    public LicenseCompatibilityEntry(SupportedLicenses componentLicense, SupportedLicenses projectLicense, SupportedCompatibilities compatibility, SupportedLinks link, SupportedRedistributions redistribution, String specificWarningKey) {
         if (componentLicense == null) {
             logger.error("componentLicense cannot be null");
             throw new IllegalArgumentException("componentLicense cannot be null");
@@ -98,7 +98,7 @@ public class LicenseCompatibilityEntry {
             logger.error("redistribution cannot be null");
             throw new IllegalArgumentException("redistribution cannot be null");
         }
-        if ((specificWarning != null) && (specificWarning.isEmpty())) {
+        if ((specificWarningKey != null) && (specificWarningKey.isEmpty())) {
             logger.error("specificWarning cannot be blank. If not needed, set it to null.");
             throw new IllegalArgumentException("specificWarning cannot be blank. If not needed, set it to null.");
         }
@@ -107,7 +107,7 @@ public class LicenseCompatibilityEntry {
         this.compatibility = compatibility;
         this.link = link;
         this.redistribution = redistribution;
-        this.specificWarning = specificWarning;
+        this.specificWarningKey = specificWarningKey;
     }
 
     /**
@@ -163,8 +163,8 @@ public class LicenseCompatibilityEntry {
      * @return the specific warning message, if defined, of this compatibility
      * entry. If undefined, returns null.
      */
-    public String getSpecificWarning() {
-        return specificWarning;
+    public String getSpecificWarningKey() {
+        return specificWarningKey;
     }
 
     /**
@@ -175,6 +175,6 @@ public class LicenseCompatibilityEntry {
      * entry. Otherwise, return FALSE.
      */
     public boolean hasSpecificWarning() {
-        return this.specificWarning != null;
+        return this.specificWarningKey != null;
     }
 }

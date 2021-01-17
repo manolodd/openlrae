@@ -197,7 +197,7 @@ class LicenseCompatibilityEntryTest {
         assertEquals(link, instance.getLink());
         assertEquals(redistribution, instance.getRedistribution());
         assertFalse(instance.hasSpecificWarning());
-        assertNull(instance.getSpecificWarning());
+        assertNull(instance.getSpecificWarningKey());
     }
 
     /**
@@ -219,7 +219,7 @@ class LicenseCompatibilityEntryTest {
         assertEquals(link, instance.getLink());
         assertEquals(redistribution, instance.getRedistribution());
         assertTrue(instance.hasSpecificWarning());
-        assertEquals("Dummy warning", instance.getSpecificWarning());
+        assertEquals("Dummy warning", instance.getSpecificWarningKey());
     }
 
     /**
@@ -301,8 +301,8 @@ class LicenseCompatibilityEntryTest {
         String specificWarning2 = "Dummy warning";
         LicenseCompatibilityEntry instance1 = new LicenseCompatibilityEntry(componentLicense, projectLicense, compatibility, link, redistribution, specificWarning1);
         LicenseCompatibilityEntry instance2 = new LicenseCompatibilityEntry(componentLicense, projectLicense, compatibility, link, redistribution, specificWarning2);
-        assertNull(instance1.getSpecificWarning());
-        assertEquals(specificWarning2, instance2.getSpecificWarning());
+        assertNull(instance1.getSpecificWarningKey());
+        assertEquals(specificWarning2, instance2.getSpecificWarningKey());
     }
 
     /**
