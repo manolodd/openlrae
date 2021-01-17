@@ -60,6 +60,7 @@ public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses exten
 
     private EnumMap<SupportedCompatibilities, Integer> compatibilityCounter;
     private ResourceBundle spdxIdI18N;
+    private ResourceBundle warningsI18N;
 
     /**
      * This is the constructor of the class. It creates a new instance of
@@ -74,6 +75,7 @@ public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses exten
         compatibilityCounter = new EnumMap<>(SupportedCompatibilities.class);
         spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
         ownI18N = Translations.RISK_ANALYSER_COMPONENTS_LICENSES_INCOMPATIBLE_WITH_PROJECT_LICENSES.getResourceBundle(languageConfig.getLanguage().getLocale());
+        warningsI18N = Translations.COMPATIBILITY_WARNINGS.getResourceBundle(languageConfig.getLanguage().getLocale());
     }
 
     /**
@@ -216,6 +218,9 @@ public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses exten
                         logger.warn("default case reached in switch ???");
                         break;
                 }
+                if (licensesCompatibilities.hasASpecificWarning(componentBinding.getComponent().getLicense(), projectLicense, componentBinding.getLinkType(), this.project.getRedistribution())) {
+                    warnings.add(warningsI18N.getString(licensesCompatibilities.getSpecificWarningKey(componentBinding.getComponent().getLicense(), projectLicense, componentBinding.getLinkType(), this.project.getRedistribution())));
+                }
             }
             if ((compatibilityCounter.containsKey(SupportedCompatibilities.COMPATIBLE) && (compatibilityCounter.get(SupportedCompatibilities.COMPATIBLE) == project.getLicenses().size()))) {
                 goodThings.add(componentBinding.getFullName() + ", " + ownI18N.getString(IS_NATIVELY_BLAH) + " " + this.project.getFullName());
@@ -252,6 +257,7 @@ public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses exten
         // reload resource bundles
         spdxIdI18N = Translations.SUPPORTED_LICENSES_SPDX_ID.getResourceBundle(languageConfig.getLanguage().getLocale());
         ownI18N = Translations.RISK_ANALYSER_COMPONENTS_LICENSES_INCOMPATIBLE_WITH_PROJECT_LICENSES.getResourceBundle(languageConfig.getLanguage().getLocale());
+        warningsI18N = Translations.COMPATIBILITY_WARNINGS.getResourceBundle(languageConfig.getLanguage().getLocale());
         fireLanguageChangeEvent();
     }
 
