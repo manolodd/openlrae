@@ -55,8 +55,8 @@ class TranslationsTest {
     @Test
     void testItemsNumber() {
         System.out.println("items number");
-        // Currently there are 23 resource bundles defined in enum
-        assertEquals(23, Translations.values().length);
+        // Currently there are 24 resource bundles defined in enum
+        assertEquals(24, Translations.values().length);
     }
 
     /**
@@ -71,6 +71,7 @@ class TranslationsTest {
         for (Translations translation : Translations.values()) {
             switch (translation) {
                 case CLI_HANDLER:
+                case COMPATIBILITY_WARNINGS:
                 case PROJECT:
                 case RISK_ANALYSER_COMPONENTS_LICENSES_INCOMPATIBLE_WITH_PROJECT_LICENSES:
                 case RISK_ANALYSER_COMPONENTS_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES:
