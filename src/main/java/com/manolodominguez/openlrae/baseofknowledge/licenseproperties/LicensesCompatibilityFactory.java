@@ -117,6 +117,19 @@ public final class LicensesCompatibilityFactory {
         return SupportedCompatibilities.UNSUPPORTED;
     }
 
+    /**
+     * This method gets whether the specified compatibility combination has a
+     * specific warning or not.
+     *
+     * @param componentLicense The license of the component whose compatiblity
+     * is to be queried.
+     * @param projectLicense The license of the project where the component is
+     * going to be included.
+     * @param link The way the component is included in the project.
+     * @param redistribution How the project is going to be redistributed.
+     * @return TRUE, the specified compatibility combination has a specific
+     * warning. Otherwise, FALSE.
+     */
     public boolean hasASpecificWarning(SupportedLicenses componentLicense, SupportedLicenses projectLicense, SupportedLinks link, SupportedRedistributions redistribution) {
         if (componentLicense == null) {
             logger.error("componentLicense cannot be null");
@@ -145,6 +158,21 @@ public final class LicensesCompatibilityFactory {
         return false;
     }
 
+    /**
+     * This method gets a specific warning key of the specified compatibility
+     * combination. It can be used to get a internationalized specific warning.
+     *
+     * @param componentLicense The license of the component whose compatiblity
+     * is to be queried.
+     * @param projectLicense The license of the project where the component is
+     * going to be included.
+     * @param link The way the component is included in the project.
+     * @param redistribution How the project is going to be redistributed.
+     * @return specific warning key of the specified compatibility combination.
+     * It can be used to get a internationalized specific warning. If the
+     * compatibility combination does not have a specifig warning, an
+     * IllegalStateException exception is thrown.
+     */
     public String getSpecificWarningKey(SupportedLicenses componentLicense, SupportedLicenses projectLicense, SupportedLinks link, SupportedRedistributions redistribution) {
         if (componentLicense == null) {
             logger.error("componentLicense cannot be null");
@@ -170,7 +198,8 @@ public final class LicensesCompatibilityFactory {
                 return licenseCompatibilityEntry.getSpecificWarningKey();
             }
         }
-        return "";
+        logger.error("You have tried to get the specific warning of a compatibility combination that does not have one.");
+        throw new IllegalStateException("You have tried to get the specific warning of a compatibility combination that does not have one.");
     }
 
     /**
