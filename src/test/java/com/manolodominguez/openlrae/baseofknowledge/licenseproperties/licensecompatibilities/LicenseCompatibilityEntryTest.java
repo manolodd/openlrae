@@ -55,8 +55,8 @@ class LicenseCompatibilityEntryTest {
      * Test of getComponentLicense method, of class LicenseCompatibilityEntry.
      */
     @Test
-    void testGetComponentLicenseWhenSpecificWarningIsEmpty() {
-        System.out.println("getComponentLicense");
+    void testGetComponentLicenseWhenSpecificWarningKeyIsEmpty() {
+        System.out.println("getComponentLicenseWhenSpecificWarningKeyIsEmpty");
         SupportedLicenses componentLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedLicenses projectLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedCompatibilities compatibility = SupportedCompatibilities.COMPATIBLE;
@@ -290,8 +290,8 @@ class LicenseCompatibilityEntryTest {
      * Test of getSpecificWarning method, of class LicenseCompatibilityEntry.
      */
     @Test
-    void testGetSpecificWarning() {
-        System.out.println("getSpecificWarning");
+    void testGetSpecificWarningKey() {
+        System.out.println("getSpecificWarningKey");
         SupportedLicenses componentLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedLicenses projectLicense = SupportedLicenses.AGPL_3_0_ONLY;
         SupportedCompatibilities compatibility = SupportedCompatibilities.COMPATIBLE;
