@@ -59,6 +59,7 @@ public final class LicensesTrendFactory {
         this.licensesTrends.put(SupportedLicenses.GPL_3_0_OR_LATER, SupportedTrends.NEAR_TRENDY);
         this.licensesTrends.put(SupportedLicenses.LGPL_2_1_ONLY, SupportedTrends.UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.LGPL_2_1_OR_LATER, SupportedTrends.NEAR_UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.LGPL_3_0_ONLY, SupportedTrends.NEAR_UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.LGPL_3_0_OR_LATER, SupportedTrends.NEAR_UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.MIT, SupportedTrends.TRENDY);
         this.licensesTrends.put(SupportedLicenses.MPL_1_1, SupportedTrends.NEAR_UNFASHIONABLE);
