@@ -55,6 +55,7 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import mjson.Json;
+import mjson.Json.MalformedJsonException;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -162,7 +163,7 @@ public class CLIHandler {
                         // Print analysis report. As a JSON string in this case.
                         writeToConsole("");
                         writeToConsole(ReportsFactory.getInstance(SupportedVerbosityLevel.DETAILED).getReportAsPlainText(project, resultSet));
-                    } catch (MalformedURLException ex) {
+                    } catch (MalformedURLException | MalformedJsonException ex) {
                         writeToConsole(ownI18N.getString(NOT_A_VALID_JSON_1) + " " + fileName + ". " + ownI18N.getString(NOT_A_VALID_JSON_2));
                     }
                 }
