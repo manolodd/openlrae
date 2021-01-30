@@ -53,8 +53,8 @@ class SupportedLicensesTest {
     @Test
     void testItemsNumber() {
         System.out.println("items number");
-        // Currently there are 24 licenses defined in enum
-        assertEquals(24, SupportedLicenses.values().length);
+        // Currently there are 25 licenses defined in enum
+        assertEquals(25, SupportedLicenses.values().length);
     }
 
     /**
@@ -85,6 +85,7 @@ class SupportedLicensesTest {
                 case GPL_3_0_OR_LATER:
                 case LGPL_2_1_ONLY:
                 case LGPL_2_1_OR_LATER:
+                case LGPL_3_0_ONLY:
                 case LGPL_3_0_OR_LATER:
                 case MIT:
                 case MPL_1_1:
@@ -108,8 +109,8 @@ class SupportedLicensesTest {
     @Test
     void testGetLicensesForProjects() {
         System.out.println("getLicensesForProjects");
-        // Currently there are 21 licenses for projects defined in enum
-        assertEquals(21, SupportedLicenses.getLicensesForProjects().length);
+        // Currently there are 22 licenses for projects defined in enum
+        assertEquals(22, SupportedLicenses.getLicensesForProjects().length);
     }
 
     /**
@@ -118,8 +119,8 @@ class SupportedLicensesTest {
     @Test
     void testGetLicensesForComponents() {
         System.out.println("getLicensesForComponents");
-        // Currently there are 24 licenses for components defined in enum
-        assertEquals(24, SupportedLicenses.getLicensesForComponents().length);
+        // Currently there are 25 licenses for components defined in enum
+        assertEquals(25, SupportedLicenses.getLicensesForComponents().length);
     }
 
     /**
@@ -138,8 +139,8 @@ class SupportedLicensesTest {
     @Test
     void testGetNotFicticiousLicenses() {
         System.out.println("getNotFicticiousLicenses");
-        // Currently there are 21 not ficticious licenses defined in enum
-        assertEquals(21, SupportedLicenses.getNotFicticiousLicenses().length);
+        // Currently there are 22 not ficticious licenses defined in enum
+        assertEquals(22, SupportedLicenses.getNotFicticiousLicenses().length);
     }
 
 }
