@@ -151,6 +151,7 @@ System.out.println("This is the analysis report:\n\n"+JSONReport);
 ## Supported licenses
 
 * AGPL-3.0-only
+* AGPL-3.0-or-later
 * Apache-1.1
 * Apache-2.0
 * Artistic-2.0
