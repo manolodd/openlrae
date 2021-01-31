@@ -6,7 +6,7 @@
 
 [![Build Status](https://img.shields.io/travis/manolodd/openlrae/master.svg)](https://travis-ci.org/manolodd/openlrae?branch=master)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=manolodd_openlrae&branch=master&metric=alert_status#.svg)](https://sonarcloud.io/dashboard?branch=master&id=manolodd_openlrae)
-[![Maven Central](https://img.shields.io/maven-central/v/com.manolodominguez/openlrae)](https://search.maven.org/artifact/com.manolodominguez/openlrae/1.3/jar)
+[![Maven Central](https://img.shields.io/maven-central/v/com.manolodominguez/openlrae)](https://search.maven.org/artifact/com.manolodominguez/openlrae/1.4/jar)
 
 ## Develop branch
 
@@ -32,12 +32,12 @@ With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard o
 
 ## Latest snapshot version being developed:
  
-- <b>OpenLRAE 1.4-SNAPSHOT</b> (development branch) - Apache-2.0.
+- <b>OpenLRAE 1.5-SNAPSHOT</b> (development branch) - Apache-2.0.
 
 ## Binary releases:
 
-- <b>OpenLRAE 1.3</b> (current, master branch) - Apache-2.0.
-- <b>OpenLRAE from 0.1 to 1.2</b> - Apache-2.0.
+- <b>OpenLRAE 1.4</b> (current, master branch) - Apache-2.0.
+- <b>OpenLRAE from 0.1 to 1.3</b> - Apache-2.0.
 
 # PEOPLE BEHIND OPENLRAE
 
@@ -56,10 +56,10 @@ You can download latest compiled stable releases from the releases section of th
 <dependency>
   <groupId>com.manolodominguez</groupId>
   <artifactId>openlrae</artifactId>
-  <version>1.3</version>
+  <version>1.4</version>
 </dependency>
 ```
-For othe project builders (graddle, buildr...) see the next link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/1.3/jar
+For othe project builders (graddle, buildr...) see the next link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/1.4/jar
 
 # COMPILING FROM SOURCES
 
