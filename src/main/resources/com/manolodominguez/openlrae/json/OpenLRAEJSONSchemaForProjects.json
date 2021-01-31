@@ -18,6 +18,7 @@
         "projectsLicensesEnum": {
             "enum": [
                 "AGPL_3_0_ONLY",
+                "AGPL_3_0_OR_LATER",
                 "APACHE_1_1",
                 "APACHE_2_0",
                 "ARTISTIC_2_0",
