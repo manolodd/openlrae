@@ -49,6 +49,7 @@ import org.slf4j.LoggerFactory;
  */
 public enum SupportedLicenses {
     AGPL_3_0_ONLY(false),
+    AGPL_3_0_OR_LATER(false),
     APACHE_1_1(false),
     APACHE_2_0(false),
     ARTISTIC_2_0(false),
