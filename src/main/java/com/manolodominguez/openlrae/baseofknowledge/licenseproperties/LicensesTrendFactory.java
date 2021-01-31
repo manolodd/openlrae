@@ -43,6 +43,7 @@ public final class LicensesTrendFactory {
         // license being used more and more on the time?
         this.licensesTrends = new EnumMap<>(SupportedLicenses.class);
         this.licensesTrends.put(SupportedLicenses.AGPL_3_0_ONLY, SupportedTrends.NEAR_UNFASHIONABLE);
+        this.licensesTrends.put(SupportedLicenses.AGPL_3_0_OR_LATER, SupportedTrends.NEAR_UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.APACHE_1_1, SupportedTrends.UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.APACHE_2_0, SupportedTrends.TRENDY);
         this.licensesTrends.put(SupportedLicenses.ARTISTIC_2_0, SupportedTrends.NEAR_TRENDY);

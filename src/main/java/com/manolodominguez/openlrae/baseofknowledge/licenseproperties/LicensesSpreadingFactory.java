@@ -44,6 +44,7 @@ public final class LicensesSpreadingFactory {
         // that use this license?
         this.licensesSpreadings = new EnumMap<>(SupportedLicenses.class);
         this.licensesSpreadings.put(SupportedLicenses.AGPL_3_0_ONLY, SupportedSpreadings.LITTLE_WIDESPREAD);
+        this.licensesSpreadings.put(SupportedLicenses.AGPL_3_0_OR_LATER, SupportedSpreadings.LITTLE_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.APACHE_1_1, SupportedSpreadings.NEAR_LITTLE_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.APACHE_2_0, SupportedSpreadings.HIGHLY_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.ARTISTIC_2_0, SupportedSpreadings.LITTLE_WIDESPREAD);

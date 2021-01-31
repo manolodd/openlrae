@@ -45,6 +45,7 @@ public final class LicensesObsolescencesFactory {
         // license? Is it the oldest? The latest?
         this.licensesObsolescenses = new EnumMap<>(SupportedLicenses.class);
         this.licensesObsolescenses.put(SupportedLicenses.AGPL_3_0_ONLY, computeObsolescence(FOUR, THIRD));
+        this.licensesObsolescenses.put(SupportedLicenses.AGPL_3_0_OR_LATER, computeObsolescence(FOUR, FOURTH));
         this.licensesObsolescenses.put(SupportedLicenses.APACHE_1_1, computeObsolescence(THREE, SECOND));
         this.licensesObsolescenses.put(SupportedLicenses.APACHE_2_0, computeObsolescence(THREE, THIRD));
         this.licensesObsolescenses.put(SupportedLicenses.ARTISTIC_2_0, computeObsolescence(TWO, SECOND));
