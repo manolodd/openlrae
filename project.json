@@ -1,7 +1,7 @@
 {
     "projectinfo": {
         "name": "OpenLRAE",
-        "version": "1.5-SNAPSHOT",
+        "version": "1.5",
         "redistribution": "SOFTWARE_PACKAGE_OR_SAAS",
         "licenses": ["APACHE_2_0"]
     },
@@ -15,7 +15,7 @@
         },
         {
             "component": "junit-jupiter-engine",
-            "version": "5.7.0",
+            "version": "5.8.0-M1",
             "license": "EPL_2_0",
             "weight": "NEAR_LOW",
             "link": "DYNAMIC"
