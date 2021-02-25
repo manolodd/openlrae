@@ -60,6 +60,7 @@ public enum SupportedLicenses {
     EPL_1_0(false),
     EPL_2_0(false),
     EUPL_1_1(false),
+    EUPL_1_2(false),
     GPL_2_0_ONLY(false),
     GPL_2_0_OR_LATER(false),
     GPL_3_0_ONLY(false),
