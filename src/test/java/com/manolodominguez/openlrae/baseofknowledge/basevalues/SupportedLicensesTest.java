@@ -1,17 +1,24 @@
-/*
- * Copyright 2020 manolodd.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+/* 
+ * Open Licensing Risk Analysis Engine (Open LRAE) is a licensing risk analysis 
+ * engine in the form of Java library that allow the detection of risks related 
+ * to licensing from the set of components (and their respective licenses) you
+ * are using in a given project.
+ * 
+ * Copyright (C) Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com.
+ * 
+ * This program is free software: you can redistribute it and/or modify it under 
+ * the terms of the GNU Lesser General Public License as published by the Free 
+ * Software Foundation, either version 3 of the License, or (at your option) any
+ * later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT 
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more 
+ * details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License 
+ * along with this program. If not, see 
+ * https://www.gnu.org/licenses/lgpl-3.0.en.html.
  */
 package com.manolodominguez.openlrae.baseofknowledge.basevalues;
 
@@ -53,8 +60,8 @@ class SupportedLicensesTest {
     @Test
     void testItemsNumber() {
         System.out.println("items number");
-        // Currently there are 27 licenses defined in enum
-        assertEquals(27, SupportedLicenses.values().length);
+        // Currently there are 28 licenses defined in enum
+        assertEquals(28, SupportedLicenses.values().length);
     }
 
     /**
@@ -73,6 +80,7 @@ class SupportedLicensesTest {
                 case APACHE_1_1:
                 case APACHE_2_0:
                 case ARTISTIC_2_0:
+                case BSD_2_CLAUSE:
                 case BSD_3_CLAUSE:
                 case BSD_4_CLAUSE:
                 case CDDL_1_0:
@@ -111,8 +119,8 @@ class SupportedLicensesTest {
     @Test
     void testGetLicensesForProjects() {
         System.out.println("getLicensesForProjects");
-        // Currently there are 24 licenses for projects defined in enum
-        assertEquals(24, SupportedLicenses.getLicensesForProjects().length);
+        // Currently there are 25 licenses for projects defined in enum
+        assertEquals(25, SupportedLicenses.getLicensesForProjects().length);
     }
 
     /**
@@ -121,8 +129,8 @@ class SupportedLicensesTest {
     @Test
     void testGetLicensesForComponents() {
         System.out.println("getLicensesForComponents");
-        // Currently there are 27 licenses for components defined in enum
-        assertEquals(27, SupportedLicenses.getLicensesForComponents().length);
+        // Currently there are 28 licenses for components defined in enum
+        assertEquals(28, SupportedLicenses.getLicensesForComponents().length);
     }
 
     /**
@@ -141,8 +149,8 @@ class SupportedLicensesTest {
     @Test
     void testGetNotFicticiousLicenses() {
         System.out.println("getNotFicticiousLicenses");
-        // Currently there are 24 not ficticious licenses defined in enum
-        assertEquals(24, SupportedLicenses.getNotFicticiousLicenses().length);
+        // Currently there are 25 not ficticious licenses defined in enum
+        assertEquals(25, SupportedLicenses.getNotFicticiousLicenses().length);
     }
 
 }
