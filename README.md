@@ -32,7 +32,7 @@ With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard o
 
 ## Latest snapshot version being developed:
  
-- <b>OpenLRAE 1.6-SNAPSHOT</b> (development branch) - Apache-2.0.
+- <b>OpenLRAE 2.0-SNAPSHOT</b> (development branch) - LGPL-3.0-or-later.
 
 ## Binary releases:
 
@@ -155,6 +155,7 @@ System.out.println("This is the analysis report:\n\n"+JSONReport);
 * Apache-1.1
 * Apache-2.0
 * Artistic-2.0
+* BSD-2-clause
 * BSD-3-clause
 * BSD-4-clause
 * CDDL-1.0

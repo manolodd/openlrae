@@ -1,9 +1,9 @@
 {
     "projectinfo": {
         "name": "OpenLRAE",
-        "version": "1.6-SNAPSHOT",
+        "version": "2.0-SNAPSHOT",
         "redistribution": "SOFTWARE_PACKAGE_OR_SAAS",
-        "licenses": ["APACHE_2_0"]
+        "licenses": ["LGPL_3_0_OR_LATER"]
     },
     "componentbindings": [
         {
