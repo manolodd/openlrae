@@ -37,7 +37,7 @@ With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard o
 ## Binary releases:
 
 - <b>OpenLRAE 2.0</b> (current, master branch) - LGPL-3.0-or-later.
-- <b>OpenLRAE from 0.1 to 1.4</b> - Apache-2.0.
+- <b>OpenLRAE from 0.1 to 1.5</b> - Apache-2.0.
 
 # PEOPLE BEHIND OPENLRAE
 
