@@ -79,6 +79,7 @@ public enum SupportedLicenses {
     LGPL_3_0_OR_LATER(false),
     MIT(false),
     MPL_1_1(false),
+    MPL_2_0(false),
     PUBLIC_DOMAIN(false),
     // These ones are special licenses, not real ones. They only apply to 
     // component definitions, but not to project definition.
