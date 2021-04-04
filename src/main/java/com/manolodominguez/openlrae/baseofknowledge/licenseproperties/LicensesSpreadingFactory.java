@@ -74,6 +74,7 @@ public final class LicensesSpreadingFactory {
         this.licensesSpreadings.put(SupportedLicenses.LGPL_3_0_OR_LATER, SupportedSpreadings.LITTLE_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.MIT, SupportedSpreadings.HIGHLY_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.MPL_1_1, SupportedSpreadings.NEAR_LITTLE_WIDESPREAD);
+        this.licensesSpreadings.put(SupportedLicenses.MPL_2_0, SupportedSpreadings.NEAR_LITTLE_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.PUBLIC_DOMAIN, SupportedSpreadings.LITTLE_WIDESPREAD);
         // The following ones are forced LITTLE_WIDESPREAD by design
         for (SupportedLicenses license : SupportedLicenses.getFicticiousLicenses()) {
