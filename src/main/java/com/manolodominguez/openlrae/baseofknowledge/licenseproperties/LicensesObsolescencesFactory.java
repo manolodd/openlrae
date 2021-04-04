@@ -75,6 +75,7 @@ public final class LicensesObsolescencesFactory {
         this.licensesObsolescenses.put(SupportedLicenses.LGPL_3_0_OR_LATER, computeObsolescence(SIX, SIXTH));
         this.licensesObsolescenses.put(SupportedLicenses.MIT, computeObsolescence(ONE, FIRST));
         this.licensesObsolescenses.put(SupportedLicenses.MPL_1_1, computeObsolescence(THREE, SECOND));
+        this.licensesObsolescenses.put(SupportedLicenses.MPL_2_0, computeObsolescence(THREE, THIRD));
         this.licensesObsolescenses.put(SupportedLicenses.PUBLIC_DOMAIN, computeObsolescence(ONE, FIRST));
         // The following ones are forced OUTDATED by design
         for (SupportedLicenses license : SupportedLicenses.getFicticiousLicenses()) {
