@@ -65,6 +65,7 @@ public enum SupportedLicenses {
     BSD_4_CLAUSE(false),
     CDDL_1_0(false),
     CPL_1_0(false),
+    EDL_1_0(false),
     EPL_1_0(false),
     EPL_2_0(false),
     EUPL_1_1(false),

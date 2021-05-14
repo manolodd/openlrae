@@ -60,6 +60,7 @@ public final class LicensesSpreadingFactory {
         this.licensesSpreadings.put(SupportedLicenses.BSD_4_CLAUSE, SupportedSpreadings.LITTLE_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.CDDL_1_0, SupportedSpreadings.LITTLE_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.CPL_1_0, SupportedSpreadings.LITTLE_WIDESPREAD);
+        this.licensesSpreadings.put(SupportedLicenses.EDL_1_0, SupportedSpreadings.LITTLE_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.EPL_1_0, SupportedSpreadings.LITTLE_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.EPL_2_0, SupportedSpreadings.NEAR_HIGHLY_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.EUPL_1_1, SupportedSpreadings.LITTLE_WIDESPREAD);
