@@ -6,7 +6,7 @@
 
 [![Build Status](https://img.shields.io/travis/manolodd/openlrae/master.svg)](https://travis-ci.org/manolodd/openlrae?branch=master)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=manolodd_openlrae&branch=master&metric=alert_status#.svg)](https://sonarcloud.io/dashboard?branch=master&id=manolodd_openlrae)
-[![Maven Central](https://img.shields.io/maven-central/v/com.manolodominguez/openlrae)](https://search.maven.org/artifact/com.manolodominguez/openlrae/2.1/jar)
+[![Maven Central](https://img.shields.io/maven-central/v/com.manolodominguez/openlrae)](https://search.maven.org/artifact/com.manolodominguez/openlrae/2.2/jar)
 
 ## Develop branch
 
@@ -32,12 +32,12 @@ With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard o
 
 ## Latest snapshot version being developed:
  
-- <b>OpenLRAE 2.2-SNAPSHOT</b> (development branch) - LGPL-3.0-or-later.
+- <b>OpenLRAE 2.3-SNAPSHOT</b> (development branch) - LGPL-3.0-or-later.
 
 ## Binary releases:
 
-- <b>OpenLRAE 2.1</b> (current, master branch) - LGPL-3.0-or-later.
-- <b>OpenLRAE 2.0</b> - LGPL-3.0-or-later.
+- <b>OpenLRAE 2.2</b> (current, master branch) - LGPL-3.0-or-later.
+- <b>OpenLRAE from 2.0 to 2.1</b> - LGPL-3.0-or-later.
 - <b>OpenLRAE from 0.1 to 1.5</b> - Apache-2.0.
 
 # PEOPLE BEHIND OPENLRAE
@@ -57,10 +57,10 @@ You can download latest compiled stable releases from the releases section of th
 <dependency>
   <groupId>com.manolodominguez</groupId>
   <artifactId>openlrae</artifactId>
-  <version>2.1</version>
+  <version>2.2</version>
 </dependency>
 ```
-For othe project builders (graddle, buildr...) see the next link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/2.1/jar
+For othe project builders (graddle, buildr...) see the next link in Maven Central: https://search.maven.org/artifact/com.manolodominguez/openlrae/2.2/jar
 
 # COMPILING FROM SOURCES
 
@@ -161,6 +161,7 @@ System.out.println("This is the analysis report:\n\n"+JSONReport);
 * BSD-4-clause
 * CDDL-1.0
 * CPL-1.0
+* EDL-1.0
 * EPL-1.0
 * EPL-2.0
 * EUPL-1.1
