@@ -15,21 +15,21 @@
         },
         {
             "component": "junit-jupiter-engine",
-            "version": "5.8.0-M1",
+            "version": "5.8.2",
             "license": "EPL_2_0",
             "weight": "NEAR_LOW",
             "link": "DYNAMIC"
         },
         {
             "component": "slf4j-api",
-            "version": "2.0.0-alpha1",
+            "version": "2.0.0-alpha6",
             "license": "MIT",
             "weight": "NEAR_LOW",
             "link": "DYNAMIC"
         },
         {
             "component": "slf4j-simple",
-            "version": "2.0.0-alpha1",
+            "version": "2.0.0-alpha6",
             "license": "MIT",
             "weight": "NEAR_LOW",
             "link": "DYNAMIC"
