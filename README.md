@@ -4,13 +4,13 @@
 
 ## Master branch
 
-[![Build Status](https://img.shields.io/travis/manolodd/openlrae/master.svg)](https://app.travis-ci.com/github/manolodd/openlrae/builds)
+[![Build Status](https://img.shields.io/travis/com/manolodd/openlrae/master)](https://app.travis-ci.com/github/manolodd/openlrae/builds)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=manolodd_openlrae&branch=master&metric=alert_status#.svg)](https://sonarcloud.io/dashboard?branch=master&id=manolodd_openlrae)
 [![Maven Central](https://img.shields.io/maven-central/v/com.manolodominguez/openlrae)](https://search.maven.org/artifact/com.manolodominguez/openlrae/2.2/jar)
 
 ## Develop branch
 
-[![Build Status](https://img.shields.io/travis/manolodd/openlrae/develop.svg)](https://app.travis-ci.com/github/manolodd/openlrae/builds)
+[![Build Status](https://img.shields.io/travis/com/manolodd/openlrae/develop)](https://app.travis-ci.com/github/manolodd/openlrae/builds)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=manolodd_openlrae&branch=develop&metric=alert_status#.svg)](https://sonarcloud.io/dashboard?branch=develop&id=manolodd_openlrae)
 [![Maven Central](https://img.shields.io/badge/maven--central-Not%20available-inactive)](#)
 
