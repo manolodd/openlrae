@@ -4,7 +4,7 @@
         <!--- Dependency versions -->
         <lsf4j-api.version>2.0.0-alpha6</lsf4j-api.version>
         <lsf4j-simple.version>2.0.0-alpha6</lsf4j-simple.version>
-        <mjson.version>1.4.1</mjson.version>
+        <everit-json-schema.version>1.14.0</everit-json-schema.version>
         <!--- Dependency for testing -->
         <junit-jupiter-engine.version>5.8.2</junit-jupiter-engine.version>
         <!-- Maven plugins versions -->
@@ -216,6 +216,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.github.erosb</groupId>
+            <artifactId>everit-json-schema</artifactId>
+            <version>${everit-json-schema.version}</version>
+        </dependency>        
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${lsf4j-api.version}</version>
@@ -230,17 +235,6 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit-jupiter-engine.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.sharegov</groupId>
-            <artifactId>mjson</artifactId>
-            <version>${mjson.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 </project>

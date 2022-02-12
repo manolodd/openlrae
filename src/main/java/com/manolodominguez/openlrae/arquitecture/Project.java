@@ -33,14 +33,23 @@ import com.manolodominguez.openlrae.resourceslocators.FilesPaths;
 import com.manolodominguez.openlrae.i18n.LanguageConfig;
 import com.manolodominguez.openlrae.i18n.SupportedLanguages;
 import com.manolodominguez.openlrae.i18n.Translations;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.CopyOnWriteArrayList;
-import mjson.Json;
+//import mjson.Json;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.everit.json.schema.Schema;
+import org.everit.json.schema.ValidationException;
+import org.everit.json.schema.loader.SchemaLoader;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONTokener;
 
 /**
  * This class implements a project. It includes all component bindings as well
@@ -114,8 +123,8 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
             }
         }
         if (!validFirstLicense) {
-            logger.error("A project cannot use the speciefied firstLicense");
-            throw new IllegalArgumentException("A project cannot use the speciefied firstLicense");
+            logger.error("A project cannot use the specified firstLicense");
+            throw new IllegalArgumentException("A project cannot use the specified firstLicense");
         }
         if (redistribution == null) {
             logger.error("redistribution cannot be null");
@@ -154,14 +163,14 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
             throw new IllegalArgumentException("version cannot be blank");
         }
         try {
-            Json projectDefinition = Json.read(projectDefinitionAsJSONString);
+            JSONObject projectDefinition = new JSONObject(projectDefinitionAsJSONString);
             if (isValidJSONProjectDefinition(projectDefinition)) {
                 initializeFromJSON(projectDefinition);
             } else {
                 logger.error("projectDefinitionAsJSONString does not follow OpenLRAE JSON schema rules.");
-                throw new IllegalArgumentException(getValidationReport(projectDefinition).toString());
+                throw new IllegalArgumentException("Project definition does not follow OpenLRAE JSON schema rules.");
             }
-        } catch (RuntimeException e) {
+        } catch (JSONException e) {
             logger.error("projectDefinitionAsJSONString is not a JSON String");
             throw new IllegalArgumentException("projectDefinitionAsJSONString is not a JSON string");
         }
@@ -172,25 +181,36 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
     }
 
     /**
-     * This is the constuctor of the class.It creates a new instance of Project.
+     * This is the constuctor of the class. It creates a new instance of
+     * Project.
      *
-     * @param projectDefinition a JSON project definition.
+     * @param projectDefinitionURL a URL containing a JSON project definition.
      */
-    public Project(Json projectDefinition) {
-        if (projectDefinition == null) {
-            logger.error("projectDefinition cannot be null");
-            throw new IllegalArgumentException("projectDefinition cannot be null");
+    public Project(URL projectDefinitionURL) {
+        if (projectDefinitionURL == null) {
+            logger.error("projectDefinition URL cannot be null");
+            throw new IllegalArgumentException("projectDefinition URL cannot be null");
         }
+        JSONObject projectDefinition;
         try {
-            if (isValidJSONProjectDefinition(projectDefinition)) {
-                initializeFromJSON(projectDefinition);
-            } else {
-                logger.error("projectDefinition does not follow OpenLRAE JSON schema rules.");
-                throw new IllegalArgumentException(getValidationReport(projectDefinition).toString());
+            projectDefinition = new JSONObject(new JSONTokener(projectDefinitionURL.openStream()));
+            try {
+                if (isValidJSONProjectDefinition(projectDefinition)) {
+                    initializeFromJSON(projectDefinition);
+                } else {
+                    logger.error("projectDefinition does not follow OpenLRAE JSON schema rules.");
+                    throw new IllegalArgumentException("Project definition does not follow OpenLRAE JSON schema rules.");
+                }
+            } catch (RuntimeException e) {
+                logger.error("projectDefinition is not a JSON File");
+                throw new IllegalArgumentException("projectDefinition is not a JSON File");
             }
-        } catch (RuntimeException e) {
-            logger.error("projectDefinition is not a JSON File");
-            throw new IllegalArgumentException("projectDefinition is not a JSON File");
+        } catch (MalformedURLException ex) {
+            logger.error("projectDefinition file does not exist");
+            throw new IllegalArgumentException("projectDefinition file does not exist");
+        } catch (IOException ex) {
+            logger.error("projectDefinition file does not exist");
+            throw new IllegalArgumentException("projectDefinition file does not exist");
         }
         languageConfig = new LanguageConfig();
         ownI18N = Translations.PROJECT.getResourceBundle(languageConfig.getLanguage().getLocale());
@@ -207,43 +227,18 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
      * @return TRUE, if the JSON project definition can be ckecked as a valid
      * one. Otherwise, returns FALSE.
      */
-    private boolean isValidJSONProjectDefinition(Json projectDefinition) {
+    private boolean isValidJSONProjectDefinition(JSONObject projectDefinition) {
         if (projectDefinition == null) {
             logger.error("projectDefinition cannot be null");
             throw new IllegalArgumentException("projectDefinition cannot be null");
         }
-        Json.Schema schema;
         try {
-            URI schemaURI = getClass().getResource(FilesPaths.PROJECT_SCHEMA.getFilePath()).toURI();
-            schema = Json.schema(schemaURI);
-            Json validationResult = schema.validate(projectDefinition);
-            return validationResult.at("ok").asBoolean();
-        } catch (RuntimeException | URISyntaxException ex) {
+            JSONObject rawSchema = new JSONObject(new JSONTokener(getClass().getResourceAsStream(FilesPaths.PROJECT_SCHEMA.getFilePath())));
+            Schema sch = SchemaLoader.load(rawSchema);
+            sch.validate(projectDefinition); // throws a ValidationException if this object is invalid
+            return true;
+        } catch (ValidationException ex) {
             return false;
-        }
-    }
-
-    /**
-     * This method validates the JSON project definition specified as an
-     * argument against the OpenLRAE JSON Schema and returns a JSON report about
-     * the validation process. It could be an OK or, can be a list of error
-     * messages.
-     *
-     * @param projectDefinition a JSON project definition.
-     * @return a JSON report about the validation process.
-     */
-    private Json getValidationReport(Json projectDefinition) {
-        if (projectDefinition == null) {
-            logger.error("projectDefinition cannot be null");
-            throw new IllegalArgumentException("projectDefinition cannot be null");
-        }
-        Json.Schema schema;
-        try {
-            URI schemaURI = getClass().getResource(FilesPaths.PROJECT_SCHEMA.getFilePath()).toURI();
-            schema = Json.schema(schemaURI);
-            return schema.validate(projectDefinition);
-        } catch (RuntimeException | URISyntaxException ex) {
-            return Json.read(DEFAULT_INVALID_PROJECT_VALIDATION_REPORT);
         }
     }
 
@@ -254,39 +249,38 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
      * @param validatedJSONProjectDefinition a validated JSON project
      * definition.
      */
-    private void initializeFromJSON(Json validatedJSONProjectDefinition) {
+    private void initializeFromJSON(JSONObject validatedJSONProjectDefinition) {
         if (validatedJSONProjectDefinition == null) {
             logger.error("validatedJSONProjectDefinition cannot be null");
             throw new IllegalArgumentException("validatedJSONProjectDefinition cannot be null");
         }
         licenses = new CopyOnWriteArrayList<>();
         billOfComponentBindings = new CopyOnWriteArrayList<>();
-        if (validatedJSONProjectDefinition.at("projectinfo").at("name").isString()) {
-            name = validatedJSONProjectDefinition.at("projectinfo").at("name").asString();
-        } else {
+        try {
+            name = validatedJSONProjectDefinition.getJSONObject("projectinfo").getString("name");
+        } catch (JSONException ex) {
             throw new IllegalArgumentException("Cannot deserialize project name from JSON");
         }
-        if (validatedJSONProjectDefinition.at("projectinfo").at("version").isString()) {
-            version = validatedJSONProjectDefinition.at("projectinfo").at("version").asString();
-        } else {
+        try {
+            version = validatedJSONProjectDefinition.getJSONObject("projectinfo").getString("version");
+        } catch (JSONException ex) {
             throw new IllegalArgumentException("Cannot deserialize project version from JSON");
         }
-        if (validatedJSONProjectDefinition.at("projectinfo").at("redistribution").isString()) {
-            redistribution = SupportedRedistributions.valueOf(validatedJSONProjectDefinition.at("projectinfo").at("redistribution").asString());
-        } else {
+        try {
+            redistribution = SupportedRedistributions.valueOf(validatedJSONProjectDefinition.getJSONObject("projectinfo").getString("redistribution"));
+        } catch (JSONException ex) {
             throw new IllegalArgumentException("Cannot deserialize project redistribution from JSON");
         }
-        if (validatedJSONProjectDefinition.at("projectinfo").at("licenses").isArray()) {
-            List<Object> auxLicenses = validatedJSONProjectDefinition.at("projectinfo").at("licenses").asList();
-            for (Object auxObject : auxLicenses) {
-                if (auxObject instanceof String) {
-                    licenses.add(SupportedLicenses.valueOf((String) auxObject));
-                }
+        try {
+            JSONArray auxLicenses = validatedJSONProjectDefinition.getJSONObject("projectinfo").getJSONArray("licenses");
+            for (int i = ZERO; i < auxLicenses.length(); i++) {
+                licenses.add(SupportedLicenses.valueOf(auxLicenses.getString(i)));
             }
-        } else {
+        } catch (JSONException ex) {
             throw new IllegalArgumentException("Cannot deserialize project licenses from JSON");
         }
-        if (validatedJSONProjectDefinition.at("componentbindings").isArray()) {
+        try {
+            JSONArray auxComponentBindings = validatedJSONProjectDefinition.getJSONArray("componentbindings");
             String auxComponentName;
             String auxComponentVersion;
             SupportedLicenses auxComponentLicense;
@@ -294,39 +288,18 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
             SupportedLinks auxLink;
             Component auxComponent;
             ComponentBinding auxComponentBinding;
-            List<Object> auxComponentBindings = validatedJSONProjectDefinition.at("componentbindings").asList();
-            for (int componentIndex = ZERO; componentIndex < auxComponentBindings.size(); componentIndex++) {
-                if (validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("component").isString()) {
-                    auxComponentName = validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("component").asString();
-                } else {
-                    throw new IllegalArgumentException("Cannot deserialize one project component name from JSON");
-                }
-                if (validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("version").isString()) {
-                    auxComponentVersion = validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("version").asString();
-                } else {
-                    throw new IllegalArgumentException("Cannot deserialize one project component version from JSON");
-                }
-                if (validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("license").isString()) {
-                    auxComponentLicense = SupportedLicenses.valueOf(validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("license").asString());
-                } else {
-                    throw new IllegalArgumentException("Cannot deserialize one project component license from JSON");
-                }
-                if (validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("weight").isString()) {
-                    auxWeight = SupportedComponentWeights.valueOf(validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("weight").asString());
-                } else {
-                    throw new IllegalArgumentException("Cannot deserialize one project component binding weight from JSON");
-                }
-                if (validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("link").isString()) {
-                    auxLink = SupportedLinks.valueOf(validatedJSONProjectDefinition.at("componentbindings").at(componentIndex).at("link").asString());
-                } else {
-                    throw new IllegalArgumentException("Cannot deserialize one project component binding weight from JSON");
-                }
+            for (int i = ZERO; i < auxComponentBindings.length(); i++) {
+                auxComponentName = auxComponentBindings.getJSONObject(i).getString("component");
+                auxComponentVersion = auxComponentBindings.getJSONObject(i).getString("version");
+                auxComponentLicense = SupportedLicenses.valueOf(auxComponentBindings.getJSONObject(i).getString("license"));
+                auxWeight = SupportedComponentWeights.valueOf(auxComponentBindings.getJSONObject(i).getString("weight"));
+                auxLink = SupportedLinks.valueOf(auxComponentBindings.getJSONObject(i).getString("link"));
                 auxComponent = new Component(auxComponentName, auxComponentVersion, auxComponentLicense);
                 auxComponentBinding = new ComponentBinding(auxComponent, auxLink, auxWeight);
                 billOfComponentBindings.add(auxComponentBinding);
             }
-        } else {
-            throw new IllegalArgumentException("Cannot deserialize a project component from JSON");
+        } catch (JSONException ex) {
+            throw new IllegalArgumentException("Cannot deserialize project components from JSON");
         }
     }
 
@@ -452,10 +425,9 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
         fireLanguageChangeEvent();
     }
 
-    private static final String DEFAULT_INVALID_PROJECT_VALIDATION_REPORT = "{\"ok\":false, errors:[\"Open LRAE JSON Schema cannot be loaded.\"]}";
     private static final int ZERO = 0;
 
     // i18N Keys
-    private static final String THAT="THAT";
-    
+    private static final String THAT = "THAT";
+
 }

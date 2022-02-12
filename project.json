@@ -7,8 +7,8 @@
     },
     "componentbindings": [
         {
-            "component": "mjson",
-            "version": "1.4.1",
+            "component": "everit-json-schema",
+            "version": "1.14.0",
             "license": "APACHE_2_0",
             "weight": "NEAR_LOW",
             "link": "DYNAMIC"

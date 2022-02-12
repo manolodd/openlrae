@@ -24,9 +24,8 @@ package com.manolodominguez.openlrae.reporting;
 
 import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
 import com.manolodominguez.openlrae.arquitecture.Project;
-import mjson.Json;
-import static mjson.Json.array;
-import static mjson.Json.object;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,7 +39,7 @@ public class ReportsFactory {
 
     private Logger logger = LoggerFactory.getLogger(ReportsFactory.class);
 
-    private static ReportsFactory instance;
+    private static volatile ReportsFactory instance;
     private SupportedVerbosityLevel verbosity;
 
     /**
@@ -133,7 +132,29 @@ public class ReportsFactory {
             logger.error("resultSet cannot be null");
             throw new IllegalArgumentException("resultSet cannot be null");
         }
-        return beautifyJSONString(getReportAsJSON(project, resultSet).toString());
+        return getReportAsJSONArray(project, resultSet).toString(INDENTION_SPACES);
+    }
+
+    /**
+     * This method generates a licensing risk analysis report as a compact JSON
+     * string.
+     *
+     * @param project The analysed project.
+     * @param resultSet The set of risk analysis results obtained after a risks
+     * analysis execution, related to the project.
+     * @return a licensing risk analysis report as a beautified (well indented)
+     * JSON string.
+     */
+    public String getReportAsCompactJSONString(Project project, RiskAnalysisResult[] resultSet) {
+        if (project == null) {
+            logger.error("project cannot be null");
+            throw new IllegalArgumentException("project cannot be null");
+        }
+        if (resultSet == null) {
+            logger.error("resultSet cannot be null");
+            throw new IllegalArgumentException("resultSet cannot be null");
+        }
+        return getReportAsJSONArray(project, resultSet).toString();
     }
 
     /**
@@ -145,7 +166,7 @@ public class ReportsFactory {
      * @return a licensing risk analysis report as a JSON object (mjson
      * library).
      */
-    public Json getReportAsJSON(Project project, RiskAnalysisResult[] resultSet) {
+    public JSONArray getReportAsJSONArray(Project project, RiskAnalysisResult[] resultSet) {
         if (project == null) {
             logger.error("project cannot be null");
             throw new IllegalArgumentException("project cannot be null");
@@ -154,39 +175,39 @@ public class ReportsFactory {
             logger.error("resultSet cannot be null");
             throw new IllegalArgumentException("resultSet cannot be null");
         }
-        Json report = array();
+        JSONArray report = new JSONArray();
 
         for (RiskAnalysisResult riskAnalysisResult : resultSet) {
-            Json analysis = object();
-            Json rootcauses = array();
-            Json warnings = array();
-            Json goodthings = array();
-            Json tips = array();
-            analysis.set("risk", riskAnalysisResult.getRiskType().toString());
-            analysis.set("riskvalue", riskAnalysisResult.getRiskValue());
-            analysis.set("riskexposure", riskAnalysisResult.getRiskExposure());
-            analysis.set("riskimpact", riskAnalysisResult.getRiskImpact());
+            JSONObject analysis = new JSONObject();
+            JSONArray rootcauses = new JSONArray();
+            JSONArray warnings = new JSONArray();
+            JSONArray goodthings = new JSONArray();
+            JSONArray tips = new JSONArray();
+            analysis.put("risk", riskAnalysisResult.getRiskType().toString());
+            analysis.put("riskvalue", riskAnalysisResult.getRiskValue());
+            analysis.put("riskexposure", riskAnalysisResult.getRiskExposure());
+            analysis.put("riskimpact", riskAnalysisResult.getRiskImpact());
             if ((verbosity == SupportedVerbosityLevel.RICH) || (verbosity == SupportedVerbosityLevel.DETAILED)) {
                 for (String rootCause : riskAnalysisResult.getRootCauses()) {
-                    rootcauses.add(rootCause);
+                    rootcauses.put(rootCause);
                 }
                 for (String warning : riskAnalysisResult.getWarnings()) {
-                    warnings.add(warning);
+                    warnings.put(warning);
                 }
                 for (String goodThing : riskAnalysisResult.getGoodThings()) {
-                    goodthings.add(goodThing);
+                    goodthings.put(goodThing);
                 }
             }
             if (verbosity == SupportedVerbosityLevel.DETAILED) {
                 for (String tip : riskAnalysisResult.getTips()) {
-                    tips.add(tip);
+                    tips.put(tip);
                 }
             }
-            analysis.set("rootcauses", rootcauses);
-            analysis.set("warnings", warnings);
-            analysis.set("goodthings", goodthings);
-            analysis.set("tips", tips);
-            report.add(analysis);
+            analysis.put("rootcauses", rootcauses);
+            analysis.put("warnings", warnings);
+            analysis.put("goodthings", goodthings);
+            analysis.put("tips", tips);
+            report.put(analysis);
         }
         return report;
     }
@@ -236,94 +257,6 @@ public class ReportsFactory {
             }
         }
         return stringBuilder.toString();
-    }
-
-    /**
-     * This method beautify a compact JSON string (not indented). This code is a
-     * variation of the code proposed by of user asksw0rder at StackOverflow.
-     *
-     * https://stackoverflow.com/questions/4105795/pretty-print-json-in-java
-     *
-     * @param uglyJSONString an unformatted, difficult to read, JSON string.
-     * @return a beautified JSON string.
-     */
-    private String beautifyJSONString(String uglyJSONString) {
-        if (uglyJSONString == null) {
-            logger.error("uglyJSONString cannot be null");
-            throw new IllegalArgumentException("uglyJSONString cannot be null");
-        }
-        if (uglyJSONString.isEmpty()) {
-            logger.error("uglyJSONString cannot be blank");
-            throw new IllegalArgumentException("uglyJSONString cannot be blank");
-        }
-        StringBuilder prettyJSONBuilder = new StringBuilder();
-        int indentLevel = 0;
-        boolean inQuote = false;
-        for (char charFromUnformattedJson : uglyJSONString.toCharArray()) {
-            switch (charFromUnformattedJson) {
-                case '"':
-                    // Switch the quoting status. Used to know whether we are
-                    // insed a quoting block or outside.
-                    inQuote = !inQuote;
-                    prettyJSONBuilder.append(charFromUnformattedJson);
-                    break;
-                case ' ':
-                    // For space: ignore the space if it is not being quoted.
-                    if (inQuote) {
-                        prettyJSONBuilder.append(charFromUnformattedJson);
-                    }
-                    break;
-                case '{':
-                case '[':
-                    // Starting a new block: increase the indent level
-                    prettyJSONBuilder.append(charFromUnformattedJson);
-                    indentLevel++;
-                    appendIndentedNewLine(indentLevel, prettyJSONBuilder);
-                    break;
-                case '}':
-                case ']':
-                    // Ending a new block; decrese the indent level
-                    indentLevel--;
-                    appendIndentedNewLine(indentLevel, prettyJSONBuilder);
-                    prettyJSONBuilder.append(charFromUnformattedJson);
-                    break;
-                case ',':
-                    // Ending a json item; create a new line after
-                    prettyJSONBuilder.append(charFromUnformattedJson);
-                    if (!inQuote) {
-                        appendIndentedNewLine(indentLevel, prettyJSONBuilder);
-                    }
-                    break;
-                default:
-                    prettyJSONBuilder.append(charFromUnformattedJson);
-            }
-        }
-        return prettyJSONBuilder.toString();
-    }
-
-    /**
-     * This method print a new line with indention at the beginning of the new
-     * line.
-     *
-     * @param indentLevel the indention level to be applied to the new line.
-     * @param stringBuilder the string builder where new indented line has to be
-     * inserted.
-     */
-    private void appendIndentedNewLine(int indentLevel, StringBuilder stringBuilder) {
-        if (indentLevel < MIN_INDENT_LEVEL) {
-            logger.error("indentLevel cannot be lower than " + MIN_INDENT_LEVEL);
-            throw new IllegalArgumentException("indentLevel cannot be lower than " + MIN_INDENT_LEVEL);
-        }
-        if (stringBuilder == null) {
-            logger.error("stringBuilder cannot be null");
-            throw new IllegalArgumentException("stringBuilder cannot be null");
-        }
-        stringBuilder.append("\n");
-        for (int indentions = 0; indentions < indentLevel; indentions++) {
-            for (int spaces = 0; spaces < INDENTION_SPACES; spaces++) {
-                stringBuilder.append(" ");
-            }
-        }
     }
 
     private String addTab(int indentLevel) {

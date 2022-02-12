@@ -258,7 +258,7 @@ OpenLRAE uses third-party components each one of them having its own OSS license
 
 - slf4j-api 2.0.0-alpha6 - MIT - https://www.slf4j.org
 - slf4j-simple 2.0.0-alpha6 - MIT - https://www.slf4j.org
-- mjson 1.4.1 - Apache-2.0 - http://bolerio.github.io/mjson
+- everit-json-schema 1.14.0 - Apache-2.0 - https://github.com/everit-org/json-schema
 - junit-jupiter-engine 5.8.2 - EPL-2.0 - https://junit.org/junit5
 
 Thanks folks!

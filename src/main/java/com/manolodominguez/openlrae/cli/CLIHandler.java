@@ -61,8 +61,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import mjson.Json;
-import mjson.Json.MalformedJsonException;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -136,7 +134,7 @@ public class CLIHandler {
                 } else {
                     try {
 
-                        Project project = new Project(Json.read(file.toURI().toURL()));
+                        Project project = new Project(file.toURI().toURL());
                         // Define desired risk analysers we want to use for this project
                         RiskAnalyserLimitedSetOfPotentialProjectLicenses riskAnalyser1 = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
                         RiskAnalyserObsoleteComponentsLicenses riskAnalyser2 = new RiskAnalyserObsoleteComponentsLicenses(project);
@@ -170,7 +168,7 @@ public class CLIHandler {
                         // Print analysis report. As a JSON string in this case.
                         writeToConsole("");
                         writeToConsole(ReportsFactory.getInstance(SupportedVerbosityLevel.DETAILED).getReportAsPlainText(project, resultSet));
-                    } catch (MalformedURLException | MalformedJsonException ex) {
+                    } catch (MalformedURLException ex) {
                         writeToConsole(ownI18N.getString(NOT_A_VALID_JSON_1) + " " + fileName + ". " + ownI18N.getString(NOT_A_VALID_JSON_2));
                     }
                 }
@@ -208,7 +206,7 @@ public class CLIHandler {
         }
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
-        Project project = new Project(Json.read(projectURL));
+        Project project = new Project(projectURL);
 
         // Define desired risk analysers we want to use for this project
         RiskAnalyserLimitedSetOfPotentialProjectLicenses riskAnalyser1 = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
