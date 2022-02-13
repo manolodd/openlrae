@@ -190,7 +190,7 @@ class ComponentBindingTest {
         // See /com/manolodominguez/openlrae/json/ExampleProject.json to know
         // the content of that project.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
-        SwProject project = new SwProject(projectURL);
+        Project project = new Project(projectURL);
         ComponentBinding firstComponentBinding = project.getBillOfComponentBindings().get(0);
         assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, firstComponentBinding.getLanguage());
         firstComponentBinding.onLanguageChange(new LanguageChangeEvent(project, SupportedLanguages.SPANISH));
@@ -208,7 +208,7 @@ class ComponentBindingTest {
         // See /com/manolodominguez/openlrae/json/ExampleProject.json to know
         // the content of that project.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
-        SwProject project = new SwProject(projectURL);
+        Project project = new Project(projectURL);
         ComponentBinding firstComponentBinding = project.getBillOfComponentBindings().get(0);
         assertEquals(SupportedLanguages.DEFAULT_LANGUAGE, firstComponentBinding.getLanguage());
         firstComponentBinding.onLanguageChange(new LanguageChangeEvent(project, SupportedLanguages.SPANISH));
@@ -227,7 +227,7 @@ class ComponentBindingTest {
         // See /com/manolodominguez/openlrae/json/ExampleProject.json to know
         // the content of that project.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
-        SwProject project = new SwProject(projectURL);
+        Project project = new Project(projectURL);
         ComponentBinding firstComponentBinding = project.getBillOfComponentBindings().get(0);
         assertThrows(IllegalArgumentException.class, () -> {
             // Should throw an exception because event is null

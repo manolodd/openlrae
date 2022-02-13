@@ -23,7 +23,7 @@
 package com.manolodominguez.openlrae.analysis.riskanalysers;
 
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
-import com.manolodominguez.openlrae.arquitecture.SwProject;
+import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
@@ -71,7 +71,7 @@ public class RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses extends
      *
      * @param project. The software project to be analised.
      */
-    public RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses(SwProject project) {
+    public RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses(Project project) {
         // Project is ckecked at superclass
         super(project, SupportedRisks.HAVING_COMPONENTS_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses.class);

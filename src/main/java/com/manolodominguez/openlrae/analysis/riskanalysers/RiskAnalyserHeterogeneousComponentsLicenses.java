@@ -23,7 +23,7 @@
 package com.manolodominguez.openlrae.analysis.riskanalysers;
 
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
-import com.manolodominguez.openlrae.arquitecture.SwProject;
+import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
@@ -82,7 +82,7 @@ public class RiskAnalyserHeterogeneousComponentsLicenses extends AbstractRiskAna
      *
      * @param project. The software project to be analised.
      */
-    public RiskAnalyserHeterogeneousComponentsLicenses(SwProject project) {
+    public RiskAnalyserHeterogeneousComponentsLicenses(Project project) {
         // Project is ckecked at superclass
         super(project, SupportedRisks.HAVING_HETEROGENEOUS_COMPONENTS_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserHeterogeneousComponentsLicenses.class);

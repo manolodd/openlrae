@@ -23,7 +23,7 @@
 package com.manolodominguez.openlrae.reporting;
 
 import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
-import com.manolodominguez.openlrae.arquitecture.SwProject;
+import com.manolodominguez.openlrae.arquitecture.Project;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -123,7 +123,7 @@ public class ReportsFactory {
      * @return a licensing risk analysis report as a beautified (well indented)
      * JSON string.
      */
-    public String getReportAsBeautifiedJSONString(SwProject project, RiskAnalysisResult[] resultSet) {
+    public String getReportAsBeautifiedJSONString(Project project, RiskAnalysisResult[] resultSet) {
         if (project == null) {
             logger.error("project cannot be null");
             throw new IllegalArgumentException("project cannot be null");
@@ -145,7 +145,7 @@ public class ReportsFactory {
      * @return a licensing risk analysis report as a beautified (well indented)
      * JSON string.
      */
-    public String getReportAsCompactJSONString(SwProject project, RiskAnalysisResult[] resultSet) {
+    public String getReportAsCompactJSONString(Project project, RiskAnalysisResult[] resultSet) {
         if (project == null) {
             logger.error("project cannot be null");
             throw new IllegalArgumentException("project cannot be null");
@@ -165,7 +165,7 @@ public class ReportsFactory {
      * analysis execution, related to the project.
      * @return a licensing risk analysis report as a JSON object.
      */
-    public JSONArray getReportAsJSONArray(SwProject project, RiskAnalysisResult[] resultSet) {
+    public JSONArray getReportAsJSONArray(Project project, RiskAnalysisResult[] resultSet) {
         if (project == null) {
             logger.error("project cannot be null");
             throw new IllegalArgumentException("project cannot be null");
@@ -219,7 +219,7 @@ public class ReportsFactory {
      * analysis execution, related to the project.
      * @return a licensing risk analysis report as a plain text.
      */
-    public String getReportAsPlainText(SwProject project, RiskAnalysisResult[] resultSet) {
+    public String getReportAsPlainText(Project project, RiskAnalysisResult[] resultSet) {
         if (project == null) {
             logger.error("project cannot be null");
             throw new IllegalArgumentException("project cannot be null");

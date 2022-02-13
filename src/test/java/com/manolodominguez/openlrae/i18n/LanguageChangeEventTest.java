@@ -22,7 +22,7 @@
  */
 package com.manolodominguez.openlrae.i18n;
 
-import com.manolodominguez.openlrae.arquitecture.SwProject;
+import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.resourceslocators.FilesPaths;
 import java.net.URL;
 import org.junit.jupiter.api.AfterEach;
@@ -66,7 +66,7 @@ class LanguageChangeEventTest {
         // Define a project. Just because we need a ILanguageChangeEventEmitter
         // and a Project is one.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
-        SwProject project = new SwProject(projectURL);
+        Project project = new Project(projectURL);
         LanguageChangeEvent event = new LanguageChangeEvent(project, SupportedLanguages.SPANISH);
         assertTrue(project ==  event.getSource()); //We're comparing object references here
         assertEquals(SupportedLanguages.SPANISH, event.getNewLanguage());
@@ -94,7 +94,7 @@ class LanguageChangeEventTest {
         // Define a project. Just because we need a ILanguageChangeEventEmitter
         // and a Project is one.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
-        SwProject project = new SwProject(projectURL);
+        Project project = new Project(projectURL);
         assertThrows(IllegalArgumentException.class, () -> {
             // Should throw an exception because newLanguage is null
             new LanguageChangeEvent(project, null);
@@ -110,7 +110,7 @@ class LanguageChangeEventTest {
         // Define a project. Just because we need a ILanguageChangeEventEmitter
         // and a Project is one.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
-        SwProject project = new SwProject(projectURL);
+        Project project = new Project(projectURL);
         LanguageChangeEvent event = new LanguageChangeEvent(project, SupportedLanguages.SPANISH);
         assertEquals(SupportedLanguages.SPANISH, event.getNewLanguage());
     }

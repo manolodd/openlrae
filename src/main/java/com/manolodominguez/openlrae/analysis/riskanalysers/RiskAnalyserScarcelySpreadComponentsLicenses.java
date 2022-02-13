@@ -25,7 +25,7 @@ package com.manolodominguez.openlrae.analysis.riskanalysers;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedSpreadings;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesSpreadingFactory;
-import com.manolodominguez.openlrae.arquitecture.SwProject;
+import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
 import com.manolodominguez.openlrae.i18n.Translations;
@@ -72,7 +72,7 @@ public class RiskAnalyserScarcelySpreadComponentsLicenses extends AbstractRiskAn
      *
      * @param project. The software project to be analised.
      */
-    public RiskAnalyserScarcelySpreadComponentsLicenses(SwProject project) {
+    public RiskAnalyserScarcelySpreadComponentsLicenses(Project project) {
         // Project is ckecked at superclass
         super(project, SupportedRisks.HAVING_SCARCELY_SPREAD_COMPONENTS_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserScarcelySpreadComponentsLicenses.class);

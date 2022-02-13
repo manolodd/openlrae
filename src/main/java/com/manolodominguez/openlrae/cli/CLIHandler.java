@@ -36,7 +36,7 @@ import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserUnfashion
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserUnfashionableProjectLicenses;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserComponentsLicensesMisalignedFromProjectLicenses;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserHeterogeneousComponentsLicenses;
-import com.manolodominguez.openlrae.arquitecture.SwProject;
+import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponentWeights;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
@@ -134,7 +134,7 @@ public class CLIHandler {
                 } else {
                     try {
 
-                        SwProject project = new SwProject(file.toURI().toURL());
+                        Project project = new Project(file.toURI().toURL());
                         // Define desired risk analysers we want to use for this project
                         RiskAnalyserLimitedSetOfPotentialProjectLicenses riskAnalyser1 = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);
                         RiskAnalyserObsoleteComponentsLicenses riskAnalyser2 = new RiskAnalyserObsoleteComponentsLicenses(project);
@@ -206,7 +206,7 @@ public class CLIHandler {
         }
         // Define the project. In this case, it is defined from a JSON file.
         URL projectURL = getClass().getResource(FilesPaths.PROJECT_EXAMPLE.getFilePath());
-        SwProject project = new SwProject(projectURL);
+        Project project = new Project(projectURL);
 
         // Define desired risk analysers we want to use for this project
         RiskAnalyserLimitedSetOfPotentialProjectLicenses riskAnalyser1 = new RiskAnalyserLimitedSetOfPotentialProjectLicenses(project);

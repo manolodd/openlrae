@@ -57,9 +57,9 @@ import org.json.JSONTokener;
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
-public class SwProject implements ILanguageChangeEventEmitter, ILanguageChangeListener {
+public class Project implements ILanguageChangeEventEmitter, ILanguageChangeListener {
 
-    private Logger logger = LoggerFactory.getLogger(SwProject.class);
+    private Logger logger = LoggerFactory.getLogger(Project.class);
 
     private String name;
     private String version;
@@ -93,7 +93,7 @@ public class SwProject implements ILanguageChangeEventEmitter, ILanguageChangeLi
      * add additional component bindings, you have to use
      * addComponentBinding(...) method.
      */
-    public SwProject(String name, String version, SupportedLicenses firstLicense, SupportedRedistributions redistribution, ComponentBinding firstComponentBinding) {
+    public Project(String name, String version, SupportedLicenses firstLicense, SupportedRedistributions redistribution, ComponentBinding firstComponentBinding) {
         if (name == null) {
             logger.error("name cannot be null");
             throw new IllegalArgumentException("name cannot be null");
@@ -151,7 +151,7 @@ public class SwProject implements ILanguageChangeEventEmitter, ILanguageChangeLi
      * @param projectDefinitionAsJSONString a JSON project definition as a
      * String.
      */
-    public SwProject(String projectDefinitionAsJSONString) {
+    public Project(String projectDefinitionAsJSONString) {
         if (projectDefinitionAsJSONString == null) {
             logger.error("projectDefinitionAsJSONString cannot be null");
             throw new IllegalArgumentException("projectDefinitionAsJSONString cannot be null");
@@ -184,7 +184,7 @@ public class SwProject implements ILanguageChangeEventEmitter, ILanguageChangeLi
      *
      * @param projectDefinitionURL a URL containing a JSON project definition.
      */
-    public SwProject(URL projectDefinitionURL) {
+    public Project(URL projectDefinitionURL) {
         if (projectDefinitionURL == null) {
             logger.error("projectDefinition URL cannot be null");
             throw new IllegalArgumentException("projectDefinition URL cannot be null");

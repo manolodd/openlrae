@@ -24,7 +24,7 @@ package com.manolodominguez.openlrae.analysis.riskanalysers;
 
 import com.manolodominguez.openlrae.analysis.RiskAnalysisResult;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
-import com.manolodominguez.openlrae.arquitecture.SwProject;
+import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.i18n.ILanguageChangeEventEmitter;
 import com.manolodominguez.openlrae.i18n.ILanguageChangeListener;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
@@ -46,7 +46,7 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractRiskAnalyser implements ILanguageChangeEventEmitter, ILanguageChangeListener {
 
     protected Logger logger;
-    protected SwProject project = null;
+    protected Project project = null;
     protected SupportedRisks handledRiskType;
     protected float riskExposure;
     protected float riskImpact;
@@ -64,7 +64,7 @@ public abstract class AbstractRiskAnalyser implements ILanguageChangeEventEmitte
      * @param project The software project to be analised.
      * @param handledRiskType The type of risk the subclass addresses.
      */
-    protected AbstractRiskAnalyser(SwProject project, SupportedRisks handledRiskType) {
+    protected AbstractRiskAnalyser(Project project, SupportedRisks handledRiskType) {
         logger = LoggerFactory.getLogger(AbstractRiskAnalyser.class);
         if (project == null) {
             logger.error("Project cannot be null");
@@ -103,7 +103,7 @@ public abstract class AbstractRiskAnalyser implements ILanguageChangeEventEmitte
      *
      * @return the project on wich the risk analysis is going to be done.
      */
-    public SwProject getProject() {
+    public Project getProject() {
         return project;
     }
 
