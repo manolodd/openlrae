@@ -32,12 +32,12 @@ With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard o
 
 ## Latest snapshot version being developed:
  
-- <b>OpenLRAE 3.0-SNAPSHOT</b> (development branch) - LGPL-3.0-or-later.
+- <b>OpenLRAE 3.1-SNAPSHOT</b> (development branch) - LGPL-3.0-or-later.
 
 ## Binary releases:
 
-- <b>OpenLRAE 2.3</b> (current, master branch) - LGPL-3.0-or-later.
-- <b>OpenLRAE from 2.0 to 2.2</b> - LGPL-3.0-or-later.
+- <b>OpenLRAE 3.0</b> (current, master branch) - LGPL-3.0-or-later.
+- <b>OpenLRAE from 2.0 to 2.3</b> - LGPL-3.0-or-later.
 - <b>OpenLRAE from 0.1 to 1.5</b> - Apache-2.0.
 
 # PEOPLE BEHIND OPENLRAE
