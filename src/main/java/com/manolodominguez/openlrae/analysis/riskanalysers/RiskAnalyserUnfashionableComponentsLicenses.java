@@ -25,7 +25,7 @@ package com.manolodominguez.openlrae.analysis.riskanalysers;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedTrends;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesTrendFactory;
-import com.manolodominguez.openlrae.arquitecture.Project;
+import com.manolodominguez.openlrae.arquitecture.SwProject;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
 import com.manolodominguez.openlrae.i18n.Translations;
@@ -71,7 +71,7 @@ public class RiskAnalyserUnfashionableComponentsLicenses extends AbstractRiskAna
      *
      * @param project. The software project to be analised.
      */
-    public RiskAnalyserUnfashionableComponentsLicenses(Project project) {
+    public RiskAnalyserUnfashionableComponentsLicenses(SwProject project) {
         // Project is ckecked at superclass
         super(project, SupportedRisks.HAVING_UNFASHIONABLE_COMPONENTS_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserUnfashionableComponentsLicenses.class);

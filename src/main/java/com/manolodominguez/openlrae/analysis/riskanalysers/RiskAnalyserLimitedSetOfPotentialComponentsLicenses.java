@@ -28,7 +28,7 @@ import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatib
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCompatibilityFactory;
-import com.manolodominguez.openlrae.arquitecture.Project;
+import com.manolodominguez.openlrae.arquitecture.SwProject;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponentWeights;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
@@ -81,7 +81,7 @@ public class RiskAnalyserLimitedSetOfPotentialComponentsLicenses extends Abstrac
      *
      * @param project. The software project to be analised.
      */
-    public RiskAnalyserLimitedSetOfPotentialComponentsLicenses(Project project) {
+    public RiskAnalyserLimitedSetOfPotentialComponentsLicenses(SwProject project) {
         // Project is ckecked at superclass
         super(project, SupportedRisks.HAVING_A_LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserLimitedSetOfPotentialComponentsLicenses.class);

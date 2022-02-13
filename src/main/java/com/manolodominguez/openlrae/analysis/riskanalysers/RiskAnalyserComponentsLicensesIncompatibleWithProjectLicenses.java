@@ -25,7 +25,7 @@ package com.manolodominguez.openlrae.analysis.riskanalysers;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesCompatibilityFactory;
-import com.manolodominguez.openlrae.arquitecture.Project;
+import com.manolodominguez.openlrae.arquitecture.SwProject;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
@@ -75,7 +75,7 @@ public class RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses exten
      *
      * @param project. The software project to be analised.
      */
-    public RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses(Project project) {
+    public RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses(SwProject project) {
         // Project is checked at superclass
         super(project, SupportedRisks.HAVING_COMPONENTS_LICENSES_INCOMPATIBLE_WITH_PROJECT_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses.class);

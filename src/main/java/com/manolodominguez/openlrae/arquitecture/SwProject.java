@@ -33,14 +33,12 @@ import com.manolodominguez.openlrae.resourceslocators.FilesPaths;
 import com.manolodominguez.openlrae.i18n.LanguageConfig;
 import com.manolodominguez.openlrae.i18n.SupportedLanguages;
 import com.manolodominguez.openlrae.i18n.Translations;
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.CopyOnWriteArrayList;
-//import mjson.Json;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.everit.json.schema.Schema;
@@ -59,9 +57,9 @@ import org.json.JSONTokener;
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
-public class Project implements ILanguageChangeEventEmitter, ILanguageChangeListener {
+public class SwProject implements ILanguageChangeEventEmitter, ILanguageChangeListener {
 
-    private Logger logger = LoggerFactory.getLogger(Project.class);
+    private Logger logger = LoggerFactory.getLogger(SwProject.class);
 
     private String name;
     private String version;
@@ -95,7 +93,7 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
      * add additional component bindings, you have to use
      * addComponentBinding(...) method.
      */
-    public Project(String name, String version, SupportedLicenses firstLicense, SupportedRedistributions redistribution, ComponentBinding firstComponentBinding) {
+    public SwProject(String name, String version, SupportedLicenses firstLicense, SupportedRedistributions redistribution, ComponentBinding firstComponentBinding) {
         if (name == null) {
             logger.error("name cannot be null");
             throw new IllegalArgumentException("name cannot be null");
@@ -153,7 +151,7 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
      * @param projectDefinitionAsJSONString a JSON project definition as a
      * String.
      */
-    public Project(String projectDefinitionAsJSONString) {
+    public SwProject(String projectDefinitionAsJSONString) {
         if (projectDefinitionAsJSONString == null) {
             logger.error("projectDefinitionAsJSONString cannot be null");
             throw new IllegalArgumentException("projectDefinitionAsJSONString cannot be null");
@@ -186,7 +184,7 @@ public class Project implements ILanguageChangeEventEmitter, ILanguageChangeList
      *
      * @param projectDefinitionURL a URL containing a JSON project definition.
      */
-    public Project(URL projectDefinitionURL) {
+    public SwProject(URL projectDefinitionURL) {
         if (projectDefinitionURL == null) {
             logger.error("projectDefinition URL cannot be null");
             throw new IllegalArgumentException("projectDefinition URL cannot be null");

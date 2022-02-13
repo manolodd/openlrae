@@ -25,7 +25,7 @@ package com.manolodominguez.openlrae.analysis.riskanalysers;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedObsolescences;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesObsolescencesFactory;
-import com.manolodominguez.openlrae.arquitecture.Project;
+import com.manolodominguez.openlrae.arquitecture.SwProject;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
 import com.manolodominguez.openlrae.i18n.Translations;
@@ -69,7 +69,7 @@ public class RiskAnalyserObsoleteProjectLicenses extends AbstractRiskAnalyser {
      *
      * @param project. The software project to be analised.
      */
-    public RiskAnalyserObsoleteProjectLicenses(Project project) {
+    public RiskAnalyserObsoleteProjectLicenses(SwProject project) {
         // Project is ckecked at superclass
         super(project, SupportedRisks.HAVING_OBSOLETE_PROJECT_LICENSES);
         logger = LoggerFactory.getLogger(RiskAnalyserObsoleteProjectLicenses.class);
