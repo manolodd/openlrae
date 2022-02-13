@@ -21,14 +21,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>9</maven.compiler.release> 
         <!-- About this version of OpenLRAE (used for properties filtering) -->
-        <openlrae.version>2.4-SNAPSHOT</openlrae.version>
+        <openlrae.version>3.0-SNAPSHOT</openlrae.version>
         <openlrae.license>LGPL-3.0-or-later</openlrae.license>
     </properties>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.manolodominguez</groupId>
     <artifactId>openlrae</artifactId>
-    <version>2.4-SNAPSHOT</version>
+    <version>3.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Open Licensing Risks Analysis Engine</name>
     <description>Open LRAE is a licensing risk analysis engine in the form of Java library that allow the detection of risks related to licensing from the set of components (and their respective licenses) you are using in a given project. </description>
@@ -237,4 +237,15 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <configuration>
+                    <configLocation>config/sun_checks.xml</configLocation>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>

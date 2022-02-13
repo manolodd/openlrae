@@ -32,7 +32,7 @@ With this kind of knowledge, teams are able to use OpenLRAE to get a dashboard o
 
 ## Latest snapshot version being developed:
  
-- <b>OpenLRAE 2.4-SNAPSHOT</b> (development branch) - LGPL-3.0-or-later.
+- <b>OpenLRAE 3.0-SNAPSHOT</b> (development branch) - LGPL-3.0-or-later.
 
 ## Binary releases:
 
