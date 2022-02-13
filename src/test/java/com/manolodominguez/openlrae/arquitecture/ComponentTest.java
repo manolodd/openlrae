@@ -22,6 +22,7 @@
  */
 package com.manolodominguez.openlrae.arquitecture;
 
+import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserComponentsLicensesIncompatibleWithProjectLicenses;
 import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -187,5 +188,4 @@ class ComponentTest {
         instance = new Component(name, version, license);
         assertEquals(SupportedLicenses.APACHE_1_1, instance.getLicense());
     }
-    
 }
