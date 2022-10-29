@@ -20,12 +20,12 @@
  * along with this program. If not, see 
  * https://www.gnu.org/licenses/lgpl-3.0.en.html.
  */
-package com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities;
+package com.manolodominguez.openlrae.bok.licenseproperties.licensecompatibilities;
 
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistributions;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedCompatibilities;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLicenses;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLinks;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedRedistributions;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -55,7 +55,38 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
     private DynamicAndSofwarePackageOrSaaS() {
         this.licensesCompatibilities = new CopyOnWriteArrayList<>();
         //
+        // Compatibilities for a AFL_3_0 component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.APACHE_2_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.ARTISTIC_2_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.BSD_2_CLAUSE, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.BSD_3_CLAUSE, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.BSD_4_CLAUSE, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.CDDL_1_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.CPL_1_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.EDL_1_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.EPL_1_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.EPL_2_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.EUPL_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.EUPL_1_2, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.GPL_2_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.GPL_2_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.GPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.GPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.LGPL_2_1_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.LGPL_2_1_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.LGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.LGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.MIT, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.MPL_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.MPL_2_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        //
         // Compatibilities for a AGPL_3_0_ONLY component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_ONLY, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_ONLY, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_ONLY, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_ONLY, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -85,6 +116,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_ONLY, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a AGPL_3_0_OR_LATER component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_OR_LATER, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_OR_LATER, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.MOSTLY_COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, AGPL_3_0_OR_LATER_DYNAMIC_AGPL_3_0_ONLY));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_OR_LATER, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_OR_LATER, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -114,6 +146,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_OR_LATER, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a APACHE_1_1 component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_1_1, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_1_1, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_1_1, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_1_1, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -143,6 +176,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_1_1, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a APACHE_2_0 component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_2_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_2_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_2_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_2_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -172,6 +206,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_2_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a ARTISTIC_2_0 component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.ARTISTIC_2_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.ARTISTIC_2_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.ARTISTIC_2_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.ARTISTIC_2_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -200,7 +235,8 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.ARTISTIC_2_0, SupportedLicenses.MPL_2_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.ARTISTIC_2_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
-        // Compatibilities for a BSD_3_CLAUSE component, dynamic linking and redistribution.
+        // Compatibilities for a BSD_2_CLAUSE component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_2_CLAUSE, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_2_CLAUSE, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_2_CLAUSE, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_2_CLAUSE, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -230,6 +266,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_2_CLAUSE, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a BSD_3_CLAUSE component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_3_CLAUSE, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_3_CLAUSE, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_3_CLAUSE, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_3_CLAUSE, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -259,6 +296,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_3_CLAUSE, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a BSD_4_CLAUSE component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_4_CLAUSE, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_4_CLAUSE, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_4_CLAUSE, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_4_CLAUSE, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -288,6 +326,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_4_CLAUSE, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a CDDL_1_0 component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CDDL_1_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CDDL_1_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CDDL_1_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CDDL_1_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -317,6 +356,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CDDL_1_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a CPL_1_0 component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CPL_1_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, CPL_1_0_DYNAMIC_AFL_3_0));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CPL_1_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CPL_1_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CPL_1_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, CPL_1_0_DYNAMIC_APACHE_1_1));
@@ -346,6 +386,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CPL_1_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a EDL_1_0 component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EDL_1_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EDL_1_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EDL_1_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EDL_1_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -375,6 +416,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EDL_1_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a EPL_1_0 component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_1_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, EPL_1_0_DYNAMIC_AFL_3_0));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_1_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_1_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_1_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, EPL_1_0_DYNAMIC_APACHE_1_1));
@@ -404,6 +446,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_1_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a EPL_2_0 component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_2_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, EPL_2_0_DYNAMIC_AFL_3_0));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_2_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_2_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_2_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, EPL_2_0_DYNAMIC_APACHE_1_1));
@@ -433,6 +476,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_2_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a EUPL_1_1 component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_1, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_1, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_1, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_1, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -462,6 +506,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_1, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a EUPL_1_2 component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_2, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_2, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_2, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_2, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -491,6 +536,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_2, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a GPL_2_0_ONLY component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_ONLY, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_ONLY, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_ONLY, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_ONLY, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -520,6 +566,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_ONLY, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a GPL_2_0_OR_LATER component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_OR_LATER, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_OR_LATER, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_OR_LATER, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_OR_LATER, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -549,6 +596,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_OR_LATER, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a GPL_3_0_ONLY component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_ONLY, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_ONLY, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_ONLY, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_ONLY, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -578,6 +626,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_ONLY, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a GPL_3_0_OR_LATER component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_OR_LATER, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_OR_LATER, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_OR_LATER, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_OR_LATER, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -607,6 +656,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_OR_LATER, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a LGPL_2_1_ONLY component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_ONLY, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_ONLY, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_ONLY, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_ONLY, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -636,6 +686,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_ONLY, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a LGPL_2_1_OR_LATER component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_OR_LATER, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_OR_LATER, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_OR_LATER, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_OR_LATER, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -665,6 +716,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_OR_LATER, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a LGPL_3_0_ONLY component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_ONLY, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_ONLY, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_ONLY, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_ONLY, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -694,6 +746,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_ONLY, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a LGPL_3_0_OR_LATER component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_OR_LATER, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_OR_LATER, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_OR_LATER, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_OR_LATER, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -723,6 +776,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_OR_LATER, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a MIT component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MIT, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MIT, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MIT, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MIT, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -752,6 +806,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MIT, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a MPL_1_1 component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_1_1, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_1_1, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_1_1, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_1_1, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -781,6 +836,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_1_1, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a MPL_2_0 component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_2_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, MPL_2_0_DYNAMIC_AGPL_3_0_ONLY));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_2_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, MPL_2_0_DYNAMIC_AGPL_3_0_ONLY));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_2_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, MPL_2_0_DYNAMIC_AGPL_3_0_OR_LATER));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_2_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -810,6 +866,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_2_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a PUBLIC_DOMAIN component, dynamic linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.PUBLIC_DOMAIN, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.PUBLIC_DOMAIN, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.PUBLIC_DOMAIN, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.PUBLIC_DOMAIN, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -883,6 +940,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
 
     // i18N keys
     private static final String AGPL_3_0_OR_LATER_DYNAMIC_AGPL_3_0_ONLY = "AGPL_3_0_OR_LATER_DYNAMIC_AGPL_3_0_ONLY";
+    private static final String CPL_1_0_DYNAMIC_AFL_3_0 = "CPL_1_0_DYNAMIC_AFL_3_0";
     private static final String CPL_1_0_DYNAMIC_APACHE_1_1 = "CPL_1_0_DYNAMIC_APACHE_1_1";
     private static final String CPL_1_0_DYNAMIC_APACHE_2_0 = "CPL_1_0_DYNAMIC_APACHE_2_0";
     private static final String CPL_1_0_DYNAMIC_ARTISTIC_2_0 = "CPL_1_0_DYNAMIC_ARTISTIC_2_0";
@@ -902,6 +960,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
     private static final String CPL_1_0_DYNAMIC_MIT = "CPL_1_0_DYNAMIC_MIT";
     private static final String CPL_1_0_DYNAMIC_MPL_1_1 = "CPL_1_0_DYNAMIC_MPL_1_1";
     private static final String CPL_1_0_DYNAMIC_MPL_2_0 = "CPL_1_0_DYNAMIC_MPL_2_0";
+    private static final String EPL_1_0_DYNAMIC_AFL_3_0 = "EPL_1_0_DYNAMIC_AFL_3_0";
     private static final String EPL_1_0_DYNAMIC_APACHE_1_1 = "EPL_1_0_DYNAMIC_APACHE_1_1";
     private static final String EPL_1_0_DYNAMIC_APACHE_2_0 = "EPL_1_0_DYNAMIC_APACHE_2_0";
     private static final String EPL_1_0_DYNAMIC_ARTISTIC_2_0 = "EPL_1_0_DYNAMIC_ARTISTIC_2_0";
@@ -921,6 +980,7 @@ public final class DynamicAndSofwarePackageOrSaaS implements InterfaceLicenseCom
     private static final String EPL_1_0_DYNAMIC_MIT = "EPL_1_0_DYNAMIC_MIT";
     private static final String EPL_1_0_DYNAMIC_MPL_1_1 = "EPL_1_0_DYNAMIC_MPL_1_1";
     private static final String EPL_1_0_DYNAMIC_MPL_2_0 = "EPL_1_0_DYNAMIC_MPL_2_0";
+    private static final String EPL_2_0_DYNAMIC_AFL_3_0 = "EPL_2_0_DYNAMIC_AFL_3_0";
     private static final String EPL_2_0_DYNAMIC_APACHE_1_1 = "EPL_2_0_DYNAMIC_APACHE_1_1";
     private static final String EPL_2_0_DYNAMIC_APACHE_2_0 = "EPL_2_0_DYNAMIC_APACHE_2_0";
     private static final String EPL_2_0_DYNAMIC_ARTISTIC_2_0 = "EPL_2_0_DYNAMIC_ARTISTIC_2_0";

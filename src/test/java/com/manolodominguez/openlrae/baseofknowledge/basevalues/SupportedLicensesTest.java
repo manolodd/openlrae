@@ -22,6 +22,7 @@
  */
 package com.manolodominguez.openlrae.baseofknowledge.basevalues;
 
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLicenses;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -60,8 +61,8 @@ class SupportedLicensesTest {
     @Test
     void testItemsNumber() {
         System.out.println("items number");
-        // Currently there are 30 licenses defined in enum
-        assertEquals(30, SupportedLicenses.values().length);
+        // Currently there are 31 licenses defined in enum
+        assertEquals(31, SupportedLicenses.values().length);
     }
 
     /**
@@ -75,6 +76,7 @@ class SupportedLicensesTest {
         boolean worksFine = true;
         for (SupportedLicenses license : SupportedLicenses.values()) {
             switch (license) {
+                case AFL_3_0:
                 case AGPL_3_0_ONLY:
                 case AGPL_3_0_OR_LATER:
                 case APACHE_1_1:
@@ -121,8 +123,8 @@ class SupportedLicensesTest {
     @Test
     void testGetLicensesForProjects() {
         System.out.println("getLicensesForProjects");
-        // Currently there are 27 licenses for projects defined in enum
-        assertEquals(27, SupportedLicenses.getLicensesForProjects().length);
+        // Currently there are 28 licenses for projects defined in enum
+        assertEquals(28, SupportedLicenses.getLicensesForProjects().length);
     }
 
     /**
@@ -131,8 +133,8 @@ class SupportedLicensesTest {
     @Test
     void testGetLicensesForComponents() {
         System.out.println("getLicensesForComponents");
-        // Currently there are 30 licenses for components defined in enum
-        assertEquals(30, SupportedLicenses.getLicensesForComponents().length);
+        // Currently there are 31 licenses for components defined in enum
+        assertEquals(31, SupportedLicenses.getLicensesForComponents().length);
     }
 
     /**
@@ -151,8 +153,8 @@ class SupportedLicensesTest {
     @Test
     void testGetNotFicticiousLicenses() {
         System.out.println("getNotFicticiousLicenses");
-        // Currently there are 27 not ficticious licenses defined in enum
-        assertEquals(27, SupportedLicenses.getNotFicticiousLicenses().length);
+        // Currently there are 28 not ficticious licenses defined in enum
+        assertEquals(28, SupportedLicenses.getNotFicticiousLicenses().length);
     }
 
 }

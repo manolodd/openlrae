@@ -20,27 +20,31 @@
  * along with this program. If not, see 
  * https://www.gnu.org/licenses/lgpl-3.0.en.html.
  */
-package com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities;
+package com.manolodominguez.openlrae.bok.basevalues;
 
-import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * This interface has to be implemented by classes that generates partial bases
- * of knowledge for LicenseCompatiblityClass class.
+ * This class implements an enum to define all type of risk whose analysys is
+ * supported by OpenLRAE. Each one of them should have the associated risk
+ * analyser.
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
-public interface InterfaceLicenseCompatibilitiesSubfactory {
+public enum SupportedRisks {
+    HAVING_COMPONENTS_LICENSES_INCOMPATIBLE_WITH_PROJECT_LICENSES,
+    HAVING_A_LIMITED_SET_OF_POTENTIAL_PROJECT_LICENSES,
+    HAVING_A_LIMITED_SET_OF_POTENTIAL_COMPONENTS_LICENSES,
+    HAVING_OBSOLETE_PROJECT_LICENSES,
+    HAVING_OBSOLETE_COMPONENTS_LICENSES,
+    HAVING_UNFASHIONABLE_PROJECT_LICENSES,
+    HAVING_UNFASHIONABLE_COMPONENTS_LICENSES,
+    HAVING_SCARCELY_SPREAD_PROJECT_LICENSES,
+    HAVING_SCARCELY_SPREAD_COMPONENTS_LICENSES,
+    HAVING_HETEROGENEOUS_COMPONENTS_LICENSES,
+    HAVING_COMPONENTS_LICENSES_MISALIGNED_FROM_PROJECT_LICENSES;
 
-    /**
-     * This interface, once implemented, will get the set of compatiblity
-     * entries related to components linked (in a given way) to a project that
-     * is going to be redistributed (in any form), or not, depending on the
-     * specific implementation.
-     *
-     * @return the set of compatiblity entries related to components linked (in
-     * a given way) to a project that is going to be redistributed (in any
-     * form), or not.
-     */
-    public List<LicenseCompatibilityEntry> getCompatibilities();
+    private Logger logger = LoggerFactory.getLogger(SupportedRisks.class);
+
 }

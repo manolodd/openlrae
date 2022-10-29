@@ -20,10 +20,10 @@
  * along with this program. If not, see 
  * https://www.gnu.org/licenses/lgpl-3.0.en.html.
  */
-package com.manolodominguez.openlrae.baseofknowledge.licenseproperties;
+package com.manolodominguez.openlrae.bok.licenseproperties;
 
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedObsolescences;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLicenses;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedObsolescences;
 import java.util.EnumMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,6 +51,7 @@ public final class LicensesObsolescencesFactory {
         // How old is a given license in relation to the versions line of this
         // license? Is it the oldest? The latest?
         this.licensesObsolescenses = new EnumMap<>(SupportedLicenses.class);
+        this.licensesObsolescenses.put(SupportedLicenses.AFL_3_0, computeObsolescence(SIX, SIX));
         this.licensesObsolescenses.put(SupportedLicenses.AGPL_3_0_ONLY, computeObsolescence(FOUR, THIRD));
         this.licensesObsolescenses.put(SupportedLicenses.AGPL_3_0_OR_LATER, computeObsolescence(FOUR, FOURTH));
         this.licensesObsolescenses.put(SupportedLicenses.APACHE_1_1, computeObsolescence(THREE, SECOND));

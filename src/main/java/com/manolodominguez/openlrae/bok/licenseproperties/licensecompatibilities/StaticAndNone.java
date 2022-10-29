@@ -20,18 +20,18 @@
  * along with this program. If not, see 
  * https://www.gnu.org/licenses/lgpl-3.0.en.html.
  */
-package com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities;
+package com.manolodominguez.openlrae.bok.licenseproperties.licensecompatibilities;
 
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistributions;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedCompatibilities;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLicenses;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLinks;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedRedistributions;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * This class implements factory class that generates and loads the licenses
- * compatibility combinations of components linked dinamically to a project that
+ * compatibility combinations of components linked statically to a project that
  * is not going to be redistributed. This is an utility class to avoid a very,
  * very large LicenseCompatibilityFactory class. Due to the number of licenses
  * an the the number of potential combinations, building the base of knowledge
@@ -39,56 +39,55 @@ import java.util.concurrent.CopyOnWriteArrayList;
  *
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
-public final class DynamicAndNone implements InterfaceLicenseCompatibilitiesSubfactory {
+public final class StaticAndNone implements InterfaceLicenseCompatibilitiesSubfactory {
 
-    private static DynamicAndNone instance;
+    private static StaticAndNone instance;
     private final CopyOnWriteArrayList<LicenseCompatibilityEntry> licensesCompatibilities;
 
     /**
      * This is the constuctor of the class.It creates a new instance of
-     * DinamicAndNone containing the base of knowledge related to components
-     * linked dinamically to a project that is not going to be redistributed;
+     * StaticAndNone containing the base of knowledge related to components
+     * linked statically to a project that is not going to be redistributed;
      * taking into account the component license and the project license.
      */
-    private DynamicAndNone() {
+    private StaticAndNone() {
         this.licensesCompatibilities = new CopyOnWriteArrayList<>();
         //
-        // All licenses except fake licenses for dinamic linking and every 
+        // All licenses except fake licenses for static linking and every 
         // potential project licenses. At this moment, all *real* licenses 
         // supported by OpenLRAE are compatible with each other if no 
         // redistribution is done. So, we use a loop to initialize. If at a 
-        // given moment a supported license is not compatible with the project 
-        // license even not redistributing, this has to be changed and 
-        // initialize them one by one.
+        // given moment a supported license is not compatible even not 
+        // redistributing, this has to be changed and initialize them one by 
+        // one.
         for (SupportedLicenses componentLicense : SupportedLicenses.getNotFicticiousLicenses()) {
             for (SupportedLicenses projectLicense : SupportedLicenses.getLicensesForProjects()) {
-                this.licensesCompatibilities.add(new LicenseCompatibilityEntry(componentLicense, projectLicense, SupportedCompatibilities.COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.NONE, null));
+                this.licensesCompatibilities.add(new LicenseCompatibilityEntry(componentLicense, projectLicense, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.NONE, null));
             }
         }
         //
-        // Fake licenses for dinamic linking and every potential project 
-        // licenses
+        // Fake licenses for dinamic linking and every potential project licenses
         for (SupportedLicenses projectLicense : SupportedLicenses.getLicensesForProjects()) {
-            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNDEFINED, projectLicense, SupportedCompatibilities.UNKNOWN, SupportedLinks.DYNAMIC, SupportedRedistributions.NONE, null));
-            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, projectLicense, SupportedCompatibilities.FORCED_COMPATIBLE, SupportedLinks.DYNAMIC, SupportedRedistributions.NONE, null));
-            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNSUPPORTED, projectLicense, SupportedCompatibilities.UNSUPPORTED, SupportedLinks.DYNAMIC, SupportedRedistributions.NONE, null));
+            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNDEFINED, projectLicense, SupportedCompatibilities.UNKNOWN, SupportedLinks.STATIC, SupportedRedistributions.NONE, null));
+            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.FORCED_AS_PROJECT_LICENSE, projectLicense, SupportedCompatibilities.FORCED_COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.NONE, null));
+            this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.UNSUPPORTED, projectLicense, SupportedCompatibilities.UNSUPPORTED, SupportedLinks.STATIC, SupportedRedistributions.NONE, null));
         }
     }
 
     /**
      * This method implements the singleton patter to return the existing
-     * instance of DinamicAndNone or, if it does is instantiated yet, it creates
+     * instance of StaticAndNone or, if it does is instantiated yet, it creates
      * the first instance.
      *
-     * @return an instance of DinamicAndNone (new, or the existing one).
+     * @return an instance of StaticAndNone (new, or the existing one).
      */
-    public static DynamicAndNone getInstance() {
-        DynamicAndNone localInstance = DynamicAndNone.instance;
+    public static StaticAndNone getInstance() {
+        StaticAndNone localInstance = StaticAndNone.instance;
         if (localInstance == null) {
-            synchronized (DynamicAndNone.class) {
-                localInstance = DynamicAndNone.instance;
+            synchronized (StaticAndNone.class) {
+                localInstance = StaticAndNone.instance;
                 if (localInstance == null) {
-                    DynamicAndNone.instance = localInstance = new DynamicAndNone();
+                    StaticAndNone.instance = localInstance = new StaticAndNone();
                 }
             }
         }
@@ -97,10 +96,10 @@ public final class DynamicAndNone implements InterfaceLicenseCompatibilitiesSubf
 
     /**
      * This method get the set of compatiblity entries related to components
-     * linked dinamically to a project that is not going to be redistributed.
+     * linked statically to a project that is not going to be redistributed.
      *
      * @return the set of compatiblity entries related to components linked
-     * dinamically to a project that is not going to be redistributed.
+     * statically to a project that is not going to be redistributed.
      */
     @Override
     public List<LicenseCompatibilityEntry> getCompatibilities() {

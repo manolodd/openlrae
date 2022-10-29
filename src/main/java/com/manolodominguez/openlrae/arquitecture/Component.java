@@ -22,7 +22,7 @@
  */
 package com.manolodominguez.openlrae.arquitecture;
 
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLicenses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

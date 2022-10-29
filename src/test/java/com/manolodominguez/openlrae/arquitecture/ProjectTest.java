@@ -24,10 +24,10 @@ package com.manolodominguez.openlrae.arquitecture;
 
 import com.manolodominguez.openlrae.analysis.LicenseRiskAnalysisEngine;
 import com.manolodominguez.openlrae.analysis.riskanalysers.RiskAnalyserLimitedSetOfPotentialProjectLicenses;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedComponentWeights;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistributions;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedComponentWeights;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLicenses;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLinks;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedRedistributions;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
 import com.manolodominguez.openlrae.i18n.SupportedLanguages;
 import com.manolodominguez.openlrae.resourceslocators.FilesPaths;

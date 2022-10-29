@@ -20,7 +20,7 @@
  * along with this program. If not, see 
  * https://www.gnu.org/licenses/lgpl-3.0.en.html.
  */
-package com.manolodominguez.openlrae.baseofknowledge.basevalues;
+package com.manolodominguez.openlrae.bok.basevalues;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

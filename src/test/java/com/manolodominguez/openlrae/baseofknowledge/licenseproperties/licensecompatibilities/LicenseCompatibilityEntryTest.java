@@ -22,10 +22,11 @@
  */
 package com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities;
 
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistributions;
+import com.manolodominguez.openlrae.bok.licenseproperties.licensecompatibilities.LicenseCompatibilityEntry;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedCompatibilities;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLicenses;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLinks;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedRedistributions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;

@@ -20,17 +20,17 @@
  * along with this program. If not, see 
  * https://www.gnu.org/licenses/lgpl-3.0.en.html.
  */
-package com.manolodominguez.openlrae.baseofknowledge.licenseproperties;
+package com.manolodominguez.openlrae.bok.licenseproperties;
 
-import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities.LicenseCompatibilityEntry;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistributions;
-import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities.DynamicAndNone;
-import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities.DynamicAndSofwarePackageOrSaaS;
-import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities.StaticAndNone;
-import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities.StaticAndSofwarePackageOrSaaS;
+import com.manolodominguez.openlrae.bok.licenseproperties.licensecompatibilities.LicenseCompatibilityEntry;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedCompatibilities;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLicenses;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLinks;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedRedistributions;
+import com.manolodominguez.openlrae.bok.licenseproperties.licensecompatibilities.DynamicAndNone;
+import com.manolodominguez.openlrae.bok.licenseproperties.licensecompatibilities.DynamicAndSofwarePackageOrSaaS;
+import com.manolodominguez.openlrae.bok.licenseproperties.licensecompatibilities.StaticAndNone;
+import com.manolodominguez.openlrae.bok.licenseproperties.licensecompatibilities.StaticAndSofwarePackageOrSaaS;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

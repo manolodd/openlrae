@@ -22,7 +22,7 @@
  */
 package com.manolodominguez.openlrae.analysis;
 
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedRisks;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;

@@ -22,10 +22,11 @@
  */
 package com.manolodominguez.openlrae.baseofknowledge.licenseproperties;
 
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedCompatibilities;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLinks;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRedistributions;
+import com.manolodominguez.openlrae.bok.licenseproperties.LicensesCompatibilityFactory;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedCompatibilities;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLicenses;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLinks;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedRedistributions;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Set;

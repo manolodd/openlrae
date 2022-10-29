@@ -20,10 +20,10 @@
  * along with this program. If not, see 
  * https://www.gnu.org/licenses/lgpl-3.0.en.html.
  */
-package com.manolodominguez.openlrae.baseofknowledge.licenseproperties;
+package com.manolodominguez.openlrae.bok.licenseproperties;
 
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedSpreadings;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLicenses;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedSpreadings;
 import java.util.EnumMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +50,7 @@ public final class LicensesSpreadingFactory {
         // overall set of existing projecs. Are there many existing projects 
         // that use this license?
         this.licensesSpreadings = new EnumMap<>(SupportedLicenses.class);
+        this.licensesSpreadings.put(SupportedLicenses.AFL_3_0, SupportedSpreadings.NEAR_LITTLE_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.AGPL_3_0_ONLY, SupportedSpreadings.LITTLE_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.AGPL_3_0_OR_LATER, SupportedSpreadings.LITTLE_WIDESPREAD);
         this.licensesSpreadings.put(SupportedLicenses.APACHE_1_1, SupportedSpreadings.NEAR_LITTLE_WIDESPREAD);

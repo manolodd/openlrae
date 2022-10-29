@@ -22,9 +22,9 @@
  */
 package com.manolodominguez.openlrae.analysis.riskanalysers;
 
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedObsolescences;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
-import com.manolodominguez.openlrae.baseofknowledge.licenseproperties.LicensesObsolescencesFactory;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedObsolescences;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedRisks;
+import com.manolodominguez.openlrae.bok.licenseproperties.LicensesObsolescencesFactory;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;

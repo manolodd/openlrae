@@ -22,6 +22,7 @@
  */
 package com.manolodominguez.openlrae.baseofknowledge.basevalues;
 
+import com.manolodominguez.openlrae.bok.basevalues.SupportedObsolescences;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;

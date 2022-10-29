@@ -22,6 +22,7 @@
  */
 package com.manolodominguez.openlrae.baseofknowledge.licenseproperties.licensecompatibilities;
 
+import com.manolodominguez.openlrae.bok.licenseproperties.licensecompatibilities.StaticAndNone;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;

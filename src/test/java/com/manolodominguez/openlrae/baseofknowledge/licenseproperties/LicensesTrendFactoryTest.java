@@ -22,8 +22,9 @@
  */
 package com.manolodominguez.openlrae.baseofknowledge.licenseproperties;
 
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedTrends;
+import com.manolodominguez.openlrae.bok.licenseproperties.LicensesTrendFactory;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLicenses;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedTrends;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Set;

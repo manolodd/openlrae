@@ -35,8 +35,6 @@ import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.i18n.SupportedLanguages;
 import com.manolodominguez.openlrae.reporting.ReportsFactory;
 import com.manolodominguez.openlrae.resourceslocators.FilesPaths;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Locale;
 import org.everit.json.schema.Schema;

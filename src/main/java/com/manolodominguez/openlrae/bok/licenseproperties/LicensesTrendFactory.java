@@ -20,10 +20,10 @@
  * along with this program. If not, see 
  * https://www.gnu.org/licenses/lgpl-3.0.en.html.
  */
-package com.manolodominguez.openlrae.baseofknowledge.licenseproperties;
+package com.manolodominguez.openlrae.bok.licenseproperties;
 
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedTrends;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedTrends;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLicenses;
 import java.util.EnumMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,6 +49,7 @@ public final class LicensesTrendFactory {
         // Generating trend values for each supported licenses ID. Is this 
         // license being used more and more on the time?
         this.licensesTrends = new EnumMap<>(SupportedLicenses.class);
+        this.licensesTrends.put(SupportedLicenses.AFL_3_0, SupportedTrends.NEAR_UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.AGPL_3_0_ONLY, SupportedTrends.NEAR_UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.AGPL_3_0_OR_LATER, SupportedTrends.NEAR_UNFASHIONABLE);
         this.licensesTrends.put(SupportedLicenses.APACHE_1_1, SupportedTrends.UNFASHIONABLE);

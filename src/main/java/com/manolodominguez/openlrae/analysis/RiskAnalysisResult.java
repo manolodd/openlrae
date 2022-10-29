@@ -22,7 +22,7 @@
  */
 package com.manolodominguez.openlrae.analysis;
 
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedRisks;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

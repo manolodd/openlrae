@@ -22,10 +22,10 @@
  */
 package com.manolodominguez.openlrae.analysis.riskanalysers;
 
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedRisks;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedRisks;
 import com.manolodominguez.openlrae.arquitecture.Project;
 import com.manolodominguez.openlrae.arquitecture.ComponentBinding;
-import com.manolodominguez.openlrae.baseofknowledge.basevalues.SupportedLicenses;
+import com.manolodominguez.openlrae.bok.basevalues.SupportedLicenses;
 import com.manolodominguez.openlrae.i18n.LanguageChangeEvent;
 import com.manolodominguez.openlrae.i18n.Translations;
 import java.util.ResourceBundle;

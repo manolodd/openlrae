@@ -20,7 +20,7 @@
  * along with this program. If not, see 
  * https://www.gnu.org/licenses/lgpl-3.0.en.html.
  */
-package com.manolodominguez.openlrae.baseofknowledge.basevalues;
+package com.manolodominguez.openlrae.bok.basevalues;
 
 import java.util.Arrays;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -55,6 +55,7 @@ import org.slf4j.LoggerFactory;
  * @author Manuel Domínguez Dorado - ingeniero@ManoloDominguez.com
  */
 public enum SupportedLicenses {
+    AFL_3_0(false),
     AGPL_3_0_ONLY(false),
     AGPL_3_0_OR_LATER(false),
     APACHE_1_1(false),
@@ -84,9 +85,9 @@ public enum SupportedLicenses {
     PUBLIC_DOMAIN(false),
     // These ones are special licenses, not real ones. They only apply to 
     // component definitions, but not to project definition.
-    UNDEFINED(true),
-    UNSUPPORTED(true),
-    FORCED_AS_PROJECT_LICENSE(true);
+    UNDEFINED(true), // Unknown
+    UNSUPPORTED(true), // Known but unssuported by OpenLRAE
+    FORCED_AS_PROJECT_LICENSE(true); // You have written permision to use as the project license
 
     private Logger logger = LoggerFactory.getLogger(SupportedLicenses.class);
 
