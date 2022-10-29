@@ -130,13 +130,13 @@ class RiskAnalyserLimitedSetOfPotentialComponentsLicensesTest {
         assertTrue(!result.getTips().isEmpty());
         assertTrue(result.getRiskExposure() >= 0.0f);
         assertTrue(result.getRiskExposure() <= 1.0f);
-        assertEquals(0.4833f, result.getRiskExposure());
+        assertEquals(0.4758f, result.getRiskExposure());
         assertTrue(result.getRiskImpact() >= 0.0f);
         assertTrue(result.getRiskImpact() <= 1.0f);
-        assertEquals(0.4833f, result.getRiskImpact());
+        assertEquals(0.4758f, result.getRiskImpact());
         assertTrue(result.getRiskValue() >= 0.0f);
         assertTrue(result.getRiskValue() <= 1.0f);
-        assertEquals(0.2336f, result.getRiskValue());
+        assertEquals(0.2264f, result.getRiskValue());
     }
     
     /**

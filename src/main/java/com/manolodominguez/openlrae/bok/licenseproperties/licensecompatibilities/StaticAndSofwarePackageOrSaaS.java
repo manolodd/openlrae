@@ -55,7 +55,38 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
     private StaticAndSofwarePackageOrSaaS() {
         this.licensesCompatibilities = new CopyOnWriteArrayList<>();
         //
+        // Compatibilities for a AFL_3_0 component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, AFL_3_0_STATIC_APACHE_1_1));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.APACHE_2_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, AFL_3_0_STATIC_APACHE_2_0));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.ARTISTIC_2_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, AFL_3_0_STATIC_ARTISTIC_2_0));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.BSD_2_CLAUSE, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, AFL_3_0_STATIC_BSD_2_CLAUSE));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.BSD_3_CLAUSE, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, AFL_3_0_STATIC_BSD_3_CLAUSE));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.BSD_4_CLAUSE, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, AFL_3_0_STATIC_BSD_4_CLAUSE));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.CDDL_1_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.CPL_1_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.EDL_1_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, AFL_3_0_STATIC_EDL_1_0));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.EPL_1_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.EPL_2_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.EUPL_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.EUPL_1_2, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.GPL_2_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.GPL_2_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.GPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.GPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.LGPL_2_1_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.LGPL_2_1_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.LGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.LGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.MIT, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, AFL_3_0_STATIC_MIT));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.MPL_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.MPL_2_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AFL_3_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
+        //
         // Compatibilities for a AGPL_3_0_ONLY component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_ONLY, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_ONLY, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_ONLY, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_ONLY, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -85,6 +116,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_ONLY, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a AGPL_3_0_OR_LATER component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_OR_LATER, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, AGPL_3_0_OR_LATER_STATIC_AGPL_3_0_ONLY));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_OR_LATER, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.MOSTLY_COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, AGPL_3_0_OR_LATER_STATIC_AGPL_3_0_ONLY));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_OR_LATER, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_OR_LATER, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -114,6 +146,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.AGPL_3_0_OR_LATER, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a APACHE_1_1 component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_1_1, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, APACHE_1_1_STATIC_AFL_3_0));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_1_1, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_1_1, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_1_1, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -143,6 +176,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_1_1, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a APACHE_2_0 component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_2_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, APACHE_2_0_STATIC_AFL_3_0));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_2_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_2_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_2_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, APACHE_2_0_STATIC_APACHE_1_1));
@@ -172,6 +206,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.APACHE_2_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a ARTISTIC_2_0 component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.ARTISTIC_2_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, ARTISTIC_2_0_STATIC_AFL_3_0));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.ARTISTIC_2_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.ARTISTIC_2_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.ARTISTIC_2_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, ARTISTIC_2_0_STATIC_APACHE_1_1));
@@ -201,6 +236,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.ARTISTIC_2_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a BSD_2_CLAUSE component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_2_CLAUSE, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_2_CLAUSE, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_2_CLAUSE, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_2_CLAUSE, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -230,6 +266,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_2_CLAUSE, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a BSD_3_CLAUSE component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_3_CLAUSE, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_3_CLAUSE, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_3_CLAUSE, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_3_CLAUSE, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -259,6 +296,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_3_CLAUSE, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a BSD_4_CLAUSE component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_4_CLAUSE, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, BSD_4_CLAUSE_STATIC_AFL_3_0));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_4_CLAUSE, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_4_CLAUSE, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_4_CLAUSE, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, BSD_4_CLAUSE_STATIC_APACHE_1_1));
@@ -288,6 +326,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.BSD_4_CLAUSE, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a CDDL_1_0 component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CDDL_1_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CDDL_1_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CDDL_1_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CDDL_1_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -317,6 +356,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CDDL_1_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a CPL_1_0 component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CPL_1_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CPL_1_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CPL_1_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CPL_1_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -346,6 +386,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.CPL_1_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a EDL_1_0 component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EDL_1_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EDL_1_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EDL_1_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EDL_1_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -375,6 +416,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EDL_1_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a EPL_1_0 component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_1_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_1_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_1_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_1_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -404,6 +446,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_1_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a EPL_2_0 component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_2_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_2_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_2_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_2_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -433,6 +476,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EPL_2_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a EUPL_1_1 component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_1, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_1, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_1, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_1, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -462,6 +506,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_1, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a EUPL_1_2 component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_2, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_2, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_2, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_2, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -491,6 +536,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.EUPL_1_2, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a GPL_2_0_ONLY component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_ONLY, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_ONLY, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_ONLY, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_ONLY, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -520,6 +566,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_ONLY, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a GPL_2_0_OR_LATER component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_OR_LATER, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_OR_LATER, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_OR_LATER, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_OR_LATER, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -549,6 +596,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_2_0_OR_LATER, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a GPL_3_0_ONLY component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_ONLY, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_ONLY, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.MOSTLY_COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, GPL_3_0_ONLY_STATIC_AGPL_3_0_ONLY));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_ONLY, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.MOSTLY_COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, GPL_3_0_ONLY_STATIC_AGPL_3_0_OR_LATER));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_ONLY, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -578,6 +626,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_ONLY, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a GPL_3_0_OR_LATER component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_OR_LATER, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS,  null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_OR_LATER, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.MOSTLY_COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, GPL_3_0_OR_LATER_STATIC_AGPL_3_0_ONLY));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_OR_LATER, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.MOSTLY_COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, GPL_3_0_OR_LATER_STATIC_AGPL_3_0_OR_LATER));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_OR_LATER, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -607,6 +656,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.GPL_3_0_OR_LATER, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a LGPL_2_1_ONLY component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_ONLY, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_ONLY, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_ONLY, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_ONLY, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -636,6 +686,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_ONLY, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a LGPL_2_1_OR_LATER component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_OR_LATER, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_OR_LATER, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_OR_LATER, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_OR_LATER, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -665,6 +716,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_2_1_OR_LATER, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a LGPL_3_0_ONLY component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_ONLY, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_ONLY, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_ONLY, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_ONLY, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -694,6 +746,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_ONLY, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a LGPL_3_0_OR_LATER component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_OR_LATER, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_OR_LATER, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_OR_LATER, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_OR_LATER, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -723,6 +776,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.LGPL_3_0_OR_LATER, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a MIT component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MIT, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MIT, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MIT, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MIT, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -752,6 +806,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MIT, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a MPL_1_1 component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_1_1, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_1_1, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_1_1, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_1_1, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -781,6 +836,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_1_1, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a MPL_2_0 component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_2_0, SupportedLicenses.AFL_3_0, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_2_0, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_2_0, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_2_0, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -810,6 +866,7 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.MPL_2_0, SupportedLicenses.PUBLIC_DOMAIN, SupportedCompatibilities.UNCOMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         //
         // Compatibilities for a PUBLIC_DOMAIN component, static linking and redistribution.
+        this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.PUBLIC_DOMAIN, SupportedLicenses.AFL_3_0, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.PUBLIC_DOMAIN, SupportedLicenses.AGPL_3_0_ONLY, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.PUBLIC_DOMAIN, SupportedLicenses.AGPL_3_0_OR_LATER, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
         this.licensesCompatibilities.add(new LicenseCompatibilityEntry(SupportedLicenses.PUBLIC_DOMAIN, SupportedLicenses.APACHE_1_1, SupportedCompatibilities.COMPATIBLE, SupportedLinks.STATIC, SupportedRedistributions.SOFTWARE_PACKAGE_OR_SAAS, null));
@@ -882,29 +939,41 @@ public final class StaticAndSofwarePackageOrSaaS implements InterfaceLicenseComp
     }
 
     // i18N Keys
+    private static final String AFL_3_0_STATIC_APACHE_1_1 = "AFL_3_0_STATIC_APACHE_1_1";
+    private static final String AFL_3_0_STATIC_APACHE_2_0 = "AFL_3_0_STATIC_APACHE_2_0";
+    private static final String AFL_3_0_STATIC_ARTISTIC_2_0 = "AFL_3_0_STATIC_ARTISTIC_2_0";
+    private static final String AFL_3_0_STATIC_BSD_2_CLAUSE = "AFL_3_0_STATIC_BSD_2_CLAUSE";
+    private static final String AFL_3_0_STATIC_BSD_3_CLAUSE = "AFL_3_0_STATIC_BSD_3_CLAUSE";
+    private static final String AFL_3_0_STATIC_BSD_4_CLAUSE = "AFL_3_0_STATIC_BSD_4_CLAUSE";
+    private static final String AFL_3_0_STATIC_EDL_1_0 = "AFL_3_0_STATIC_EDL_1_0";
+    private static final String AFL_3_0_STATIC_MIT = "AFL_3_0_STATIC_MIT";
     private static final String AGPL_3_0_ONLY_STATIC_GPL_3_0_ONLY = "AGPL_3_0_ONLY_STATIC_GPL_3_0_ONLY";
     private static final String AGPL_3_0_ONLY_STATIC_GPL_3_0_OR_LATER = "AGPL_3_0_ONLY_STATIC_GPL_3_0_OR_LATER";
     private static final String AGPL_3_0_OR_LATER_STATIC_AGPL_3_0_ONLY = "AGPL_3_0_OR_LATER_STATIC_AGPL_3_0_ONLY";
     private static final String AGPL_3_0_OR_LATER_STATIC_GPL_3_0_ONLY = "AGPL_3_0_OR_LATER_STATIC_GPL_3_0_ONLY";
     private static final String AGPL_3_0_OR_LATER_STATIC_GPL_3_0_OR_LATER = "AGPL_3_0_OR_LATER_STATIC_GPL_3_0_OR_LATER";
+    private static final String APACHE_1_1_STATIC_AFL_3_0 = "APACHE_1_1_STATIC_AFL_3_0";
     private static final String APACHE_1_1_STATIC_APACHE_2_0 = "APACHE_1_1_STATIC_APACHE_2_0";
     private static final String APACHE_1_1_STATIC_ARTISTIC_2_0 = "APACHE_1_1_STATIC_ARTISTIC_2_0";
     private static final String APACHE_1_1_STATIC_BSD_3_CLAUSE = "APACHE_1_1_STATIC_BSD_3_CLAUSE";
     private static final String APACHE_1_1_STATIC_BSD_4_CLAUSE = "APACHE_1_1_STATIC_BSD_4_CLAUSE";
     private static final String APACHE_1_1_STATIC_EDL_1_0 = "APACHE_1_1_STATIC_EDL_1_0";
     private static final String APACHE_1_1_STATIC_MIT = "APACHE_1_1_STATIC_MIT";
+    private static final String APACHE_2_0_STATIC_AFL_3_0 = "APACHE_2_0_STATIC_AFL_3_0";
     private static final String APACHE_2_0_STATIC_APACHE_1_1 = "APACHE_2_0_STATIC_APACHE_1_1";
     private static final String APACHE_2_0_STATIC_ARTISTIC_2_0 = "APACHE_2_0_STATIC_ARTISTIC_2_0";
     private static final String APACHE_2_0_STATIC_BSD_3_CLAUSE = "APACHE_2_0_STATIC_BSD_3_CLAUSE";
     private static final String APACHE_2_0_STATIC_BSD_4_CLAUSE = "APACHE_2_0_STATIC_BSD_4_CLAUSE";
     private static final String APACHE_2_0_STATIC_EDL_1_0 = "APACHE_2_0_STATIC_EDL_1_0";
     private static final String APACHE_2_0_STATIC_MIT = "APACHE_2_0_STATIC_MIT";
+    private static final String ARTISTIC_2_0_STATIC_AFL_3_0 = "ARTISTIC_2_0_STATIC_AFL_3_0";
     private static final String ARTISTIC_2_0_STATIC_APACHE_1_1 = "ARTISTIC_2_0_STATIC_APACHE_1_1";
     private static final String ARTISTIC_2_0_STATIC_APACHE_2_0 = "ARTISTIC_2_0_STATIC_APACHE_2_0";
     private static final String ARTISTIC_2_0_STATIC_BSD_3_CLAUSE = "ARTISTIC_2_0_STATIC_BSD_3_CLAUSE";
     private static final String ARTISTIC_2_0_STATIC_BSD_4_CLAUSE = "ARTISTIC_2_0_STATIC_BSD_4_CLAUSE";
     private static final String ARTISTIC_2_0_STATIC_EDL_1_0 = "ARTISTIC_2_0_STATIC_EDL_1_0";
     private static final String ARTISTIC_2_0_STATIC_MIT = "ARTISTIC_2_0_STATIC_MIT";
+    private static final String BSD_4_CLAUSE_STATIC_AFL_3_0 = "BSD_4_CLAUSE_STATIC_AFL_3_0";
     private static final String BSD_4_CLAUSE_STATIC_APACHE_1_1 = "BSD_4_CLAUSE_STATIC_APACHE_1_1";
     private static final String BSD_4_CLAUSE_STATIC_APACHE_2_0 = "BSD_4_CLAUSE_STATIC_APACHE_2_0";
     private static final String BSD_4_CLAUSE_STATIC_ARTISTIC_2_0 = "BSD_4_CLAUSE_STATIC_ARTISTIC_2_0";
