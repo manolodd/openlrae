@@ -250,8 +250,7 @@ Although it is possible to include components in a project as far as they are co
 
 There are some aspects associated to a license that are used by OpenLRAE to compute some risks. They are easy to understand. But in order to do a deep risks assesment where license compatiblities are involved, OpenLRAE has a base of knowledge (which grows exponentially) that defines how, where and under what conditions a given component (released under a given license) can be included in a project (released also under one, two or more licenses). The following matrixes shows a summary of which kind of situations OpenLRAE is able to analyse.
 
-<div align="center"><img src="https://raw.githubusercontent.com/manolodd/openlrae/develop/src/main/resources/com/manolodominguez/openlrae/supportedanalysis/dynamic.jpg" alt="Supported analysis for dynamic linking" width="100%"/></div>
-<div align="center"><img src="https://raw.githubusercontent.com/manolodd/openlrae/develop/src/main/resources/com/manolodominguez/openlrae/supportedanalysis/static.jpg" alt="Supported analysis for static linking" width="100%"/></div>
+<div align="center"><img src="https://raw.githubusercontent.com/manolodd/openlrae/develop/src/main/resources/com/manolodominguez/openlrae/supportedanalysis/supportedanalysis.png" alt="Supported analysis for static linking" width="100%"/></div>
 
 # THIRD-PARTY COMPONENTS
 
