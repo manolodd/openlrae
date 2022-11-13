@@ -8,6 +8,7 @@ jdk:
   - openjdk16
   - openjdk17
   - openjdk18
+  - openjdk19
 
 addons:
   sonarcloud:
